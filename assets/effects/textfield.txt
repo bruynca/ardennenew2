@@ -1,0 +1,26 @@
+textfield.png
+size: 104, 30
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+background
+  rotate: false
+  xy: 0, 0
+  size: 100, 30
+  orig: 100, 30
+  offset: 0, 0
+  index: -1
+cursor
+  rotate: false
+  xy: 100, 0
+  size: 2, 28
+  orig: 2, 28
+  offset: 0, 0
+  index: -1
+selection
+  rotate: false
+  xy: 102, 0
+  size: 2, 28
+  orig: 2, 28
+  offset: 0, 0
+  index: -1

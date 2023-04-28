@@ -1,0 +1,33 @@
+supply.png
+size: 704, 74
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+germanopsupply
+  rotate: false
+  xy: 0, 0
+  size: 176, 74
+  orig: 176, 74
+  offset: 0, 0
+  index: -1
+germantacticalsupply
+  rotate: false
+  xy: 176, 0
+  size: 176, 74
+  orig: 176, 74
+  offset: 0, 0
+  index: -1
+russianopsupply
+  rotate: false
+  xy: 352, 0
+  size: 176, 74
+  orig: 176, 74
+  offset: 0, 0
+  index: -1
+russiantacticalsupply
+  rotate: false
+  xy: 528, 0
+  size: 176, 74
+  orig: 176, 74
+  offset: 0, 0
+  index: -1

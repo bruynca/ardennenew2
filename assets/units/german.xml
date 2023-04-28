@@ -1,0 +1,687 @@
+	<units>
+		<!--
+		<unit>
+			<unitDesignation value="VG 276" />
+			<unitSubDesignation value="HeadQuarters" />
+			<unitMechanized value="false" />
+			<unitGroundCombat value="true" />
+			<unitType value="HQ" />
+			<unitSize value="Regiment" />
+			<entryAreaX value="39" />
+			<entryAreaY value="21" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="2" />
+			<unitSteps value="2" />
+			<attackFactor value="0" />
+			<defenseFactor value="1" />
+			<movementFactor value="6" />
+		</unit>
+		-->
+		<unit>
+			<unitDesignation value="Supply" />
+			<unitSubDesignation value="5th panzer Army" />
+			<unitMechanized value="true" />
+			<unitGroundCombat value="false" />
+			<unitType value="Transport" />
+			<unitSize value="Regiment" />
+			<entryAreaX value="39" />
+			<entryAreaY value="21" />
+			<unitEntry value="99" />
+			<unitStepAtStart value="2" />
+			<unitSteps value="2" />
+			<attackFactor value="0" />
+			<defenseFactor value="0" />
+			<movementFactor value="35" />
+		</unit>
+		<unit>
+			<unitDesignation value="Supply" />
+			<unitSubDesignation value="5th Panzer Army" />
+			<unitMechanized value="true" />
+			<unitGroundCombat value="false" />
+			<unitType value="Transport" />
+			<unitSize value="Regiment" />
+			<entryAreaX value="39" />
+			<entryAreaY value="21" />
+			<unitEntry value="99" />
+			<unitStepAtStart value="2" />
+			<unitSteps value="2" />
+			<attackFactor value="0" />
+			<defenseFactor value="0" />
+			<movementFactor value="35" />
+		</unit>
+		<unit>
+			<unitDesignation value="Supply" />
+			<unitSubDesignation value="5th Panzer Army" />
+			<unitMechanized value="true" />
+			<unitGroundCombat value="false" />
+			<unitType value="Transport" />
+			<unitSize value="Regiment" />
+			<entryAreaX value="39" />
+			<entryAreaY value="21" />
+			<unitEntry value="99" />
+			<unitStepAtStart value="2" />
+			<unitSteps value="2" />
+			<attackFactor value="0" />
+			<defenseFactor value="0" />
+			<movementFactor value="35" />
+		</unit>
+
+		<unit>
+			<unitDesignation value="VG 276" />
+			<unitSubDesignation value="988 Infantry Regimt" />
+			<unitMechanized value="false" />
+			<unitGroundCombat value="true" />
+			<unitType value="Infantry" />
+			<unitSize value="Regiment" />
+			<entryAreaX value="39" />
+			<entryAreaY value="21" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="2" />
+			<unitSteps value="2" />
+			<attackFactor value="2" />
+			<defenseFactor value="3" />
+			<movementFactor value="5" />
+		</unit>
+
+		<unit>
+			<unitDesignation value="VG 276" />
+			<unitSubDesignation value="986 Infantry Regimt" />
+			<unitMechanized value="false" />
+			<unitGroundCombat value="true" />
+			<unitType value="Infantry" />
+			<unitSize value="Regiment" />
+			<entryAreaX value="39" />
+			<entryAreaY value="21" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="2" />
+			<unitSteps value="2" />
+			<attackFactor value="2" />
+			<defenseFactor value="3" />
+			<movementFactor value="5" />
+		</unit>
+		<unit>
+			<unitDesignation value="VG 276" />
+			<unitSubDesignation value="987 Infantry Regimt" />
+			<unitMechanized value="false" />
+			<unitGroundCombat value="true" />
+			<unitType value="Infantry" />
+			<unitSize value="Regiment" />
+			<entryAreaX value="38" />
+			<entryAreaY value="22" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="2" />
+			<unitSteps value="2" />
+			<attackFactor value="2" />
+			<defenseFactor value="3" />
+			<movementFactor value="5" />
+		</unit>
+		<unit>
+			<unitDesignation value="VG 276" />
+			<unitSubDesignation value="276 Artillery Regimt" />
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="Artillery" />
+			<unitSize value="Regiment" />
+			<entryAreaX value="38" />
+			<entryAreaY value="21" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="1" />
+			<unitSteps value="1" />
+			<attackFactorNoMove value="4" />
+			<attackFactorMove value="0" />
+			<movementFactor value="5" />
+			<movementFactorBarrage value="0" />
+		</unit>
+		<!--
+
+<unit>
+    <unitDesignation value="VG 352" />
+    <unitSubDesignation value="HeadQuarters" />
+    <unitMechanized value="false" />
+    <unitGroundCombat value="true" />
+    <unitType value="HQ" />
+    <unitSize value="Regiment" />
+    <entryAreaX value="36" />
+    <entryAreaY value="20" />
+    <unitEntry value="1" />
+    <unitStepAtStart value="2" />
+    <unitSteps value="2" />
+    <attackFactor value="0" />
+    <defenseFactor value="1" />
+    <movementFactor value="6" />
+</unit>
+-->
+<unit>
+    <unitDesignation value="VG 352" />
+    <unitSubDesignation value="916 Infantry Regimt" />
+    <unitMechanized value="false" />
+    <unitGroundCombat value="true" />
+    <unitType value="Infantry" />
+    <unitSize value="Regiment" />
+    <entryAreaX value="36" />
+    <entryAreaY value="20" />
+    <unitEntry value="1" />
+    <unitStepAtStart value="2" />
+    <unitSteps value="2" />
+    <attackFactor value="2" />
+    <defenseFactor value="3" />
+    <movementFactor value="5" />
+</unit>
+<unit>
+    <unitDesignation value="VG 352" />
+    <unitSubDesignation value="914 Infantry Regimt" />
+    <unitMechanized value="false" />
+    <unitGroundCombat value="true" />
+    <unitType value="Infantry" />
+    <unitSize value="Regiment" />
+    <entryAreaX value="36" />
+    <entryAreaY value="20" />
+    <unitEntry value="1" />
+    <unitStepAtStart value="2" />
+    <unitSteps value="2" />
+    <attackFactor value="2" />
+    <defenseFactor value="3" />
+    <movementFactor value="5" />
+</unit>
+<unit>
+    <unitDesignation value="VG 352" />
+    <unitSubDesignation value="915 Infantry Regimt" />
+    <unitMechanized value="false" />
+    <unitGroundCombat value="true" />
+    <unitType value="Infantry" />
+    <unitSize value="Regiment" />
+    <entryAreaX value="35" />
+    <entryAreaY value="19" />
+    <unitEntry value="1" />
+    <unitStepAtStart value="2" />
+    <unitSteps value="2" />
+    <attackFactor value="2" />
+    <defenseFactor value="3" />
+    <movementFactor value="5" />
+</unit>
+<unit>
+    <unitDesignation value="VG 352" />
+    <unitSubDesignation value="352 Artillery Regimt" />
+    <unitMechanized value="true" />
+    <unitGroundCombat value="true" />
+    <unitType value="Artillery" />
+    <unitSize value="Regiment" />
+    <entryAreaX value="36" />
+    <entryAreaY value="20" />
+    <unitEntry value="1" />
+    <unitStepAtStart value="1" />
+    <unitSteps value="1" />
+    <attackFactorNoMove value="4" />
+    <attackFactorMove value="0" />
+    <movementFactor value="5" />
+    <movementFactorBarrage value="0" />
+
+</unit>
+<!--
+<unit>
+    <unitDesignation value="FJ 5" />
+    <unitSubDesignation value="HeadQuarters" />
+    <unitMechanized value="false" />
+    <unitGroundCombat value="true" />
+    <unitType value="HQ" />
+    <unitSize value="Regiment" />
+    <entryAreaX value="35" />
+    <entryAreaY value="17" />
+    <unitEntry value="1" />
+    <unitStepAtStart value="2" />
+    <unitSteps value="2" />
+    <attackFactor value="0" />
+    <defenseFactor value="1" />
+    <movementFactor value="8" />
+</unit>
+-->
+		<unit>
+			<unitDesignation value="FJ 5" />
+			<unitSubDesignation value="15th Parachute Regt" />
+			<unitMechanized value="false" />
+			<unitGroundCombat value="true" />
+			<unitType value="Airborne" />
+			<unitSize value="Regiment" />
+			<entryAreaX value="35" />
+			<entryAreaY value="17" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="3" />
+			<unitSteps value="3" />
+			<attackFactor value="3" />
+			<defenseFactor value="3" />
+			<movementFactor value="7" />
+		</unit>
+
+		<unit>
+			<unitDesignation value="FJ 5" />
+			<unitSubDesignation value="13th Parachute Regt" />
+			<unitMechanized value="false" />
+			<unitGroundCombat value="true" />
+			<unitType value="Airborne" />
+			<unitSize value="Regiment" />
+			<entryAreaX value="34" />
+			<entryAreaY value="17" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="3" />
+			<unitSteps value="3" />
+			<attackFactor value="3" />
+			<defenseFactor value="3" />
+			<movementFactor value="7" />
+		</unit>
+
+		<unit>
+			<unitDesignation value="FJ 5" />
+			<unitSubDesignation value="14th Parachute Regt" />
+			<unitMechanized value="false" />
+			<unitGroundCombat value="true" />
+			<unitType value="Airborne" />
+			<unitSize value="Regiment" />
+			<entryAreaX value="34" />
+			<entryAreaY value="16" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="3" />
+			<unitSteps value="3" />
+			<attackFactor value="3" />
+			<defenseFactor value="3" />
+			<movementFactor value="7" />
+		</unit>
+		<unit>
+			<unitDesignation value="FJ 5" />
+			<unitSubDesignation value="11 Assualt Gun Batt" />
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="AssaultGun" />
+			<unitSize value="Battalion" />
+			<entryAreaX value="35" />
+			<entryAreaY value="16" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="1" />
+			<unitSteps value="1" />
+			<attackFactor value="3" />
+			<defenseFactor value="3" />
+			<movementFactor value="10" />
+		</unit>
+
+		<unit>
+			<unitDesignation value="Art Corp" />
+			<unitSubDesignation value="406 Artillery Regimt" />
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="Artillery" />
+			<unitSize value="Regiment" />
+			<entryAreaX value="35" />
+			<entryAreaY value="16" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="1" />
+			<unitSteps value="1" />
+			<attackFactorNoMove value="5" />
+			<attackFactorMove value="0" />
+			<movementFactor value="4" />
+			<movementFactorBarrage value="0" />
+
+		</unit>
+		<unit>
+			<unitDesignation value="Art Corp" />
+			<unitSubDesignation value="408 Artillery Regimt" />
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="Artillery" />
+			<unitSize value="Regiment" />
+			<entryAreaX value="37" />
+			<entryAreaY value="17" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="1" />
+			<unitSteps value="1" />
+			<attackFactorNoMove value="5" />
+			<attackFactorMove value="0" />
+			<movementFactor value="4" />
+			<movementFactorBarrage value="0" />
+		</unit>
+		<unit>
+			<unitDesignation value="Werf Corp" />
+			<unitSubDesignation value="18 Werfer Brigade" />
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="Neber" />
+			<unitSize value="Brigade" />
+			<entryAreaX value="34" />
+			<entryAreaY value="15" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="1" />
+			<unitSteps value="1" />
+			<attackFactorNoMove value="12" />
+			<attackFactorMove value="0" />
+			<movementFactor value="6" />
+			<movementFactorBarrage value="0" />
+		</unit>
+		<unit>
+			<unitDesignation value="Werf Corp" />
+			<unitSubDesignation value="15 Werfer Brigade" />
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="Neber" />
+			<unitSize value="Brigade" />
+			<entryAreaX value="31" />
+			<entryAreaY value="10" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="1" />
+			<unitSteps value="1" />
+			<attackFactorNoMove value="12" />
+			<attackFactorMove value="0" />
+			<movementFactor value="6" />
+			<movementFactorBarrage value="0" />
+		</unit>
+
+		<unit>
+			<unitDesignation value="VG 26" />
+			<unitSubDesignation value="Kaufman 39 Fusilier"/>
+			<unitMechanized value="false" />
+			<unitGroundCombat value="true" />
+			<unitType value="Infantry" />
+			<unitSize value="KG" />
+			<entryAreaX value="32" />
+			<entryAreaY value="13" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="3" />
+			<unitSteps value="3" />
+			<attackFactor value="4" />
+			<defenseFactor value="5" />
+			<movementFactor value="7" />
+		</unit>
+		<unit>
+			<unitDesignation value="VG 26" />
+			<unitSubDesignation value="KG KuKl Assualt Gun" />
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="AssualtGun" />
+			<unitSize value="KG" />
+			<entryAreaX value="32" />
+			<entryAreaY value="13" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="1" />
+			<unitSteps value="1" />
+			<attackFactor value="3" />
+			<defenseFactor value="3" />
+			<movementFactor value="10" />
+		</unit>
+		<unit>
+			<unitDesignation value="VG 26" />
+			<unitSubDesignation value="26 Volks-Artillerie Regiment" />
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="Artillery" />
+			<unitSize value="Regiment" />
+			<entryAreaX value="33" />
+			<entryAreaY value="12" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="1" />
+			<unitSteps value="1" />
+			<attackFactorNoMove value="5" />
+			<attackFactorMove value="0" />
+			<movementFactor value="4" />
+			<movementFactorBarrage value="0" />
+
+		</unit>
+		<unit>
+			<unitDesignation value="VG 26" />
+			<unitSubDesignation value="77 Grenadier Regiment"/>
+			<unitMechanized value="false" />
+			<unitGroundCombat value="true" />
+			<unitType value="Infantry" />
+			<unitSize value="KG" />
+			<entryAreaX value="31" />
+			<entryAreaY value="11" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="3" />
+			<unitSteps value="3" />
+			<attackFactor value="4" />
+			<defenseFactor value="5" />
+			<movementFactor value="7" />
+		</unit>
+		<unit>
+			<unitDesignation value="VG 26" />
+			<unitSubDesignation value="78 Grenadier Regiment"/>
+			<unitMechanized value="false" />
+			<unitGroundCombat value="true" />
+			<unitType value="Infantry" />
+			<unitSize value="KG" />
+			<entryAreaX value="31" />
+			<entryAreaY value="11" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="3" />
+			<unitSteps value="3" />
+			<attackFactor value="4" />
+			<defenseFactor value="5" />
+			<movementFactor value="7" />
+		</unit>
+
+		<unit>
+			<unitDesignation value="2nd Pz" />
+			<unitSubDesignation value="KG Gutman Tank"/>
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="Tank" />
+			<unitSize value="KG" />
+			<entryAreaX value="30" />
+			<entryAreaY value="09" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="1" />
+			<unitSteps value="1" />
+			<attackFactor value="6" />
+			<defenseFactor value="5" />
+			<movementFactor value="12" />
+		</unit>
+		<unit>
+			<unitDesignation value="2nd Pz" />
+			<unitSubDesignation value="KG Gutman PzGrn"/>
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="Grenadier" />
+			<unitSize value="KG" />
+			<entryAreaX value="30" />
+			<entryAreaY value="09" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="2" />
+			<unitSteps value="21" />
+			<attackFactor value="4" />
+			<defenseFactor value="5" />
+			<movementFactor value="12" />
+		</unit>
+		<unit>
+			<unitDesignation value="2nd Pz" />
+			<unitSubDesignation value="KG vonCochn PzGrn"/>
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="Grenadier" />
+			<unitSize value="KG" />
+			<entryAreaX value="30" />
+			<entryAreaY value="09" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="2" />
+			<unitSteps value="2" />
+			<attackFactor value="5" />
+			<defenseFactor value="6" />
+			<movementFactor value="12" />
+		</unit>
+		<unit>
+			<unitDesignation value="2nd PZ" />
+			<unitSubDesignation value="38 Panzer Jagrs"/>
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="AntiTank" />
+			<unitSize value="Battalion" />
+			<entryAreaX value="30" />
+			<entryAreaY value="08" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="1" />
+			<unitSteps value="1" />
+			<attackFactor value="2" />
+			<defenseFactor value="3" />
+			<movementFactor value="12" />
+		</unit>
+		<unit>
+			<unitDesignation value="2nd Pz" />
+			<unitSubDesignation value="KG vCochmann Tank"/>
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="Tank" />
+			<unitSize value="KG" />
+			<entryAreaX value="30" />
+			<entryAreaY value="08" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="1" />
+			<unitSteps value="1" />
+			<attackFactor value="8" />
+			<defenseFactor value="6" />
+			<movementFactor value="12" />
+		</unit>
+		<unit>
+			<unitDesignation value="2nd Pz" />
+			<unitSubDesignation value="KG vonBohm Recon"/>
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="Recon" />
+			<unitSize value="KG" />
+			<entryAreaX value="30" />
+			<entryAreaY value="08" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="1" />
+			<unitSteps value="1" />
+			<attackFactor value="5" />
+			<defenseFactor value="4" />
+			<movementFactor value="14" />
+		</unit>
+		<unit>
+			<unitDesignation value="2nd Pz" />
+			<unitSubDesignation value="74 Armored Art" />
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="Artillery" />
+			<unitSize value="Regiment" />
+			<entryAreaX value="30" />
+			<entryAreaY value="08" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="1" />
+			<unitSteps value="1" />
+			<attackFactorNoMove value="5" />
+			<attackFactorMove value="3" />
+			<movementFactor value="10" />
+			<movementFactorBarrage value="2" />
+
+		</unit>
+		<unit>
+			<unitDesignation value="Pz Lehr" />
+			<unitSubDesignation value="130 Armored Art" />
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="Artillery" />
+			<unitSize value="Regiment" />
+			<entryAreaX value="36" />
+			<entryAreaY value="11" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="1" />
+			<unitSteps value="1" />
+			<attackFactorNoMove value="5" />
+			<attackFactorMove value="3" />
+			<movementFactor value="10" />
+			<movementFactorBarrage value="2" />
+
+		</unit>
+		<unit>
+			<unitDesignation value="Pz Lehr" />
+			<unitSubDesignation value="559 Assualt Gun"/>
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="AssualtGun" />
+			<unitSize value="Battalion" />
+			<entryAreaX value="36" />
+			<entryAreaY value="11" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="1" />
+			<unitSteps value="1" />
+			<attackFactor value="5" />
+			<defenseFactor value="4" />
+			<movementFactor value="12" />
+		</unit>
+		<unit>
+			<unitDesignation value="Pz Lehr" />
+			<unitSubDesignation value="902 KG PzGrn"/>
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="Grenadier" />
+			<unitSize value="KG" />
+			<entryAreaX value="36" />
+			<entryAreaY value="11" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="2" />
+			<unitSteps value="2" />
+			<attackFactor value="5" />
+			<defenseFactor value="6" />
+			<movementFactor value="12" />
+		</unit>
+		<unit>
+			<unitDesignation value="Pz Lehr" />
+			<unitSubDesignation value="901 KG PzGrn"/>
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="Grenadier" />
+			<unitSize value="KG" />
+			<entryAreaX value="36" />
+			<entryAreaY value="11" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="2" />
+			<unitSteps value="2" />
+			<attackFactor value="6" />
+			<defenseFactor value="7" />
+			<movementFactor value="12" />
+		</unit>
+		<unit>
+			<unitDesignation value="Pz Lehr" />
+			<unitSubDesignation value="KG vFallois Tank"/>
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="Tank" />
+			<unitSize value="KG" />
+			<entryAreaX value="34" />
+			<entryAreaY value="12" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="1" />
+			<unitSteps value="1" />
+			<attackFactor value="5" />
+			<defenseFactor value="4" />
+			<movementFactor value="12" />
+		</unit>
+		<unit>
+			<unitDesignation value="Pz Lehr" />
+			<unitSubDesignation value="KG Kunkel Recon"/>
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="Recon" />
+			<unitSize value="KG" />
+			<entryAreaX value="34" />
+			<entryAreaY value="12" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="1" />
+			<unitSteps value="1" />
+			<attackFactor value="5" />
+			<defenseFactor value="4" />
+			<movementFactor value="14" />
+		</unit>
+		<unit>
+			<unitDesignation value="Pz Lehr"/>
+			<unitSubDesignation value="243 Assualt Gun" />
+			<unitMechanized value="true" />
+			<unitGroundCombat value="true" />
+			<unitType value="AssualtGun" />
+			<unitSize value="Regiment" />
+			<entryAreaX value="35" />
+			<entryAreaY value="11" />
+			<unitEntry value="1" />
+			<unitStepAtStart value="1" />
+			<unitSteps value="1" />
+			<attackFactor value="3" />
+			<defenseFactor value="3" />
+			<movementFactor value="10" />
+		</unit>
+
+	</units>

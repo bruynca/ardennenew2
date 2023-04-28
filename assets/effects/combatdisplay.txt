@@ -1,0 +1,453 @@
+combatdisplay.png
+size: 915, 1468
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+0to0
+  rotate: false
+  xy: 728, 54
+  size: 110, 50
+  orig: 110, 50
+  offset: 0, 0
+  index: -1
+1to1
+  rotate: false
+  xy: 440, 104
+  size: 110, 50
+  orig: 110, 50
+  offset: 0, 0
+  index: -1
+1to2
+  rotate: false
+  xy: 330, 154
+  size: 110, 50
+  orig: 110, 50
+  offset: 0, 0
+  index: -1
+1to3
+  rotate: false
+  xy: 660, 104
+  size: 110, 50
+  orig: 110, 50
+  offset: 0, 0
+  index: -1
+1to4
+  rotate: false
+  xy: 0, 154
+  size: 110, 50
+  orig: 110, 50
+  offset: 0, 0
+  index: -1
+1to5
+  rotate: false
+  xy: 770, 104
+  size: 110, 50
+  orig: 110, 50
+  offset: 0, 0
+  index: -1
+2to1
+  rotate: false
+  xy: 550, 104
+  size: 110, 50
+  orig: 110, 50
+  offset: 0, 0
+  index: -1
+3to1
+  rotate: false
+  xy: 110, 104
+  size: 110, 50
+  orig: 110, 50
+  offset: 0, 0
+  index: -1
+4to1
+  rotate: false
+  xy: 330, 104
+  size: 110, 50
+  orig: 110, 50
+  offset: 0, 0
+  index: -1
+5to1
+  rotate: false
+  xy: 220, 104
+  size: 110, 50
+  orig: 110, 50
+  offset: 0, 0
+  index: -1
+6to1
+  rotate: false
+  xy: 0, 104
+  size: 110, 50
+  orig: 110, 50
+  offset: 0, 0
+  index: -1
+7to1
+  rotate: false
+  xy: 110, 154
+  size: 110, 50
+  orig: 110, 50
+  offset: 0, 0
+  index: -1
+8to1
+  rotate: false
+  xy: 220, 204
+  size: 110, 50
+  orig: 110, 50
+  offset: 0, 0
+  index: -1
+9to1
+  rotate: false
+  xy: 110, 204
+  size: 110, 50
+  orig: 110, 50
+  offset: 0, 0
+  index: -1
+10to1
+  rotate: false
+  xy: 220, 154
+  size: 110, 50
+  orig: 110, 50
+  offset: 0, 0
+  index: -1
+11to1
+  rotate: false
+  xy: 440, 154
+  size: 110, 50
+  orig: 110, 50
+  offset: 0, 0
+  index: -1
+12to1
+  rotate: false
+  xy: 550, 154
+  size: 110, 50
+  orig: 110, 50
+  offset: 0, 0
+  index: -1
+13to1
+  rotate: false
+  xy: 660, 154
+  size: 110, 50
+  orig: 110, 50
+  offset: 0, 0
+  index: -1
+14to1
+  rotate: false
+  xy: 770, 154
+  size: 110, 50
+  orig: 110, 50
+  offset: 0, 0
+  index: -1
+15to1
+  rotate: false
+  xy: 0, 204
+  size: 110, 50
+  orig: 110, 50
+  offset: 0, 0
+  index: -1
+antitank
+  rotate: false
+  xy: 816, 0
+  size: 51, 24
+  orig: 51, 24
+  offset: 0, 0
+  index: -1
+artillery
+  rotate: false
+  xy: 220, 0
+  size: 30, 13
+  orig: 30, 13
+  offset: 0, 0
+  index: -1
+attackbutton
+  rotate: false
+  xy: 406, 54
+  size: 161, 49
+  orig: 161, 49
+  offset: 0, 0
+  index: -1
+attackbuttonover
+  rotate: false
+  xy: 567, 54
+  size: 161, 49
+  orig: 161, 49
+  offset: 0, 0
+  index: -1
+backgroundgerman
+  rotate: false
+  xy: 650, 1164
+  size: 230, 304
+  orig: 230, 304
+  offset: 0, 0
+  index: -1
+backgroundrussian
+  rotate: false
+  xy: 0, 860
+  size: 230, 304
+  orig: 230, 304
+  offset: 0, 0
+  index: -1
+barrage
+  rotate: false
+  xy: 330, 204
+  size: 156, 136
+  orig: 156, 136
+  offset: 0, 0
+  index: -1
+barrageresultsgerman
+  rotate: false
+  xy: 0, 610
+  size: 650, 250
+  orig: 650, 250
+  offset: 0, 0
+  index: -1
+barrageresultsrussian
+  rotate: false
+  xy: 0, 360
+  size: 650, 250
+  orig: 650, 250
+  offset: 0, 0
+  index: -1
+broken
+  rotate: false
+  xy: 102, 24
+  size: 51, 24
+  orig: 51, 24
+  offset: 0, 0
+  index: -1
+cancelbutton
+  rotate: false
+  xy: 84, 54
+  size: 161, 49
+  orig: 161, 49
+  offset: 0, 0
+  index: -1
+cancelbuttonover
+  rotate: false
+  xy: 245, 54
+  size: 161, 49
+  orig: 161, 49
+  offset: 0, 0
+  index: -1
+combat
+  rotate: false
+  xy: 778, 204
+  size: 136, 156
+  orig: 136, 156
+  offset: 0, 0
+  index: -1
+combatresultsdisplaygerman
+  rotate: false
+  xy: 0, 1164
+  size: 650, 304
+  orig: 650, 304
+  offset: 0, 0
+  index: -1
+combatresultsdisplayrussian
+  rotate: false
+  xy: 230, 860
+  size: 650, 304
+  orig: 650, 304
+  offset: 0, 0
+  index: -1
+concentricattack
+  rotate: false
+  xy: 701, 0
+  size: 51, 24
+  orig: 51, 24
+  offset: 0, 0
+  index: -1
+entrenchment
+  rotate: false
+  xy: 0, 24
+  size: 51, 24
+  orig: 51, 24
+  offset: 0, 0
+  index: -1
+flak
+  rotate: false
+  xy: 650, 0
+  size: 51, 24
+  orig: 51, 24
+  offset: 0, 0
+  index: -1
+fortificationattacker
+  rotate: false
+  xy: 51, 24
+  size: 51, 24
+  orig: 51, 24
+  offset: 0, 0
+  index: -1
+fortificationdefender
+  rotate: false
+  xy: 153, 24
+  size: 51, 24
+  orig: 51, 24
+  offset: 0, 0
+  index: -1
+g200
+  rotate: false
+  xy: 250, 0
+  size: 200, 20
+  orig: 200, 20
+  offset: 0, 0
+  index: -1
+germanaircraft
+  rotate: false
+  xy: 43, 54
+  size: 41, 32
+  orig: 41, 32
+  offset: 0, 0
+  index: -1
+germanbarragedisplay
+  rotate: false
+  xy: 650, 610
+  size: 254, 250
+  orig: 254, 250
+  offset: 0, 0
+  index: -1
+germansteploss
+  rotate: false
+  xy: 803, 0
+  size: 13, 24
+  orig: 13, 24
+  offset: 0, 0
+  index: -1
+germansteplossx
+  rotate: false
+  xy: 204, 24
+  size: 13, 24
+  orig: 13, 24
+  offset: 0, 0
+  index: -1
+hills
+  rotate: false
+  xy: 752, 0
+  size: 51, 24
+  orig: 51, 24
+  offset: 0, 0
+  index: -1
+line
+  rotate: false
+  xy: 0, 0
+  size: 220, 2
+  orig: 220, 2
+  offset: 0, 0
+  index: -1
+marsh
+  rotate: false
+  xy: 450, 24
+  size: 51, 24
+  orig: 51, 24
+  offset: 0, 0
+  index: -1
+mobileassault
+  rotate: false
+  xy: 642, 204
+  size: 136, 156
+  orig: 136, 156
+  offset: 0, 0
+  index: -1
+outerglow
+  rotate: false
+  xy: 705, 24
+  size: 210, 30
+  orig: 210, 30
+  offset: 0, 0
+  index: -1
+plane1
+  rotate: false
+  xy: 552, 24
+  size: 51, 24
+  orig: 51, 24
+  offset: 0, 0
+  index: -1
+plane2
+  rotate: false
+  xy: 603, 24
+  size: 51, 24
+  orig: 51, 24
+  offset: 0, 0
+  index: -1
+plane3
+  rotate: false
+  xy: 399, 24
+  size: 51, 24
+  orig: 51, 24
+  offset: 0, 0
+  index: -1
+plane4
+  rotate: false
+  xy: 217, 24
+  size: 51, 24
+  orig: 51, 24
+  offset: 0, 0
+  index: -1
+plane5
+  rotate: false
+  xy: 322, 24
+  size: 51, 24
+  orig: 51, 24
+  offset: 0, 0
+  index: -1
+r200
+  rotate: false
+  xy: 450, 0
+  size: 200, 20
+  orig: 200, 20
+  offset: 0, 0
+  index: -1
+romaniandefender
+  rotate: false
+  xy: 268, 24
+  size: 54, 24
+  orig: 54, 24
+  offset: 0, 0
+  index: -1
+russianaircraft
+  rotate: false
+  xy: 0, 54
+  size: 43, 32
+  orig: 43, 32
+  offset: 0, 0
+  index: -1
+russianbarragedisplay
+  rotate: false
+  xy: 650, 360
+  size: 251, 250
+  orig: 251, 250
+  offset: 0, 0
+  index: -1
+russiansteploss
+  rotate: false
+  xy: 373, 24
+  size: 13, 24
+  orig: 13, 24
+  offset: 0, 0
+  index: -1
+russiansteplossx
+  rotate: false
+  xy: 386, 24
+  size: 13, 24
+  orig: 13, 24
+  offset: 0, 0
+  index: -1
+supply
+  rotate: false
+  xy: 501, 24
+  size: 51, 24
+  orig: 51, 24
+  offset: 0, 0
+  index: -1
+target
+  rotate: false
+  xy: 486, 204
+  size: 156, 136
+  orig: 156, 136
+  offset: 0, 0
+  index: -1
+town
+  rotate: false
+  xy: 654, 24
+  size: 51, 24
+  orig: 51, 24
+  offset: 0, 0
+  index: -1

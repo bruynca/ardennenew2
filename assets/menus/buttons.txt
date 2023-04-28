@@ -1,0 +1,159 @@
+buttons.png
+size: 2002, 91
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+buttonexitoff
+  rotate: false
+  xy: 1, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+buttonexiton
+  rotate: false
+  xy: 92, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+buttonhexesoff
+  rotate: false
+  xy: 183, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+buttonhexeson
+  rotate: false
+  xy: 274, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+buttonmapoff
+  rotate: false
+  xy: 365, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+buttonmapon
+  rotate: false
+  xy: 456, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+buttonobjectiveoff
+  rotate: false
+  xy: 547, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+buttonobjectiveon
+  rotate: false
+  xy: 638, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+buttonsaveoff
+  rotate: false
+  xy: 729, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+buttonsaveon
+  rotate: false
+  xy: 820, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+effectsoff
+  rotate: false
+  xy: 911, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+effectson
+  rotate: false
+  xy: 1002, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+keyboardoff
+  rotate: false
+  xy: 1093, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+keyboardon
+  rotate: false
+  xy: 1184, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+manualoff
+  rotate: false
+  xy: 1275, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+manualon
+  rotate: false
+  xy: 1366, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+menuoff
+  rotate: false
+  xy: 1457, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+menuon
+  rotate: false
+  xy: 1548, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+musicoff
+  rotate: false
+  xy: 1639, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+musicon
+  rotate: false
+  xy: 1730, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+supplyoff
+  rotate: false
+  xy: 1821, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1
+supplyon
+  rotate: false
+  xy: 1912, 1
+  size: 89, 89
+  orig: 89, 89
+  offset: 0, 0
+  index: -1

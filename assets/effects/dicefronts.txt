@@ -1,0 +1,47 @@
+dicefronts.png
+size: 714, 127
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+five
+  rotate: false
+  xy: 0, 0
+  size: 119, 127
+  orig: 119, 127
+  offset: 0, 0
+  index: -1
+four
+  rotate: false
+  xy: 119, 0
+  size: 119, 127
+  orig: 119, 127
+  offset: 0, 0
+  index: -1
+one
+  rotate: false
+  xy: 238, 0
+  size: 119, 127
+  orig: 119, 127
+  offset: 0, 0
+  index: -1
+six
+  rotate: false
+  xy: 357, 0
+  size: 119, 127
+  orig: 119, 127
+  offset: 0, 0
+  index: -1
+three
+  rotate: false
+  xy: 476, 0
+  size: 119, 127
+  orig: 119, 127
+  offset: 0, 0
+  index: -1
+two
+  rotate: false
+  xy: 595, 0
+  size: 119, 127
+  orig: 119, 127
+  offset: 0, 0
+  index: -1

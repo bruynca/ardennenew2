@@ -1,0 +1,33 @@
+gameselectionbuttons.png
+size: 1200, 200
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+game1
+  rotate: false
+  xy: 0, 0
+  size: 300, 200
+  orig: 300, 200
+  offset: 0, 0
+  index: -1
+game1pressed
+  rotate: false
+  xy: 300, 0
+  size: 300, 200
+  orig: 300, 200
+  offset: 0, 0
+  index: -1
+game2
+  rotate: false
+  xy: 600, 0
+  size: 300, 200
+  orig: 300, 200
+  offset: 0, 0
+  index: -1
+game2pressed
+  rotate: false
+  xy: 900, 0
+  size: 300, 200
+  orig: 300, 200
+  offset: 0, 0
+  index: -1

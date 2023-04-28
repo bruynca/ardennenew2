@@ -1,0 +1,152 @@
+bottommenu.png
+size: 510, 450
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+border
+  rotate: false
+  xy: 0, 0
+  size: 110, 110
+  orig: 110, 110
+  offset: 0, 0
+  index: -1
+germanreinforcement
+  rotate: false
+  xy: 110, 0
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+germanreinforcementpressed
+  rotate: false
+  xy: 210, 0
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+germansupply
+  rotate: false
+  xy: 310, 0
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+germansupplypressed
+  rotate: false
+  xy: 410, 0
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+hidemenu
+  rotate: false
+  xy: 0, 110
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+hidemenupressed
+  rotate: false
+  xy: 100, 110
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+load
+  rotate: false
+  xy: 200, 110
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+loadpressed
+  rotate: false
+  xy: 300, 110
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+nextphase
+  rotate: false
+  xy: 400, 110
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+nextphasepressed
+  rotate: false
+  xy: 0, 210
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+russianreinforcement
+  rotate: false
+  xy: 100, 210
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+russianreinforcementpressed
+  rotate: false
+  xy: 200, 210
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+russiansea
+  rotate: false
+  xy: 300, 210
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+russianseapressed
+  rotate: false
+  xy: 400, 210
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+russiansupply
+  rotate: false
+  xy: 0, 310
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+russiansupplypressed
+  rotate: false
+  xy: 100, 310
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+save
+  rotate: false
+  xy: 200, 310
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+savepressed
+  rotate: false
+  xy: 300, 310
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+showmenu
+  rotate: false
+  xy: 401, 310
+  size: 85, 62
+  orig: 85, 62
+  offset: 0, 0
+  index: -1
+turnbox
+  rotate: false
+  xy: 0, 410
+  size: 300, 40
+  orig: 300, 40
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,33 @@
+unitmarkers.png
+size: 416, 104
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+highlight
+  rotate: false
+  xy: 0, 0
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: -1
+moved
+  rotate: false
+  xy: 104, 0
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: -1
+oss
+  rotate: false
+  xy: 208, 0
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: -1
+outoftacticalsupply
+  rotate: false
+  xy: 312, 0
+  size: 104, 104
+  orig: 104, 104
+  offset: 0, 0
+  index: -1

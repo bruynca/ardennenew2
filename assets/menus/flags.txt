@@ -1,0 +1,75 @@
+flags.png
+size: 64, 440
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+china
+  rotate: false
+  xy: 0, 0
+  size: 64, 44
+  orig: 64, 44
+  offset: 0, 0
+  index: -1
+chinaover
+  rotate: false
+  xy: 0, 44
+  size: 64, 44
+  orig: 64, 44
+  offset: 0, 0
+  index: -1
+france
+  rotate: false
+  xy: 0, 88
+  size: 64, 44
+  orig: 64, 44
+  offset: 0, 0
+  index: -1
+franceover
+  rotate: false
+  xy: 0, 132
+  size: 64, 44
+  orig: 64, 44
+  offset: 0, 0
+  index: -1
+germany
+  rotate: false
+  xy: 0, 176
+  size: 64, 44
+  orig: 64, 44
+  offset: 0, 0
+  index: -1
+germanyover
+  rotate: false
+  xy: 0, 220
+  size: 64, 44
+  orig: 64, 44
+  offset: 0, 0
+  index: -1
+spain
+  rotate: false
+  xy: 0, 264
+  size: 64, 44
+  orig: 64, 44
+  offset: 0, 0
+  index: -1
+spainover
+  rotate: false
+  xy: 0, 308
+  size: 64, 44
+  orig: 64, 44
+  offset: 0, 0
+  index: -1
+usa
+  rotate: false
+  xy: 0, 352
+  size: 64, 44
+  orig: 64, 44
+  offset: 0, 0
+  index: -1
+usaover
+  rotate: false
+  xy: 0, 396
+  size: 64, 44
+  orig: 64, 44
+  offset: 0, 0
+  index: -1

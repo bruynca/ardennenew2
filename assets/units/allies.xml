@@ -1,0 +1,738 @@
+<units>
+
+    <unit>
+    <unitDesignation value="Arm 10" />
+    <unitSubDesignation value="CCA Brigade" />
+    <unitMechanized value="true" />
+    <unitGroundCombat value="true" />
+    <unitType value="Grenadier" />
+    <unitSize value="Brigade" />
+    <entryAreaX value="28" />
+    <entryAreaY value="24" />
+    <unitEntry value="3" />
+    <unitStepAtStart value="2" />
+    <unitSteps value="2" />
+    <attackFactor value="7" />
+    <defenseFactor value="6" />
+    <movementFactor value="14" />
+</unit>
+    <unit>
+        <unitDesignation value="Arm 10" />
+        <unitSubDesignation value="CCB Brigade" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Grenadier" />
+        <unitSize value="Brigade" />
+        <entryAreaX value="28" />
+        <entryAreaY value="24" />
+        <unitEntry value="3" />
+        <unitStepAtStart value="2" />
+        <unitSteps value="2" />
+        <attackFactor value="7" />
+        <defenseFactor value="6" />
+        <movementFactor value="14" />
+    </unit>
+    <unit>
+        <unitDesignation value="Arm 10" />
+        <unitSubDesignation value="CCR Brigade" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Grenadier" />
+        <unitSize value="Brigade" />
+        <entryAreaX value="9" />
+        <entryAreaY value="24" />
+        <unitEntry value="3" />
+        <unitStepAtStart value="2" />
+        <unitSteps value="2" />
+        <attackFactor value="7" />
+        <defenseFactor value="6" />
+        <movementFactor value="14" />
+    </unit>
+
+    <unit>
+        <unitDesignation value="Arm 10" />
+        <unitSubDesignation value="Tank Destroyer" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="AntiTank" />
+        <unitSize value="Regiment" />
+        <entryAreaX value="28" />
+        <entryAreaY value="24" />
+        <unitEntry value="3" />
+        <unitStepAtStart value="2" />
+        <unitSteps value="1" />
+        <attackFactor value="1" />
+        <defenseFactor value="3" />
+        <movementFactor value="10" />
+    </unit>
+    <unit>
+    <unitDesignation value="Arm 9" />
+    <unitSubDesignation value="CCA Brigade" />
+    <unitMechanized value="true" />
+    <unitGroundCombat value="true" />
+    <unitType value="Grenadier" />
+    <unitSize value="Brigade" />
+    <entryAreaX value="39" />
+    <entryAreaY value="22" />
+    <unitEntry value="1" />
+    <unitStepAtStart value="2" />
+    <unitSteps value="2" />
+    <attackFactor value="7" />
+    <defenseFactor value="6" />
+    <movementFactor value="14" />
+</unit>
+    <unit>
+        <unitDesignation value="Arm 9" />
+        <unitSubDesignation value="CCR Brigade" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Grenadier" />
+        <unitSize value="Brigade" />
+        <entryAreaX value="27" />
+        <entryAreaY value="01" />
+        <unitEntry value="1" />
+        <unitStepAtStart value="2" />
+        <unitSteps value="2" />
+        <attackFactor value="7" />
+        <defenseFactor value="6" />
+        <movementFactor value="14" />
+    </unit>
+    <!--
+    <unit>
+        <unitDesignation value="Arm 9" />
+        <unitSubDesignation value="CCB Brigade" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Grenadier" />
+        <unitSize value="Brigade" />
+        <entryAreaX value="9" />
+        <entryAreaY value="0" />
+        <unitEntry value="1" />
+        <unitStepAtStart value="2" />
+        <unitSteps value="2" />
+        <attackFactor value="7" />
+        <defenseFactor value="6" />
+        <movementFactor value="14" />
+    </unit> -->
+    <unit>
+        <unitDesignation value="Arm 9" />
+        <unitSubDesignation value="Division Artillery" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Artillery" />
+        <unitSize value="Brigade" />
+        <entryAreaX value="27" />
+        <entryAreaY value="01" />
+        <unitEntry value="1" />
+        <unitStepAtStart value="1" />
+        <unitSteps value="1" />
+        <attackFactorNoMove value="8" />
+        <attackFactorMove value="6" />
+        <movementFactor value="14" />
+        <movementFactorBarrage value="6" />
+    </unit>
+    <unit>
+        <unitDesignation value="anTank" />
+        <unitSubDesignation value="Tank Destroyer" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="AntiTank" />
+        <unitSize value="Regiment" />
+        <entryAreaX value="28" />
+        <entryAreaY value="24" />
+        <unitEntry value="5" />
+        <unitStepAtStart value="1" />
+        <unitSteps value="1" />
+        <attackFactor value="2" />
+        <defenseFactor value="3" />
+        <movementFactor value="10" />
+    </unit>
+    <unit>
+        <unitDesignation value="Arm 4" />
+        <unitSubDesignation value="CCA Brigade" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Grenadier" />
+        <unitSize value="Brigade" />
+        <entryAreaX value="9" />
+        <entryAreaY value="24" />
+        <unitEntry value="7" />
+        <unitStepAtStart value="2" />
+        <unitSteps value="2" />
+        <attackFactor value="7" />
+        <defenseFactor value="6" />
+        <movementFactor value="14" />
+    </unit>
+    <unit>
+        <unitDesignation value="Arm 4" />
+        <unitSubDesignation value="CCR Brigade" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Grenadier" />
+        <unitSize value="Brigade" />
+        <entryAreaX value="9" />
+        <entryAreaY value="24" />
+        <unitEntry value="7" />
+        <unitStepAtStart value="2" />
+        <unitSteps value="2" />
+        <attackFactor value="7" />
+        <defenseFactor value="6" />
+        <movementFactor value="14" />
+    </unit>
+    <unit>
+        <unitDesignation value="Arm 4" />
+        <unitSubDesignation value="CCB Brigade" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Grenadier" />
+        <unitSize value="Brigade" />
+        <entryAreaX value="9" />
+        <entryAreaY value="24" />
+        <unitEntry value="7" />
+        <unitStepAtStart value="2" />
+        <unitSteps value="2" />
+        <attackFactor value="7" />
+        <defenseFactor value="6" />
+        <movementFactor value="14" />
+    </unit>
+    <unit>
+        <unitDesignation value="Arm 4" />
+        <unitSubDesignation value="Division Artillery" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Artillery" />
+        <unitSize value="Brigade" />
+        <entryAreaX value="9" />
+        <entryAreaY value="24" />
+        <unitEntry value="7" />
+        <unitStepAtStart value="1" />
+        <unitSteps value="1" />
+        <attackFactorNoMove value="8" />
+        <attackFactorMove value="4" />
+        <movementFactor value="14" />
+        <movementFactorBarrage value="6" />
+    </unit>
+    <unit>
+        <unitDesignation value="Inf 26" />
+        <unitSubDesignation value="101 Regiment" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Infantry" />
+        <unitSize value="Regiment" />
+        <entryAreaX value="9" />
+        <entryAreaY value="24" />
+        <unitEntry value="7" />
+        <unitStepAtStart value="3" />
+        <unitSteps value="3" />
+        <attackFactor value="3" />
+        <defenseFactor value="6" />
+        <movementFactor value="8" />
+    </unit>
+    <unit>
+        <unitDesignation value="Inf 26" />
+        <unitSubDesignation value="104 Regiment" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Infantry" />
+        <unitSize value="Regiment" />
+        <entryAreaX value="9" />
+        <entryAreaY value="24" />
+        <unitEntry value="7" />
+        <unitStepAtStart value="3" />
+        <unitSteps value="3" />
+        <attackFactor value="3" />
+        <defenseFactor value="6" />
+        <movementFactor value="8" />
+    </unit>
+    <unit>
+        <unitDesignation value="Inf 26" />
+        <unitSubDesignation value="328 Regiment" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Infantry" />
+        <unitSize value="Regiment" />
+        <entryAreaX value="9" />
+        <entryAreaY value="24" />
+        <unitEntry value="7" />
+        <unitStepAtStart value="3" />
+        <unitSteps value="3" />
+        <attackFactor value="3" />
+        <defenseFactor value="6" />
+        <movementFactor value="8" />
+    </unit>
+    <unit>
+        <unitDesignation value="Inf 26" />
+        <unitSubDesignation value="735 Armor" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Tank" />
+        <unitSize value="Regiment" />
+        <entryAreaX value="9" />
+        <entryAreaY value="24" />
+        <unitEntry value="7" />
+        <unitStepAtStart value="1" />
+        <unitSteps value="1" />
+        <attackFactor value="3" />
+        <defenseFactor value="2" />
+        <movementFactor value="14" />
+    </unit>
+    <unit>
+        <unitDesignation value="Inf 26" />
+        <unitSubDesignation value="818 Tank Destroyer" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="AntiTank" />
+        <unitSize value="Battalion" />
+        <entryAreaX value="9" />
+        <entryAreaY value="24" />
+        <unitEntry value="7" />
+        <unitStepAtStart value="1" />
+        <unitSteps value="1" />
+        <attackFactor value="1" />
+        <defenseFactor value="3" />
+        <movementFactor value="8" />
+    </unit>
+    <unit>
+        <unitDesignation value="Inf 26" />
+        <unitSubDesignation value="Division Artillery" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Artillery" />
+        <unitSize value="Brigade" />
+        <entryAreaX value="9" />
+        <entryAreaY value="24" />
+        <unitEntry value="7" />
+        <unitStepAtStart value="1" />
+        <unitSteps value="1" />
+        <attackFactorNoMove value="5" />
+        <attackFactorMove value="2" />
+        <movementFactor value="12" />
+        <movementFactorBarrage value="6" />
+    </unit>
+    <unit>
+        <unitDesignation value="155 grp" />
+        <unitSubDesignation value="Division Artillery" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Artillery" />
+        <unitSize value="Brigade" />
+        <entryAreaX value="9" />
+        <entryAreaY value="24" />
+        <unitEntry value="7" />
+        <unitStepAtStart value="1" />
+        <unitSteps value="1" />
+        <attackFactorNoMove value="8" />
+        <attackFactorMove value="4" />
+        <movementFactor value="14" />
+        <movementFactorBarrage value="8" />
+    </unit>
+    <unit>
+        <unitDesignation value="Inf 80" />
+        <unitSubDesignation value="317 Regiment" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Infantry" />
+        <unitSize value="Regiment" />
+        <entryAreaX value="28" />
+        <entryAreaY value="24" />
+        <unitEntry value="7" />
+        <unitStepAtStart value="3" />
+        <unitSteps value="3" />
+        <attackFactor value="3" />
+        <defenseFactor value="6" />
+        <movementFactor value="8" />
+    </unit>
+    <unit>
+        <unitDesignation value="Inf 80" />
+        <unitSubDesignation value="318 Regiment" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Infantry" />
+        <unitSize value="Regiment" />
+        <entryAreaX value="28" />
+        <entryAreaY value="24" />
+        <unitEntry value="7" />
+        <unitStepAtStart value="3" />
+        <unitSteps value="3" />
+        <attackFactor value="3" />
+        <defenseFactor value="6" />
+        <movementFactor value="8" />
+    </unit>
+    <unit>
+        <unitDesignation value="Inf 80" />
+        <unitSubDesignation value="319 Regiment" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Infantry" />
+        <unitSize value="Regiment" />
+        <entryAreaX value="28" />
+        <entryAreaY value="24" />
+        <unitEntry value="7" />
+        <unitStepAtStart value="3" />
+        <unitSteps value="3" />
+        <attackFactor value="3" />
+        <defenseFactor value="6" />
+        <movementFactor value="8" />
+    </unit>
+    <unit>
+        <unitDesignation value="Inf 80" />
+        <unitSubDesignation value="702 Armor" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Tank" />
+        <unitSize value="Regiment" />
+        <entryAreaX value="28" />
+        <entryAreaY value="24" />
+        <unitEntry value="7" />
+        <unitStepAtStart value="1" />
+        <unitSteps value="1" />
+        <attackFactor value="3" />
+        <defenseFactor value="2" />
+        <movementFactor value="14" />
+    </unit>
+    <unit>
+        <unitDesignation value="Inf 80" />
+        <unitSubDesignation value="610 Tank Destroyer" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="AntiTank" />
+        <unitSize value="Battalion" />
+        <entryAreaX value="28" />
+        <entryAreaY value="24" />
+        <unitEntry value="7" />
+        <unitStepAtStart value="1" />
+        <unitSteps value="1" />
+        <attackFactor value="1" />
+        <defenseFactor value="3" />
+        <movementFactor value="10" />
+    </unit>
+    <unit>
+        <unitDesignation value="Inf 80" />
+        <unitSubDesignation value="Division Artillery" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Artillery" />
+        <unitSize value="Brigade" />
+        <entryAreaX value="28" />
+        <entryAreaY value="24" />
+        <unitEntry value="7" />
+        <unitStepAtStart value="1" />
+        <unitSteps value="1" />
+        <attackFactorNoMove value="5" />
+        <attackFactorMove value="2" />
+        <movementFactor value="12" />
+        <movementFactorBarrage value="6" />
+    </unit>
+
+    <unit>
+        <unitDesignation value="Inf 5" />
+        <unitSubDesignation value="2 Regiment" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Infantry" />
+        <unitSize value="Regiment" />
+        <entryAreaX value="33" />
+        <entryAreaY value="24" />
+        <unitEntry value="9" />
+        <unitStepAtStart value="3" />
+        <unitSteps value="3" />
+        <attackFactor value="3" />
+        <defenseFactor value="6" />
+        <movementFactor value="8" />
+    </unit>
+    <unit>
+        <unitDesignation value="Inf 5" />
+        <unitSubDesignation value="10 Regiment" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Infantry" />
+        <unitSize value="Regiment" />
+        <entryAreaX value="33" />
+        <entryAreaY value="24" />
+        <unitEntry value="9" />
+        <unitStepAtStart value="3" />
+        <unitSteps value="3" />
+        <attackFactor value="3" />
+        <defenseFactor value="6" />
+        <movementFactor value="8" />
+    </unit>
+    <unit>
+        <unitDesignation value="Inf 5" />
+        <unitSubDesignation value="11 Regiment" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Infantry" />
+        <unitSize value="Regiment" />
+        <entryAreaX value="33" />
+        <entryAreaY value="24" />
+        <unitEntry value="9" />
+        <unitStepAtStart value="3" />
+        <unitSteps value="3" />
+        <attackFactor value="3" />
+        <defenseFactor value="6" />
+        <movementFactor value="8" />
+    </unit>
+
+    <unit>
+        <unitDesignation value="Inf 5" />
+        <unitSubDesignation value="Division Artillery" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Artillery" />
+        <unitSize value="Brigade" />
+        <entryAreaX value="33" />
+        <entryAreaY value="24" />
+        <unitEntry value="9" />
+        <unitStepAtStart value="1" />
+        <unitSteps value="1" />
+        <attackFactorNoMove value="5" />
+        <attackFactorMove value="2" />
+        <movementFactor value="12" />
+        <movementFactorBarrage value="6" />
+    </unit>
+    <unit>
+        <unitDesignation value="101 Abn" />
+        <unitSubDesignation value="501" />
+        <unitMechanized value="false" />
+        <unitGroundCombat value="true" />
+        <unitType value="Airborne" />
+        <unitSize value="Battalion" />
+        <entryAreaX value="0" />
+        <entryAreaY value="19" />
+        <unitEntry value="3" />
+        <unitStepAtStart value="3" />
+        <unitSteps value="3" />
+        <attackFactor value="4" />
+        <defenseFactor value="6" />
+        <movementFactor value="10" />
+    </unit>
+    <unit>
+        <unitDesignation value="101 Abn" />
+        <unitSubDesignation value="502" />
+        <unitMechanized value="false" />
+        <unitGroundCombat value="true" />
+        <unitType value="Airborne" />
+        <unitSize value="Battalion" />
+        <entryAreaX value="0" />
+        <entryAreaY value="19" />
+        <unitEntry value="3" />
+        <unitStepAtStart value="3" />
+        <unitSteps value="3" />
+        <attackFactor value="4" />
+        <defenseFactor value="6" />
+        <movementFactor value="10" />
+    </unit>
+    <unit>
+        <unitDesignation value="101 Abn" />
+        <unitSubDesignation value="506" />
+        <unitMechanized value="false" />
+        <unitGroundCombat value="true" />
+        <unitType value="Airborne" />
+        <unitSize value="Battalion" />
+        <entryAreaX value="0" />
+        <entryAreaY value="19" />
+        <unitEntry value="3" />
+        <unitStepAtStart value="3" />
+        <unitSteps value="3" />
+        <attackFactor value="4" />
+        <defenseFactor value="6" />
+        <movementFactor value="10" />
+    </unit>
+    <unit>
+        <unitDesignation value="101 Abn" />
+        <unitSubDesignation value="327" />
+        <unitMechanized value="false" />
+        <unitGroundCombat value="true" />
+        <unitType value="Airborne" />
+        <unitSize value="Battalion" />
+        <entryAreaX value="0" />
+        <entryAreaY value="19" />
+        <unitEntry value="3" />
+        <unitStepAtStart value="3" />
+        <unitSteps value="3" />
+        <attackFactor value="4" />
+        <defenseFactor value="6" />
+        <movementFactor value="10" />
+    </unit>
+    <unit>
+        <unitDesignation value="101 Abn" />
+        <unitSubDesignation value="Division Artillery" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Artillery" />
+        <unitSize value="Brigade" />
+        <entryAreaX value="0" />
+        <entryAreaY value="19" />
+        <unitEntry value="3" />
+        <unitStepAtStart value="1" />
+        <unitSteps value="1" />
+        <attackFactorNoMove value="2" />
+        <attackFactorMove value="1" />
+        <movementFactor value="12" />
+        <movementFactorBarrage value="6" />
+    </unit>
+    <unit>
+        <unitDesignation value="155 grp" />
+        <unitSubDesignation value="Division Artillery" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Artillery" />
+        <unitSize value="Brigade" />
+        <entryAreaX value="0" />
+        <entryAreaY value="19" />
+        <unitEntry value="3" />
+        <unitStepAtStart value="1" />
+        <unitSteps value="1" />
+        <attackFactorNoMove value="8" />
+        <attackFactorMove value="4" />
+        <movementFactor value="14" />
+        <movementFactorBarrage value="8" />
+    </unit>
+    <unit>
+        <unitDesignation value="Inf 28" />
+        <unitSubDesignation value="707 Tank Battalion" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Tank" />
+        <unitSize value="Battalion" />
+        <entryAreaX value="19" />
+        <entryAreaY value="14" />
+        <unitEntry value="1" />
+        <unitStepAtStart value="2" />
+        <unitSteps value="2" />
+        <attackFactor value="3" />
+        <defenseFactor value="2" />
+        <movementFactor value="14" />
+    </unit>
+
+    <unit>
+        <unitDesignation value="Inf 28" />
+        <unitSubDesignation value="Division Artillery" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="true" />
+        <unitType value="Artillery" />
+        <unitSize value="Regiment" />
+        <entryAreaX value="25" />
+        <entryAreaY value="08" />
+        <unitEntry value="1" />
+        <unitStepAtStart value="1" />
+        <unitSteps value="1" />
+        <attackFactorNoMove value="5" />
+        <attackFactorMove value="4" />
+        <movementFactor value="12" />
+        <movementFactorBarrage value="6" />
+    </unit>
+    <unit>
+        <unitDesignation value="Inf 28" />
+        <unitSubDesignation value="1-109 Infantry Battln" />
+        <unitMechanized value="false" />
+        <unitGroundCombat value="true" />
+        <unitType value="Infantry" />
+        <unitSize value="Battalion" />
+        <entryAreaX value="31" />
+        <entryAreaY value="21" />
+        <unitEntry value="1" />
+        <unitStepAtStart value="1" />
+        <unitSteps value="1" />
+        <attackFactor value="1" />
+        <defenseFactor value="2" />
+        <movementFactor value="8" />
+    </unit>
+    <unit>
+        <unitDesignation value="Inf 28" />
+        <unitSubDesignation value="3-109 Infantry Battln" />
+        <unitMechanized value="false" />
+        <unitGroundCombat value="true" />
+        <unitType value="Infantry" />
+        <unitSize value="Battalion" />
+        <entryAreaX value="35" />
+        <entryAreaY value="20" />
+        <unitEntry value="1" />
+        <unitStepAtStart value="1" />
+        <unitSteps value="1" />
+        <attackFactor value="1" />
+        <defenseFactor value="2" />
+        <movementFactor value="8" />
+    </unit>
+    <unit>
+        <unitDesignation value="Inf 28" />
+        <unitSubDesignation value="2-109 Infantry Battln" />
+        <unitMechanized value="false" />
+        <unitGroundCombat value="true" />
+        <unitType value="Infantry" />
+        <unitSize value="Battalion" />
+        <entryAreaX value="33" />
+        <entryAreaY value="17" />
+        <unitEntry value="1" />
+        <unitStepAtStart value="1" />
+        <unitSteps value="1" />
+        <attackFactor value="1" />
+        <defenseFactor value="2" />
+        <movementFactor value="8" />
+    </unit>
+    <unit>
+        <unitDesignation value="Inf 28" />
+        <unitSubDesignation value="3-110 Infantry Battln" />
+        <unitMechanized value="false" />
+        <unitGroundCombat value="true" />
+        <unitType value="Infantry" />
+        <unitSize value="Battalion" />
+        <entryAreaX value="28" />
+        <entryAreaY value="11" />
+        <unitEntry value="1" />
+        <unitStepAtStart value="1" />
+        <unitSteps value="1" />
+        <attackFactor value="1" />
+        <defenseFactor value="2" />
+        <movementFactor value="8" />
+    </unit>
+    <unit>
+        <unitDesignation value="Inf 28" />
+        <unitSubDesignation value="1-110 Infantry Battln" />
+        <unitMechanized value="false" />
+        <unitGroundCombat value="true" />
+        <unitType value="Infantry" />
+        <unitSize value="Battalion" />
+        <entryAreaX value="27" />
+        <entryAreaY value="08" />
+        <unitEntry value="1" />
+        <unitStepAtStart value="1" />
+        <unitSteps value="1" />
+        <attackFactor value="1" />
+        <defenseFactor value="2" />
+        <movementFactor value="8" />
+    </unit>
+    <unit>
+        <unitDesignation value="Inf 28" />
+        <unitSubDesignation value="2-110 Infantry Battln" />
+        <unitMechanized value="false" />
+        <unitGroundCombat value="true" />
+        <unitType value="Infantry" />
+        <unitSize value="Battalion" />
+        <entryAreaX value="24" />
+        <entryAreaY value="07" />
+        <unitEntry value="1" />
+        <unitStepAtStart value="1" />
+        <unitSteps value="1" />
+        <attackFactor value="1" />
+        <defenseFactor value="2" />
+        <movementFactor value="8" />
+    </unit>
+    <unit>
+        <unitDesignation value="Supply" />
+        <unitSubDesignation value="988 Infantry Regimt" />
+        <unitMechanized value="true" />
+        <unitGroundCombat value="false" />
+        <unitType value="Transport" />
+        <unitSize value="Regiment" />
+        <entryAreaX value="39" />
+        <entryAreaY value="21" />
+        <unitEntry value="99" />
+        <unitStepAtStart value="2" />
+        <unitSteps value="2" />
+        <attackFactor value="0" />
+        <defenseFactor value="0" />
+        <movementFactor value="30" />
+    </unit>
+
+</units>

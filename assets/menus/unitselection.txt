@@ -1,0 +1,54 @@
+unitselection.png
+size: 410, 420
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cancel
+  rotate: false
+  xy: 0, 0
+  size: 90, 50
+  orig: 90, 50
+  offset: 0, 0
+  index: -1
+cancelpressed
+  rotate: false
+  xy: 90, 0
+  size: 90, 50
+  orig: 90, 50
+  offset: 0, 0
+  index: -1
+line
+  rotate: false
+  xy: 180, 0
+  size: 27, 102
+  orig: 27, 102
+  offset: 0, 0
+  index: -1
+ok
+  rotate: false
+  xy: 207, 0
+  size: 90, 50
+  orig: 90, 50
+  offset: 0, 0
+  index: -1
+okpressed
+  rotate: false
+  xy: 297, 0
+  size: 90, 50
+  orig: 90, 50
+  offset: 0, 0
+  index: -1
+window
+  rotate: false
+  xy: 0, 102
+  size: 410, 159
+  orig: 410, 159
+  offset: 0, 0
+  index: -1
+windowtransparent
+  rotate: false
+  xy: 0, 261
+  size: 410, 159
+  orig: 410, 159
+  offset: 0, 0
+  index: -1

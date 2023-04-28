@@ -1,0 +1,404 @@
+gamemenu.png
+size: 500, 1959
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+autosetup
+  rotate: false
+  xy: 300, 514
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+autosetupdisabled
+  rotate: false
+  xy: 0, 714
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+autosetuppressed
+  rotate: false
+  xy: 200, 714
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+back
+  rotate: false
+  xy: 100, 714
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+background
+  rotate: false
+  xy: 0, 1533
+  size: 474, 426
+  orig: 474, 426
+  offset: 0, 0
+  index: -1
+backpressed
+  rotate: false
+  xy: 400, 614
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+button
+  rotate: false
+  xy: 209, 0
+  size: 104, 34
+  orig: 104, 34
+  offset: 0, 0
+  index: -1
+buttonpressed
+  rotate: false
+  xy: 105, 0
+  size: 104, 34
+  orig: 104, 34
+  offset: 0, 0
+  index: -1
+checkbox
+  rotate: false
+  xy: 340, 40
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+checkboxover
+  rotate: false
+  xy: 313, 0
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+checkboxselected
+  rotate: false
+  xy: 382, 40
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
+checkboxselectedover
+  rotate: false
+  xy: 150, 40
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
+close
+  rotate: false
+  xy: 19, 0
+  size: 19, 20
+  orig: 19, 20
+  offset: 0, 0
+  index: -1
+done
+  rotate: false
+  xy: 300, 614
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+donedisabled
+  rotate: false
+  xy: 0, 614
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+donepressed
+  rotate: false
+  xy: 200, 614
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+eventsbackground
+  rotate: false
+  xy: 0, 1252
+  size: 500, 281
+  orig: 500, 281
+  offset: 0, 0
+  index: -1
+fastforward
+  rotate: false
+  xy: 100, 614
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+fastforwardpressed
+  rotate: false
+  xy: 300, 714
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+help
+  rotate: false
+  xy: 0, 0
+  size: 19, 20
+  orig: 19, 20
+  offset: 0, 0
+  index: -1
+leftarrow
+  rotate: false
+  xy: 0, 1083
+  size: 113, 169
+  orig: 113, 169
+  offset: 0, 0
+  index: -1
+leftarrowselected
+  rotate: false
+  xy: 304, 914
+  size: 113, 169
+  orig: 114, 169
+  offset: 1, 0
+  index: -1
+loadsetup
+  rotate: false
+  xy: 100, 814
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+loadsetupdisabled
+  rotate: false
+  xy: 0, 814
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+loadsetuppressed
+  rotate: false
+  xy: 400, 714
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+moveicon
+  rotate: false
+  xy: 65, 0
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+pause
+  rotate: false
+  xy: 400, 814
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+pausepressed
+  rotate: false
+  xy: 200, 814
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+pbembackground
+  rotate: false
+  xy: 100, 914
+  size: 204, 104
+  orig: 204, 104
+  offset: 0, 0
+  index: -1
+play
+  rotate: false
+  xy: 0, 914
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+playpressed
+  rotate: false
+  xy: 300, 814
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+redo
+  rotate: false
+  xy: 400, 514
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+redodisabled
+  rotate: false
+  xy: 0, 314
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+redopressed
+  rotate: false
+  xy: 300, 314
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+replay
+  rotate: false
+  xy: 200, 314
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+replaypressed
+  rotate: false
+  xy: 400, 314
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+restart
+  rotate: false
+  xy: 100, 314
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+restartdisabled
+  rotate: false
+  xy: 395, 214
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+restartpressed
+  rotate: false
+  xy: 300, 414
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+rewind
+  rotate: false
+  xy: 100, 514
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+rewindpressed
+  rotate: false
+  xy: 0, 514
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+rightarrow
+  rotate: false
+  xy: 113, 1083
+  size: 113, 169
+  orig: 113, 169
+  offset: 0, 0
+  index: -1
+rightarrowselected
+  rotate: false
+  xy: 226, 1083
+  size: 113, 169
+  orig: 113, 169
+  offset: 0, 0
+  index: -1
+save
+  rotate: false
+  xy: 200, 514
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+savedisabled
+  rotate: false
+  xy: 400, 414
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+savepressed
+  rotate: false
+  xy: 100, 414
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+selectedbutton
+  rotate: false
+  xy: 0, 82
+  size: 281, 44
+  orig: 281, 44
+  offset: 0, 0
+  index: -1
+showmenu
+  rotate: false
+  xy: 310, 214
+  size: 85, 62
+  orig: 85, 62
+  offset: 0, 0
+  index: -1
+sliderbackground
+  rotate: false
+  xy: 0, 214
+  size: 310, 46
+  orig: 310, 50
+  offset: 0, 0
+  index: -1
+sliderknob
+  rotate: false
+  xy: 95, 0
+  size: 10, 30
+  orig: 10, 30
+  offset: 0, 0
+  index: -1
+stop
+  rotate: false
+  xy: 200, 414
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+stoppressed
+  rotate: false
+  xy: 0, 414
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+tab
+  rotate: false
+  xy: 0, 40
+  size: 150, 40
+  orig: 150, 40
+  offset: 0, 0
+  index: -1
+tabselected
+  rotate: false
+  xy: 190, 40
+  size: 150, 40
+  orig: 150, 40
+  offset: 0, 0
+  index: -1
+tooltip
+  rotate: false
+  xy: 0, 170
+  size: 281, 44
+  orig: 281, 44
+  offset: 0, 0
+  index: -1
+unselectedbutton
+  rotate: false
+  xy: 0, 126
+  size: 281, 44
+  orig: 281, 44
+  offset: 0, 0
+  index: -1
+window
+  rotate: false
+  xy: 38, 0
+  size: 27, 29
+  orig: 27, 29
+  offset: 0, 0
+  index: -1

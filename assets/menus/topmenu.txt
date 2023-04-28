@@ -1,0 +1,47 @@
+topmenu.png
+size: 700, 80
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+background
+  rotate: false
+  xy: 0, 0
+  size: 400, 80
+  orig: 400, 80
+  offset: 0, 0
+  index: -1
+british
+  rotate: false
+  xy: 400, 0
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+german
+  rotate: false
+  xy: 460, 0
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+jap
+  rotate: false
+  xy: 520, 0
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+russian
+  rotate: false
+  xy: 580, 0
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1
+usa
+  rotate: false
+  xy: 640, 0
+  size: 60, 60
+  orig: 60, 60
+  offset: 0, 0
+  index: -1

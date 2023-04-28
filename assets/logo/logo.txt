@@ -1,0 +1,82 @@
+logo.png
+size: 2035, 185
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+10
+  rotate: false
+  xy: 0, 0
+  size: 185, 185
+  orig: 185, 185
+  offset: 0, 0
+  index: -1
+20
+  rotate: false
+  xy: 185, 0
+  size: 185, 185
+  orig: 185, 185
+  offset: 0, 0
+  index: -1
+30
+  rotate: false
+  xy: 370, 0
+  size: 185, 185
+  orig: 185, 185
+  offset: 0, 0
+  index: -1
+40
+  rotate: false
+  xy: 555, 0
+  size: 185, 185
+  orig: 185, 185
+  offset: 0, 0
+  index: -1
+50
+  rotate: false
+  xy: 740, 0
+  size: 185, 185
+  orig: 185, 185
+  offset: 0, 0
+  index: -1
+60
+  rotate: false
+  xy: 925, 0
+  size: 185, 185
+  orig: 185, 185
+  offset: 0, 0
+  index: -1
+70
+  rotate: false
+  xy: 1110, 0
+  size: 185, 185
+  orig: 185, 185
+  offset: 0, 0
+  index: -1
+80
+  rotate: false
+  xy: 1295, 0
+  size: 185, 185
+  orig: 185, 185
+  offset: 0, 0
+  index: -1
+90
+  rotate: false
+  xy: 1480, 0
+  size: 185, 185
+  orig: 185, 185
+  offset: 0, 0
+  index: -1
+100
+  rotate: false
+  xy: 1665, 0
+  size: 185, 185
+  orig: 185, 185
+  offset: 0, 0
+  index: -1
+yobo
+  rotate: false
+  xy: 1850, 0
+  size: 185, 185
+  orig: 185, 185
+  offset: 0, 0
+  index: -1
