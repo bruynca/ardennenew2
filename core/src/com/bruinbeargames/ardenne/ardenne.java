@@ -337,6 +337,21 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 
 	@Override
 	public boolean scrolled(float amountX, float amountY) {
+		Gdx.app.log("Mouse Event", "Scrolled special x="+amountX);
+		Gdx.app.log("Mouse Event", "Scrolled special y="+amountY);
+
+		if (isMainMenu) {
+			return false;
+		}
+		if (ScreenGame.instance == null){
+			return false;
+		}
+		if (amountY < 0) {
+
+			ScreenGame.instance.ZoomSmaller();
+		} else if (amountY > 0) {
+			ScreenGame.instance.ZoomBigger();
+		}
 		return false;
 	}
 
@@ -444,12 +459,16 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 	@Override
 	public boolean zoom(float initialDistance, float distance) {
 		// TODO Auto-generated method stub
+		Gdx.app.log("Zoom", "Initial=" + initialDistance);
+
 		return false;
 	}
 
 	@Override
 	public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
 		// TODO Auto-generated method stub
+		Gdx.app.log("pinch", "Initial=");
+
 		return false;
 	}
 

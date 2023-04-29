@@ -85,11 +85,7 @@ public class AIExecute {
             aiExReinforcement = this;
             arrUnits.addAll(aiOrders.arrUnit);
             arrHexes.addAll(aiOrders.arrHexMoveTo);
-            if (aiOrders.arrUnit.get(0).isAllies) {
-                isAllies = true;
-            } else {
-                isAllies = false;
-            }
+            isAllies = true;
             WinModal.instance.set();
             winReinforcements = Reinforcement.instance.getScreen();
             EventAI.instance.hide();

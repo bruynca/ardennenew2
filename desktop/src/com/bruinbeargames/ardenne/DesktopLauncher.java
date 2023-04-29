@@ -18,7 +18,7 @@ public class DesktopLauncher {
 
 
 		config.setWindowedMode(mode.width, mode.height);
-		config.setWindowPosition(-1, 25);
+		config.setWindowPosition(1, 1);
 		config.setResizable(false);
 		config.useVsync(true);
 		config.setDecorated(false);

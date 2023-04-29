@@ -700,6 +700,11 @@ public class GameMenu extends Observable {
         buttonGroup.add(fullScreen);
         buttonGroup.add(windowed);
         buttonGroup.setMaxCheckCount(1);
+        if (GamePreferences.isFullScreen()){
+            fullScreen.setChecked(true);
+        }else{
+            windowed.setChecked(true);
+        }
 
     }
     public int getBackGroundHeight(){

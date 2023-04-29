@@ -126,7 +126,11 @@ public class AIReinforcementScenario1 implements Observer {
         reinBastogne = 0;
         reinMartenlang = 0;
         reinEttlebruk = 0;
-
+        if (NextPhase.instance.getTurn() > 3){
+            aiMartelang = new AIOrders();
+            doEttleBruck();
+            return true;
+        }
         doBastogne();
         return true;
     }
