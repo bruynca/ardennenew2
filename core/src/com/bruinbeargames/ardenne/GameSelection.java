@@ -26,6 +26,7 @@ import com.bruinbeargames.ardenne.GameLogic.CardHandler;
 import com.bruinbeargames.ardenne.UI.EventConfirm;
 import com.bruinbeargames.ardenne.UI.EventOK;
 import com.bruinbeargames.ardenne.UI.EventPopUp;
+import com.bruinbeargames.ardenne.UI.MouseImage;
 
 import java.io.File;
 
@@ -58,6 +59,7 @@ public class GameSelection {
     private ScrollPane scenariosScrollPane;
     private final TextTooltip.TextTooltipStyle tooltipStyle;
     static public GameSelection instance;
+
 
     public GameSelection(Stage stage, final Sound sound) {
         instance = this;

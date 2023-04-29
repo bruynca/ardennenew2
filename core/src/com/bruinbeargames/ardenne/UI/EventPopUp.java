@@ -170,6 +170,7 @@ public class EventPopUp extends Observable {
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                 super.enter(event, x, y, pointer, fromActor);
+                int bt=0;
                 MouseImage.instance.setIgnore(true);
                 MouseImage.instance.setMouseHand();
             }

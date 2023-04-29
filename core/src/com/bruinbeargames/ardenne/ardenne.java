@@ -175,9 +175,9 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 		}
 		hexStage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 60f));
 		hexStage.draw(); // make sure done after sprite batch end
-//		mapStage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 60f));
+		mapStage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 60f));
 		mapStage.draw(); // make sure done after sprite batch end
-//		guiStage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 60f));
+		guiStage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 60f));
 		guiStage.draw(); // make sure done after sprite batch end
 		if (aiRender){
 			cntAiRender++;

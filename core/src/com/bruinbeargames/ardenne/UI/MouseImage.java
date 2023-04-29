@@ -20,7 +20,7 @@ public class MouseImage {
     private Cursor cursor;
     private boolean ignore;
 
-    public MouseImage(){
+    public MouseImage() {
 
         instance = this;
 
@@ -36,17 +36,17 @@ public class MouseImage {
 
     }
 
-    public void setIgnore(boolean ignore){
+    public void setIgnore(boolean ignore) {
         this.ignore = ignore;
     }
 
-    public void mouseImageReset(){
+    public void mouseImageReset() {
         if (!ignore) {
             Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow);
         }
     }
 
-    public void setMouseDragged(){
+    public void setMouseDragged() {
         cursor = Gdx.graphics.newCursor(mouseDragged, 16, 16);
         Gdx.graphics.setCursor(cursor);
     }
@@ -90,4 +90,9 @@ public class MouseImage {
         cursor = Gdx.graphics.newCursor(mouseHotseat, 16, 16);
         Gdx.graphics.setCursor(cursor);
     }
+    public void setMouseAmerican() {
+        cursor = Gdx.graphics.newCursor(mouseRussian, 16, 16);
+        Gdx.graphics.setCursor(cursor);
+    }
 }
+

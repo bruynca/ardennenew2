@@ -13,8 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.bruinbeargames.ardenne.FontFactory;
 import com.bruinbeargames.ardenne.GameLogic.Supply;
-import com.bruinbeargames.ardenne.MouseImage;
 import com.bruinbeargames.ardenne.SplashScreen;
+import com.bruinbeargames.ardenne.UI.MouseImage;
 import com.bruinbeargames.ardenne.Unit.Unit;
 import com.bruinbeargames.ardenne.ardenne;
 

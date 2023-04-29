@@ -102,7 +102,7 @@ public class NextPhase {
         BottomMenu bottomMenu = new BottomMenu();
         CombatDisplay combatDisplay = new CombatDisplay();
         CombatDisplayResults combatDisplayResults = new CombatDisplayResults();
-        MouseImage mouseImage   = new MouseImage();
+  //      MouseImage mouseImage   = new MouseImage();
         Supply supply = new Supply();
         BombardDisplay bombardDisplay = new BombardDisplay();
         Gdx.app.log("NextPhase", "Constructor End");
