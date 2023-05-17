@@ -27,6 +27,7 @@ import com.bruinbeargames.ardenne.UI.EventPopUp;
 import com.bruinbeargames.ardenne.UI.Explosions;
 import com.bruinbeargames.ardenne.UI.FlyingShell;
 import com.bruinbeargames.ardenne.UI.WinAIDisplay;
+import com.bruinbeargames.ardenne.UI.WinUnitDisplay;
 import com.kotcrab.vis.ui.VisUI;
 
 import java.awt.Dimension;
@@ -244,6 +245,9 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 		}
 		if (keycode == Input.Keys.P) {
 			TakeScreenShot.saveScreenShot();
+		}
+		if (keycode == Input.Keys.Z) {
+			WinUnitDisplay winUnitDisplay = new WinUnitDisplay();
 		}
 		if (keycode == Input.Keys.PLUS) {
 			ScreenGame.instance.ZoomBigger();
