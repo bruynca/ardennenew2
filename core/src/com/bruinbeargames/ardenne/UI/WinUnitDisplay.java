@@ -102,16 +102,21 @@ public class WinUnitDisplay {
         arrUnits.clear();
         arrUnits.addAll(Unit.getOnBoardAxis());
         int cnt = 0;
+        Integer in=0;
+        ArrayList<Unit> arrWork = new ArrayList<>();
+        arrUnitsByTurn.add(arrWork);
+        arrTurns.add(1);
         for (Unit unit:arrUnits){
-            cnt++;
-            if (cnt < 15)){
-                int ix = arrTurns.indexOf(in);
-                arrUnitsByTurn.get(ix).add(unit);
+            if (cnt < 10){
+                arrWork.add(unit);
+                cnt++;
             }else{
-                arrTurns.add(in);
-                ArrayList<Unit> arrUnitWork = new ArrayList<>();
-                arrUnitWork.add(unit);
-                arrUnitsByTurn.add(arrUnitWork);
+                arrWork.add(unit);
+                arrWork = new ArrayList<>();
+                arrUnitsByTurn.add(arrWork);
+                arrTurns.add(1);
+
+                cnt=0;
             }
         }
         /**
