@@ -43,6 +43,7 @@ public class TopMenu {
     private Button crtButton;
     private Button btButton;
     private Button cardButton;
+    private Button tecButton;
     private final TextTooltip.TextTooltipStyle tooltipStyle;
     private Group group;
     public static TopMenu instance;
@@ -55,6 +56,8 @@ public class TopMenu {
     static TextureRegion bBtP = textureAtlas.findRegion("btpushed");
     static TextureRegion bCard = textureAtlas.findRegion("cardbutton");
     static TextureRegion bCardP = textureAtlas.findRegion("cardbuttonp");
+    static TextureRegion bTec = textureAtlas.findRegion("tectop");
+    static TextureRegion bTecP = textureAtlas.findRegion("tectoppushed");
     Stage stage;
 
 
@@ -91,6 +94,8 @@ public class TopMenu {
         x +=cardButton.getWidth()+5;
         initializeKeyboardButton(x);
         x += keyboardButton.getWidth()+5;
+        initializeTECButton(x);
+        x += tecButton.getWidth()+5;
         initializeSaveGame(x);
         x +=saveButton.getWidth()+5;
         initializeQuitButton(x);
@@ -107,6 +112,7 @@ public class TopMenu {
         group.addActor(cardButton);
  //       group.addActor(effectsButton);
         group.addActor(keyboardButton);
+        group.addActor(tecButton);
         group.addActor(quitbutton);
         group.addActor(saveButton);
         group.addAction(Actions.fadeOut(0.01f));
@@ -400,6 +406,39 @@ public class TopMenu {
         });
 
         cardButton.addListener(new TextTooltip(
+                GameMenuLoader.instance.localization.get("objectivestooltip"),
+                tooltipStyle));
+    }
+    private void initializeTECButton(int x) {
+
+        Button.ButtonStyle mapButtonStyle = new Button.ButtonStyle();
+        mapButtonStyle.up = new TextureRegionDrawable(bTec);
+        mapButtonStyle.down = new TextureRegionDrawable(bTecP);
+        mapButtonStyle.checked = new TextureRegionDrawable(bTecP);
+
+
+        tecButton = new Button(mapButtonStyle);
+        tecButton.setHeight(70);
+        tecButton.setWidth(70);
+        tecButton.setVisible(true);
+
+        tecButton.setPosition(10  + x, menuButton.getY() - reinforcementButton.getHeight() - 5);
+
+        tecButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (!event.getType().equals("touchUp")) {
+                    if (!tecButton.isChecked()) {
+                        //stateEngine.setShowOBjectives(false);
+                    } else {
+                        WinTEC winTEC = new WinTEC();
+                        group.addAction(Actions.sequence(Actions.fadeOut(0.5f), Actions.visible(false)));
+                    }
+                }
+            }
+        });
+
+        tecButton.addListener(new TextTooltip(
                 GameMenuLoader.instance.localization.get("objectivestooltip"),
                 tooltipStyle));
     }
