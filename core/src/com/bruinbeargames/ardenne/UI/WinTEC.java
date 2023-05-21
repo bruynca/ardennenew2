@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextTooltip;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -23,6 +24,7 @@ import com.badlogic.gdx.utils.I18NBundle;
 import com.bruinbeargames.ardenne.Fonts;
 import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.GamePreferences;
+import com.bruinbeargames.ardenne.GameSelection;
 import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.SplashScreen;
@@ -78,7 +80,7 @@ public class WinTEC {
          */
         Window.WindowStyle windowStyle = new Window.WindowStyle(Fonts.getFont24(), Color.WHITE, new NinePatchDrawable(np));
         String title = i18NBundle.format("wintec");
-        window = new Window("Units", windowStyle);
+        window = new Window(title, windowStyle);
         /**
          * close button
          */
@@ -109,7 +111,6 @@ public class WinTEC {
         }
         window.setSize(winWidth,heightWindow);
         window.setPosition(10,10);
-        WinModal.instance.set();
         showWindow();
     }
     private void showWindow(){
@@ -125,13 +126,72 @@ public class WinTEC {
         }
         winWidth = 1061;
         winHeight = 865;
+        loadData(window);
         window.setSize(winWidth,winHeight);
  //       loadTable(window);
         ardenne.instance.guiStage.addActor(window);
 
 
     }
-    void loadTable(Window window){
+    void loadData(Window window){
+        TextButton.TextButtonStyle tx = GameSelection.instance.textButtonStyle;
+        String title = i18NBundle.format("tecopen");
+
+        TextButton tb = new TextButton(title,tx);
+        window.addActor(tb);
+        tb.setPosition(760,270);
+        /*
+        Town
+         */
+        title = i18NBundle.format("tectown");
+
+        tb = new TextButton(title,tx);
+        window.addActor(tb);
+        tb.setPosition(620,110);
+        /**
+         * minor road
+         */
+        title = i18NBundle.format("tecmroad");
+
+        tb = new TextButton(title,tx);
+        window.addActor(tb);
+        tb.setPosition(200,90);
+        title = i18NBundle.format("tecmroad");
+/**
+ *  Major Road
+ */
+        title = i18NBundle.format("tecaroad");
+
+        tb = new TextButton(title,tx);
+        window.addActor(tb);
+        tb.setPosition(230,270);
+        /**
+         * village
+         */
+        title = i18NBundle.format("tecvillage");
+
+        tb = new TextButton(title,tx);
+        window.addActor(tb);
+        tb.setPosition(238,445);
+
+        title = i18NBundle.format("tecbridge");
+
+        tb = new TextButton(title,tx);
+        window.addActor(tb);
+        tb.setPosition(148,660);
+
+        title = i18NBundle.format("tecforest");
+
+        tb = new TextButton(title,tx);
+        window.addActor(tb);
+        tb.setPosition(590,700);
+
+        title = i18NBundle.format("tecriver");
+
+        tb = new TextButton(title,tx);
+        window.addActor(tb);
+        tb.setPosition(630,600);
+        /*
         float x  = 10;
         float y= window.getHeight()  - 60;
         Label.LabelStyle labelStyle = new Label.LabelStyle(Fonts.getFont24(), Color.WHITE);
@@ -139,7 +199,7 @@ public class WinTEC {
         label.setFontScale(1.2f);
         window.addActor(label);
         label.setPosition(x,y);
-       /*table.add(label);
+       table.add(label);
         label = new Label("Description",labelStyle);
         table.add(label);
         label = new Label("Movement\n Mech",labelStyle);
@@ -167,7 +227,6 @@ public class WinTEC {
         int lastY = (int) window.getY();
         GamePreferences.setWindowLocation("wintec", lastX, lastY);
         window.remove();
-        WinModal.instance.release();
     }
 
 
