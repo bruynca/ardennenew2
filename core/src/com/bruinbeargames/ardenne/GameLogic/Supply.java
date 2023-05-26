@@ -434,6 +434,18 @@ public class Supply {
 
         ArrayList<Unit> arrUsTransports = Unit.getTransports(true);
         UnitMove unitMove = null;
+        ArrayList<Unit> arrUnitsWork =  Unit.getOnBoardAllies();
+        for (Unit unit:arrUnitsWork){
+            if (unit.isDisorganized()){
+                unit.setOffDisorganized();
+            }
+            if (unit.getHasAttackedThisTurn() || unit.getHasbeenAttackedThisTurn()){
+                if (!unit.isArtillery){
+                    unit.reduceCombat();
+                }
+            }
+        }
+
         ArrayList<Hex> arrWork = new ArrayList<>();
         for (i=0; i < arrAlliedSupply.size();i++) {
             unitTransportWorkOn = arrUsTransports.get(0);
@@ -472,9 +484,15 @@ public class Supply {
         if (hiliteHex != null){
             hiliteHex.remove();
         }
-        for (Unit unit:Unit.getOnBoardAxis()){
+        for (Unit unit:Unit.getOnBoardAllies()){
+
             if (unit.getCurrentMovement() == 0 && !unit.isArtillery){
-                unit.setCurrentMovement(1);
+                if (!unit.isMechanized){
+                    unit.setCurrentMovement(3);
+
+                }else{
+                    unit.setCurrentMovement(1);
+                }
                 unit.getMapCounter().getCounterStack().setPoints();
             }
         }

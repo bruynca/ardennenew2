@@ -590,14 +590,7 @@ public class Unit {
 			currentMoveFactor = atStartMoveFactor;
 		}
 	}
-	public void halfTheMovement(){
-		int half = currentMoveFactor/2;
-		float halfFloat = (float) currentMoveFactor/2F;
-		if (halfFloat > half){
-			half++;
-		}
-		setCurrentMovement(half);
-	}
+
 
     public boolean getInSupplyThisTurn() {
 		return isInSupplyThisTurn;
@@ -923,6 +916,20 @@ public class Unit {
 		return arrReturn;
 	}
 	/**
+	 * Get all onboard allied combat units
+	 * @return
+	 */
+	public static ArrayList<Unit> getAllied() {
+		ArrayList<Unit> arrReturn = new ArrayList<>();
+		for (Unit unit:arrGameCombatUnits)
+		{
+			if (unit.isAllies) {
+				arrReturn.add(unit);
+			}
+		}
+		return arrReturn;
+	}
+	/**
 	 * Get all onboard axis combat units
 	 * @return
 	 */
@@ -932,6 +939,17 @@ public class Unit {
 		for (Unit unit:arrGameCombatUnits)
 		{
 			if (unit.isOnBoard  && unit.isAxis && !unit.isEliminated)
+			{
+				arrReturn.add(unit);
+			}
+		}
+		return arrReturn;
+	}
+	public static ArrayList<Unit> getOnBoardAllies() {
+		ArrayList<Unit> arrReturn = new ArrayList<>();
+		for (Unit unit:arrGameCombatUnits)
+		{
+			if (unit.isOnBoard  && unit.isAllies && !unit.isEliminated)
 			{
 				arrReturn.add(unit);
 			}
@@ -1226,7 +1244,7 @@ public class Unit {
 		float newAttack = (attack/4) +.5F;
 		currentAttackFactor = (int)newAttack;
 		float defense = currentDefenseFactor;
-		float newDefense = (defense/4) +.5F;
+		float newDefense = (defense/2) +.5F;
 		currentDefenseFactor = (int)newDefense;
 		if (currentDefenseFactor < 1){
 			currentDefenseFactor =1;

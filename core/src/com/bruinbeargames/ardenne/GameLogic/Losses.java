@@ -19,7 +19,7 @@ public class Losses{
         int test =0;
         for (Unit unit:arrUnits) {
             for (int i = 0; i < arrSorted.size(); i++) {
-                if (unit.getCurrenAttackFactor() > arrUnits.get(i).getCurrenAttackFactor()) {
+                if (unit.getCurrentStep() > arrUnits.get(i).getCurrentStep()) {
                     ix = i;
                     break;
                 }

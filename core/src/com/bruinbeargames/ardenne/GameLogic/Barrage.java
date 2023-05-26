@@ -468,6 +468,7 @@ public class Barrage {
 	 *  Cancel barrage that the window is working on
 	 */
 	private void cancelBarrage() {
+		winBombardShooters.cancel();
 		winBombardShooters.end();
 		for (AirplaneStack air:winBombardShooters.airplaneArrayList){
 			if (air.isHilited){
@@ -1063,8 +1064,15 @@ public class Barrage {
 		}
 
 
+		public void cancel() {
+			for (Counter counter:winBombardShooters.counterArrayList){
+				if (counter.getCounterStack().isHilited()){
+					Unit unit = counter.getUnit();
+					unit.getMapCounter().getCounterStack().removeShade();
+				}
+			}
 
-
+		}
 	}
 	class AirplaneStack{
 		Stack stack;

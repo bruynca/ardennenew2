@@ -87,6 +87,7 @@ public class WinTEC {
         Label lab = window.getTitleLabel();
         lab.setAlignment(Align.center);
         Image image = new Image(close);
+        image.setScale(2.0f);
         image.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -102,9 +103,16 @@ public class WinTEC {
         window.setModal(true);
  //       window.setBackground(new TextureRegionDrawable(new TextureRegion((winback))));
         Image imgBack = new Image(winback);
+        imgBack.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                end();
+            }
+        });
         window.addActor(imgBack);
-        imgBack.setPosition(0,0);
+        imgBack.setPosition(10,10);
         window.setTransform(true);
+
         int heightWindow = (Counter.sizeOnMap + 100);
         if (winWidth < 120){
             winWidth = 120;
@@ -128,7 +136,6 @@ public class WinTEC {
         winHeight = 865;
         loadData(window);
         window.setSize(winWidth,winHeight);
- //       loadTable(window);
         ardenne.instance.guiStage.addActor(window);
 
 
@@ -191,35 +198,6 @@ public class WinTEC {
         tb = new TextButton(title,tx);
         window.addActor(tb);
         tb.setPosition(630,600);
-        /*
-        float x  = 10;
-        float y= window.getHeight()  - 60;
-        Label.LabelStyle labelStyle = new Label.LabelStyle(Fonts.getFont24(), Color.WHITE);
-        Label label = new Label("Type",labelStyle);
-        label.setFontScale(1.2f);
-        window.addActor(label);
-        label.setPosition(x,y);
-       table.add(label);
-        label = new Label("Description",labelStyle);
-        table.add(label);
-        label = new Label("Movement\n Mech",labelStyle);
-        table.add(label);
-        label = new Label("Movement\n Other",labelStyle);
-        table.add(label);
-        label = new Label("Combat",labelStyle);
-        table.add(label);
-        table.row();
-        iClear.setScale(.5F);
-        table.add(iClear);
-        label = new Label("Clear",labelStyle);
-        table.add(label);
-        label = new Label("2",labelStyle);
-        table.add(label);
-        label = new Label("1",labelStyle);
-        table.add(label);
-        label = new Label("Other Terrain",labelStyle);
-        table.add(label);
-        return table; */
     }
 
     public  void end(){
