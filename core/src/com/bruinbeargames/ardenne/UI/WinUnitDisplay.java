@@ -101,7 +101,7 @@ public class WinUnitDisplay {
     private void createdisplayUnits() {
         arrUnits.clear();
 //        arrUnits.addAll(Unit.getOnBoardAllied());
-        arrUnits.addAll(Unit.getAllied());
+        arrUnits.addAll(Unit.getOnBoardAxis());
         int cnt = 0;
         Integer in=0;
         ArrayList<Unit> arrWork = new ArrayList<>();
