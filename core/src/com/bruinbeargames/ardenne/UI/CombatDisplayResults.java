@@ -63,6 +63,8 @@ private Label alliedResults;
         results.setText("");
     }
     public void updateResults(String strOdds){
+        Gdx.app.log("CombatDisplayResults", "update Results"+strOdds);
+
         StringBuffer strResult = new StringBuffer();
         int attackerLoses;
         int defenderLoses;
@@ -108,6 +110,8 @@ private Label alliedResults;
 
     }
     public void updateCombatResultsDefender(ArrayList<CombatResults> combatResults, boolean isAttackerAllies, Attack attack){
+        Gdx.app.log("CombatDisplayResults", "updatCombatResultsDefender");
+
         this.attack = attack;
         isDefenseDisplayed = true;
         String defender = "";
@@ -146,7 +150,9 @@ private Label alliedResults;
         return attack;
     }
     public void updateCombatResultsAttacker(ArrayList<CombatResults> combatResults, boolean isAttackerAllies, Attack attack){
-       this.attack = attack;
+        Gdx.app.log("CombatDisplayResults", "updatCombatResultsAttacker");
+
+        this.attack = attack;
         isAttackDisplayed = true;
         String attacker = "";
         boolean isjustOneAdvance = false;

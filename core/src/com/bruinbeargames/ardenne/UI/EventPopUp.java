@@ -57,7 +57,7 @@ public class EventPopUp extends Observable {
         tooltipStyle.label = new Label.LabelStyle(Fonts.getFont24(), Color.WHITE);
         NinePatch np = new NinePatch(GameMenuLoader.instance.gameMenu.asset.get("tooltip"), 2, 2, 2, 2);
         tooltipStyle.background = new NinePatchDrawable(np);
-
+  //      tooltipStyle.wrapWidth = 100.0f;
 
         initializeImageBackGround();
         initializeTextLabel();
@@ -206,7 +206,7 @@ public class EventPopUp extends Observable {
                 }
             }
         });
-
+        String test = i18NBundle.get("dontshowagai2");
         dontShowAgain.addListener(new TextTooltip(
                 i18NBundle.get("dontshowagai2"),
                 tooltipStyle));

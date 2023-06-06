@@ -35,9 +35,9 @@ public class SaveGame {
 		file.writeString(saveGame.toString(), false);
 	}
 	public static boolean canSaveGame(){
-		if (NextPhase.instance.getPhase() <= Phase.GERMAN_CARD.ordinal()){
-			return false;
-		}
+//		if (NextPhase.instance.getPhase() <= Phase.GERMAN_CARD.ordinal()){
+//			return false;
+//		}
 
 		if (NextPhase.instance.isInBarrage()){
 			return false;

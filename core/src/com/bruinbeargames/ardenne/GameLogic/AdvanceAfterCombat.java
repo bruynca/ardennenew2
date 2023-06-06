@@ -39,10 +39,12 @@ public class AdvanceAfterCombat implements Observer {
         numHexAdvance = attack.defenderRetreats;
         arrHexOK.clear();
         ArrayList<Hex> arrHexCheck = new ArrayList<>();
+        ArrayList<Unit> arrSanity = new ArrayList<>();
         for (Unit unit:attack.arrAttackers){
             if (!unit.isEliminated()) {
                 ClickAction clickAction = new ClickAction(unit, ClickAction.TypeAction.Advance);
                 arrHexOK.add(unit.getHexOccupy());
+                arrSanity.add(unit);
                 if (!arrHexCheck.contains(unit.getHexOccupy())){
                     arrHexCheck.add(unit.getHexOccupy());
                 }
@@ -66,6 +68,9 @@ public class AdvanceAfterCombat implements Observer {
         arrUnitsToAdvance.clear();
         arrUnitsToAdvance.addAll(attack.arrAttackers);
         HelpPage.instance.showOther("advance");
+        if (arrSanity.size() == 0){
+            end();
+        }
     }
     public void end(){
         app.log("AdvanceAfterCombat", "end");
