@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -23,10 +24,11 @@ import com.bruinbeargames.ardenne.ardenne;
 public class TurnCounter {
     private Label phaseLabel;
     private Label turnLabel;
+    private Label advanceLabel;
     private Group group;
     private I18NBundle i18NBundle;
     private final TextTooltip.TextTooltipStyle tooltipStyle;
-
+    Action blink;
     static public TurnCounter instance;
     Vector2 v2Position;
     public TurnCounter(){
@@ -60,6 +62,15 @@ public class TurnCounter {
         phaseLabel.setAlignment(Align.center);
         group.addActor(phaseLabel);
 
+        String stAd = i18NBundle.get("advance2");
+        advanceLabel = new Label(stAd, style);
+        advanceLabel.setHeight(40);
+        advanceLabel.setWidth(260);
+        advanceLabel.setVisible(false);
+        advanceLabel.setPosition(backgroundImage.getX() + 70, backgroundImage.getY()+20);
+        advanceLabel.setAlignment(Align.center);
+        group.addActor(advanceLabel);
+
         turnLabel = new Label("", style);
         turnLabel.setHeight(40);
         turnLabel.setWidth(260);
@@ -83,6 +94,9 @@ public class TurnCounter {
         group.addListener(new TextTooltip(
                 GameMenuLoader.instance.localization.get("manualtooltip"),
                 tooltipStyle));
+
+
+
     }
     public Vector2 getEndDisplay(){
         Vector2 v2Return = new Vector2(v2Position.x,v2Position.y);
@@ -129,6 +143,19 @@ public class TurnCounter {
         } else {
             group.addAction(Actions.fadeIn(0.3f));
         }
+    }
+    public void blinkAdvance(){
+        advanceLabel.addAction(Actions.forever(Actions.sequence(
+                Actions.alpha(0),
+                Actions.fadeIn(0.5f),
+                Actions.delay(0.5f),
+                Actions.fadeOut(0.5f)
+        )));
+        advanceLabel.setVisible(true);
+    }
+    public void stopAdvance(){
+        advanceLabel.clearActions();
+        advanceLabel.setVisible(false);
     }
 }
 

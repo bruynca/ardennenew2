@@ -309,6 +309,7 @@ public class NextPhase {
 
                     isAlliedPlayer = false;
                     BarrageExplode.End();
+                    Barrage.clearTargets();
                     nextPhase();
                     break;
                 case GERMAN_COMBAT:
@@ -402,6 +403,8 @@ public class NextPhase {
 
                     isAlliedPlayer = true;
                     BarrageExplode.End();
+                    Barrage.clearTargets();
+
                     nextPhase();
                     break;
                 case ALLIED_COMBAT:

@@ -4,6 +4,7 @@ import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.ObserverPackage;
 import com.bruinbeargames.ardenne.UI.EventPopUp;
 import com.bruinbeargames.ardenne.UI.HelpPage;
+import com.bruinbeargames.ardenne.UI.TurnCounter;
 import com.bruinbeargames.ardenne.Unit.ClickAction;
 import com.bruinbeargames.ardenne.Unit.Unit;
 import com.bruinbeargames.ardenne.ardenne;
@@ -37,6 +38,7 @@ public class AdvanceAfterCombat implements Observer {
             isSeen = true;
   //          HelpPage.instance.showOther("advanceafterhelp");
         }
+        TurnCounter.instance.blinkAdvance();
         this.attack = attack;
         numHexAdvance = attack.defenderRetreats;
         arrHexOK.clear();
@@ -75,7 +77,7 @@ public class AdvanceAfterCombat implements Observer {
     }
     public void end(){
         app.log("AdvanceAfterCombat", "end");
-
+        TurnCounter.instance.stopAdvance();
         ClickAction.cancelAll();
         ardenne.instance.deleteObserver(this);
         Combat.instance.doCombatPhase();

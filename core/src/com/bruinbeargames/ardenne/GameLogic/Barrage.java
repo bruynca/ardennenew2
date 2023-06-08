@@ -594,7 +594,7 @@ public class Barrage {
 		Image image;
 		ClickListener listner;
 		boolean isAllies;
-		final TargetShooterSave targetShooterSaveIn;
+		TargetShooterSave targetShooterSaveIn;
 		int dieRoll; // set sfter exploded
 		int adjust;
 		int artilleryCount = 0;
@@ -663,7 +663,7 @@ public class Barrage {
 			});
 
 			ardenne.instance.mapStage.addActor(stack);
-			calcShooterCnt();
+
 			int column = shooterCnt/2;    //  + 1;
 			if (column > 5){
 				column = 5;//
