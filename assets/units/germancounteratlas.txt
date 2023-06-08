@@ -1,5 +1,5 @@
 germancounterimage.png
-size: 2040, 2061
+size: 2047, 2061
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -12,7 +12,7 @@ repeat: none
   index: -1
 abn101
   rotate: false
-  xy: 990, 91
+  xy: 1130, 91
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
@@ -33,42 +33,42 @@ airplane2
   index: -1
 alliedNew
   rotate: false
-  xy: 1110, 91
+  xy: 1250, 91
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 arm4
   rotate: false
-  xy: 1230, 91
+  xy: 1370, 91
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 arm9
   rotate: false
-  xy: 1350, 91
+  xy: 1490, 91
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 arm10
   rotate: false
-  xy: 1470, 91
+  xy: 1610, 91
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 artcorp
   rotate: false
-  xy: 1590, 91
+  xy: 1730, 91
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 attackarrow0
   rotate: false
-  xy: 443, 0
+  xy: 485, 0
   size: 65, 65
   orig: 65, 65
   offset: 0, 0
@@ -108,9 +108,16 @@ bastognesign
   orig: 130, 136
   offset: 0, 0
   index: -1
+binoculars
+  rotate: false
+  xy: 345, 0
+  size: 42, 42
+  orig: 42, 42
+  offset: 0, 0
+  index: -1
 blowbridge
   rotate: false
-  xy: 0, 91
+  xy: 140, 91
   size: 127, 101
   orig: 127, 101
   offset: 0, 0
@@ -124,42 +131,42 @@ bridge
   index: -1
 bridgeblown
   rotate: false
-  xy: 1887, 0
+  xy: 0, 91
   size: 140, 80
   orig: 140, 80
   offset: 0, 0
   index: -1
 bt
   rotate: false
-  xy: 864, 0
+  xy: 906, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 btpushed
   rotate: false
-  xy: 957, 0
+  xy: 999, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 button
   rotate: false
-  xy: 1050, 0
+  xy: 1092, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 cardbutton
   rotate: false
-  xy: 1143, 0
+  xy: 1185, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 cardbuttonp
   rotate: false
-  xy: 1236, 0
+  xy: 1278, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
@@ -180,70 +187,70 @@ crt
   index: -1
 crtback
   rotate: false
-  xy: 387, 0
+  xy: 429, 0
   size: 56, 39
   orig: 56, 39
   offset: 0, 0
   index: -1
 crttop
   rotate: false
-  xy: 1329, 0
+  xy: 1371, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 crttoppushed
   rotate: false
-  xy: 1422, 0
+  xy: 1464, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 exitboard
   rotate: false
-  xy: 242, 91
+  xy: 382, 91
   size: 120, 114
   orig: 120, 114
   offset: 0, 0
   index: -1
 explosion1
   rotate: false
-  xy: 482, 91
+  xy: 622, 91
   size: 127, 111
   orig: 127, 111
   offset: 0, 0
   index: -1
 explosion2
   rotate: false
-  xy: 609, 91
+  xy: 749, 91
   size: 127, 111
   orig: 127, 111
   offset: 0, 0
   index: -1
 explosion3
   rotate: false
-  xy: 736, 91
+  xy: 876, 91
   size: 127, 111
   orig: 127, 111
   offset: 0, 0
   index: -1
 explosion4
   rotate: false
-  xy: 863, 91
+  xy: 1003, 91
   size: 127, 111
   orig: 127, 111
   offset: 0, 0
   index: -1
 fj5
   rotate: false
-  xy: 1710, 91
+  xy: 1850, 91
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 germanNew
   rotate: false
-  xy: 1830, 91
+  xy: 0, 211
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
@@ -292,7 +299,7 @@ hexedgemove5
   index: -1
 hilite
   rotate: false
-  xy: 0, 211
+  xy: 120, 211
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
@@ -355,21 +362,21 @@ hilitehexreindisplay3
   index: -1
 inf26
   rotate: false
-  xy: 120, 211
+  xy: 240, 211
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 inf28
   rotate: false
-  xy: 240, 211
+  xy: 360, 211
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 inf80
   rotate: false
-  xy: 360, 211
+  xy: 480, 211
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
@@ -383,14 +390,14 @@ info
   index: -1
 lehr
   rotate: false
-  xy: 480, 211
+  xy: 600, 211
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 luftwaffeNew
   rotate: false
-  xy: 600, 211
+  xy: 720, 211
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
@@ -404,14 +411,14 @@ mechattack
   index: -1
 mobileassualt
   rotate: false
-  xy: 1800, 331
+  xy: 1920, 331
   size: 127, 126
   orig: 127, 126
   offset: 0, 0
   index: -1
 moved
   rotate: false
-  xy: 127, 91
+  xy: 267, 91
   size: 115, 115
   orig: 115, 115
   offset: 0, 0
@@ -425,35 +432,35 @@ ok
   index: -1
 onestep
   rotate: false
-  xy: 720, 211
+  xy: 840, 211
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 pz2
   rotate: false
-  xy: 840, 211
+  xy: 960, 211
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 pzlehr
   rotate: false
-  xy: 960, 211
+  xy: 1080, 211
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 rienforcementbutton
   rotate: false
-  xy: 1515, 0
+  xy: 1557, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 rienforcementbuttonpressed
   rotate: false
-  xy: 1608, 0
+  xy: 1650, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
@@ -467,133 +474,133 @@ river
   index: -1
 shell
   rotate: false
-  xy: 345, 0
+  xy: 387, 0
   size: 42, 43
   orig: 42, 43
   offset: 0, 0
   index: -1
 silamericaninf
   rotate: false
-  xy: 1080, 211
+  xy: 1200, 211
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silantitank
   rotate: false
-  xy: 1200, 211
+  xy: 1320, 211
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silarm
   rotate: false
-  xy: 1320, 211
+  xy: 1440, 211
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silart
   rotate: false
-  xy: 1440, 211
+  xy: 1560, 211
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silgermanart
   rotate: false
-  xy: 1560, 211
+  xy: 1680, 211
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silgermaninf
   rotate: false
-  xy: 1680, 211
+  xy: 1800, 211
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 siljagd
   rotate: false
-  xy: 1800, 211
+  xy: 1920, 211
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silmairart
   rotate: false
-  xy: 1920, 211
+  xy: 0, 331
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silmarder
   rotate: false
-  xy: 0, 331
+  xy: 120, 331
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silmobileart
   rotate: false
-  xy: 120, 331
+  xy: 240, 331
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silneber
   rotate: false
-  xy: 240, 331
+  xy: 360, 331
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silpanzergrenadier
   rotate: false
-  xy: 360, 331
+  xy: 480, 331
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silpuma
   rotate: false
-  xy: 480, 331
+  xy: 600, 331
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silsherman
   rotate: false
-  xy: 600, 331
+  xy: 720, 331
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silstug
   rotate: false
-  xy: 720, 331
+  xy: 840, 331
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 siltank
   rotate: false
-  xy: 840, 331
+  xy: 960, 331
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 star
   rotate: false
-  xy: 362, 91
+  xy: 502, 91
   size: 120, 114
   orig: 120, 114
   offset: 0, 0
   index: -1
 supply
   rotate: false
-  xy: 960, 331
+  xy: 1080, 331
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
@@ -656,14 +663,14 @@ tecsecroad
   index: -1
 tectop
   rotate: false
-  xy: 1701, 0
+  xy: 1743, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 tectoppushed
   rotate: false
-  xy: 1794, 0
+  xy: 1836, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
@@ -684,7 +691,7 @@ tecvillage
   index: -1
 tfback
   rotate: false
-  xy: 679, 0
+  xy: 721, 0
   size: 185, 30
   orig: 185, 30
   offset: 0, 0
@@ -698,14 +705,14 @@ tfcusor
   index: -1
 tfselected
   rotate: false
-  xy: 508, 0
+  xy: 550, 0
   size: 171, 30
   orig: 171, 30
   offset: 0, 0
   index: -1
 threestep
   rotate: false
-  xy: 1080, 331
+  xy: 1200, 331
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
@@ -726,14 +733,14 @@ trees
   index: -1
 truck
   rotate: false
-  xy: 1200, 331
+  xy: 1320, 331
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 twostep
   rotate: false
-  xy: 1320, 331
+  xy: 1440, 331
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
@@ -747,21 +754,21 @@ usflag
   index: -1
 vg26
   rotate: false
-  xy: 1440, 331
+  xy: 1560, 331
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 vg276
   rotate: false
-  xy: 1560, 331
+  xy: 1680, 331
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 vg352
   rotate: false
-  xy: 1680, 331
+  xy: 1800, 331
   size: 120, 120
   orig: 120, 120
   offset: 0, 0

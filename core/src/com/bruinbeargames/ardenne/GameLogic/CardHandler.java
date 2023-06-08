@@ -40,7 +40,7 @@ public class CardHandler implements Observer {
     String[] descriptionAllied = {"2ndpanzerhalts","2ndpanzerloses2units","blownbridge","fritz1","prayforweather"};
     int[]cardAlliedNumber = {1,1,3,1,1};
     int[] weightAllied = {1,1,1,1,1};
-    int [] startAllied = {3,4,1,3,3};
+    int [] startAllied = {3,3,1,3,3};
     boolean[] isConfirmAllied = {true,true,false,true,true} ;
     private int countGerman;
     private int countAllied;
@@ -159,6 +159,9 @@ public class CardHandler implements Observer {
         }else{
             NextPhase.instance.nextPhase();
         }
+    }
+    public int getAlliedNumberCards(int turn){
+        return getCardsForThisTurn(turn).size();
     }
 
     /**

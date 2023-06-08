@@ -8,6 +8,7 @@ import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.Phase;
+import com.bruinbeargames.ardenne.UI.BombardDisplay;
 import com.bruinbeargames.ardenne.UI.BottomMenu;
 import com.bruinbeargames.ardenne.UI.EventPopUp;
 import com.bruinbeargames.ardenne.UI.Explosions;
@@ -271,6 +272,13 @@ public class BarrageExplode {
         if (targetShooterSave.hexTarget.isForest() || targetShooterSave.hexTarget.isCity() ||
             targetShooterSave.hexTarget.isCity()){
             adjust--;
+        }
+        /**
+         *  Check oberserver
+         */
+
+        if (BombardDisplay.instance.checkAdjacentHex(targetShooterSave.hexTarget, targetShooterSave.isAllies)){
+            adjust++;
         }
         int steps =0;
         for (Unit unit:targetShooterSave.hexTarget.getUnitsInHex()){

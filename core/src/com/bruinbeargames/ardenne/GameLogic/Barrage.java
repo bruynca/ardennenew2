@@ -487,7 +487,7 @@ public class Barrage {
 	 */
 	public void createTargetShooterSave(Hex hexClick, ArrayList<Unit> unitArrayListShootersFinal, int cntAir, boolean isAI) {
 		TargetShooterSave targetShooterSave = new TargetShooterSave(hexClick,unitArrayListShootersFinal, isAllies, cntAir, isAI);
-		if (arrArtilleryShooters.get(0).isAllies){
+		if (cntAir > 0 || arrArtilleryShooters.get(0).isAllies){
 			targetShooterSaveArrayListAllies.add(targetShooterSave);
 		}else{
 			targetShooterSaveArrayListAxis.add(targetShooterSave);

@@ -22,6 +22,7 @@ public class SoundsLoader  {
     private static Sound stuka;
     private static Sound mortar;
 
+    private static Sound tada;
 
     private static float volume = 0.5f;
     private  long id;
@@ -40,6 +41,7 @@ public class SoundsLoader  {
     private long limberSoundID;
     private long mortarSoundID;
     private long stukaSoundID;
+    private long tadaSoundID;
 
 
     public  SoundsLoader() {
@@ -55,6 +57,7 @@ public class SoundsLoader  {
         march = SplashScreen.instance.soundsManager.get("sounds/march.mp3", Sound.class);
         stuka = SplashScreen.instance.soundsManager.get("sounds/stuka.mp3", Sound.class);
         mortar = SplashScreen.instance.soundsManager.get("sounds/mortar.mp3", Sound.class);
+        tada = SplashScreen.instance.soundsManager.get("sounds/tada.mp3", Sound.class);
 
 
     }
@@ -148,6 +151,12 @@ public class SoundsLoader  {
             mortarSoundID = mortar.play(volume );
         }
     }
+    public void playTada(){
+        if (isPlaySounds()) {
+            tadaSoundID = tada.play(volume );
+        }
+    }
+
 
     public void setVolume(float level){
         volume = level;
@@ -158,6 +167,7 @@ public class SoundsLoader  {
         combatSounds.setVolume(combatSoundsID, volume);
         moveSounds.setVolume(snowSoundsID, volume);
         limber.setVolume(limberSoundID, volume);
+        tada.setVolume(tadaSoundID,volume);
         if (volume == 0){
             playSounds = false;
             battleSounds.stop();
@@ -185,6 +195,7 @@ public class SoundsLoader  {
         march.stop();
         mortar.stop();
         stuka.stop();
+        tada.stop();
 
     }
 }

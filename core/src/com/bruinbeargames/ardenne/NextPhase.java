@@ -179,6 +179,7 @@ public class NextPhase {
                 unit.setHasbeenAttackedThisTurnOff();
             }
             turnCounter.instance.updateTurn(turn, weather.getCurrentType());
+            turnCounter.instance.updateText(i18NBundle.get("nextturn"));
         }
         if (turn == 1 && phase == 0){
             EventPopUp.instance.setSpecial();

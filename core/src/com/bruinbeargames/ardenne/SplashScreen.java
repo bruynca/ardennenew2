@@ -144,6 +144,7 @@ public class SplashScreen {
         soundsManager.load("sounds/march.mp3", Sound.class);
         soundsManager.load("sounds/stuka.mp3", Sound.class);
         soundsManager.load("sounds/mortar.mp3", Sound.class);
+        soundsManager.load("sounds/tada.mp3", Sound.class);
         TextureLoader.TextureParameter param = new TextureLoader.TextureParameter();
         param.minFilter = Texture.TextureFilter.Linear;
 

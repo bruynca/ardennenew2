@@ -2,6 +2,7 @@ package com.bruinbeargames.ardenne.UI;
 
 import com.badlogic.gdx.utils.I18NBundle;
 import com.bruinbeargames.ardenne.AI.AIMain;
+import com.bruinbeargames.ardenne.GameLogic.CardHandler;
 import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.GamePreferences;
 import com.bruinbeargames.ardenne.NextPhase;
@@ -21,8 +22,17 @@ public class HelpPage {
 
     public void nextPhase() {
         int iPhase = NextPhase.instance.getPhase();
+        EventPopUp.instance.hideImmediate();
         if (iPhase == 0){
             int b=0;
+        }
+        /**
+         *  special processing if no cards do not show the help for Allied Card
+         */
+        if (iPhase == 1){
+            if (CardHandler.instance.getAlliedNumberCards(NextPhase.instance.getTurn()) == 0){
+                return;
+            }
         }
         phase = Phase.values()[iPhase];
         if (phase.isHelp()) {

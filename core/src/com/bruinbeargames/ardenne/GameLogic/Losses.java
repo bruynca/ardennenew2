@@ -1,5 +1,6 @@
 package com.bruinbeargames.ardenne.GameLogic;
 
+import com.badlogic.gdx.Gdx;
 import com.bruinbeargames.ardenne.Unit.Unit;
 
 import java.util.ArrayList;
@@ -26,6 +27,10 @@ public class Losses{
             }
             arrSorted.add(ix, unit);
         }
+        for (Unit unit:arrSorted) {
+            Gdx.app.log("Losses", "sorted unit=" + unit);
+        }
+
         /**
          *  lose all to lose max is 4
          */

@@ -30,11 +30,13 @@ public class BombardDisplay {
     static TextureRegion tBackGerman =  textureAtlas.findRegion("barragexis");
     static TextureRegion tBackAllied =  textureAtlas.findRegion("barrageallies");
     static TextureRegion tVillage =  textureAtlas.findRegion("village");
+    static TextureRegion tbinoculars =  textureAtlas.findRegion("binoculars");
     private Image background;
     private Image trees;
     private Image village;
     private Image line;
     private Image town;
+    private Image binoculars;
     private Group group;
     private Group hexGroup;
     private Group artGroup;
@@ -63,6 +65,7 @@ public class BombardDisplay {
 
         initializeBackgroundImage();
         initializeVillage();
+        initializeBinocular();
         initializeLineImage();
         initializeTownImage();
         initializeTrees();
@@ -85,7 +88,7 @@ public class BombardDisplay {
         background.setWidth(230);
         background.setPosition((Gdx.graphics.getWidth() - background.getWidth() - 10), (Gdx.graphics.getHeight() - background.getHeight() - 10 ));
 
-        showTerrainIcons(hexTarget);
+        showTerrainIcons(hexTarget, allies);
 
         group.addActor(hexGroup);
 
@@ -132,7 +135,7 @@ public class BombardDisplay {
         group.setVisible(true);
     }
 
-    private void showTerrainIcons(Hex hexTarget){
+    private void showTerrainIcons(Hex hexTarget, boolean allies){
 
         // Clear up first
         village.remove();
@@ -141,6 +144,9 @@ public class BombardDisplay {
         line.remove();
         artilleryYPosition = 0;
         int xPosition = 20;
+        boolean isObserver =  checkAdjacentHex(hexTarget,allies);
+
+        if (allies)
         if(hexTarget.isTown()){
             village.setPosition(background.getX() + xPosition , background.getY() + background.getHeight() - 125);
             xPosition += 55;
@@ -163,6 +169,18 @@ public class BombardDisplay {
         }
     }
 
+    public boolean checkAdjacentHex(Hex hexTarget, boolean allies) {
+        for (Hex hex:hexTarget.getSurround()){
+            if (allies && hex.isAlliedOccupied[0]){
+                return true;
+            }
+            if (!allies && hex.isAxisOccupied[0]){
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void initializeBackgroundImage(){
 
         background = new Image(new TextureRegion(UILoader.instance.combatDisplay.asset.get("russianbarragedisplay")));
@@ -172,7 +190,16 @@ public class BombardDisplay {
 
         group.addActor(background);
     }
+    private void initializeBinocular(){
 
+        binoculars = new Image(tbinoculars);
+        binoculars.setHeight(24);
+        binoculars.setWidth(51);
+        binoculars.setPosition(background.getX() + 30 , background.getY() + background.getHeight() - 125);
+        binoculars.addListener(new TextTooltip(
+                i18NBundle.get("binshift"),
+                tooltipStyle));
+    }
     private void initializeVillage(){
 
         village = new Image(tVillage);

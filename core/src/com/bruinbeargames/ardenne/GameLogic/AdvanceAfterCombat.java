@@ -25,6 +25,8 @@ public class AdvanceAfterCombat implements Observer {
     ArrayList<Hex> arrHexOK = new ArrayList<>();
     ArrayList<Hex> arrHexAdvance = new ArrayList<>();
     ArrayList<Unit> arrUnitsToAdvance =  new ArrayList<>();
+    ArrayList<Unit> arrSanity = new ArrayList<>();
+
     /**
      * got here because hex was vacated
      * @param attack
@@ -39,7 +41,6 @@ public class AdvanceAfterCombat implements Observer {
         numHexAdvance = attack.defenderRetreats;
         arrHexOK.clear();
         ArrayList<Hex> arrHexCheck = new ArrayList<>();
-        ArrayList<Unit> arrSanity = new ArrayList<>();
         for (Unit unit:attack.arrAttackers){
             if (!unit.isEliminated()) {
                 ClickAction clickAction = new ClickAction(unit, ClickAction.TypeAction.Advance);
@@ -87,7 +88,7 @@ public class AdvanceAfterCombat implements Observer {
         app.log("advanceAfterCombat", "checkend unit="+unit);
 
         arrUnitsToAdvance.remove(unit);
-        if (arrUnitsToAdvance.size() == 0){
+        if (arrUnitsToAdvance.size() == 0 || arrSanity.size() == 0){
             end();
         }
     }

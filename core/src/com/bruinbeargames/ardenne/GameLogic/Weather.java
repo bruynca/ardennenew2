@@ -80,6 +80,9 @@ public class Weather {
                 break;
             }
         }
+        if (ixBombers > 3){
+            ixBombers = 3;
+        }
         return bombers[ixBombers];
     }
 

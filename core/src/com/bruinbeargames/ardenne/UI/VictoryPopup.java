@@ -13,9 +13,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.bruinbeargames.ardenne.Fonts;
+import com.bruinbeargames.ardenne.GameLogic.SoundsLoader;
 import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.SoundEffects;
 import com.bruinbeargames.ardenne.SplashScreen;
 import com.bruinbeargames.ardenne.ardenne;
 
@@ -136,6 +138,7 @@ public class VictoryPopup {
     }
 
     public void determineVictor() {
+        SoundsLoader.instance.playTada();
         if (GameSetup.instance.getScenario() == GameSetup.Scenario.Intro){
             checkIntro();
             return;
