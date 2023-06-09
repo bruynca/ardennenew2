@@ -2,15 +2,23 @@ package com.bruinbeargames.ardenne.GameLogic;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.TextTooltip;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.badlogic.gdx.utils.Timer;
 import com.bruinbeargames.ardenne.CenterScreen;
+import com.bruinbeargames.ardenne.Fonts;
+import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.Hex.Bridge;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.NextPhase;
@@ -35,6 +43,10 @@ public class BlowBridge implements Observer {
     static TextureRegion bridgegone = textureAtlas.findRegion("bridgeblown");
     CardsforGame cardsforGame;
     Image imageBridgeGone;
+    TextTooltip.TextTooltipStyle tooltipStyle;
+    private EventListener hitOK;
+
+
 
     public BlowBridge() {
         instance = this;
@@ -48,7 +60,14 @@ public class BlowBridge implements Observer {
     public void display(CardsforGame cardsforGame) {
         Gdx.app.log("BlowBridge", "createCombatImage");
         this.cardsforGame = cardsforGame;
+        i18NBundle = GameMenuLoader.instance.localization;
+
         arrBridgeCanBeBlown = new ArrayList<>();
+        tooltipStyle = new TextTooltip.TextTooltipStyle();
+        tooltipStyle.label = new Label.LabelStyle(Fonts.getFont24(), Color.WHITE);
+        NinePatch np = new NinePatch(GameMenuLoader.instance.gameMenu.asset.get("tooltip"), 2, 2, 2, 2);
+        tooltipStyle.background = new NinePatchDrawable(np);
+
         /** get eligible bridges
          *
          */
@@ -80,6 +99,13 @@ public class BlowBridge implements Observer {
                 }
             };
             image.addListener(clickListener);
+            String strTip = i18NBundle.format("dynamite");
+
+            hitOK = new TextTooltip(
+                    strTip,
+                    tooltipStyle);
+            image.addListener(hitOK);
+
             ardenne.instance.mapStage.addActor(image);
             ardenne.instance.addObserver(this);
         }

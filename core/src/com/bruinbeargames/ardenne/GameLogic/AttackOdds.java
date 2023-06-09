@@ -2,6 +2,7 @@ package com.bruinbeargames.ardenne.GameLogic;
 
 import com.badlogic.gdx.Gdx;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.Unit.Unit;
 
 import java.util.ArrayList;
@@ -66,6 +67,9 @@ public class AttackOdds {
             }else if (attack.hexTarget.isTown()){
                 attack.isVillage = true;
                 shiftCRT--;
+            }
+            if (!attack.isAllies && NextPhase.instance.getTurn() <= 2){
+                shiftCRT++;
             }
             oddsCheck = attack.attackStrength/attack.defenseStrength;
             boolean isFound =false;

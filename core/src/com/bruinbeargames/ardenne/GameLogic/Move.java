@@ -131,7 +131,7 @@ public class Move extends Observable {
                                }
                            }
                        }
-                , .16F        //    (delay)
+                , .08F        //    (delay)
         );
 
 
@@ -414,8 +414,8 @@ public class Move extends Observable {
                 cost +=3;
             }else if (steps > 2){
                 cost +=2;
-            }else if (steps >0 ){
-                cost += 1;
+            }else if (steps >1 ){
+                cost += .5f;
             }
         }
         /**

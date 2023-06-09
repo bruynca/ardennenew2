@@ -167,6 +167,7 @@ public class WinDisplayCRT {
                 i18NBundle.format("crtclose"),
                 tooltipStyle);
         image.addListener(hitOK);
+
     }
 
     private void end() {

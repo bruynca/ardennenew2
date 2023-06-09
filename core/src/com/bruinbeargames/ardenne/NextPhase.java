@@ -192,6 +192,10 @@ public class NextPhase {
         BottomMenu.instance.showBottomMenu();
         SaveGame.SaveDebug("Debug "+cntDebug+" Turn="+getTurn()+" "+Phases[phase].toString()+"  ",cntDebug);
         SaveGame.SaveLastPhase(" Last Phase",2);
+        if (phase == 0){
+            BottomMenu.instance.enablePhaseChange();
+            return;
+        }
         HelpPage.instance.nextPhase();
         setPhase();
 
@@ -448,6 +452,8 @@ public class NextPhase {
 
     }
     public void endPhase(int phaseToEnd){
+        Gdx.app.log("NexPhase", "endPhase"+Phases[getPhase()].toString());
+
         if (phaseToEnd != getPhase()){
             ErrorGame errorGame = new ErrorGame("EndPhase and current Phase do not Match",this);
         }

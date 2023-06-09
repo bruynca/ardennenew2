@@ -649,8 +649,12 @@ public class Barrage {
 				public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor){
 
 					TargetShooterSave targetShooterSave = (TargetShooterSave)stack.getUserObject();
+					int factor =0;
+					for (Unit unit:targetShooterSave.arrShooters){
+						factor += unit.getCurrenAttackFactor();
+					}
 					BombardDisplay.instance.initialize(targetShooterSave.hexTarget,targetShooterSave.isAllies);
-					BombardDisplay.instance.updateBarrage(targetShooterSave.artilleryCount);
+//					BombardDisplay.instance.updateBarrage(factor);
 				}
 
 				@Override

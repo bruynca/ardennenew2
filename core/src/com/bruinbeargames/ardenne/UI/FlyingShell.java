@@ -142,7 +142,7 @@ public class FlyingShell implements Observer {
     }
 
     public void update() {
-        Gdx.app.log("FlyingShell", "deltaTime="+Gdx.graphics.getDeltaTime());
+  //      Gdx.app.log("FlyingShell", "deltaTime="+Gdx.graphics.getDeltaTime());
   /*      boolean isDebug = true;
         if (isDebug){
             ardenne.instance.isUpdateShell = false;

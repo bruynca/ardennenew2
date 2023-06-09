@@ -142,11 +142,12 @@ public class BombardDisplay {
         trees.remove();
         town.remove();
         line.remove();
+        binoculars.remove();
+
         artilleryYPosition = 0;
         int xPosition = 20;
         boolean isObserver =  checkAdjacentHex(hexTarget,allies);
 
-        if (allies)
         if(hexTarget.isTown()){
             village.setPosition(background.getX() + xPosition , background.getY() + background.getHeight() - 125);
             xPosition += 55;
@@ -162,6 +163,13 @@ public class BombardDisplay {
             xPosition += 55;
             hexGroup.addActor(trees);
         }
+        if (isObserver){
+            binoculars.setPosition(background.getX() + xPosition , background.getY() + background.getHeight() - 125);
+            xPosition += 55;
+            hexGroup.addActor(binoculars);
+
+        }
+
 
         if (xPosition > 30){
             artilleryYPosition = 50;

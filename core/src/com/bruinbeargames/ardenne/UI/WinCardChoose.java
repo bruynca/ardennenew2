@@ -201,7 +201,7 @@ public class WinCardChoose implements Observer {
         return stack;
     }
 
-    private void setListnersAvailable(Stack stack, CardsforGame card) {
+    private void setListnersAvailable(final Stack stack, CardsforGame card) {
         /**
          *  create the listners for card to be chosen
          */
@@ -227,9 +227,11 @@ public class WinCardChoose implements Observer {
 
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                 //              Gdx.app.log("Counter ", "enter unit="+unit);
+ //               stack.setScale(1.2f);
             }
             public void exit(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                 //              Gdx.app.log("Counter", "exit unit="+unit);
+  //              stack.setScale(1.0f);
             }
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
                 //              Gdx.app.log("Counter","TouchDown unit="+unit);

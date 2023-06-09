@@ -20,6 +20,7 @@ import com.bruinbeargames.ardenne.Fonts;
 import com.bruinbeargames.ardenne.GameLogic.Attack;
 import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.SplashScreen;
 import com.bruinbeargames.ardenne.UILoader;
 import com.bruinbeargames.ardenne.ardenne;
@@ -34,6 +35,7 @@ public class CombatDisplay {
     static TextureRegion tBackGerman =  textureAtlas.findRegion("backgroundgerman");
     static TextureRegion tBackAllied =  textureAtlas.findRegion("backgroundallied");
     static TextureRegion tVillage =  textureAtlas.findRegion("village");
+    static TextureRegion tSurpise =  textureAtlas.findRegion("surprise");
 
 
     private Image background;
@@ -44,6 +46,7 @@ public class CombatDisplay {
     private Image town;
     private Image trees;
     private Image village;
+    private Image surprise;
     private Label germanCombatFactors;
     private Label alliedCombatFactors;
     private Label lossesHeader;
@@ -81,6 +84,7 @@ public class CombatDisplay {
         initializeTownImage();
         initializeTreesImage();
         initializeVillageImage();
+        initializeSurpriseImage();
 
 
         group.addActor(hexGroup);
@@ -170,6 +174,12 @@ public class CombatDisplay {
             hexGroup.addActor(mechattack);
            yPositionAttack += 25;
         }
+        if (!attack.isAllies() && NextPhase.instance.getTurn() <= 2){
+            surprise.setPosition(background.getX() + xPosition, background.getY() + background.getHeight() - yPositionAttack);
+            hexGroup.addActor(surprise);
+            yPositionAttack += 25;
+       }
+
 
         int linePosition = 0;
         if (yPositionAttack > 165 || yPositionDefend > 165) {
@@ -239,6 +249,17 @@ public class CombatDisplay {
 
         village.addListener(new TextTooltip(
                 i18NBundle.get("village"),
+                tooltipStyle));
+    }
+    private void initializeSurpriseImage() {
+
+        surprise = new Image(tSurpise);
+        //       village.setHeight(24);
+        //       village.setWidth(51);
+        surprise.setPosition((Gdx.graphics.getWidth() / 2), (Gdx.graphics.getHeight() / 2));
+
+        surprise.addListener(new TextTooltip(
+                i18NBundle.get("surprise"),
                 tooltipStyle));
     }
 

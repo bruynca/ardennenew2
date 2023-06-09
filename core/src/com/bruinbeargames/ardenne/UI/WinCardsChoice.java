@@ -228,7 +228,7 @@ public class WinCardsChoice {
     }
 
 
-    private void setListnersAvailable(Stack stack, CardsforGame card) {
+    private void setListnersAvailable(final Stack stack, CardsforGame card) {
         /**
          *  create the listners for card to be chosen
          */
@@ -241,11 +241,10 @@ public class WinCardsChoice {
 
         String strTip = i18NBundle.format(key);
 //        Gdx.app.log("WinCardsChoice", "initcards str="+strTip);
-
         hitOK = new TextTooltip(
                 strTip,
                 tooltipStyle);
-        stack.addListener(hitOK);
+       stack.addListener(hitOK);
         /**
          * create touchups
          */
@@ -253,9 +252,11 @@ public class WinCardsChoice {
 
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                 //              Gdx.app.log("Counter ", "enter unit="+unit);
+   //             stack.setScale(1.0F);
             }
             public void exit(InputEvent event, float x, float y, int pointer, Actor fromActor) {
                 //              Gdx.app.log("Counter", "exit unit="+unit);
+   //             stack.setScale(1.0f);
             }
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
                 //              Gdx.app.log("Counter","TouchDown unit="+unit);

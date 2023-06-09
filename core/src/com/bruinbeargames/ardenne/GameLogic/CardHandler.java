@@ -260,8 +260,21 @@ public class CardHandler implements Observer {
                 for (Bridge bridge:Bridge.arrBridges){
                     if (bridge.getBlown()){
                         if ((bridge.getTurnBlown()+1) == NextPhase.instance.getTurn()){
-                            isInclude = true;
-                            break;
+                            for (Hex hex:bridge.getHex1().getSurround()){
+                                if (hex.isAxisOccupied[0]){
+                                    isInclude = true;
+                                    break;
+                                }
+                            }
+                            if (!isInclude){
+                                for (Hex hex:bridge.getHex2().getSurround()){
+                                    if (hex.isAxisOccupied[0]){
+                                        isInclude = true;
+                                        break;
+                                    }
+                                }
+
+                            }
                         }
 
                     }
