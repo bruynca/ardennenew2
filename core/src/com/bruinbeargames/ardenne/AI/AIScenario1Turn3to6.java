@@ -167,6 +167,9 @@ public class AIScenario1Turn3to6 implements Observer {
         ArrayList<Hex>[] arrHexMove = new ArrayList[arrUnitKampgruppe[ixWorkingOn].size()];
         arrHexMove = AIUtil.getUnitsMaxMove(arrUnitsWork,0, false);
         /**
+         *  make sure no units move out of wiltz
+         */
+        /**
          *  reduce movement to hexes to reduce iterations
          */
         int ix =0;

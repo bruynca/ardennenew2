@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public class Losses{
     boolean areAllEliminated = false;
     public Losses(ArrayList<Unit> arrUnits, int toLose) {
+        Gdx.app.log("Losses", "Units=" + arrUnits + " to lose=" + toLose);
+
         if (toLose == 0) {
             return;
         }
@@ -20,7 +22,7 @@ public class Losses{
         int test =0;
         for (Unit unit:arrUnits) {
             for (int i = 0; i < arrSorted.size(); i++) {
-                if (unit.getCurrentStep() > arrUnits.get(i).getCurrentStep()) {
+                if (unit.getCurrentStep() > arrSorted.get(i).getCurrentStep()) {
                     ix = i;
                     break;
                 }

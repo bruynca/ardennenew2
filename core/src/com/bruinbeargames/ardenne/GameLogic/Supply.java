@@ -70,6 +70,11 @@ public class Supply {
         Image image = new Image(supplyIcon);
         image.setScale(.8f);
         arrSupplyImages.add(image);
+         for (Hex hex:arrGermanSupply){
+            image = new Image(supplyIcon);
+            image.setScale(.8f);
+            arrSupplyImages.add(image);
+        }
 
 
   /*      for (int[] in:alliedSupply){

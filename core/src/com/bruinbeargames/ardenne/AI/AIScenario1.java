@@ -524,6 +524,21 @@ public class AIScenario1 {
          */
         ArrayList<Hex> arrAllowDuplicates = new ArrayList<>();
         ArrayList<AIOrders> arrNodupes = AIOrders.removeDupeMoveToHexes(arrOrdersIn, arrAllowDuplicates);
+        /**
+         *  force units in wiltz to stay
+         */
+        int ix=0;
+        ArrayList<Unit> arrREmove  = new ArrayList<>();
+        for (Unit unit:arrOrdersIn.get(0).arrUnit){
+            if (unit.getHexOccupy() == AIReinforcementScenario1.hexWiltz){
+                arrREmove.add(unit);
+                arrOrdersIn.get(0).arrHexMoveTo.remove(ix);
+                arrOrdersIn.get(0).arrHexMobileAssault.remove(ix);
+            }
+            ix++;
+        }
+        arrOrdersIn.get(0).arrUnit.removeAll(arrREmove);
+
         if (arrNodupes.size() == 0) {
             AIMover.instance.execute(arrOrdersIn.get(0));
         }else{

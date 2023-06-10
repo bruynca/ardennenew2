@@ -25,7 +25,7 @@ public class AIScorer {
     static int cntBastogne1 = 1000;
     static int cntBastogne2 = 1000;
     static int cntBastogneRing = 300;
-    static int cntWiltz = 600;
+    static int cntWiltz = 1000;
     static int cntMartleburg = 300;
     static int cntEttlebruk = 400;
     static int cntHainville = 300;
@@ -386,8 +386,6 @@ public class AIScorer {
         int score = 0;
         ArrayList<Hex>[] arrHexGermanPaths = createGermanMoves(arrGermans,thread); // on thread
         score +=sumGermanFarthestX(arrHexGermanPaths);
-        ArrayList<String> arrString = new ArrayList<>();
-        arrString.add("SumGerman ="+score);
 
         /**
           *  count hexes
