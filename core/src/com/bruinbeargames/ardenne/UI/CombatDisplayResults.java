@@ -266,6 +266,7 @@ private Label alliedResults;
                 if (!event.getType().equals("touchUp")) {
                     if (isAttackDisplayed && isDefenseDisplayed){
                         CombatDisplay.instance.end();
+                        Gdx.app.log("combatdisplayresults","clicked");
                         attack.afterDisplay(this);
                     }
                     hide();

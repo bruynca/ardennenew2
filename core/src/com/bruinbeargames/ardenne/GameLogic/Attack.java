@@ -273,7 +273,7 @@ public class Attack extends Observable implements Observer  {
     }
     public void afterDieRoll(){
         Gdx.app.log("Attack", "dieResult=" + dieResult);
-  //            dieResult ="A2r1";
+         //     dieResult ="D2r2";
         WinCRT.instance.show(this, dieResult);
 
         for (int i = 0; i < dieResult.length(); i++) {

@@ -333,6 +333,10 @@ public class NextPhase {
                     EventPopUp.instance.hide();
                     Move.instance.endMove(false, false);
                     Hex.checkStacking();
+                    if (HooufGas.instance.checkHooufgas()){
+                        Supply.instance.setHouflaizeCaptured();
+                    }
+
                     nextPhase();
                     break;
                 case GERMAN_SUPPLY:
@@ -357,6 +361,9 @@ public class NextPhase {
                     break;
                 case ALLIED_REINFORCEMENT:
                     isAlliedPlayer = true;
+                    if (getTurn() == 3){
+                        Supply.instance.loadOtherUSSupply();
+                    }
                     if (Reinforcement.instance.getReinforcementsAvailable(turn).size() > 0){
                         Reinforcement.instance.showWindow();
                     }else{
@@ -373,7 +380,6 @@ public class NextPhase {
                     EventPopUp.instance.hide();
                     Move.instance.endMove(false, false);
                     Hex.checkStacking();
-                    HooufGas.instance.checkHooufgas();
                     endPhase(getPhase());
                     break;
                 case BRIDGE_GERMAN:

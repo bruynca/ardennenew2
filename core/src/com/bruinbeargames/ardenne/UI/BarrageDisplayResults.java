@@ -48,76 +48,7 @@ public class BarrageDisplayResults {
         stage.addActor(group);
     }
 
-    public void updateGermanCombatResults(ArrayList<CombatResults> combatResults){
 
-
-        String defender = "";
-        if (combatResults.size() < 1){
-            defender += i18NBundle.get("nolosses");
-        }else {
-            for (int i = 0; i < combatResults.size(); i++) {
-                CombatResults combatResult = combatResults.get(i);
-                String str = combatResult.getUnit().designation + " " +combatResult.getUnit().subDesignation;
-
-                if (combatResult.isDestroyed()) {
-                    defender +=  i18NBundle.format("destroyed", str) + "\n";
-                    //defender += combatResult.getUnitName() + " was destroyed" + "\n";
-                }
-                if (combatResult.isStepLosses()) {
-                    defender +=  i18NBundle.format("loststep", str) + "\n";
-                    //defender += combatResult.getUnitName() + " took a step loss" + "\n";
-                }
-            }
-        }
-
-        defenderResults.setText(defender);
-        defenderResults.pack();
-        GlyphLayout layout = defenderResults.getGlyphLayout();
-        float height = layout.height;
-        float width = layout.width;
-        defenderResults.setSize(width, height);
-        defenderResults.setPosition(background.getX() + 5 , background.getY() + background.getHeight() - (height + 110));
-
-        if (!group.isVisible()) {
-            group.addAction(Actions.sequence(Actions.visible(true), Actions.fadeIn(0.5f)));
-        }
-    }
-
-    public void updateRussianCombatResults(ArrayList<CombatResults> combatResults){
-
-        String defender = "";
-        if (combatResults.size() < 1){
-            defender += i18NBundle.get("nolosses");
-        }else {
-            for (int i = 0; i < combatResults.size(); i++) {
-                CombatResults combatResult = combatResults.get(i);
-                String str = combatResult.getUnit().designation + " " +combatResult.getUnit().subDesignation;
-
-                if (combatResult.isDestroyed()) {
-
-                    defender +=  i18NBundle.format("destroyed", str) + "\n";
-                    //defender += combatResult.getUnitName() + " was destroyed" + "\n";
-                }
-                if (combatResult.isStepLosses()) {
-                    defender +=  i18NBundle.format("loststep", str) + "\n";
-                    //defender += combatResult.getUnitName() + " took a step loss" + "\n";
-                }
-            }
-        }
-
-        attackerResults.setText(defender);
-        attackerResults.pack();
-        GlyphLayout layout = attackerResults.getGlyphLayout();
-        float height = layout.height;
-        float width = layout.width;
-        attackerResults.setSize(width, height);
-        attackerResults.setPosition(background.getX() + background.getWidth()/2 + 5 , background.getY() + background.getHeight() - (height + 110));
-
-        if (!group.isVisible()) {
-            group.addAction(Actions.sequence(Actions.visible(true), Actions.fadeIn(0.5f)));
-        }
-        group.addAction(Actions.sequence(Actions.visible(true), Actions.fadeIn(0.5f)));
-    }
 
     public void hide(){
         group.addAction(Actions.sequence(Actions.fadeOut(0.5f), Actions.visible(false)));

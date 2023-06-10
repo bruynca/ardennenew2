@@ -7,6 +7,7 @@ import com.bruinbeargames.ardenne.GameLogic.CardsforGame;
 import com.bruinbeargames.ardenne.GameLogic.ExitWest;
 import com.bruinbeargames.ardenne.GameLogic.HooufGas;
 import com.bruinbeargames.ardenne.GameLogic.Reinforcement;
+import com.bruinbeargames.ardenne.GameLogic.Supply;
 import com.bruinbeargames.ardenne.GameLogic.Weather;
 import com.bruinbeargames.ardenne.Hex.Bridge;
 import com.bruinbeargames.ardenne.Hex.Hex;
@@ -263,6 +264,16 @@ public class SaveGame {
 		saveGame.append("\"/>");
 		saveGame.append("<balanced value=\"");
 		if (GameSetup.instance.isBalanced()){
+			saveGame.append("true");
+		}else{
+			saveGame.append("false");
+		}
+		saveGame.append("\"/>");
+/**
+ *  save Houflaize
+ */
+		saveGame.append("<houfflaize value=\"");
+		if (Supply.instance.getHoouflaize()){
 			saveGame.append("true");
 		}else{
 			saveGame.append("false");

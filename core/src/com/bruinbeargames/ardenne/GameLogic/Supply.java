@@ -36,7 +36,7 @@ public class Supply {
     private ArrayList<Hex> arrGermanSupply = new ArrayList();
     ArrayList<Hex> arrGermanBottlenecks = new ArrayList();
 //    int[][] alliedSupply ={{8,11},{12,3},{0,8},{0,20},{3,24}};
-    int[][] alliedSupply ={{0,8},{0,19},{3,24},{9,24},{19,24},{28,24}};
+    int[][] alliedSupply ={{0,19},{9,24},{28,24}};
     ArrayList<Image> arrSupplyImages = new ArrayList<Image>();
     ArrayList<Hex> arrAlliedSupply = new ArrayList();
     public final int initialRange = 35;
@@ -52,6 +52,7 @@ public class Supply {
     int[] defend;
     ArrayList<Unit>[] arrUnitsBeingSupplied;
     WinSupply winSupply;
+    private boolean isHoufflaize = true;
  //   ArrayList<Counter> arrCounter = new ArrayList<>();
 
 
@@ -65,13 +66,20 @@ public class Supply {
             Hex hex = Hex.hexTable[in[0]][in[1]];
             arrGermanBottlenecks.add(hex);
         }
-        for (int[] in:alliedSupply){
+        arrAlliedSupply.add(Hex.hexTable[12][3]);
+        Image image = new Image(supplyIcon);
+        image.setScale(.8f);
+        arrSupplyImages.add(image);
+
+
+  /*      for (int[] in:alliedSupply){
             Hex hex = Hex.hexTable[in[0]][in[1]];
             arrAlliedSupply.add(hex);
             Image image = new Image(supplyIcon);
             image.setScale(.8f);
             arrSupplyImages.add(image);
-        }
+        }*/
+
         i18NBundle= GameMenuLoader.instance.localization;
 
     }
@@ -414,6 +422,13 @@ public class Supply {
         }
 
     }
+    public void setHouflaizeCaptured(){
+        isHoufflaize = false;
+        arrAlliedSupply.remove(Hex.hexTable[12][3]);
+    }
+    public boolean getHoouflaize(){
+        return isHoufflaize;
+    }
 
     public void cancel(Unit unit) {
     }
@@ -494,6 +509,35 @@ public class Supply {
                     unit.setCurrentMovement(1);
                 }
                 unit.getMapCounter().getCounterStack().setPoints();
+            }
+        }
+
+    }
+
+    /**
+     *
+     * @param isHouf
+     */
+    public void loadAllies(boolean isHouf) {
+        arrAlliedSupply.clear();
+        if (isHouf){
+                arrAlliedSupply.add(Hex.hexTable[12][3]);
+            }
+        loadOtherUSSupply();
+    }
+
+    /**
+     *  load otherUS Supply
+     */
+
+    public void loadOtherUSSupply() {
+        if (NextPhase.instance.getTurn() > 2){
+            for (int[] in:alliedSupply) {
+                Hex hex = Hex.hexTable[in[0]][in[1]];
+                arrAlliedSupply.add(hex);
+                Image image = new Image(supplyIcon);
+                image.setScale(.8f);
+                arrSupplyImages.add(image);
             }
         }
 
