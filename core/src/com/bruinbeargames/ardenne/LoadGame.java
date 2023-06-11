@@ -188,7 +188,7 @@ public LoadGame(String gameToLoad, boolean isSpecial) {
 			String endTurn = xmlhex.getChildByName("turnend").getAttribute("value");
 			card.setTurnEnd(Integer.parseInt(endTurn));
 			if (desc.contains("hooufgas")){
-				String hougas = xmlhex.getChildByName("hooufgas").getAttribute("value");
+				String hougas = xmlhex.getChildByName("houfgas").getAttribute("value");
 				if (hougas.contains("true")){
 					HooufGas.instance.setInvalidated(true);
 				}else{

@@ -453,7 +453,7 @@ public class AIReinforcementScenario1 implements Observer {
             reinEttlebruk++;
             AIUtil.RemoveDuplicateHex(arrHexMove);
             arrHexMove.retainAll(Hex.arrAIHex);
-            arrHexMove.retainAll(arrReinDestBastogneLimit);
+            //            arrHexMove.retainAll(arrReinDestBastogneLimit);
             if (arrHexMove.size() > 0) {
                 arrWork.add(arrHexMove);
             } else {

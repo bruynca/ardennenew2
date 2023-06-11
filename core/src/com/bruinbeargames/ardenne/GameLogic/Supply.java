@@ -8,13 +8,16 @@ import com.badlogic.gdx.utils.I18NBundle;
 import com.badlogic.gdx.utils.Timer;
 import com.bruinbeargames.ardenne.AI.AIUtil;
 import com.bruinbeargames.ardenne.GameMenuLoader;
+import com.bruinbeargames.ardenne.Hex.Bridge;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.Hex.HexHelper;
 import com.bruinbeargames.ardenne.Hex.HexUnits;
 import com.bruinbeargames.ardenne.Hex.HiliteHex;
 import com.bruinbeargames.ardenne.Hex.River;
 import com.bruinbeargames.ardenne.NextPhase;
+import com.bruinbeargames.ardenne.ObserverPackage;
 import com.bruinbeargames.ardenne.SplashScreen;
+import com.bruinbeargames.ardenne.UI.EventOK;
 import com.bruinbeargames.ardenne.UI.TurnCounter;
 import com.bruinbeargames.ardenne.UI.WinSupply;
 import com.bruinbeargames.ardenne.Unit.ClickAction;
@@ -23,8 +26,10 @@ import com.bruinbeargames.ardenne.Unit.UnitMove;
 import com.bruinbeargames.ardenne.ardenne;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
-public class Supply {
+public class Supply implements Observer{
     static public Supply instance;
     TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
     TextureRegion supplyIcon =  textureAtlas.findRegion("supply");
@@ -58,6 +63,8 @@ public class Supply {
 
     public Supply(){
         instance = this;
+        i18NBundle = GameMenuLoader.instance.localization;
+
         for (int[] in:germanSupply){
             Hex hex = Hex.hexTable[in[0]][in[1]];
             arrGermanSupply.add(hex);
@@ -440,6 +447,11 @@ public class Supply {
 
     public void doAlliedSupply() {
         int i=0;
+        if (arrAlliedSupply.size() == 0){
+            EventOK.instance.addObserver(this);
+            EventOK.instance.show(i18NBundle.format("noussupply"));
+            return;
+        }
         for (Hex hex:arrAlliedSupply){
             if (!hex.isAxisOccupied()){
                 Vector2 v2 = hex.getCounterPosition();
@@ -545,6 +557,22 @@ public class Supply {
                 arrSupplyImages.add(image);
             }
         }
+
+    }
+
+    @Override
+    public void update(Observable observable, Object o) {
+        ObserverPackage oB = (ObserverPackage) o;
+        Hex hex = oB.hex;
+        /**
+         *  Hex touched
+         */
+        if (oB.type != ObserverPackage.Type.OK) {
+            return;
+        }
+        EventOK.instance.deleteObserver(this);
+        endSupplyUS();
+        NextPhase.instance.nextPhase();
 
     }
 }
