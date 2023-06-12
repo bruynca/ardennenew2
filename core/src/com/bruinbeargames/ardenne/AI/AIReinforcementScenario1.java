@@ -249,6 +249,7 @@ public class AIReinforcementScenario1 implements Observer {
             ArrayList<Hex> arrHexMove = findHexesOnReinforcement(unit, reinMartenlang);
             reinMartenlang++;
             AIUtil.RemoveDuplicateHex(arrHexMove);
+
             if (arrHexMove.size() > 0) {
                 arrWork.add(arrHexMove);
             } else {
@@ -300,7 +301,13 @@ public class AIReinforcementScenario1 implements Observer {
          *  set isTotal to false as same scorer is used
          */
         arrNoDupes = AIOrders.removeDupeMoveToHexes(arrStart,arrAllowDuplicates);
-        for (AIOrders aio:arrNoDupes){
+        /**
+         *  do in tandem
+         */
+        ArrayList<HexInt> arrHexStackCnt =  AIUtil.setStackCount(isAllies,arrNoDupes, aiBastogne);
+
+        ArrayList<AIOrders> arrNoStackViolations= AIUtil.checkStaking(arrHexStackCnt, arrNoDupes);
+        for (AIOrders aio:arrNoStackViolations){
             arrAiOrdersMarrtenLange.add(AIOrders.combine(aiBastogneandArtillery,aio,false));
         }
 
@@ -531,7 +538,7 @@ public class AIReinforcementScenario1 implements Observer {
             if (hex2.canOccupy(unit)) {
                 if (stackFake(unit, hex2)) {
                     arrHexReturn.add(hex2);
-                    break;    // dont take up stacking for all
+ //                   break;    // dont take up stacking for all
                 }
             }
         }

@@ -1,6 +1,7 @@
 package com.bruinbeargames.ardenne.AI;
 
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.Hex.HexInt;
 import com.bruinbeargames.ardenne.Unit.Unit;
 import com.bruinbeargames.ardenne.Unit.UnitMove;
 
@@ -549,6 +550,87 @@ public class AIUtil {
             }
         }
         return hexReturn;
+    }
+
+    /**
+     * Check that AIOrder does not cause overstacking but not overall stacking
+     *
+     * @param arrHexStackCnt
+     * @param arrOrders      the aiorders to check
+     * @return
+     */
+    public static ArrayList<AIOrders> checkStaking(ArrayList<HexInt> arrHexStackCnt, ArrayList<AIOrders> arrOrders) {
+        ArrayList<AIOrders> arrReturn = new ArrayList<>();
+        arrReturn.addAll(arrOrders);
+        ArrayList<AIOrders> arrRemove = new ArrayList<>();
+        for (AIOrders aiO:arrOrders){
+            if (aiO.arrHexMoveTo.contains(Hex.hexTable[7][13])){
+                int b=0;
+            }
+            int ix=0;
+            for (Hex hex:aiO.arrHexMoveTo){
+                for (HexInt hi:arrHexStackCnt){
+                    if (hi.hex == hex){
+                        if (hi.count + aiO.arrUnit.get(ix).getCurrentStep() > Hex.stackMax){
+                            arrRemove.add(aiO);
+                        }
+                   }
+                }
+            }
+            ix++;
+        }
+        arrReturn.removeAll(arrRemove);
+        return arrReturn;
+    }
+
+    public static ArrayList<HexInt> setStackCount(boolean isAllies, ArrayList<AIOrders> arrOrders, AIOrders aiBastogne) {
+        ArrayList<Unit> arrUnitsNotOnOrders = new ArrayList<>();
+        if (isAllies) {
+            arrUnitsNotOnOrders.addAll(Unit.getOnBoardAllied());
+        }else{
+            arrUnitsNotOnOrders.addAll(Unit.getOnBoardAllied());
+        }
+        arrUnitsNotOnOrders.removeAll(arrOrders.get(0).arrUnit);
+
+        ArrayList<HexInt> arrHexStackCnt = new ArrayList<>();
+        /**
+         *  set up table with stack cnt for units not on orders
+         */
+        for (Unit unit:arrUnitsNotOnOrders){
+            Hex hex = unit.getHexOccupy();
+            HexInt hexInt = null;
+            for (HexInt hi:arrHexStackCnt) {
+                if (hi.hex == hex) {
+                    hexInt = hi;
+                }
+            }
+            if (hexInt == null) {
+                hexInt = new HexInt(hex, unit.getCurrentStep());
+                arrHexStackCnt.add(hexInt);
+            }else{
+                hexInt.count += unit.getCurrentStep();
+            }
+        }
+        /**
+         *  add Orders from Bastogne
+         */
+        int ix =0;
+        for (Hex hex:aiBastogne.arrHexMoveTo){
+            HexInt hexInt = null;
+            for (HexInt hi:arrHexStackCnt) {
+                if (hi.hex == hex) {
+                    hexInt = hi;
+                }
+            }
+            if (hexInt == null) {
+                hexInt = new HexInt(hex, aiBastogne.arrUnit.get(ix).getCurrentStep());
+                arrHexStackCnt.add(hexInt);
+            }else{
+                hexInt.count += aiBastogne.arrUnit.get(ix).getCurrentStep();
+            }
+            ix++;
+        }
+        return arrHexStackCnt;
     }
 }
 /**

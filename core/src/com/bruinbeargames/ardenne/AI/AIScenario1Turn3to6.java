@@ -148,7 +148,17 @@ public class AIScenario1Turn3to6 implements Observer {
         AIFaker.setFakeOccupied(aiUse, true, 2);
         AIFaker.setFakeZoc(aiUse, 2);
         int score = AIScorer.instance.getScore(type, arrUnits, aiUse, 2);
-
+        int ix=0;
+        ArrayList<Unit> arrREmove  = new ArrayList<>();
+        for (Unit unit:aiUse.arrUnit){
+            if (unit.getHexOccupy() == AIReinforcementScenario1.hexWiltz){
+                arrREmove.add(unit);
+                aiUse.arrHexMoveTo.remove(ix);
+                aiUse.arrHexMobileAssault.remove(ix);
+            }
+            ix++;
+        }
+        aiUse.arrUnit.removeAll(arrREmove);
 
         AIMover.instance.execute(aiUse);
     }

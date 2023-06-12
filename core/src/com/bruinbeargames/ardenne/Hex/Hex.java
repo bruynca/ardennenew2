@@ -655,7 +655,7 @@ public class Hex {
                     arrReturn.add(hex);
                 }
             }
-        }
+
         if (isLosses){
             EventPopUp.instance.show("removingoverstacks");
         }

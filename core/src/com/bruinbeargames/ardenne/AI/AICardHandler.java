@@ -129,7 +129,7 @@ public class AICardHandler {
                 // let it break removeunits will move on
                 break;
             case "prayforweather":
-                Airplane.instance.add(10);
+                Airplane.instance.add(5);
                 CardHandler.instance.removeCard(card);
                 break;
 
