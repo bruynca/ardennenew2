@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.badlogic.gdx.utils.Timer;
 import com.bruinbeargames.ardenne.AI.AIUtil;
+import com.bruinbeargames.ardenne.CenterScreen;
 import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.Hex.Bridge;
 import com.bruinbeargames.ardenne.Hex.Hex;
@@ -18,6 +19,7 @@ import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.ObserverPackage;
 import com.bruinbeargames.ardenne.SplashScreen;
 import com.bruinbeargames.ardenne.UI.EventOK;
+import com.bruinbeargames.ardenne.UI.EventPopUp;
 import com.bruinbeargames.ardenne.UI.TurnCounter;
 import com.bruinbeargames.ardenne.UI.WinSupply;
 import com.bruinbeargames.ardenne.Unit.ClickAction;
@@ -57,8 +59,10 @@ public class Supply implements Observer{
     int[] defend;
     ArrayList<Unit>[] arrUnitsBeingSupplied;
     WinSupply winSupply;
-    private boolean isHoufflaize = true;
- //   ArrayList<Counter> arrCounter = new ArrayList<>();
+    private boolean isHoufflaize = false;
+    Hex hexHouf = Hex.hexTable[12][3];
+
+    //   ArrayList<Counter> arrCounter = new ArrayList<>();
 
 
     public Supply(){
@@ -111,12 +115,10 @@ public class Supply implements Observer{
         return arrReturn;
     }
     public void addHooufGas(){
-        Hex hexHouf = Hex.hexTable[12][3];
-        arrGermanSupply.add(hexHouf);
+        isHoufflaize = true;
     }
     public void removeHooufgas(){
-        Hex hexHouf = Hex.hexTable[12][3];
-        arrGermanSupply.remove(hexHouf);
+        isHoufflaize = false;
     }
     public void doGermanSupply() {
         int i=0;
@@ -168,6 +170,10 @@ public class Supply implements Observer{
         }
         Unit.initUntouchable(false);
         winSupply = new WinSupply(arrTransports);
+        if (isHoufflaize){
+            CenterScreen.instance.start(Hex.hexTable[17][2]);
+            EventPopUp.instance.show(  i18NBundle.get("Houfflaize"));
+        }
         /**
          *  create the transport display
          */

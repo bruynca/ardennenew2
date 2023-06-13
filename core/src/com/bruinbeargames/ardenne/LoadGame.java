@@ -190,9 +190,9 @@ public LoadGame(String gameToLoad, boolean isSpecial) {
 			if (desc.contains("hooufgas")){
 				String hougas = xmlhex.getChildByName("houfgas").getAttribute("value");
 				if (hougas.contains("true")){
-					HooufGas.instance.setInvalidated(true);
+					HooufGas.instance.setBroken(true);
 				}else{
-					HooufGas.instance.setInvalidated(false);
+					HooufGas.instance.setBroken(false);
 				}
 			}
 

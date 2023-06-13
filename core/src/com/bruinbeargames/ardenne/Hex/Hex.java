@@ -655,7 +655,7 @@ public class Hex {
                     arrReturn.add(hex);
                 }
             }
-
+        }
         if (isLosses){
             EventPopUp.instance.show("removingoverstacks");
         }
@@ -692,7 +692,7 @@ public class Hex {
             for (int y=0; y < yEnd; y++)
             {
                 Hex hex = hexTable[x][y];
-                for (int i=0; i <11; i++) {;
+                for (int i=0; i <11; i++) {
                     hex.calcMoveCost[thread] = 0;
                 }
             }

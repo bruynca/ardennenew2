@@ -95,6 +95,7 @@ public class WinSupply {
         int heightWindow = (Counter.sizeOnMap + 100);
         window.setSize(widthWindow,heightWindow);
         window.setPosition(100,100);
+
         showWindow();
     }
     private void showWindow() {

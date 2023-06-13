@@ -333,10 +333,6 @@ public class NextPhase {
                     EventPopUp.instance.hide();
                     Move.instance.endMove(false, false);
                     Hex.checkStacking();
-                    if (HooufGas.instance.checkHooufgas()){
-                        Supply.instance.setHouflaizeCaptured();
-                    }
-
                     nextPhase();
                     break;
                 case GERMAN_SUPPLY:
@@ -383,6 +379,8 @@ public class NextPhase {
                     endPhase(getPhase());
                     break;
                 case BRIDGE_GERMAN:
+                    HooufGas.instance.checkHooufgas();
+
                     nextPhase();
                     break;
                 case BRIDGE_ALLIED:

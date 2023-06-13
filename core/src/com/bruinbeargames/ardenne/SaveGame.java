@@ -106,7 +106,7 @@ public class SaveGame {
 				if (desc.contains("hooufgas")){
 					saveGame.append("<houfgas value=");
 					String houfGas = null;
-					if (HooufGas.instance.getIsInvalidated()) {
+					if (HooufGas.instance.isHooufGas()) {
 						houfGas = "true";
 					}else{
 						houfGas = "false";

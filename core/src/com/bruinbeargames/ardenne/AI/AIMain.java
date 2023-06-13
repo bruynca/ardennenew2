@@ -150,7 +150,6 @@ public class AIMain implements Observer {
                 EventPopUp.instance.hide();
                 Move.instance.endMove(false, false);
                 Hex.checkStacking();
-                HooufGas.instance.checkHooufgas();
                 NextPhase.instance.nextPhase();
                 break;
             case BRIDGE_ALLIED:

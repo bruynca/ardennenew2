@@ -5,7 +5,6 @@ import com.bruinbeargames.ardenne.Hex.Hex;
 public class HooufGas {
     static public HooufGas instance;
     boolean isHooufGas = false;
-    boolean isInvalidated = false;
     boolean isPlayed =  false;
     public HooufGas(){
         instance = this;
@@ -20,26 +19,24 @@ public class HooufGas {
     public boolean isHooufGas() {
         return isHooufGas;
     }
-    public boolean checkHooufgas(){
-        if (isInvalidated){
-            return false;
-        }
+    public void checkHooufgas(){
         Hex hexHouf = Hex.hexTable[12][3];
         if (hexHouf.isAxisEntered()){
-            return true;
-        }else{
-            if (isPlayed){
-                isInvalidated = true;
+                isHooufGas = false;
                 Supply.instance.removeHooufgas();
-            }
-            return false;
         }
     }
-    public boolean getIsInvalidated(){
-        return isInvalidated;
-    }
 
-    public void setInvalidated(boolean invalidated) {
-        isInvalidated = invalidated;
+    /**
+     *  weird logic because of history
+     * @param inHouf
+     */
+    public void setBroken(boolean inHouf) {
+        isHooufGas = inHouf;
+        if (!isHooufGas){
+            Supply.instance.addHooufGas();
+        }else {
+            Supply.instance.removeHooufgas();
+        }
     }
 }
