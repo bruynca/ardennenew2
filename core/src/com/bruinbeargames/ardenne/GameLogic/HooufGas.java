@@ -6,6 +6,8 @@ public class HooufGas {
     static public HooufGas instance;
     boolean isHooufGas = false;
     boolean isPlayed =  false;
+    Hex hexHouf = Hex.hexTable[12][3];
+
     public HooufGas(){
         instance = this;
     }
@@ -20,7 +22,6 @@ public class HooufGas {
         return isHooufGas;
     }
     public void checkHooufgas(){
-        Hex hexHouf = Hex.hexTable[12][3];
         if (hexHouf.isAxisEntered()){
                 isHooufGas = true;
                 Supply.instance.addHooufGas();
@@ -34,7 +35,7 @@ public class HooufGas {
     public void setBroken(boolean inHouf) {
         isHooufGas = inHouf;
         if (!isHooufGas){
-            Supply.instance.addHooufGas();
+            checkHooufgas();
         }else {
             Supply.instance.removeHooufgas();
         }
