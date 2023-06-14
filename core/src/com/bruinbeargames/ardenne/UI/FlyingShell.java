@@ -70,6 +70,9 @@ public class FlyingShell implements Observer {
             int cnt = 0;
             while (cnt < cntAir){
                 Hex hex = Hex.hexTable[mid][0];
+                if (hex == null){
+                    hex = hexTo;
+                }
                 arrShooters.add(hex);
                 mid++;
                 cnt++;
@@ -84,6 +87,8 @@ public class FlyingShell implements Observer {
         /**
          *  populate coordinates
          */
+        Gdx.app.log("FlyingShell", "start hexto="+hexTo+" Hex From arrShooters="+arrShooters);
+
         for (int i=0; i< arrShooters.size(); i++){
             Hex hexFrom = arrShooters.get(i);
             int xDist = (int) (hexTo.GetDisplayCoord().x - hexFrom.GetDisplayCoord().x);

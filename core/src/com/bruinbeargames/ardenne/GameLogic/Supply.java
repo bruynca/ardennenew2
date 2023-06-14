@@ -9,7 +9,6 @@ import com.badlogic.gdx.utils.Timer;
 import com.bruinbeargames.ardenne.AI.AIUtil;
 import com.bruinbeargames.ardenne.CenterScreen;
 import com.bruinbeargames.ardenne.GameMenuLoader;
-import com.bruinbeargames.ardenne.Hex.Bridge;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.Hex.HexHelper;
 import com.bruinbeargames.ardenne.Hex.HexUnits;
@@ -60,7 +59,8 @@ public class Supply implements Observer{
     ArrayList<Unit>[] arrUnitsBeingSupplied;
     WinSupply winSupply;
     private boolean isHoufflaize = false;
-    Hex hexHouf = Hex.hexTable[12][3];
+    private boolean isHoufflaizeOperational = false;
+    public Hex hexHouf = Hex.hexTable[12][3];
 
     //   ArrayList<Counter> arrCounter = new ArrayList<>();
 
@@ -223,6 +223,10 @@ public class Supply implements Observer{
             unitMove = new UnitMove(arrTransport.get(i), initialRange, false, true, arrGermanSupply.get(i),0);
             arrWork.addAll(unitMove.getMovePossible());
         }
+        if (isHoufflaizeOperational){
+            unitMove = new UnitMove(arrTransport.get(0), initialRange, false, true, hexHouf,0);
+            arrWork.addAll(unitMove.getMovePossible());
+        }
         /**
          *  add stack to limit hexes
          */
@@ -329,6 +333,11 @@ public class Supply implements Observer{
             }
         }
         HexHelper.removeDupes(arrHexWork);
+        if (isHoufflaize && winSupply.getNumSupplyTruck() == 1){
+            if (arrHexWork.contains(Hex.hexTable[12][3])){
+                winSupply.setHoufflaizeSet();
+            }
+        }
         /**
          *  supply units in radius
          */
@@ -342,6 +351,9 @@ public class Supply implements Observer{
                     }
                 }
             }
+        }
+        if (isHoufflaize && winSupply.getNumSupplyTruck() == 1){
+
         }
         hex.moveUnitToFront(unitTransportWorkOn);
         loopHex = hex;
@@ -372,13 +384,22 @@ public class Supply implements Observer{
         }
         UnitMove unitMove = new UnitMove(unitTransportWorkOn, toUnit, false, true, hex,0);
         ArrayList<Hex> arrHexWork = unitMove.getMovePossible();
-        for (Hex hex2:AIUtil.findHoles(arrHexWork,1)){
+        ArrayList<Hex> arrHexExtent = AIUtil.findHoles(arrHexWork,1);
+        for (Hex hex2:arrHexExtent){
             if (hex2.checkAxisInHex()){
                 arrHexWork.add(hex2);
             }
         }
         HexHelper.removeDupes(arrHexWork);
  //       hiWork = new HiliteHex(arrHexWork, HiliteHex.TypeHilite.None,null);
+
+        if (isHoufflaize && winSupply.getNumSupplyTruck() == 1){
+            if (arrHexWork.contains(Hex.hexTable[12][3])){
+                winSupply.setHouffalizePossible();
+            }else{
+                winSupply.blinkHouffalizeOn();
+            }
+        }
 
         return arrHexWork;
     }
@@ -415,35 +436,41 @@ public class Supply implements Observer{
 
         }
     }
+    public void removeHoufflaize(){
+        isHoufflaizeOperational = false;
+    }
+    public void addHoufflaize(){
+        isHoufflaizeOperational = true;
+    }
     public void EndSupplyGerman(){
-            for (Unit unit:arrTransports){
-                unit.removeFromBoard();
-            }
-            for (Image image:arrSupplyImages){
-                image.remove();
-            }
-            for (Unit unit:Unit.getOnBoardAxis()){
-                if (unit.getCurrentMovement() == 0 && !unit.isArtillery){
-                    if (!unit.isMechanized){
-                        unit.setCurrentMovement(3);
-
-                    }else{
-                        unit.setCurrentMovement(1);
-                    }
-                    unit.getMapCounter().getCounterStack().setPoints();
-                }
-            }
-        if (winSupply != null) {
-            winSupply.end();
-        }else{
-            NextPhase.instance.nextPhase();
+        /**
+         *  remove Houfflaize  if put in
+         */
+        removeHoufflaize();
+        for (Unit unit:arrTransports){
+            unit.removeFromBoard();
         }
+        for (Image image:arrSupplyImages){
+            image.remove();
+        }
+        for (Unit unit:Unit.getOnBoardAxis()){
+            if (unit.getCurrentMovement() == 0 && !unit.isArtillery){
+                if (!unit.isMechanized){
+                    unit.setCurrentMovement(3);
 
-    }
-    public void setHouflaizeCaptured(){
-        isHoufflaize = false;
-        arrAlliedSupply.remove(Hex.hexTable[12][3]);
-    }
+                }else{
+                    unit.setCurrentMovement(1);
+                }
+                unit.getMapCounter().getCounterStack().setPoints();
+            }
+        }
+        if (winSupply != null) {
+                winSupply.end();
+            }else{
+                NextPhase.instance.nextPhase();
+            }
+
+        }
     public boolean getHoouflaize(){
         return isHoufflaize;
     }

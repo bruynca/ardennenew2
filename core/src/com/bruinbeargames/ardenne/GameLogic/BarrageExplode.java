@@ -184,8 +184,11 @@ public class BarrageExplode {
          *  find table to use
          */
         int table = getTable(targetShooterSave,adjustBarrage);
+        Gdx.app.log("BarrageExplode", "Table Used="+table);
         String resultTable = barrageResult[totDie][table];
- //       resultTable="DG1";
+        Gdx.app.log("BarrageExplode", "Result Table="+resultTable);
+
+        //       resultTable="DG1";
         if (resultTable.length() == 0){
             resultTable="NE";
         }
@@ -228,6 +231,7 @@ public class BarrageExplode {
             totAttack += unit.getCurrenAttackFactor();
         }
         totAttack += targetShooterSave.cntAir * 5;
+        Gdx.app.log("BarrageExplode", "Total Attack="+totAttack);
         int table =0;
         int i=0;
         for (i=0; i <  barrageTable.length; i++){

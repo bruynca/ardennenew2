@@ -632,6 +632,21 @@ public class AIUtil {
         }
         return arrHexStackCnt;
     }
+
+    /**
+     * keep only top
+     *
+     * @param arrAirAllocate
+     * @param keep
+     * @return
+     */
+    public static ArrayList<HexInt> keepTop(ArrayList<HexInt> arrAirAllocate, int keep) {
+        ArrayList<HexInt> arrNew = new ArrayList<>();
+        for (int i=0; i< keep;i++ ){
+            arrNew.add(arrAirAllocate.get(i));
+        }
+        return arrNew;
+    }
 }
 /**
  *  Temporary Class to take threat envelopes and apply analysis to them

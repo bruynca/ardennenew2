@@ -37,6 +37,8 @@ import java.util.ArrayList;
 public class WinSupply {
     TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
     TextureRegion close =  textureAtlas.findRegion("close");
+    TextureRegion supplyIcon =  textureAtlas.findRegion("supply");
+
     static public WinSupply instance;
     TextTooltip.TextTooltipStyle tooltipStyle;
     Window window;
@@ -49,7 +51,10 @@ public class WinSupply {
     Hex hex;
     Unit unitTransportWorkOn;
     Counter counterWorkedOn;
+    private int numSupplyTruck = 0;
     private EventListener hitOK;
+    Image imageSupply;
+    boolean isHoufflaize = false;
     public WinSupply(ArrayList<Unit> arrSupply){
         arrUnits.clear();
         arrUnits.addAll(arrSupply);
@@ -95,7 +100,9 @@ public class WinSupply {
         int heightWindow = (Counter.sizeOnMap + 100);
         window.setSize(widthWindow,heightWindow);
         window.setPosition(100,100);
-
+        if (Supply.instance.getHoouflaize()){
+            createHouffalizeSupplyImage();
+        }
         showWindow();
     }
     private void showWindow() {
@@ -135,12 +142,20 @@ public class WinSupply {
                     if (counter.getCounterStack().isHilited()) {
                         counter.getCounterStack().removeHilite();
                         Supply.instance.cancelTransport(unitTransportWorkOn);
+                        numSupplyTruck--;
+                        if (numSupplyTruck < 0) {
+                            numSupplyTruck = 0;
+                        }
                         unitTransportWorkOn = null;
                     }
                     else
                     {
                         counter.getCounterStack().hilite();
                         counterWorkedOn = counter;
+                        numSupplyTruck++;
+                        if (numSupplyTruck == 2 && !isHoufflaize){
+                            imageSupply.remove();
+                        }
                         Supply.instance.createHexChoice(counter.getUnit(),0,false);
                     }
                 }
@@ -172,8 +187,49 @@ public class WinSupply {
         GamePreferences.setWindowLocation("winsupply", lastX, lastY);
         window.remove();
         Unit.initTouchable(false);
+        Supply.instance.removeHoufflaize();
+        imageSupply.remove();
         NextPhase.instance.nextPhase();
     }
+    public int getNumSupplyTruck(){
+        return numSupplyTruck;
+    }
+    private void createHouffalizeSupplyImage(){
+        imageSupply = new Image(supplyIcon);
+        imageSupply.setScale(1.0F);
+        blink(imageSupply);
+        Vector2 v2 = Hex.hexTable[12][3].getCounterPosition(); // houffalize
 
+        imageSupply.setPosition(v2.x + 10,v2.y +10-7);
+        imageSupply.setSize(120f,120f);
+        ardenne.instance.mapStage.addActor(imageSupply);
 
+    }
+
+    private void blink(Image image) {
+        image.addAction(Actions.forever(Actions.sequence(
+                Actions.alpha(0),
+                Actions.fadeIn(0.5f),
+                Actions.delay(0.5f),
+                Actions.fadeOut(0.5f)
+        )));
+
+    }
+
+    public void setHouffalizePossible() {
+        imageSupply.clearActions();
+        imageSupply.remove();
+        ardenne.instance.mapStage.addActor(imageSupply);
+        imageSupply.addAction(Actions.fadeIn(.01f));
+    }
+
+    public void blinkHouffalizeOn() {
+        blink(imageSupply);
+    }
+    public void setHoufflaizeSet(){
+        setHouffalizePossible();
+        Hex.hexTable[12][3].cycleUnits();
+        Supply.instance.addHoufflaize();
+        isHoufflaize = true;
+    }
 }

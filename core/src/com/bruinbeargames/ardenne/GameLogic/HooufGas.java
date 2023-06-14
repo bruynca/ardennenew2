@@ -22,8 +22,8 @@ public class HooufGas {
     public void checkHooufgas(){
         Hex hexHouf = Hex.hexTable[12][3];
         if (hexHouf.isAxisEntered()){
-                isHooufGas = false;
-                Supply.instance.removeHooufgas();
+                isHooufGas = true;
+                Supply.instance.addHooufGas();
         }
     }
 

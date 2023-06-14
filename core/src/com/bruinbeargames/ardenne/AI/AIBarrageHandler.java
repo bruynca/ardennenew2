@@ -284,12 +284,18 @@ public class AIBarrageHandler implements Observer {
         int maxSpread = 4;
         ArrayList<HexInt> arrAirAllocate = new ArrayList<>();
         ArrayList<Hex> arrGermanHex = new ArrayList<>();
+        /**
+         * get axis hexes
+         */
         for (Unit unit : Unit.getOnBoardAxis()) {
             if (!arrGermanHex.contains(unit.getHexOccupy())) {
                 arrGermanHex.add(unit.getHexOccupy());
             }
         }
         AIUtil.RemoveDuplicateHex(arrGermanHex);
+        /**
+         *  go trough from top to bottom adding to bomb targets
+         */
         if (arrGermanHex.contains(AIReinforcementScenario1.bastogne1)) {
             arrAirAllocate.add(new HexInt(AIReinforcementScenario1.bastogne1, 0));
         }
@@ -299,31 +305,42 @@ public class AIBarrageHandler implements Observer {
         if (arrGermanHex.contains(AIReinforcementScenario1.hexWiltz)) {
             arrAirAllocate.add(new HexInt(AIReinforcementScenario1.hexWiltz, 0));
         }
-        for (Hex hex : arrGermanHex) {
-            if (hex.getStacksIn() >= 4) {
-                arrAirAllocate.add(new HexInt(hex,0));
+        /**
+         *  create an array sorted with highest atta points
+         */
+        ArrayList<Hex> arrHexAttackPointsRaw = new ArrayList<>();
+        int ix =0;
+        for (Hex hex:arrGermanHex){
+            for (ix=0; ix<arrHexAttackPointsRaw.size();ix++){;
+                if (arrHexAttackPointsRaw.get(ix).getAttackPointIn() <  hex.getAttackPointIn()){
+                    break;
+                }
+            }
+            arrHexAttackPointsRaw.add(ix,hex);
+        }
+        for (Hex hex : arrHexAttackPointsRaw) {
+             arrAirAllocate.add(new HexInt(hex,0));
+        }
+        /**
+         *  rationalize table so top gets the aircraft count
+         */
+        int keep =0;
+        if (maxSpread > cntUsed){
+            keep = cntUsed;
+        }else{
+            keep =maxSpread;
+        }
+        ArrayList<HexInt> arrNew = AIUtil.keepTop(arrAirAllocate,keep);
+        while (cntUsed > 0){
+            for (HexInt hi:arrNew){
+                if (cntUsed >0){
+                    hi.count++;
+                    cntUsed--;
+                }
             }
         }
-        if (arrAirAllocate.size() >= maxSpread) {
-            return spreadAir(countAirPoints, arrAirAllocate);
-        }
-        for (Hex hex : arrGermanHex) {
-            if (hex.getStacksIn() >= 3) {
-                arrAirAllocate.add(new HexInt(hex,0));
-            }
-        }
-        if (arrAirAllocate.size() >= maxSpread) {
-            return spreadAir(countAirPoints, arrAirAllocate);
-        }
-        for (Hex hex : arrGermanHex) {
-            if (hex.getStacksIn() >= 2) {
-                arrAirAllocate.add(new HexInt(hex,0));
-            }
-        }
-        if (arrAirAllocate.size() >= maxSpread) {
-            return spreadAir(countAirPoints, arrAirAllocate);
-        }
-        return arrAirAllocate;
+
+        return arrNew;
     }
 
     private ArrayList<HexInt> spreadAir(int countAirPoints, ArrayList<HexInt> arrAirAllocate) {

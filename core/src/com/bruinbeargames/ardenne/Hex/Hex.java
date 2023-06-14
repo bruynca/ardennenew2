@@ -460,6 +460,13 @@ public class Hex {
         return stackTotal;
     }
 
+    public int getAttackPointIn() {
+        int attackTotal = 0;
+        for (Unit unit:arrUnitsInHex){
+            attackTotal += unit.getCurrenAttackFactor();
+        }
+        return attackTotal;
+    }
 
 
 
