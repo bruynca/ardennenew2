@@ -463,7 +463,9 @@ public class Hex {
     public int getAttackPointIn() {
         int attackTotal = 0;
         for (Unit unit:arrUnitsInHex){
-            attackTotal += unit.getCurrenAttackFactor();
+            if (!unit.isArtillery) {
+                attackTotal += unit.getCurrenAttackFactor();
+            }
         }
         return attackTotal;
     }
