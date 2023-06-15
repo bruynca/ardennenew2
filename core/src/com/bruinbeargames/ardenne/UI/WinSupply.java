@@ -154,7 +154,9 @@ public class WinSupply {
                         counterWorkedOn = counter;
                         numSupplyTruck++;
                         if (numSupplyTruck == 2 && !isHoufflaize){
-                            imageSupply.remove();
+                            if (imageSupply != null){
+                                imageSupply.remove();
+                            }
                         }
                         Supply.instance.createHexChoice(counter.getUnit(),0,false);
                     }

@@ -174,10 +174,12 @@ public class SplashScreen {
         splashMapImage = new Image(splashmap);
         splashMapImage.setWidth(x);
         splashMapImage.setHeight(y);
-        float  duration = 2f;
-        stage.addActor(splashMapImage);
+
+    //   stage.addActor(splashMapImage);
         splashMapImage.addAction(Actions.alpha(0));
         splashMapImage.addAction(Actions.fadeIn(3f));
+
+
         logo = new Logo(logoAtlas, stage);
 
 
