@@ -531,13 +531,11 @@ public class AIScenario1 {
         ArrayList<Unit> arrREmove  = new ArrayList<>();
         for (Unit unit:arrOrdersIn.get(0).arrUnit){
             if (unit.getHexOccupy() == AIReinforcementScenario1.hexWiltz){
-                arrREmove.add(unit);
-                arrOrdersIn.get(0).arrHexMoveTo.remove(ix);
-                arrOrdersIn.get(0).arrHexMobileAssault.remove(ix);
+                arrOrdersIn.get(0).arrHexMoveTo.set(ix,AIReinforcementScenario1.hexWiltz);
+                arrOrdersIn.get(0).arrHexMobileAssault.set(ix, AIReinforcementScenario1.hexWiltz);
             }
             ix++;
         }
-        arrOrdersIn.get(0).arrUnit.removeAll(arrREmove);
 
         if (arrNodupes.size() == 0) {
             AIMover.instance.execute(arrOrdersIn.get(0));

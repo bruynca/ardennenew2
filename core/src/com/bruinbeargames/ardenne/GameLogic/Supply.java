@@ -34,6 +34,7 @@ public class Supply implements Observer{
     static public Supply instance;
     TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
     TextureRegion supplyIcon =  textureAtlas.findRegion("supply");
+    int[][] hexReinforcementAllies = {{28,24},{9,24},{0,19}};
 
     int[][] germanSupply ={{40,5},{40,20},{40,14}};
     int[][] supplyHexBottlenecks ={{31,21},{28,13},{28,23},{27,7},{27,8},{24,15},{25,8},
@@ -479,6 +480,7 @@ public class Supply implements Observer{
     }
 
     public void doAlliedSupply() {
+        setSupplyForTurn(NextPhase.instance.getTurn());
         int i=0;
         if (arrAlliedSupply.size() == 0){
             EventOK.instance.addObserver(this);
@@ -538,6 +540,20 @@ public class Supply implements Observer{
         }
 
     }
+
+    private void setSupplyForTurn(int turn) {
+        arrAlliedSupply.clear();
+        if (!HooufGas.instance.isAxisEntered && !hexHouf.isAxisOccupied() ){
+            arrAlliedSupply.add(hexHouf);
+        }
+        if (turn >= 3){
+            for (int[] in : hexReinforcementAllies) {
+                Hex hex = Hex.hexTable[in[0]][in[1]];
+                arrAlliedSupply.add(hex);
+            }
+        }
+    }
+
     public WinSupply getSupplyWindow(){
         return winSupply;
     }
@@ -570,7 +586,7 @@ public class Supply implements Observer{
      */
     public void loadAllies(boolean isHouf) {
         arrAlliedSupply.clear();
-        if (isHouf){
+        if (!hexHouf.isAxisOccupied()){
                 arrAlliedSupply.add(Hex.hexTable[12][3]);
             }
         loadOtherUSSupply();

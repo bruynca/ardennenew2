@@ -6,6 +6,7 @@ public class HooufGas {
     static public HooufGas instance;
     boolean isHooufGas = false;
     boolean isPlayed =  false;
+    boolean isAxisEntered = false; // spoils it for Americans
     Hex hexHouf = Hex.hexTable[12][3];
 
     public HooufGas(){
@@ -15,6 +16,7 @@ public class HooufGas {
     public void setHooufGas() {
         isHooufGas = true;
         isPlayed = true;
+        isAxisEntered = true;
         Supply.instance.addHooufGas();
     }
 
@@ -24,6 +26,7 @@ public class HooufGas {
     public void checkHooufgas(){
         if (hexHouf.isAxisEntered()){
                 isHooufGas = true;
+                isAxisEntered = true;
                 Supply.instance.addHooufGas();
         }
     }

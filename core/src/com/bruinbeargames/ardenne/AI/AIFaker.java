@@ -232,6 +232,7 @@ public class AIFaker extends Observable {
                     AIScenario1.instance.doNext(type, arrOrders);
                 }
                 break;
+            case ReinBastogneOcupy:
             case ReinBastogneAttack:
             case ReinMartelange:
             case ReinEttlebruck:

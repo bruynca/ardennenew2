@@ -280,9 +280,6 @@ public class NextPhase {
                     if (SecondPanzerHalts.instance.is2NDPanzerHalted()){
                         SecondPanzerHalts.instance.restore();
                     }
-                    if (LehrHalts.instance.isLehrHalted()){
-                        LehrHalts.instance.restore();
-                    }
  //                   Hex.checkStacking();
  //                   OverStacking.instance.check();
 
@@ -333,6 +330,10 @@ public class NextPhase {
                     EventPopUp.instance.hide();
                     Move.instance.endMove(false, false);
                     Hex.checkStacking();
+                    if (LehrHalts.instance.isLehrHalted()){
+                        LehrHalts.instance.restore();
+                    }
+
                     nextPhase();
                     break;
                 case GERMAN_SUPPLY:

@@ -119,7 +119,9 @@ public class CombatDisplay {
     public void end(){
         group.setVisible(false);
         WinCRT.instance.end();
-        hexGroup.clear();
+        if (hexGroup != null) {
+            hexGroup.clear();
+        }
     }
 
 

@@ -347,12 +347,12 @@ public LoadGame(String gameToLoad, boolean isSpecial) {
 			int scene = Integer.parseInt(root.getChildByName("scenario").getAttribute("value"));
 			GameSetup.instance.setScenario(GameSetup.Scenario.values()[scene]);
 		}
-		if (root.hasChild("houfflaize")) {
+/*		if (root.hasChild("houfflaize")) {
 			boolval = Boolean.parseBoolean(root.getChildByName("houfflaize").getAttribute("value"));
 			Supply.instance.loadAllies(boolval);
 		}else{
 			Supply.instance.loadAllies(true); // if none assume true
-		}
+		}*/  //not used
 
 
 	}

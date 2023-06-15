@@ -44,6 +44,7 @@ public class AICombatScenario1 {
             /**
              *  remove units from the high to low
              *  if attack doesnt have units then take out of orders
+             *  if attack less than 1 to 1 take out
              */
             ArrayList<Unit> arrUnitsToRemove = new ArrayList<>();
             ArrayList<AIOrdersCombat> arrViable = new ArrayList<>();
@@ -56,9 +57,11 @@ public class AICombatScenario1 {
                         arrUnitsToRemove.add(unit);
                     }
                 }
-                if (aic.hexAttackedByUnits.getArrUnits().size() > 0) {
+                if (aic.hexAttackedByUnits.getArrUnits().size() > 0 &&
+                    aic.getScore() > 1.0f) {
                     arrViable.add(aic);
                 }
+
             }
             ArrayList<AIOrdersCombat> arrFinal = scoreAndSort(arrViable);
             int bk = 0;
@@ -79,7 +82,7 @@ public class AICombatScenario1 {
             }
             float score = attack.getActualOdds();
             aic.setScore(score);
-            attack.cancel();
+//           attack.cancel();
         }
         /**
          * sort score into highest

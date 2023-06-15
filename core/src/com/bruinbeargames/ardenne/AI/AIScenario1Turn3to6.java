@@ -153,8 +153,8 @@ public class AIScenario1Turn3to6 implements Observer {
         for (Unit unit:aiUse.arrUnit){
             if (unit.getHexOccupy() == AIReinforcementScenario1.hexWiltz){
                 arrREmove.add(unit);
-                aiUse.arrHexMoveTo.remove(ix);
-                aiUse.arrHexMobileAssault.remove(ix);
+                aiUse.arrHexMoveTo.set(ix,AIReinforcementScenario1.hexWiltz);
+                aiUse.arrHexMobileAssault.set(ix,AIReinforcementScenario1.hexWiltz);
             }
             ix++;
         }

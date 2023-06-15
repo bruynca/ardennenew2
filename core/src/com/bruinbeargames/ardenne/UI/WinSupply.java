@@ -190,7 +190,9 @@ public class WinSupply {
         window.remove();
         Unit.initTouchable(false);
         Supply.instance.removeHoufflaize();
-        imageSupply.remove();
+        if (imageSupply != null) {
+            imageSupply.remove();
+        }
         NextPhase.instance.nextPhase();
     }
     public int getNumSupplyTruck(){

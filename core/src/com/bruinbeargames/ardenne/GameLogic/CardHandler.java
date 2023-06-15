@@ -344,7 +344,7 @@ public class CardHandler implements Observer {
                     break;
                 case "fritz1":
                     if (cardsforGame.getTurnPlayed() == NextPhase.instance.getTurn()&&
-                        NextPhase.instance.getPhase() < Phase.GERMAN_POST_MOVEMENT.ordinal()) {
+                        NextPhase.instance.getPhase() < Phase.GERMAN_POST_EXPLOTATION.ordinal()) {
                         LehrHalts.instance.halt();
                     }
                 default:

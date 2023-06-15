@@ -639,6 +639,7 @@ public class AIReinforcementScenario1 implements Observer {
     public void doNext() {
         switch (type) {
             case ReinBastogneAttack:
+            case ReinBastogneOcupy:
                 AIReinforcementScenario1.instance.bastogneDone();
                 break;
             case ReinMartelange:
