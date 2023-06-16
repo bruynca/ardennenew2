@@ -78,7 +78,7 @@ public class AIOrders {
             ArrayList<Hex> arrHexWork = new ArrayList<>();
             boolean isGood = true;
             for (Hex hex:aiO.arrHexMoveTo){
-                if (arrHexWork.contains(hex) && checkStack(aiO,hex, arrAllowDuplicates)){
+                if (arrHexWork.contains(hex) && !arrAllowDuplicates.contains(hex)){
                     isGood = false;
                     break;
                 }else{

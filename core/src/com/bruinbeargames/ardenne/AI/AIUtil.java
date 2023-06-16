@@ -564,21 +564,31 @@ public class AIUtil {
         arrReturn.addAll(arrOrders);
         ArrayList<AIOrders> arrRemove = new ArrayList<>();
         for (AIOrders aiO:arrOrders){
-            if (aiO.arrHexMoveTo.contains(Hex.hexTable[7][13])){
-                int b=0;
-            }
             int ix=0;
+            ArrayList<HexInt> arrTemp = new ArrayList<>();
+            arrTemp.addAll(arrHexStackCnt);
             for (Hex hex:aiO.arrHexMoveTo){
-                for (HexInt hi:arrHexStackCnt){
-                    if (hi.hex == hex){
+                boolean isHit=false;
+                for (HexInt hi:arrTemp) {
+                    if (hi.hex == hex) {
+                        isHit = true;
                         if (hi.count + aiO.arrUnit.get(ix).getCurrentStep() > Hex.stackMax){
-                            arrRemove.add(aiO);
+                            if (!arrRemove.contains(aiO)) {
+                                arrRemove.add(aiO);
+                            }
+                        }else{
+                            hi.count += aiO.arrUnit.get(ix).getCurrentStep();
                         }
-                   }
+                    }
+                }
+                if (!isHit){
+                    HexInt hexInt = new HexInt(hex,aiO.arrUnit.get(ix).getCurrentStep());
+                    arrTemp.add(hexInt);
                 }
             }
             ix++;
         }
+
         arrReturn.removeAll(arrRemove);
         return arrReturn;
     }

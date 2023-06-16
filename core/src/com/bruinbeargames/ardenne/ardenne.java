@@ -370,9 +370,9 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 		}
 		if (amount < 0) {
 
-			ScreenGame.instance.ZoomBigger();
-		} else if (amount > 0) {
 			ScreenGame.instance.ZoomSmaller();
+		} else if (amount > 0) {
+			ScreenGame.instance.ZoomBigger();
 		}
 		return false;
 

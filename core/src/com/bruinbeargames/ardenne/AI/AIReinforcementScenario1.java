@@ -212,12 +212,20 @@ public class AIReinforcementScenario1 implements Observer {
         Gdx.app.log("AIReinforcementsScenario1", "Iterations count ="+arrStart.size());
         ArrayList<Hex> arrAllowDuplicates = new ArrayList<>();
         if (bastogneWiltzDefenseStatus.strategy == StrategyBastogne.BastogneAttack){
-            arrAllowDuplicates.addAll(arrBastogneRing);
             type = AIScorer.Type.ReinBastogneAttack;
         }else{
             type= AIScorer.Type.ReinBastogneOcupy;
         }
-        arrAiOrdersBastogne = AIOrders.removeDupeMoveToHexes(arrStart,arrAllowDuplicates);
+        arrAllowDuplicates.addAll(arrBastogneRing);
+        arrAllowDuplicates.addAll(hexBastogneReinforceEntry.getSurround());
+        AIUtil.RemoveDuplicateHex(arrAllowDuplicates);
+
+        AIOrders aiEmpty  = new AIOrders();
+        ArrayList<AIOrders> arrAIWork = AIOrders.removeDupeMoveToHexes(arrStart,arrAllowDuplicates);
+
+        ArrayList<HexInt> arrHexStackCnt =  AIUtil.setStackCount(isAllies,arrAIWork, aiEmpty);
+        arrAiOrdersBastogne = AIUtil.checkStaking(arrHexStackCnt, arrAIWork);
+
         for (AIOrders aiO:arrAiOrdersBastogne){
             aiO.clearMOA();
         }
@@ -287,7 +295,7 @@ public class AIReinforcementScenario1 implements Observer {
         type= AIScorer.Type.ReinMartelange;
         ArrayList<AIOrders> arrNoDupes = new ArrayList<>();
         arrAiOrdersMarrtenLange.clear();
-        AIOrders aiArtllery = doArtillery(arrArtillery);
+        AIOrders aiArtllery = doArtillery(arrArtillery,aiBastogne);
         if (aiArtllery == null){
             aiArtllery = new AIOrders(); // initialize
         }
@@ -321,7 +329,7 @@ public class AIReinforcementScenario1 implements Observer {
 
     }
 
-    private AIOrders doArtillery(ArrayList<Unit> arrArtillery) {
+    private AIOrders doArtillery(ArrayList<Unit> arrArtillery, AIOrders aiBastogne) {
         /**
          *     generate the moves
          */
@@ -342,7 +350,7 @@ public class AIReinforcementScenario1 implements Observer {
             AIUtil.RemoveDuplicateHex(arrHexMove);
 //            arrHexMove.retainAll(Hex.arrAIHex);
 //            arrHexMove.retainAll(arrBastogneReinforcementDestination);
-            if (arrHexMove.size() > 1) { // blocked reinforcement
+            if (arrHexMove.size() > 6) { // blocked reinforcement
                 arrHexMove.removeAll(arrEnemySurround);
             }
             if (arrHexMove.size() > 0) {
@@ -418,7 +426,11 @@ public class AIReinforcementScenario1 implements Observer {
             }
             arrAIBasicBombard.add(i,ai);
         }
-        return arrAIBasicBombard.get(0);
+        ArrayList<HexInt> arrHexStackCnt =  AIUtil.setStackCount(isAllies,arrAIBasicBombard, aiBastogne);
+
+        ArrayList<AIOrders> arrNoStackViolations= AIUtil.checkStaking(arrHexStackCnt, arrAIBasicBombard);
+
+        return arrNoStackViolations.get(0);
     }
 
 
@@ -536,11 +548,11 @@ public class AIReinforcementScenario1 implements Observer {
         ArrayList<Hex> arrSurr = hex.getSurround();
         for (Hex hex2 : arrSurr) {
             if (hex2.canOccupy(unit)) {
-                if (stackFake(unit, hex2)) {
+ //               if (stackFake(unit, hex2)) {
                     arrHexReturn.add(hex2);
  //                   break;    // dont take up stacking for all
                 }
-            }
+ //           }
         }
         return arrHexReturn;
     }
