@@ -9,6 +9,8 @@ import com.badlogic.gdx.utils.I18NBundle;
 import com.badlogic.gdx.utils.Timer;
 import com.bruinbeargames.ardenne.CenterScreen;
 import com.bruinbeargames.ardenne.GameMenuLoader;
+import com.bruinbeargames.ardenne.GamePreferences;
+import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.ObserverPackage;
@@ -20,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-public class SecondPanzerLoses implements Observer {
+public class SecondPanzerLoses extends Observable implements Observer {
     ArrayList<Unit> arr2NDPanzer = new ArrayList<>();
     final int toRemove = 3;
     static public SecondPanzerLoses instance;
@@ -66,8 +68,14 @@ public class SecondPanzerLoses implements Observer {
 
     private void removeUnit() {
         if (arr2NDPanzer.size() == 0){
-            CardHandler.instance.alliedCardPhase(NextPhase.instance.getTurn());
-            return;
+            if (GameSetup.instance.isGermanVersusAI()){
+                setChanged();
+                notifyObservers(new ObserverPackage(ObserverPackage.Type.CardPlayed, null,0,0));
+                return;
+            }else {
+                CardHandler.instance.alliedCardPhase(NextPhase.instance.getTurn());
+                return;
+            }
         }
         Unit unit = arr2NDPanzer.get(0);
         ExitWest.instance.add2ndPanzer(unit);

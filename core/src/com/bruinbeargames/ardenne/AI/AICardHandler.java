@@ -1,6 +1,11 @@
 package com.bruinbeargames.ardenne.AI;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.utils.Timer;
+import com.bruinbeargames.ardenne.CenterScreen;
 import com.bruinbeargames.ardenne.GameLogic.Airplane;
 import com.bruinbeargames.ardenne.GameLogic.CardHandler;
 import com.bruinbeargames.ardenne.GameLogic.CardsforGame;
@@ -11,11 +16,15 @@ import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Bridge;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.NextPhase;
+import com.bruinbeargames.ardenne.ObserverPackage;
 import com.bruinbeargames.ardenne.UI.WinCardChooseAI;
+import com.bruinbeargames.ardenne.ardenne;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
-public class AICardHandler {
+public class AICardHandler implements Observer {
     static public AICardHandler instance;
     boolean isAlliesAI = true;
     ArrayList<CardsforGame> arrCards = new ArrayList<>();
@@ -120,11 +129,14 @@ public class AICardHandler {
                 CardHandler.instance.removeCard(card);
                 break;
             case "fritz1":
+                LehrHalts.instance.addObserver(this);
+
                 LehrHalts.instance.halt();
                 CardHandler.instance.removeCard(card);
                 break;
             case "2ndpanzerloses2units":
                 CardHandler.instance.removeCard(card);
+                SecondPanzerLoses.instance.addObserver(this);
                 SecondPanzerLoses.instance.removeUnits();
                 // let it break removeunits will move on
                 break;
@@ -136,7 +148,7 @@ public class AICardHandler {
             default:
                 int j = 8/0;
         }
-        playCardsOneAtaTime(isAllies);
+ //       playCardsOneAtaTime(isAllies);
 
     }
 
@@ -153,5 +165,19 @@ public class AICardHandler {
         arrBlowBridges.remove(0);
     }
 
+    @Override
+    public void update(Observable od, Object o) {
+        ObserverPackage oB = (ObserverPackage) o;
+        /**
+         *  if yes kick off processing for that type
+         *  else do nothing
+         */
+        if (((ObserverPackage) o).type == ObserverPackage.Type.CardPlayed){
+            LehrHalts.instance.deleteObserver(this);
+            SecondPanzerLoses.instance.deleteObserver(this);
+
+            playCardsOneAtaTime(isAllies);
+        }
+    }
 }
 
