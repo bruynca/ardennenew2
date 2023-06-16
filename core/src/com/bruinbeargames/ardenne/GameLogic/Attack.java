@@ -170,6 +170,9 @@ public class Attack extends Observable implements Observer  {
             Hex hex;
             if (isMobileAssualt) {
                 hex = MobileAssualt.instance.getAttackFromHex(getHexTarget());
+                if (hex == null){ // stop abend
+                    return 1;
+                }
             } else {
                 hex = unit.getHexOccupy();
             }

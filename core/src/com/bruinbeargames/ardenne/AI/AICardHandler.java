@@ -125,14 +125,16 @@ public class AICardHandler implements Observer {
                 blowBridge();
                 break;
             case "2ndpanzerhalts":
-                SecondPanzerHalts.instance.halt();
                 CardHandler.instance.removeCard(card);
+                SecondPanzerHalts.instance.addObserver(this);
+                SecondPanzerHalts.instance.halt();
                 break;
             case "fritz1":
+                CardHandler.instance.removeCard(card);
+
                 LehrHalts.instance.addObserver(this);
 
                 LehrHalts.instance.halt();
-                CardHandler.instance.removeCard(card);
                 break;
             case "2ndpanzerloses2units":
                 CardHandler.instance.removeCard(card);
@@ -141,8 +143,9 @@ public class AICardHandler implements Observer {
                 // let it break removeunits will move on
                 break;
             case "prayforweather":
-                Airplane.instance.add(5);
                 CardHandler.instance.removeCard(card);
+                Airplane.instance.add(5);
+                playCardsOneAtaTime(isAllies);
                 break;
 
             default:
@@ -163,6 +166,7 @@ public class AICardHandler implements Observer {
         }
         arrBlowBridges.get(0).blowUp();
         arrBlowBridges.remove(0);
+        playCardsOneAtaTime(isAllies);
     }
 
     @Override
@@ -175,7 +179,7 @@ public class AICardHandler implements Observer {
         if (((ObserverPackage) o).type == ObserverPackage.Type.CardPlayed){
             LehrHalts.instance.deleteObserver(this);
             SecondPanzerLoses.instance.deleteObserver(this);
-
+            SecondPanzerHalts.instance.deleteObserver(this);
             playCardsOneAtaTime(isAllies);
         }
     }

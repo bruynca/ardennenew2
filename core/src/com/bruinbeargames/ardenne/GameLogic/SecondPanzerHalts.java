@@ -1,10 +1,12 @@
 package com.bruinbeargames.ardenne.GameLogic;
 
+import com.bruinbeargames.ardenne.ObserverPackage;
 import com.bruinbeargames.ardenne.Unit.Unit;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class SecondPanzerHalts {
+public class SecondPanzerHalts extends Observable {
     public static SecondPanzerHalts instance;
     ArrayList<Unit> arr2NDPanzer = new ArrayList<>();
     ArrayList<Integer> arr2NDPanzerMovementSave = new ArrayList<>();
@@ -22,6 +24,9 @@ public class SecondPanzerHalts {
                 unit.getMapCounter().getCounterStack().setPoints();
             }
         }
+        setChanged();
+        notifyObservers(new ObserverPackage(ObserverPackage.Type.CardPlayed, null,0,0));
+        return;
     }
     public void restore(){
         int ix=0;
