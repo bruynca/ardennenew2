@@ -50,10 +50,10 @@ public class LimberArtillery {
             }
         }else{
             if (!isAllies) {
-                NextPhase.instance.endPhase(Phase.GERMAN_PRE_MOVEMENT.ordinal());
+                NextPhase.instance.nextPhase();
                 return;
             }else{
-                NextPhase.instance.endPhase(Phase.ALLIED_PRE_MOVEMENT.ordinal());
+                NextPhase.instance.nextPhase();
                 return;
 
             }

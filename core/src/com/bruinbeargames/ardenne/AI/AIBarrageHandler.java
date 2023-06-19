@@ -289,7 +289,9 @@ public class AIBarrageHandler implements Observer {
          */
         for (Unit unit : Unit.getOnBoardAxis()) {
             if (!arrGermanHex.contains(unit.getHexOccupy())) {
-                arrGermanHex.add(unit.getHexOccupy());
+                if (!unit.isDisorganized()) {
+                    arrGermanHex.add(unit.getHexOccupy());
+                }
             }
         }
         AIUtil.RemoveDuplicateHex(arrGermanHex);

@@ -282,8 +282,7 @@ public class NextPhase {
                     }
  //                   Hex.checkStacking();
  //                   OverStacking.instance.check();
-
-                    endPhase(getPhase());
+                    nextPhase();
                     break;
                 case US_BARRAGE_DEFENSE:
                     isInBarrage = true;
@@ -377,7 +376,7 @@ public class NextPhase {
                     EventPopUp.instance.hide();
                     Move.instance.endMove(false, false);
                     Hex.checkStacking();
-                    endPhase(getPhase());
+                    nextPhase();
                     break;
                 case BRIDGE_GERMAN:
                     HooufGas.instance.checkHooufgas();

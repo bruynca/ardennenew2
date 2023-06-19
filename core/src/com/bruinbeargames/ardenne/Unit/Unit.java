@@ -311,6 +311,8 @@ public class Unit {
 		return isLimbered;
 	}
 	public void setArtilleryLimbered(){
+		Gdx.app.log("Unit", "Set Limbered ="+this);
+
 		if (!isArtillery){
 			return;
 		}
@@ -323,6 +325,7 @@ public class Unit {
 		isLimbered = true;
 	}
 	public void setArtilleryUnLimbered(){
+		Gdx.app.log("Unit", "Set UnLimbered ="+this);
 		if (!isArtillery){
 			return;
 		}

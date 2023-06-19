@@ -30,7 +30,7 @@ public class Losses{
             arrSorted.add(ix, unit);
         }
         for (Unit unit:arrSorted) {
-            Gdx.app.log("Losses", "sorted unit=" + unit);
+            Gdx.app.log("Losses", "sorted unit=" + unit+" steps="+unit.getCurrentStep());
         }
 
         /**
