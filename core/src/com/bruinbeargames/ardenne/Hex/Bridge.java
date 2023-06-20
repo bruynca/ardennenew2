@@ -135,6 +135,17 @@ public class Bridge {
         return false;
 
     }
+    static public boolean hasBridge(Hex hexa)
+    {
+        for (Bridge bridge:arrBridges)
+        {
+            if ((bridge.hex1 == hexa || bridge.hex2 == hexa)) {
+                return true;
+            }
+        }
+        return false;
+
+    }
     public void blowUp(){
         isBlown = true;
         turnBlown = NextPhase.instance.getTurn();

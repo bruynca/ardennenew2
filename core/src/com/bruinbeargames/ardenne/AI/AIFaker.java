@@ -96,6 +96,7 @@ public class AIFaker extends Observable {
         Gdx.app.log("AIFakers", "generateScore thread="+thread+" Count="+arrAIInput.size());
         final Thread tM= Thread.currentThread();
         startThreadCounters(thread-1);
+        final int counter = arrAIInput.size();
 
 
 
@@ -108,13 +109,15 @@ public class AIFaker extends Observable {
                  */
                 int i=0;
                 int k=0;
+                int j=0;
                 for (AIOrders aiO:arrAIInput){
                     if (!isThreadAlive){
                         return;
                     }
                     k++;
+                    j++;
                     if (k > 100) {
-                        Gdx.app.log("AIFakers", "Thread "+tM+" Type="+type+" Done another 100");
+                        Gdx.app.log("AIFakers", "Thread "+thread+" Type="+type+" At ="+j);
                         k=0;
                     }
                     int score =0;

@@ -2,6 +2,7 @@ package com.bruinbeargames.ardenne.AI;
 
 import com.badlogic.gdx.Gdx;
 import com.bruinbeargames.ardenne.GameLogic.Supply;
+import com.bruinbeargames.ardenne.Hex.Bridge;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.Unit.Unit;
@@ -479,6 +480,20 @@ public class AIScenario1 {
                 arrHexToCheck.addAll(unit.getHexOccupy().getSurround());
             }
         }
+        /**
+         *  if we have too many units save only towns an bridges
+         */
+        if (arrUnitsScenario.size() > 3) {
+            ArrayList<Hex> arrRemove = new ArrayList<>();
+            for (Hex hex:arrHexToCheck){
+                if (Bridge.hasBridge(hex) || hex.isTown() || hex.isCity()) {
+                    /// do nothing
+                }else{
+                    arrRemove.add(hex);
+                }
+            }
+            arrHexToCheck.removeAll(arrRemove);
+        }
         AIUtil.RemoveDuplicateHex(arrHexToCheck);
         for (Unit unit:Unit.getOnBoardAxis()){
             arrHexToCheck.remove(unit.getHexOccupy());
@@ -489,7 +504,10 @@ public class AIScenario1 {
         AIMobileAssault.createArrays(arrUnitsScenario, null);
 
         ArrayList<AIOrders> arrAINonPenetrate = AIUtil.GetIterations(arrUnitsScenario,0,false,arrHexToCheck,AIMobileAssault.getAssualt(),aiOrders);
-        setArrToBeScored(arrAINonPenetrate, AIScorer.Type.GermanRegular);
+        ArrayList<Hex> arrAllowDuplicates = new ArrayList<>();
+        ArrayList<AIOrders> arrNodupes = AIOrders.removeDupeMoveToHexes(arrAINonPenetrate, arrAllowDuplicates);
+
+        setArrToBeScored(arrNodupes, AIScorer.Type.GermanRegular);
 
     }
 

@@ -215,11 +215,15 @@ public class CardHandler implements Observer {
                 return;
             }else{
                 if (BlowBridge.instance.checkBridgeBlow()) {
+                    Gdx.app.log("CardHandler", "NextPhase 1");
+
                     NextPhase.instance.nextPhase();
                 }
             }
         }else{
             if (BlowBridge.instance.checkBridgeBlow()) {
+                Gdx.app.log("CardHandler", "NextPhase 2");
+
                 NextPhase.instance.nextPhase();
             }
         }
@@ -393,6 +397,8 @@ public class CardHandler implements Observer {
         ObserverPackage oB = (ObserverPackage) arg;
         if (oB.type == ObserverPackage.Type.EVENTPOPUPHIDE){
             EventPopUp.instance.deleteObserver(this);
+            Gdx.app.log("CardHandler", "update from EVENTPOPHIDE");
+
             if (NextPhase.instance.getPhase() == Phase.ALLIED_CARD.ordinal())
             {
                 alliedCardPhase(NextPhase.instance.getTurn());
