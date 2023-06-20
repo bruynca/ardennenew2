@@ -125,12 +125,14 @@ public class AIBarrageHandler implements Observer {
         int ix = 0;
         for (Unit unit : arrShooters) {
             ArrayList<Hex> arrCanBombard = getArrayOfHexesCanBombard(unit, unit.getHexOccupy());
-            if (arrCanBombard.size() == 0) {  // if cant bombard anyone take it out
+            if (arrCanBombard == null){
+                arrUnitsWithBlanks.add(unit);
+            }else if(arrCanBombard.size() == 0) {  // if cant bombard anyone take it out
                 arrUnitsWithBlanks.add(unit);
             } else {
                 arrArrs.add(arrCanBombard);
+                ix++;
             }
-            ix++;
         }
         /**
          *  create hex arrays with valid

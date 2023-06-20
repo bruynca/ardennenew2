@@ -184,6 +184,10 @@ public class CardHandler implements Observer {
 
     public void germanCardPhase(int turn) {
         Gdx.app.log("CardHandler", "GermanCardPhase turn="+turn);
+        String calling3 = Thread.currentThread().getStackTrace()[2].getClassName().toString();
+        String calling4 = Thread.currentThread().getStackTrace()[2].getMethodName().toString();
+        Gdx.app.log("cardHandler", " class invoking   ="+ calling3);
+        Gdx.app.log("cardHandler", " method invoking  ="+ calling4);
         if (EventPopUp.instance.isShowing()){
             EventPopUp.instance.addObserver(this);
             return;

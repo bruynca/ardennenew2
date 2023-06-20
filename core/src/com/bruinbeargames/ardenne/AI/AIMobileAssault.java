@@ -152,7 +152,7 @@ public class AIMobileAssault {
         ArrayList<Hex> arrHexReachAfterMOA = new ArrayList<>();
         int ix=0;
         for (Unit unit:arrUnitsIn){
-            if (!unit.isArtillery){
+            if (!unit.isArtillery && unit.getCurrenAttackFactor() > 5){
                 Hex hexPosition= null;
                 if (arrPosition != null){
                     hexPosition = arrPosition.get(ix);

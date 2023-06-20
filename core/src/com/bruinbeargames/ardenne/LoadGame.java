@@ -11,6 +11,7 @@ import com.bruinbeargames.ardenne.GameLogic.CardHandler;
 import com.bruinbeargames.ardenne.GameLogic.CardsforGame;
 import com.bruinbeargames.ardenne.GameLogic.ExitWest;
 import com.bruinbeargames.ardenne.GameLogic.HooufGas;
+import com.bruinbeargames.ardenne.GameLogic.MoreGermanAmmo;
 import com.bruinbeargames.ardenne.GameLogic.Reinforcement;
 import com.bruinbeargames.ardenne.GameLogic.Supply;
 import com.bruinbeargames.ardenne.GameLogic.Weather;
@@ -195,7 +196,19 @@ public LoadGame(String gameToLoad, boolean isSpecial) {
 					HooufGas.instance.setBroken(false);
 				}
 			}
+			if (desc.contains("moreammo")){
+				MoreGermanAmmo.instance.setON();
+				for (Unit unit : Unit.getOnBoardAxis()) {
+					unit.setArtAmmo(2);
+				}
 
+				String hougas = xmlhex.getChildByName("houfgas").getAttribute("value");
+				if (hougas.contains("true")){
+					HooufGas.instance.setBroken(true);
+				}else{
+					HooufGas.instance.setBroken(false);
+				}
+			}
 			if (card.getAllied()){
 				arrAllied.add(card);
 			}else{

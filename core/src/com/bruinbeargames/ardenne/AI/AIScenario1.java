@@ -506,8 +506,9 @@ public class AIScenario1 {
         ArrayList<AIOrders> arrAINonPenetrate = AIUtil.GetIterations(arrUnitsScenario,0,false,arrHexToCheck,AIMobileAssault.getAssualt(),aiOrders);
         ArrayList<Hex> arrAllowDuplicates = new ArrayList<>();
         ArrayList<AIOrders> arrNodupes = AIOrders.removeDupeMoveToHexes(arrAINonPenetrate, arrAllowDuplicates);
+        ArrayList<AIOrders> arrNoEnemy = AIOrders.removeEnemyPlace(arrNodupes, isAllies);
 
-        setArrToBeScored(arrNodupes, AIScorer.Type.GermanRegular);
+        setArrToBeScored(arrNoEnemy, AIScorer.Type.GermanRegular);
 
     }
 

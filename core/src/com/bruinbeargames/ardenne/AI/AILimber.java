@@ -151,7 +151,9 @@ public class AILimber implements Observer {
         int thread = 0;
         boolean isArtillery = true;
         ArrayList<AIOrders> arrAIBasicMoveTo = new ArrayList<>();
-        arrAIBasicMoveTo.addAll(AIUtil.GetIterations(arrArtillery,thread, isArtillery,Hex.getAllHex(),null,null));
+        ArrayList<AIOrders> arrWork = new ArrayList<>();
+        arrWork.addAll(AIUtil.GetIterations(arrArtillery,thread, isArtillery,Hex.getAllHex(),null,null));
+        arrAIBasicMoveTo = AIOrders.removeEnemyPlace(arrWork, true);
         /**
          *  lets score the aiorders for most it can bombard
          */

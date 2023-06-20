@@ -244,6 +244,35 @@ public class AIOrders {
         return arrReturn;
     }
 
+    /**
+     *  remove orders that place units ontop of enemy
+     * @param arrIN
+     * @param isAllies
+     * @return
+     */
+    public static ArrayList<AIOrders> removeEnemyPlace(ArrayList<AIOrders> arrIN, boolean isAllies) {
+            ArrayList<AIOrders> arrReturn = new ArrayList<>();
+            ArrayList<Hex> arrHexEnemy = new ArrayList<>();
+            if (isAllies){
+                for (Unit unit:Unit.getOnBoardAxis()){
+                    arrHexEnemy.add(unit.getHexOccupy());
+                }
+            }
+            for (AIOrders aio:arrIN){
+                boolean isGood = true;
+                for (Hex hex:aio.arrHexMoveTo){
+                    if (arrHexEnemy.contains(hex)){
+                        isGood = false;
+                        break;
+                    }
+                }
+                if (isGood){
+                    arrReturn.add(aio);
+                }
+            }
+            return arrReturn;
+    }
+
     public void setScoreBombard(int score){
         scoreBombard = score;
     }
