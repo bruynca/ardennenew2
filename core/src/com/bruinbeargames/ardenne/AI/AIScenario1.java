@@ -544,16 +544,17 @@ public class AIScenario1 {
         ArrayList<Hex> arrAllowDuplicates = new ArrayList<>();
         ArrayList<AIOrders> arrNodupes = AIOrders.removeDupeMoveToHexes(arrOrdersIn, arrAllowDuplicates);
         /**
-         *  force units in wiltz to stay
+         *  force units in wiltz to stay if no one is moving there
          */
         int ix=0;
-        ArrayList<Unit> arrREmove  = new ArrayList<>();
-        for (Unit unit:arrOrdersIn.get(0).arrUnit){
-            if (unit.getHexOccupy() == AIReinforcementScenario1.hexWiltz){
-                arrOrdersIn.get(0).arrHexMoveTo.set(ix,AIReinforcementScenario1.hexWiltz);
-                arrOrdersIn.get(0).arrHexMobileAssault.set(ix, AIReinforcementScenario1.hexWiltz);
+        if (arrOrdersIn.get(0).arrHexMoveTo.contains(AIReinforcementScenario1.hexWiltz)) {
+            for (Unit unit : arrOrdersIn.get(0).arrUnit) {
+                if (unit.getHexOccupy() == AIReinforcementScenario1.hexWiltz) {
+                    arrOrdersIn.get(0).arrHexMoveTo.set(ix, AIReinforcementScenario1.hexWiltz);
+                    arrOrdersIn.get(0).arrHexMobileAssault.set(ix, AIReinforcementScenario1.hexWiltz);
+                }
+                ix++;
             }
-            ix++;
         }
 
         if (arrNodupes.size() == 0) {

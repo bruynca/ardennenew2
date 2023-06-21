@@ -233,7 +233,7 @@ public class MobileAssualt implements Observer {
                 }
             }
         }
-        ErrorGame errorGame = new ErrorGame("Mobile Assualt no attack from hex found", this);
+//        ErrorGame errorGame = new ErrorGame("Mobile Assualt no attack from hex found", this);
        return null;
     }
     private void moveUnit(Unit unit, Hex hex){

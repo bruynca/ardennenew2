@@ -74,12 +74,14 @@ public class AILimber implements Observer {
     private void limberAll() {
         int i=0;
         for (Unit unit:arrArtillery){
-            unit.setArtilleryLimbered();
-            unit.getMapCounter().getCounterStack().setPoints();
-            Counter.rePlace(unit.getHexOccupy());
-            if (i==0){
-                i++;
-                CenterScreen.instance.start(unit.getHexOccupy());
+            if (!unit.isEliminated()) {
+                unit.setArtilleryLimbered();
+                unit.getMapCounter().getCounterStack().setPoints();
+                Counter.rePlace(unit.getHexOccupy());
+                if (i == 0) {
+                    i++;
+                    CenterScreen.instance.start(unit.getHexOccupy());
+                }
             }
         }
         EventOK.instance.addObserver(this);

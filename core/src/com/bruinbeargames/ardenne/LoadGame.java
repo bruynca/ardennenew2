@@ -201,13 +201,6 @@ public LoadGame(String gameToLoad, boolean isSpecial) {
 				for (Unit unit : Unit.getOnBoardAxis()) {
 					unit.setArtAmmo(2);
 				}
-
-				String hougas = xmlhex.getChildByName("houfgas").getAttribute("value");
-				if (hougas.contains("true")){
-					HooufGas.instance.setBroken(true);
-				}else{
-					HooufGas.instance.setBroken(false);
-				}
 			}
 			if (card.getAllied()){
 				arrAllied.add(card);
