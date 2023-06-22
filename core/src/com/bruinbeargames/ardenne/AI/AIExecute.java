@@ -223,6 +223,17 @@ public class AIExecute {
             hexAttack = aicWorkingOn.hexAttackedByUnits.getHex();
             arrUnitsOnAttack.clear();
             arrUnitsOnAttack.addAll(aicWorkingOn.getUnits());
+            /**
+             *  bombard was previous may have wiped out attack
+             */
+            int cntAttack = 0;
+            for (Unit unit:arrUnitsOnAttack){
+                cntAttack += unit.getCurrenAttackFactor();
+            }
+            if (cntAttack == 0){
+                doNextCombat();
+                return;
+            }
             Gdx.app.log("AIExCombat ", "doNextCombat arrUnits=" + arrUnitsOnAttack);
 
             Combat.instance.createCombatImage(hexAttack,false);

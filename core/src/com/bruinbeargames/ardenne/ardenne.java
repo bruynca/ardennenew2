@@ -441,7 +441,7 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 	static boolean isPan =false;
 	@Override
 	public boolean pan(float x, float y, float deltaX, float deltaY) {
-//		Gdx.app.log("Ardenne","Pan");
+		Gdx.app.log("Ardenne","Pan"+" x="+x+" y="+y+" deltaX="+deltaX+" deltay="+deltaY);
 		if (CenterScreen.instance != null){
 			if (CenterScreen.instance.isScrolling()){
 				return false;

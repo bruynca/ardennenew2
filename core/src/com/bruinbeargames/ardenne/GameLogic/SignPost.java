@@ -19,9 +19,6 @@ public class SignPost {
 
     public SignPost(){
         instance = this;
-    }
-    public void display(int turn){
-        turnPlayed = turn;
         for (int x = 0; x< Hex.xEnd; x++)
         {
             for (int y=0; y < Hex.yEnd; y++)
@@ -32,15 +29,19 @@ public class SignPost {
                     Vector2 v1 = hex.getCounterPosition();
                     image.setPosition(v1.x-10, v1.y);
                     arrImage.add(image);
-                    ardenne.instance.hexStage.addActor(image);
                 }
             }
         }
+
+    }
+    public void display(int turn){
+        turnPlayed = turn;
+        for (Image image:arrImage)
+        {
+           ardenne.instance.hexStage.addActor(image);
+        }
     }
     public void remove(int turn){
-        if (turn <= turnPlayed){
-            return;
-        }
         for (Image image:arrImage){
             image.remove();
         }

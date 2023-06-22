@@ -28,9 +28,9 @@ public class AICombat {
          */
 
         if (isAllies && GameSetup.instance.getScenario() == GameSetup.Scenario.Intro) {
-            if (NextPhase.instance.getTurn() < 3){ // first reinforcements
+    //        if (NextPhase.instance.getTurn() < 3){ // first reinforcements
                 AICombatScenario1.instance.doInitialCombatTurn1to3(isAllies);
-            }
+    //        }
         }
     }
 

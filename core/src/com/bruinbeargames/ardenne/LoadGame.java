@@ -13,6 +13,7 @@ import com.bruinbeargames.ardenne.GameLogic.ExitWest;
 import com.bruinbeargames.ardenne.GameLogic.HooufGas;
 import com.bruinbeargames.ardenne.GameLogic.MoreGermanAmmo;
 import com.bruinbeargames.ardenne.GameLogic.Reinforcement;
+import com.bruinbeargames.ardenne.GameLogic.SignPost;
 import com.bruinbeargames.ardenne.GameLogic.Supply;
 import com.bruinbeargames.ardenne.GameLogic.Weather;
 import com.bruinbeargames.ardenne.Hex.Bridge;
@@ -201,6 +202,13 @@ public LoadGame(String gameToLoad, boolean isSpecial) {
 				for (Unit unit : Unit.getOnBoardAxis()) {
 					unit.setArtAmmo(2);
 				}
+			}
+			if (desc.contains("szorney2")){
+				if (card.getTurnEnd() >= turn){
+					CardHandler.instance.setJunctionSet(false);
+					SignPost.instance.remove(turn);
+				}
+
 			}
 			if (card.getAllied()){
 				arrAllied.add(card);

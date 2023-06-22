@@ -9,6 +9,7 @@ import com.bruinbeargames.ardenne.GameLogic.MobileAssualt;
 import com.bruinbeargames.ardenne.GameLogic.Move;
 import com.bruinbeargames.ardenne.GameLogic.Supply;
 import com.bruinbeargames.ardenne.GameMenuLoader;
+import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.Hex.HiliteHex;
 import com.bruinbeargames.ardenne.ObserverPackage;
@@ -43,9 +44,9 @@ public class ClickAction implements Observer {
     }
 
     /**
-     *  use For AI
+     *  USE FO AI
      * @param unit
-     * @param move
+     * @param type
      * @param b
      */
     public ClickAction(Unit unit, TypeAction type, boolean b) {
@@ -290,6 +291,11 @@ public class ClickAction implements Observer {
             MobileAssualt.instance.doMobileInitialAssualtSetUp(arrHexMobileAssualt,unit, false);
         }
         arrHexMove.remove(unit.getHexOccupy());
+        if (!unit.isAllies && GameSetup.instance.getScenario() == GameSetup.Scenario.Intro) {
+            arrHexMove.remove(Hex.hexTable[0][19]);
+            arrHexMove.remove(Hex.hexTable[9][24]);
+            arrHexMove.remove(Hex.hexTable[27][24]);
+        }
         hiliteHex = new HiliteHex(arrHexMove, HiliteHex.TypeHilite.Move, this);  }
     public static int getClickActionsLeft(){
         return arrClickAction.size();

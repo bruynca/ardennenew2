@@ -18,16 +18,15 @@ public class Losses{
             return;
         }
         ArrayList<Unit> arrSorted = new ArrayList<>(); // sort highest first
-        int ix =0;
+        int i =0;
         int test =0;
         for (Unit unit:arrUnits) {
-            for (int i = 0; i < arrSorted.size(); i++) {
+            for (i = 0; i < arrSorted.size(); i++) {
                 if (unit.getCurrentStep() > arrSorted.get(i).getCurrentStep()) {
-                    ix = i;
                     break;
                 }
             }
-            arrSorted.add(ix, unit);
+            arrSorted.add(i, unit);
         }
         for (Unit unit:arrSorted) {
             Gdx.app.log("Losses", "sorted unit=" + unit+" steps="+unit.getCurrentStep());
@@ -36,7 +35,7 @@ public class Losses{
         /**
          *  lose all to lose max is 4
          */
-        ix = 0;
+        int ix = 0;
         while (toLose >0) {
             Unit unitSuffer = arrSorted.get(ix);
             if (unitSuffer.canStepLoss()) {

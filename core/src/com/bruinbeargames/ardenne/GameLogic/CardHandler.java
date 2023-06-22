@@ -218,9 +218,9 @@ public class CardHandler implements Observer {
                 WinCardChoose winCardChoose = new WinCardChoose(false, arrValidCards);
                 return;
             }else{
+
                 if (BlowBridge.instance.checkBridgeBlow()) {
                     Gdx.app.log("CardHandler", "NextPhase 1");
-
                     NextPhase.instance.nextPhase();
                 }
             }

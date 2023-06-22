@@ -547,7 +547,7 @@ public class AIScenario1 {
          *  force units in wiltz to stay if no one is moving there
          */
         int ix=0;
-        if (arrOrdersIn.get(0).arrHexMoveTo.contains(AIReinforcementScenario1.hexWiltz)) {
+        if (!arrOrdersIn.get(0).arrHexMoveTo.contains(AIReinforcementScenario1.hexWiltz)) {
             for (Unit unit : arrOrdersIn.get(0).arrUnit) {
                 if (unit.getHexOccupy() == AIReinforcementScenario1.hexWiltz) {
                     arrOrdersIn.get(0).arrHexMoveTo.set(ix, AIReinforcementScenario1.hexWiltz);

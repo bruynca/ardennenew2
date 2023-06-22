@@ -4,9 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.I18NBundle;
 import com.bruinbeargames.ardenne.AI.AIUtil;
 import com.bruinbeargames.ardenne.ErrorGame;
 import com.bruinbeargames.ardenne.GameLogic.Losses;
+import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.Map;
 import com.bruinbeargames.ardenne.ScreenGame;
 import com.bruinbeargames.ardenne.UI.EventPopUp;
@@ -256,7 +258,7 @@ public class Hex {
          * It has to match the display first unit will be on top
          * Changes for Mobile Assualt
          */
-        Gdx.app.log("Hex","enterHex unit="+unit+" Hex= "+this+" id="+unit.getID());
+ //      Gdx.app.log("Hex","enterHex unit="+unit+" Hex= "+this+" id="+unit.getID());
         if (unit.isAxis){
             isAxisEntered = true;
         }
@@ -282,7 +284,7 @@ public class Hex {
         unit.moveForHexProcessing(this);
     }
     public boolean leaveHex(Unit unit) {
-        Gdx.app.log("Hex","leaveHex unit="+unit+" Hex= "+this+" id="+unit.getID());
+ //       Gdx.app.log("Hex","leaveHex unit="+unit+" Hex= "+this+" id="+unit.getID());
        if (xTable ==25 && yTable ==2){
            int bk =0;
        }
@@ -651,7 +653,8 @@ public class Hex {
             }
         }
     public static ArrayList<Hex> checkStacking(){
-         boolean isLosses = false;
+        I18NBundle i18NBundle;
+        boolean isLosses = false;
          ArrayList<Hex> arrReturn = new ArrayList<>();
         for (int x=0; x< xEnd; x++)
         {
@@ -666,7 +669,8 @@ public class Hex {
             }
         }
         if (isLosses){
-            EventPopUp.instance.show("removingoverstacks");
+            i18NBundle = GameMenuLoader.instance.localization;
+            EventPopUp.instance.show(i18NBundle.format("removingoverstacks"));
         }
         return arrReturn;
     }

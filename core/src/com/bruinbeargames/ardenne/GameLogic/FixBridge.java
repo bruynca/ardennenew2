@@ -230,7 +230,7 @@ public class FixBridge implements Observer {
             if (isFixBridge){
                 isFixBridge = false;
             }else {
-                NextPhase.instance.nextPhase();
+  //              NextPhase.instance.nextPhase();
             }
         }
         /**
