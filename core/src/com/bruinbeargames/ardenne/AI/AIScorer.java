@@ -5,6 +5,7 @@ import com.bruinbeargames.ardenne.GameLogic.Combat;
 import com.bruinbeargames.ardenne.GameLogic.Supply;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.Hex.HexHandler;
+import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.Unit.Unit;
 import com.bruinbeargames.ardenne.Unit.UnitHex;
 import com.bruinbeargames.ardenne.Unit.UnitMove;
@@ -46,6 +47,8 @@ public class AIScorer {
             case GermanPenetration:
                 score = getGermanPenetration(arrGermans,aiO, thread);
                 break;
+            case NonPenetrate:
+                score = getNonPenetrateScore(aiO, thread);
             case GermanRegular:
                 score = getGermanPenetration(arrGermans,aiO,thread);
                 score += sumGermanInSupply(thread);
@@ -75,6 +78,22 @@ public class AIScorer {
 
         }
 
+        return score;
+    }
+
+    private int getNonPenetrateScore(AIOrders aiO, int thread) {
+        int score =0;
+        for (Hex hex: aiO.arrHexMoveTo){
+            int ixHex = AIScenario1.instance.arrNonPenetration.indexOf(hex);
+            if (ixHex > -1){
+                int ixUnit =  aiO.arrHexMoveTo.indexOf(hex);
+                int cntCity = AIScenario1.instance.nonPenetrationScore[ixHex];
+                int defense = aiO.arrUnit.get(ixUnit).getCurrentDefenseFactor();
+                score +=(cntCity * defense);
+            }else{
+                score +=1;
+            }
+        }
         return score;
     }
 
@@ -395,11 +414,14 @@ public class AIScorer {
         /**
          *  score cities
          */
-       for (ArrayList<Hex> arrHex:arrHexGermanPaths) {
-           for (Hex hex : arrHex) {
-               score += scoreAllCities(aiO, hex);
-           }
-       }
+        if (NextPhase.instance.getTurn() > 2) {
+            for (ArrayList<Hex> arrHex : arrHexGermanPaths) {
+                for (Hex hex : arrHex) {
+                    score += scoreAllCities(aiO, hex);
+                }
+            }
+        }
+       score += getNonPenetrateScore(aiO,thread);
         return score;
     }
     private int scoreAllCities(AIOrders aiO, Hex hex){
@@ -615,7 +637,7 @@ public class AIScorer {
 
 
 
-    public enum Type {GermanPenetration,GermanRegular,ReinBastogneAttack,ReinBastogneOcupy,GermanMoveScenario1,
+    public enum Type {GermanPenetration, NonPenetrate, GermanRegular,ReinBastogneAttack,ReinBastogneOcupy,GermanMoveScenario1,
         ReinEttlebruck, ReinMartelange, AIPath,Supply}
 
 

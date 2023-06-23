@@ -146,6 +146,7 @@ public class AIFaker extends Observable {
 
                             // do scoring
                             break;
+                        case NonPenetrate:
                         default:
                             score = AIScorer.instance.getScore(type, arrUnits, aiO, thread);
                             if (score > 0){
@@ -229,6 +230,7 @@ public class AIFaker extends Observable {
 
         switch (type){
             case GermanPenetration:
+            case NonPenetrate:
             case GermanRegular:
                 // do nothing
                 if (isAllies && GameSetup.instance.getScenario() == GameSetup.Scenario.Intro) {

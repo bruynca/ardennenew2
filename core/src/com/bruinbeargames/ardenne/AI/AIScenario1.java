@@ -16,6 +16,10 @@ public class AIScenario1 {
     int[][] routeWiltz ={{24,15},{19,14},{18,16},{11,12},{9,14}};
     int [][] routeEttlebruck = {{33,17},{35,20},{28,23},{19,20},{19,24},
             {11,22},{9,23},{6,18}};
+    int [][] nonPenetration = {{19,14},{25,8},{28,23},{18,9},{31,21},
+            {14,10},{23,12}};
+    public int [] nonPenetrationScore = {12,9,8,7,6,5,7};
+    public ArrayList<Hex> arrNonPenetration = new ArrayList<Hex>();
     ArrayList<Hex> arrClervaux = new ArrayList<Hex>();
     ArrayList<Hex> arrWiltz = new ArrayList<Hex>();
     ArrayList<Hex> arrEttlebruck = new ArrayList<Hex>();
@@ -57,6 +61,10 @@ public class AIScenario1 {
             Hex hex = Hex.hexTable[in[0]][in[1]];
             arrEttlebruck.add(hex);
             arrAllRoutes.add(hex);
+        }
+        for (int[] in:nonPenetration){
+            Hex hex = Hex.hexTable[in[0]][in[1]];
+            arrNonPenetration.add(hex);
         }
    }
 
@@ -351,6 +359,7 @@ public class AIScenario1 {
                 arrHexLimit.add(hex);
             }
         }
+  //      arrHexLimit.addAll(arrNonPenetration);
         /**
          *  remove any german units from hexes to check
          */
@@ -464,7 +473,7 @@ public class AIScenario1 {
          *  add all routes
          *
          */
-        arrHexToCheck.addAll(arrAllRoutes);
+        arrHexToCheck.addAll(arrNonPenetration);
  //       arrHexToCheck.addAll(AIUtil.getSurroundUnits(false));
         arrHexToCheck.addAll(Supply.instance.getGermanBottlenecks());
         AIUtil.RemoveDuplicateHex(arrHexToCheck);
@@ -475,7 +484,7 @@ public class AIScenario1 {
         /**
          *  if we have too many units do not add the surround Germans
          */
-        if (arrUnitsScenario.size() < 4) {
+ /*       if (arrUnitsScenario.size() < 4) {
             for (Unit unit : Unit.getOnBoardAxis()) {
                 arrHexToCheck.addAll(unit.getHexOccupy().getSurround());
             }
@@ -483,6 +492,7 @@ public class AIScenario1 {
         /**
          *  if we have too many units save only towns an bridges
          */
+        /*
         if (arrUnitsScenario.size() > 3) {
             ArrayList<Hex> arrRemove = new ArrayList<>();
             for (Hex hex:arrHexToCheck){
@@ -493,7 +503,7 @@ public class AIScenario1 {
                 }
             }
             arrHexToCheck.removeAll(arrRemove);
-        }
+        }*/
         AIUtil.RemoveDuplicateHex(arrHexToCheck);
         for (Unit unit:Unit.getOnBoardAxis()){
             arrHexToCheck.remove(unit.getHexOccupy());
@@ -508,7 +518,7 @@ public class AIScenario1 {
         ArrayList<AIOrders> arrNodupes = AIOrders.removeDupeMoveToHexes(arrAINonPenetrate, arrAllowDuplicates);
         ArrayList<AIOrders> arrNoEnemy = AIOrders.removeEnemyPlace(arrNodupes, isAllies);
 
-        setArrToBeScored(arrNoEnemy, AIScorer.Type.GermanRegular);
+        setArrToBeScored(arrNoEnemy, AIScorer.Type.NonPenetrate);
 
     }
 
@@ -654,7 +664,7 @@ public class AIScenario1 {
         if (NextPhase.instance.getTurn() < 3){ // first reinforcements
             if (type == AIScorer.Type.GermanPenetration) {
                 endPenetrationAnalysis(arrScored);
-            }else if (type == AIScorer.Type.GermanRegular){
+            }else if (type == AIScorer.Type.GermanRegular || type == AIScorer.Type.NonPenetrate){
                 AIScenario1.instance.endTurn1to3(arrScored);
             }
         }

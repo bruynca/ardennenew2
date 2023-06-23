@@ -1,5 +1,6 @@
 package com.bruinbeargames.ardenne;
 
+import com.badlogic.gdx.Files;
 import com.badlogic.gdx.Graphics;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
@@ -22,7 +23,7 @@ public class DesktopLauncher {
 		config.setResizable(false);
 		config.useVsync(true);
 		config.setDecorated(false);
-//		config.setWindowIcon(Files.FileType.Internal , "effects/desktopicon.png");
+		config.setWindowIcon(Files.FileType.Internal , "effects/desktopicon.png");
 		new Lwjgl3Application(new ardenne(), config);
 
 	}
