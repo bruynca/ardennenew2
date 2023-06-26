@@ -17,8 +17,8 @@ public class AIScenario1 {
     int [][] routeEttlebruck = {{33,17},{35,20},{28,23},{19,20},{19,24},
             {11,22},{9,23},{6,18}};
     int [][] nonPenetration = {{19,14},{25,8},{28,23},{18,9},{31,21},
-            {14,10},{23,12}};
-    public int [] nonPenetrationScore = {12,9,8,7,6,5,7};
+            {14,10},{23,14},{12,11},{8,12},{8,11}};
+    public int [] nonPenetrationScore = {12,9,8,7,6,5,7,5,4,4};
     public ArrayList<Hex> arrNonPenetration = new ArrayList<Hex>();
     ArrayList<Hex> arrClervaux = new ArrayList<Hex>();
     ArrayList<Hex> arrWiltz = new ArrayList<Hex>();
@@ -380,6 +380,10 @@ public class AIScenario1 {
         /**
          *  get the iteration for the units to the defense paths
          */
+        if (arrUnitsToCheck.size() > 6){
+            doNonPenetrations(null);
+            return;
+        }
         ArrayList<AIOrders> arrAIStart = AIUtil.GetIterations(arrUnitsToCheck,0,false,arrHexLimit, null,null);
         Gdx.app.log("AIMover", "Iterations at start =" + arrAIStart.size());
         if (arrAIStart.size() == 0) {
@@ -475,7 +479,7 @@ public class AIScenario1 {
          */
         arrHexToCheck.addAll(arrNonPenetration);
  //       arrHexToCheck.addAll(AIUtil.getSurroundUnits(false));
-        arrHexToCheck.addAll(Supply.instance.getGermanBottlenecks());
+//        arrHexToCheck.addAll(Supply.instance.getGermanBottlenecks());
         AIUtil.RemoveDuplicateHex(arrHexToCheck);
         /**
          *  remove any german units from hexes to check
@@ -508,6 +512,25 @@ public class AIScenario1 {
         for (Unit unit:Unit.getOnBoardAxis()){
             arrHexToCheck.remove(unit.getHexOccupy());
         }
+        /**
+         *  reduce Iteration but  leave at least 3
+         */
+        ArrayList<Unit> arrRemove = new ArrayList<>();
+        int cnt =arrUnitsScenario.size();
+        cnt  -= 3;
+        int ix = 0;
+        if (arrUnitsScenario.size() > 6){
+            for (Unit unit:arrUnitsScenario){
+                if (arrHexToCheck.contains(unit.getHexOccupy())){
+                    arrRemove.add(unit);
+                    ix++;
+                    if (ix > cnt){
+                        break;
+                    }
+                }
+            }
+        }
+        arrUnitsScenario.removeAll(arrRemove);
         /**
          *  check if units can Mobile asault
          */

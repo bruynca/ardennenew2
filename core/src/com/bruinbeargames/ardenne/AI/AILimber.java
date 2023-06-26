@@ -42,7 +42,7 @@ public class AILimber implements Observer {
         /**
          * get all artillery units
          */
-        EventAI.instance.show(i18NBundle.format("ailimber"));
+  //      EventAI.instance.show(i18NBundle.format("ailimber"));
         TurnCounter.instance.updateText(i18NBundle.get("aartilleryphase"));
 
 

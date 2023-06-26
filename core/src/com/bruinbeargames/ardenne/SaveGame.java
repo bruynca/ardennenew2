@@ -63,6 +63,9 @@ public class SaveGame {
 			int phase = NextPhase.instance.getPhase();
 			saveGame.append("<phase value=");
 			saveGame.append("\""+String.format("%02d", phase)+"\" />");
+			String uid = NextPhase.instance.getProgramUID();
+			saveGame.append("<uid value=");
+			saveGame.append("\""+uid+"\"/>");
 			saveGame.append("<scenario value=");
 			int  scenario = GameSetup.instance.getScenario().ordinal();
 			saveGame.append("\""+String.format("%02d", scenario)+"\" />");

@@ -25,6 +25,8 @@ public class GamePreferences {
     private static Preferences mobileprefsAnalytics = Gdx.app.getPreferences("ardenne_analytics_prefs");
     private static String buildNumber = "1.0.0.0";
     private static String gameDir = "bruinbeargames/ardenne/savedgames/";
+    String strIPAddress = "IPAddress";
+
 
     public GamePreferences() {
 
@@ -101,34 +103,6 @@ public class GamePreferences {
         return Gdx.files.external("/Krim/Screenshots/" + date.getTime() + ".png");
     }
 
-    public static FileHandle getSaveLogFileLocation(){
-        Date date = new Date(TimeUtils.millis());
-        return Gdx.files.external("/Krim/Logs/log.txt");
-    }
-
-    public static FileHandle getSaveSetUpAxisLocation(){
-        return Gdx.files.local("/savedsetup/setupsaveaxishex.xml");
-    }
-
-    public static FileHandle getSaveSetUpAxisLocationRegular(){
-        return Gdx.files.local("/savedsetup/setupsaveaxishexregular.xml");
-    }
-
-    public static FileHandle getAutoSetUpAxisFileLocation(){
-        return Gdx.files.local("/units/autosetupaxisunits.xml");
-    }
-
-    public static FileHandle getAutoSetUpSovietFileLocation(){
-        return Gdx.files.local("/units/autosetupunits.xml");
-    }
-
-    public static FileHandle getSaveSetUpFileLocation(){
-        return Gdx.files.local("/savedsetup/setupsavehex.xml");
-    }
-
-    public static FileHandle getLoadBustardLocation(){
-        return Gdx.files.local("/savedsetup/bustardsetup.xml");
-    }
 
     public static FileHandle getSaveGamesLocation(String filename) {
 
@@ -166,138 +140,11 @@ public class GamePreferences {
 
     }
 
-    public static FileHandle getPBEMGamesLocation(String pbemFileName) {
-
-        File folder = new File("../pbem/");
-        if (!folder.exists()) {
-            new File("../pbem/").mkdir();
-        }
-        return Gdx.files.local("../pbem/" + pbemFileName);
 
 
-    }
-
-    public static String getGameManualURL(){
-        return "http://www.yobowargames.com/wp-content/uploads/2018/05/VV_D1_Standard_Game_Rules.pdf";
-    }
-
-    public static void logToConsole(boolean log){
-
-        prefs.putBoolean("logtoconsole", log);
-        prefs.flush();
-    }
-
-    public static boolean isLogToConsole(){
-
-        return prefs.getBoolean("logtoconsole", true);
-    }
-
-    public static void logToFile(boolean log){
-
-        if (Gdx.app.getType().equals(Application.ApplicationType.Desktop)) {
-            prefs.putBoolean("logtofile", log);
-            prefs.flush();
-        }else{
-            mobileprefs.putBoolean("logtofile", log);
-            mobileprefs.flush();
-        }
-    }
-
-    public static boolean isLogToFile(){
-
-        if (Gdx.app.getType().equals(Application.ApplicationType.Desktop)) {
-            return prefs.getBoolean("logtofile", false);
-        }else{
-            return mobileprefs.getBoolean("logtofile", false);
-
-        }
-
-    }
-
-    public static void logToInDevConsole(boolean log){
-
-        if (Gdx.app.getType().equals(Application.ApplicationType.Desktop)) {
-            prefs.putBoolean("logtodevconsole", log);
-            prefs.flush();
-        }{
-            mobileprefs.putBoolean("logtodevconsole", log);
-            mobileprefs.flush();
-        }
-    }
-
-    public static boolean isLogToDevConsole(){
-
-        if (Gdx.app.getType().equals(Application.ApplicationType.Desktop)) {
-            return prefs.getBoolean("logtofile", false);
-        }else{
-            return mobileprefs.getBoolean("logtofile", false);
-        }
-    }
-
-    public static void aiEvpatoriaHitTurn1(boolean log){
-
-        if (Gdx.app.getType().equals(Application.ApplicationType.Desktop)) {
-            prefs.putBoolean("aiev", log);
-            prefs.flush();
-        }else{
-            mobileprefs.putBoolean("aiev", log);
-            mobileprefs.flush();
-        }
-    }
-
-    public static boolean isaiEvpatoriaHitTurn1(){
-
-        if (Gdx.app.getType().equals(Application.ApplicationType.Desktop)) {
-            return prefs.getBoolean("aiev", false);
-        }else{
-            return mobileprefs.getBoolean("aiev", false);
-
-        }
-
-    }
-
-    public static void aiKerchHitTurn1(boolean log){
-
-        if (Gdx.app.getType().equals(Application.ApplicationType.Desktop)) {
-            prefs.putBoolean("aikerch", log);
-            prefs.flush();
-        }else{
-            mobileprefs.putBoolean("aikerch", log);
-            mobileprefs.flush();
-        }
-    }
 
 
-    public static boolean isaiKerchHitTurn1(){
 
-        if (Gdx.app.getType().equals(Application.ApplicationType.Desktop)) {
-            return prefs.getBoolean("aikerch", false);
-        }else{
-            return mobileprefs.getBoolean("aikerch", false);
-
-        }
-   }
-    public static void aiWonShortScene(boolean log){
-
-        if (Gdx.app.getType().equals(Application.ApplicationType.Desktop)) {
-            prefs.putBoolean("aiwonshort", log);
-            prefs.flush();
-        }else{
-            mobileprefs.putBoolean("aiwonshort", log);
-            mobileprefs.flush();
-        }
-    }
-
-
-    public static boolean isaiWonShortScene(){
-
-        if (Gdx.app.getType().equals(Application.ApplicationType.Desktop)) {
-            return prefs.getBoolean("aiwonshort", false);
-        }else{
-            return mobileprefs.getBoolean("aiwonshort", false);
-
-        }
-    }
 
     public static void createAnalyticsData(){
 
@@ -360,20 +207,16 @@ public class GamePreferences {
         prefs.putBoolean(strOther,true);
         prefs.flush();
     }
-
-    public static FileHandle getPBEMScenariosLocation() {
-        return Gdx.files.local("pbemTempData/");
+    public static String getIpAddress() {
+        String ipAddress = prefs.getString(instance.strIPAddress);
+        if (ipAddress.isEmpty()) {
+            ipAddress = AccessInternet.getIPAddress();
+            prefs.putString(instance.strIPAddress, ipAddress);
+            prefs.flush();
+        }
+        return ipAddress;
     }
 
-    public static FileHandle getScenariosLocation() {
 
-        return Gdx.files.local("scenarios/");
-
-    }
-    public static void initAIPreferences(){
-        aiEvpatoriaHitTurn1(false);
-        aiKerchHitTurn1(false);
-        aiWonShortScene(false);
-    }
-}
+  }
 

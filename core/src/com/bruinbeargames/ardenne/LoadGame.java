@@ -66,6 +66,10 @@ public LoadGame(String gameToLoad, boolean isSpecial) {
     }else {
 //    	new ErrorGame("No Phase XML", this);
     }
+	if (root.hasChild("uid")){
+		String uid  = root.getChildByName("uid").getAttribute("value");
+		NextPhase.instance.setProgramUID(uid);
+	}
 
     if (root.hasChild("scenario")){
 	    int scene = Integer.parseInt(root.getChildByName("scenario").getAttribute("value"));
@@ -387,7 +391,7 @@ public LoadGame(String gameToLoad, boolean isSpecial) {
 
 	private void setPhase(int phase) {
 		if (NextPhase.instance.turn == GameSetup.instance.getScenario().getLength()){
-			VictoryPopup.instance.determineVictor();
+			String winner = VictoryPopup.instance.determineVictor();
 			BottomMenu.instance.setEnablePhaseChange(false);
 			return;
 		}

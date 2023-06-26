@@ -137,20 +137,19 @@ public class VictoryPopup {
         return isDisplayed;
     }
 
-    public void determineVictor() {
+    public String determineVictor() {
         SoundsLoader.instance.playTada();
         if (GameSetup.instance.getScenario() == GameSetup.Scenario.Intro){
-            checkIntro();
-            return;
+            return checkIntro();
         }else  if (GameSetup.instance.getScenario() == GameSetup.Scenario.Lehr) {
             checkLehr();
-            return;
+            return "";
         }if (GameSetup.instance.getScenario() == GameSetup.Scenario.SecondPanzer) {
             checkSecondPanzer();
-            return;
+            return "";
         }else{
             checkCounterAttack();
-            return;
+            return"";
         }
     }
 
@@ -163,13 +162,15 @@ public class VictoryPopup {
     private void checkLehr() {
     }
 
-    private void checkIntro() {
+    private String  checkIntro() {
         if (Hex.hexTable[19][14].isAxisEntered() &&
             Hex.hexTable[8][11].isAxisEntered() &&
             Hex.hexTable[8][12].isAxisEntered()){
             updateText(i18NBundle.get("germanscene1victor"),"german");
+            return "German";
         }else{
             updateText(i18NBundle.get("americanscene1victor"),"usa");
+            return "allied";
         }
 
     }

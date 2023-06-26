@@ -52,6 +52,8 @@ import com.bruinbeargames.ardenne.Unit.ClickAction;
 import com.bruinbeargames.ardenne.Unit.CounterStack;
 import com.bruinbeargames.ardenne.Unit.Unit;
 
+import java.util.UUID;
+
 public class NextPhase {
 
     static public NextPhase instance;
@@ -71,7 +73,7 @@ public class NextPhase {
     boolean isAIControl = false;
     boolean isInBarrage = false;
 
-
+    String programUID = "";
 
     DiceEffect diceEffect = new DiceEffect();
     Explosions explosions = new Explosions();
@@ -161,8 +163,10 @@ public class NextPhase {
              *  check for end of game
              */
             if (turn == GameSetup.instance.getScenario().getLength()){
-                VictoryPopup.instance.determineVictor();
+                String winner = VictoryPopup.instance.determineVictor();
                 BottomMenu.instance.setEnablePhaseChange(false);
+                AccessInternet.updateGame(turn, winner);
+
                 return;
             }
             phase = 0;
@@ -180,8 +184,12 @@ public class NextPhase {
             }
             turnCounter.instance.updateTurn(turn, weather.getCurrentType());
             turnCounter.instance.updateText(i18NBundle.get("nextturn"));
+            if (turn > 1){
+                AccessInternet.updateGame(turn, "");
+            }
         }
         if (turn == 1 && phase == 0){
+            createProgramUID();
             EventPopUp.instance.setSpecial();
             EventPopUp.instance.show(i18NBundle.get("event1"));
             return;
@@ -200,6 +208,18 @@ public class NextPhase {
         setPhase();
 
     }
+
+    private void createProgramUID() {
+        UUID uuid = UUID.randomUUID();
+        programUID = UUID.randomUUID().toString().replace("-", "");
+    }
+    public String getProgramUID(){
+        return programUID;
+    }
+    public void setProgramUID(String inUID){
+        programUID = inUID;
+    }
+
     public void continuePhaseFirstTime(){ // for initial start
         BottomMenu.instance.showBottomMenu();
         setPhase();
@@ -261,6 +281,7 @@ public class NextPhase {
                     break;
                 case GERMAN_ROLL_BRIDGE:
                     isAlliedPlayer = false;
+                    AccessInternet.updateGame(NextPhase.instance.turn, "");
                     FixBridge.instance.display(null);
                     break;
                 case GERMAN_PRE_MOVEMENT:
