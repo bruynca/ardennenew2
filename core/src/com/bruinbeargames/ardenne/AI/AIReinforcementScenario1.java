@@ -812,11 +812,11 @@ public class AIReinforcementScenario1 implements Observer {
                     return;
                 }
             }
-            if (arrCanReachWiltz.size() > 0 && !isWiltzOccupied){
+            if (arrCanReachWiltz.size() > 0 && !isWiltzOccupied && !Hex.hexWiltz.isAlliedOccupied()){
                 strategy = StrategyBastogne.WiltzFree;
                 return;
             }
-            if (numAttackWiltz > numAttackBastogne){
+            if (numAttackWiltz > numAttackBastogne && !Hex.hexWiltz.isAlliedOccupied()){
                 strategy = StrategyBastogne.WiltzAttack;
                 return;
             }

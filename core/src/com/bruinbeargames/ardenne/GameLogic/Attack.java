@@ -1,6 +1,8 @@
 package com.bruinbeargames.ardenne.GameLogic;
 
 import com.badlogic.gdx.Gdx;
+import com.bruinbeargames.ardenne.AI.AIAdvance;
+import com.bruinbeargames.ardenne.AI.AIReinforcementScenario1;
 import com.bruinbeargames.ardenne.ErrorGame;
 import com.bruinbeargames.ardenne.Hex.Bridge;
 import com.bruinbeargames.ardenne.Hex.Hex;
@@ -227,8 +229,10 @@ public class Attack extends Observable implements Observer  {
     public float getAttackStrength() {
         return attackStrength;
     }
-
-    public float getDefenseStrength() {
+    public ArrayList<Unit> getAttackers(){
+        return arrAttackers;
+    }
+     public float getDefenseStrength() {
         return defenseStrength;
     }
 
@@ -264,8 +268,8 @@ public class Attack extends Observable implements Observer  {
  //       }
         int die1 = getDieRoll();
         int die2 = getDieRoll();
-//        die1 =6;
-//           die2 = 3;
+        die1 =6;
+        die2 = 6;
         Gdx.app.log("Attack", "die=" + die1 + " " + die2);
 
         dieResult = attackOdds.getResult(die1, die2);
@@ -435,6 +439,11 @@ public class Attack extends Observable implements Observer  {
                 return;
             }else{
                 if (isAI) {
+                    Gdx.app.log("Attack", "Check AIAdvance");
+
+                    if (Hex.arrMajorCities.contains(hexTarget)){
+                        AIAdvance aiAdvance = new AIAdvance(this);
+                    }
                     setChanged();
                     notifyObservers(new ObserverPackage(ObserverPackage.Type.Advance, null, 0, 0));
                     return;

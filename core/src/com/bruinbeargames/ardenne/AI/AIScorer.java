@@ -70,6 +70,10 @@ public class AIScorer {
             case ReinEttlebruck:
                 score += getScoreEttleBruck(aiO, thread);
                 break;
+            case AttackWiltz:
+            case AttackBastogne:
+                score += getAttackBastogne(aiO,thread);
+                break;
             default:
                 score = getGermanPenetration(arrGermans,aiO,thread);
                 score /=4; // divide by 4
@@ -80,6 +84,7 @@ public class AIScorer {
 
         return score;
     }
+
 
     private int getNonPenetrateScore(AIOrders aiO, int thread) {
         int score =0;
@@ -638,7 +643,7 @@ public class AIScorer {
 
 
     public enum Type {GermanPenetration, NonPenetrate, GermanRegular,ReinBastogneAttack,ReinBastogneOcupy,GermanMoveScenario1,
-        ReinEttlebruck, ReinMartelange, AIPath,Supply}
+        ReinEttlebruck, ReinMartelange, AIPath,Supply, AttackBastogne, AttackWiltz}
 
 
 }

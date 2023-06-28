@@ -581,8 +581,17 @@ public class AIScenario1 {
          */
         int ix=0;
         ArrayList<Unit> arrREmove  = new ArrayList<>();
+
         for (Unit unit : arrNodupes.get(0).arrUnit) {
             if (unit.getHexOccupy() == AIReinforcementScenario1.hexWiltz) {
+                arrREmove.add(unit);
+                arrNodupes.get(0).arrHexMoveTo.remove(ix);
+                arrNodupes.get(0).arrHexMobileAssault.remove(ix);
+            }
+            ix++;
+        }
+        for (Unit unit : arrNodupes.get(0).arrUnit) {
+            if (unit.getHexOccupy() == Hex.hexEttlebruck) {
                 arrREmove.add(unit);
                 arrNodupes.get(0).arrHexMoveTo.remove(ix);
                 arrNodupes.get(0).arrHexMobileAssault.remove(ix);

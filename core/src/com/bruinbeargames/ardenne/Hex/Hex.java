@@ -31,6 +31,11 @@ public class Hex {
         private static ArrayList<Hex> arrHexMap =  new ArrayList<Hex>();
         public static ArrayList<Hex> arrAIHex = new ArrayList<>();
         public static ArrayList<Hex> arrRoadsandPaths = new ArrayList<>();
+        public static Hex hexWiltz;
+        public static Hex hexBastogne1;
+        public static Hex hexBastogne2;
+        public static Hex hexEttlebruck;
+        static public ArrayList<Hex> arrMajorCities = new ArrayList<>();
 
  //       public Hex[] tableSurroundHex = new Hex[6];
         //
@@ -628,6 +633,14 @@ public class Hex {
             }
             AIUtil.RemoveDuplicateHex(arrRoadsandPaths);
             loadAIHexesToCheck();
+            hexBastogne1 = hexTable[8][11];
+            arrMajorCities.add(hexBastogne1);
+            hexBastogne2 = hexTable[8][12];
+            arrMajorCities.add(hexBastogne2);
+            hexWiltz = hexTable[19][14];
+            arrMajorCities.add(hexWiltz);
+            hexEttlebruck = hexTable[28][23];
+            arrMajorCities.add(hexEttlebruck);
 
 
         }

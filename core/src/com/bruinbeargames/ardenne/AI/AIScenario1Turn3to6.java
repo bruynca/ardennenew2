@@ -94,6 +94,7 @@ public class AIScenario1Turn3to6 implements Observer {
             }
         }
         arrHexLimit = limitHex(bastogneWiltzDefenseStatus);
+        ixWorkingOn = 0;
         doGroup(ixWorkingOn);
     }
 
@@ -128,6 +129,7 @@ public class AIScenario1Turn3to6 implements Observer {
         /**
          * combine aiorders into the top one
          */
+        Gdx.app.log("AIScenario1Turn3to6", "doFinal");
         AIOrders aiFinal;
         if (arrOrders.length == 1){
             aiFinal = arrOrders[0].get(0);
@@ -215,12 +217,14 @@ public class AIScenario1Turn3to6 implements Observer {
         switch (bastogneWiltzDefenseStatus.strategy) {
             case BastogneAttack:
             case BastognePart:
+                type = AIScorer.Type.AttackBastogne;
                 arrAllowDuplicates.addAll(AIReinforcementScenario1.arrBastogne);
                 arrAllowDuplicates.addAll(AIReinforcementScenario1.arrBastogneRing);
                 arrAllowDuplicates.addAll(AIReinforcementScenario1.arrBastogneOuterDefense);
                 break;
             case WiltzAttack:
             case WiltzFree:
+                type = AIScorer.Type.AttackWiltz;
                 arrAllowDuplicates.add(AIReinforcementScenario1.hexWiltz);
                 arrAllowDuplicates.addAll(AIReinforcementScenario1.hexWiltz.getSurround());
                 break;
@@ -236,7 +240,6 @@ public class AIScenario1Turn3to6 implements Observer {
         for (AIOrders aiO:arrAIorders){
             aiO.clearMOA();
         }
-        type = AIScorer.Type.GermanMoveScenario1;
         AIFaker.instance.addObserver(this);
         AIFaker.instance.startScoringOrders(arrAIorders, type, true);
     }

@@ -36,6 +36,19 @@ public class AICombatScenario1 {
             AIOrdersCombat aiOrdersCombat = new AIOrdersCombat(arrUnits, hex);
             arrToBeScored.add(aiOrdersCombat);
         }
+        /**
+         *  remove any unit attacking from a major city
+         */
+        ArrayList<AIOrdersCombat> arrREmove = new ArrayList<>();
+        for (AIOrdersCombat aiC:arrToBeScored){
+            for (Unit unit: aiC.getUnits()){
+                if (Hex.arrMajorCities.contains(unit.getHexOccupy())){
+                    arrREmove.add(aiC);
+                    break;
+                }
+            }
+        }
+        arrToBeScored.removeAll(arrREmove);
 
             /**
              * sort score into highest
@@ -57,8 +70,7 @@ public class AICombatScenario1 {
                         arrUnitsToRemove.add(unit);
                     }
                 }
-                if (aic.hexAttackedByUnits.getArrUnits().size() > 0 &&
-                    aic.getScore() > 1.0f) {
+                if (aic.hexAttackedByUnits.getArrUnits().size() > 0 &&  aic.getScore() > 1.0f) {
                     arrViable.add(aic);
                 }
 

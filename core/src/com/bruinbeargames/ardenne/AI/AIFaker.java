@@ -117,7 +117,7 @@ public class AIFaker extends Observable {
                     k++;
                     j++;
                     if (k > 100) {
-                        Gdx.app.log("AIFakers", "Thread "+thread+" Type="+type+" At ="+j);
+ //                       Gdx.app.log("AIFakers", "Thread "+thread+" Type="+type+" At ="+j);
                         k=0;
                     }
                     int score =0;
@@ -248,6 +248,8 @@ public class AIFaker extends Observable {
                 setChanged();
                 notifyObservers(new ObserverPackage(ObserverPackage.Type.SupplyDone, null, 0, 0));
                 break;
+            case AttackBastogne:
+            case AttackWiltz:
             case GermanMoveScenario1:
                 setChanged();
                 notifyObservers(new ObserverPackage(ObserverPackage.Type.FakeScenario1Done, null, 0, 0));
