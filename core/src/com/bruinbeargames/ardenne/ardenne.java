@@ -36,6 +36,8 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.util.Observable;
 
+import de.golfgl.gdxgameanalytics.GameAnalytics;
+
 public class ardenne extends Observable implements ApplicationListener, GestureDetector.GestureListener, InputProcessor {
 	SpriteBatch batch;
 	Texture img;
@@ -126,6 +128,11 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 		}
 		//		Gdx.graphics.setResizable(false); */
 		guiStage = new Stage(new ScreenViewport());
+		GameAnalytics gameAnalytics = new GameAnalytics();
+		Analytics analytics;
+		analytics = new Analytics(GamePreferences.instance.getBuildNumber());
+//		analytics.registerUncaughtExceptionHandler();
+
 
 		music = new MusicGame();
 		guiStage = new Stage(new ScreenViewport());
@@ -441,7 +448,7 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 	static boolean isPan =false;
 	@Override
 	public boolean pan(float x, float y, float deltaX, float deltaY) {
-		Gdx.app.log("Ardenne","Pan"+" x="+x+" y="+y+" deltaX="+deltaX+" deltay="+deltaY);
+	//	Gdx.app.log("Ardenne","Pan"+" x="+x+" y="+y+" deltaX="+deltaX+" deltay="+deltaY);
 		if (CenterScreen.instance != null){
 			if (CenterScreen.instance.isScrolling()){
 				return false;

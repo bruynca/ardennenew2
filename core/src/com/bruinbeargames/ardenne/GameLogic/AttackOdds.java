@@ -89,6 +89,12 @@ public class AttackOdds {
                 ixTable =0;
                 ixUnconverted =0;
             }
+            if (ixTable >= oddsString.length){
+                ixTable = oddsString.length -1;
+            }
+            if (ixTable < 0){
+                ixTable = 0;
+            }
             oddactualString = oddsString[ixTable];
             oddUnConverted = oddsString[ixUnconverted];
             ixTableView = ixTable;

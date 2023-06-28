@@ -101,6 +101,8 @@ public class AIScenario1Turn3to6 implements Observer {
      *  Do Next group of units
      */
     public void doNextProcess() {
+        Gdx.app.log("AIScenario1Turn3to6", "doDone for"+ixWorkingOn);
+
         ixWorkingOn++;
         if (ixWorkingOn < cntGroups){
             doGroup(ixWorkingOn);
@@ -124,18 +126,28 @@ public class AIScenario1Turn3to6 implements Observer {
      */
     private void doFinal() {
         /**
-         * combine aiorders into the last one
+         * combine aiorders into the top one
          */
-        for (int i=0; i< arrOrders.length-1; i++){
-            ArrayList<AIOrders> arrAIWork = arrOrders[i];
-            ArrayList<AIOrders> arrAINext = arrOrders[i+1];
-            AIOrders.mergeInto(arrAIWork,arrAINext);
+        AIOrders aiFinal;
+        if (arrOrders.length == 1){
+            aiFinal = arrOrders[0].get(0);
+        }else{
+            aiFinal = AIOrders.combine(arrOrders[0].get(0), arrOrders[1].get(0), true);
+            if (arrOrders.length > 2) {
+                AIOrders temp = AIOrders.combine(aiFinal, arrOrders[2].get(0), true);
+                aiFinal = temp;
+                if (arrOrders.length > 3) {
+                    AIOrders temp2 = AIOrders.combine(aiFinal, arrOrders[3].get(0), true);
+                    aiFinal = temp2;
+                }
+            }
         }
+
         /**
          * Hand over to mover
          * for now use top of last orders.
          */
-        AIOrders aiUse = arrOrders[arrOrders.length -1].get(0);
+        AIOrders aiUse = aiFinal;
         /**
          *  let see how scorere handles this
          */
@@ -153,8 +165,8 @@ public class AIScenario1Turn3to6 implements Observer {
         for (Unit unit:aiUse.arrUnit){
             if (unit.getHexOccupy() == AIReinforcementScenario1.hexWiltz){
                 arrREmove.add(unit);
-                aiUse.arrHexMoveTo.set(ix,AIReinforcementScenario1.hexWiltz);
-                aiUse.arrHexMobileAssault.set(ix,AIReinforcementScenario1.hexWiltz);
+                aiUse.arrHexMoveTo.remove(ix);
+                aiUse.arrHexMobileAssault.remove(ix);
             }
             ix++;
         }

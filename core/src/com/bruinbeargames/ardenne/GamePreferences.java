@@ -218,5 +218,5 @@ public class GamePreferences {
     }
 
 
-  }
+}
 

@@ -539,11 +539,11 @@ public class Unit {
 		attack = atStartAttackFactor;
 		atStartDefenseFactor = (int)((defend/2)+.5);
 		atStartAttackFactor = (int) ((attack/ 2) +.5);
-		if (currentDefenseFactor < 1){
-			currentDefenseFactor =1;
+		if (currentDefenseFactor < 0){
+			currentDefenseFactor =0;
 		}
-		if (currentAttackFactor < 1){
-			currentAttackFactor =1;
+		if (currentAttackFactor < 0){
+			currentAttackFactor =0;
 		}
 		if (atStartDefenseFactor < 1){
 			atStartDefenseFactor =1;

@@ -193,13 +193,15 @@ public class AIOrders {
      * @param arrAI2 merge into this one
      */
     public static void mergeInto(ArrayList<AIOrders> arrAI1, ArrayList<AIOrders> arrAI2) {
+
         ArrayList<AIOrders> arrMerged = new ArrayList<>();
         for (AIOrders aiO1:arrAI1){
             for (AIOrders aiO2:arrAI2){
                 arrMerged.add(combine(aiO1,aiO2,true));
             }
         }
-        arrAI2 = arrMerged;
+        arrAI2.clear();
+        arrAI2.addAll(arrMerged);
     }
 
     /**

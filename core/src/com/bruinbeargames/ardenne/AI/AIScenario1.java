@@ -17,8 +17,8 @@ public class AIScenario1 {
     int [][] routeEttlebruck = {{33,17},{35,20},{28,23},{19,20},{19,24},
             {11,22},{9,23},{6,18}};
     int [][] nonPenetration = {{19,14},{25,8},{28,23},{18,9},{31,21},
-            {14,10},{23,14},{12,11},{8,12},{8,11}};
-    public int [] nonPenetrationScore = {12,9,8,7,6,5,7,5,4,4};
+            {14,10},{23,14},{12,11},{8,12},{8,11},{21,5}};
+    public int [] nonPenetrationScore = {12,9,8,7,6,5,7,5,4,4,3};
     public ArrayList<Hex> arrNonPenetration = new ArrayList<Hex>();
     ArrayList<Hex> arrClervaux = new ArrayList<Hex>();
     ArrayList<Hex> arrWiltz = new ArrayList<Hex>();
@@ -380,7 +380,7 @@ public class AIScenario1 {
         /**
          *  get the iteration for the units to the defense paths
          */
-        if (arrUnitsToCheck.size() > 6){
+        if (arrUnitsToCheck.size() > 1){
             doNonPenetrations(null);
             return;
         }
@@ -580,16 +580,16 @@ public class AIScenario1 {
          *  force units in wiltz to stay if no one is moving there
          */
         int ix=0;
-        if (!arrOrdersIn.get(0).arrHexMoveTo.contains(AIReinforcementScenario1.hexWiltz)) {
-            for (Unit unit : arrOrdersIn.get(0).arrUnit) {
-                if (unit.getHexOccupy() == AIReinforcementScenario1.hexWiltz) {
-                    arrOrdersIn.get(0).arrHexMoveTo.set(ix, AIReinforcementScenario1.hexWiltz);
-                    arrOrdersIn.get(0).arrHexMobileAssault.set(ix, AIReinforcementScenario1.hexWiltz);
-                }
-                ix++;
+        ArrayList<Unit> arrREmove  = new ArrayList<>();
+        for (Unit unit : arrNodupes.get(0).arrUnit) {
+            if (unit.getHexOccupy() == AIReinforcementScenario1.hexWiltz) {
+                arrREmove.add(unit);
+                arrNodupes.get(0).arrHexMoveTo.remove(ix);
+                arrNodupes.get(0).arrHexMobileAssault.remove(ix);
             }
+            ix++;
         }
-
+        arrNodupes.get(0).arrUnit.removeAll(arrREmove);
         if (arrNodupes.size() == 0) {
             AIMover.instance.execute(arrOrdersIn.get(0));
         }else{
