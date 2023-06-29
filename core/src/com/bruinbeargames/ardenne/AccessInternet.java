@@ -130,6 +130,8 @@ public class AccessInternet {
         ArrayList<CardsforGame> arrCards = new ArrayList<>();
         arrCards.addAll(CardHandler.instance.getArrCardsChosenAllied());
         arrCards.addAll(CardHandler.instance.getArrCardsChosenGerman());
+        arrCards.addAll(CardHandler.instance.getArrCardsPlayedAllied());
+        arrCards.addAll(CardHandler.instance.getArrCardsPlayedGerman());
         for (int i = 1; i <= 8; i++){
             switch(i){
                 case 1:

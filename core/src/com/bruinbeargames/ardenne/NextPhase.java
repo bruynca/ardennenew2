@@ -190,6 +190,7 @@ public class NextPhase {
         }
         if (turn == 1 && phase == 0){
             createProgramUID();
+            AccessInternet.registerGame(false);
             EventPopUp.instance.setSpecial();
             EventPopUp.instance.show(i18NBundle.get("event1"));
             return;

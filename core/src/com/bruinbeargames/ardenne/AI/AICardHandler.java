@@ -151,6 +151,11 @@ public class AICardHandler implements Observer {
             default:
                 int j = 8/0;
         }
+        if(isAllies){
+            CardHandler.instance.setAlliedCardPlayed(card);
+        }else{
+            CardHandler.instance.setGermanCardPlayed(card);
+        }
  //       playCardsOneAtaTime(isAllies);
 
     }
