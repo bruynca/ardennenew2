@@ -37,7 +37,7 @@ public class HooufGas {
      */
     public void setBroken(boolean inHouf) {
         isHooufGas = inHouf;
-        if (!isHooufGas){
+        if (isHooufGas){
             checkHooufgas();
         }else {
             Supply.instance.removeHooufgas();

@@ -212,6 +212,8 @@ public class AIExecute {
         }
 
         private void doNextCombat() {
+            Gdx.app.log("AtExecute", "doNextCombat");
+
             if (aiOrdersCombats.size() == 0) {
                 EventAI.instance.hide();
                 WinModal.instance.release();

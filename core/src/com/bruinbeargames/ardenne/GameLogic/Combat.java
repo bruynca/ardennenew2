@@ -20,6 +20,7 @@ import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.Hex.HexHelper;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.ObserverPackage;
+import com.bruinbeargames.ardenne.Phase;
 import com.bruinbeargames.ardenne.SaveGame;
 import com.bruinbeargames.ardenne.UI.AttackArrows;
 import com.bruinbeargames.ardenne.UI.CombatDisplay;
@@ -197,12 +198,17 @@ public class Combat implements Observer {
         }
     }
     private void scheduleAttackHilite(final ArrayList<Hex> arrHexToHilite) {
+        Gdx.app.log("Combat", "scheduleAttacks");
+
         final Hex hex = arrHexToHilite.get(0);
         Timer.schedule(new Timer.Task() {
                            @Override
                            public void run() {
-                               SoundsLoader.instance.playLimber();
-                               createCombatImage(hex, true);
+                               if (NextPhase.instance.getPhase() == Phase.ALLIED_COMBAT.ordinal() ||
+                                   NextPhase.instance.getPhase() == Phase.ALLIED_COMBAT.ordinal() ) {
+                                   SoundsLoader.instance.playLimber();
+                                   createCombatImage(hex, true);
+                               }
                                arrHexToHilite.remove(hex);
                                if (arrHexToHilite.size() == 0) {
                                    WinModal.instance.release();

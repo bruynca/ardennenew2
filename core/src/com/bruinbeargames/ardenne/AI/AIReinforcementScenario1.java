@@ -3,6 +3,7 @@ package com.bruinbeargames.ardenne.AI;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.bruinbeargames.ardenne.GameLogic.Reinforcement;
+import com.bruinbeargames.ardenne.GameLogic.Supply;
 import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.Hex.HexInt;
@@ -448,6 +449,8 @@ public class AIReinforcementScenario1 implements Observer {
             arrReinDestBastogneLimit.addAll(hex.getSurround());
         }
         arrReinDestBastogneLimit.addAll(arrEttlebruckTargets);
+        arrReinDestBastogneLimit.addAll(Supply.instance.getGermanBottlenecks());
+        arrReinDestBastogneLimit.addAll(hexWiltz.getSurround());
         AIUtil.RemoveDuplicateHex(arrReinDestBastogneLimit);
         Gdx.app.log("AIReinforcementsScenario1", "ettlebruck destinations ="+ arrReinDestBastogneLimit.size());
         arrUnits.clear();
@@ -471,8 +474,8 @@ public class AIReinforcementScenario1 implements Observer {
             ArrayList<Hex> arrHexMove = findHexesOnReinforcement(unit,reinEttlebruk);
             reinEttlebruk++;
             AIUtil.RemoveDuplicateHex(arrHexMove);
-            arrHexMove.retainAll(Hex.arrAIHex);
-            //            arrHexMove.retainAll(arrReinDestBastogneLimit);
+            //arrHexMove.retainAll(Hex.arrAIHex);
+            arrHexMove.retainAll(arrReinDestBastogneLimit);
             if (arrHexMove.size() > 0) {
                 arrWork.add(arrHexMove);
             } else {
