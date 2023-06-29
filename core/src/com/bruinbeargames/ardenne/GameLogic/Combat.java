@@ -198,7 +198,7 @@ public class Combat implements Observer {
         }
     }
     private void scheduleAttackHilite(final ArrayList<Hex> arrHexToHilite) {
-        Gdx.app.log("Combat", "scheduleAttacks");
+        Gdx.app.log("Combat", "scheduleAttacks arrHexToHile="+arrHexToHilite);
 
         final Hex hex = arrHexToHilite.get(0);
         Timer.schedule(new Timer.Task() {
