@@ -346,10 +346,14 @@ public class AIExecute {
                 }
 
             }
+            /**
+             *  should not execute
+             */
+
             if (arrUnits.size() == 0) {
                 EventAI.instance.hide();
                 WinModal.instance.release();
-                NextPhase.instance.nextPhase();
+//                NextPhase.instance.nextPhase();
                 return;
             }
 
@@ -445,7 +449,14 @@ public class AIExecute {
             } else if (((ObserverPackage) arg).type == ObserverPackage.Type.MoveFinished) {
                 Move.instance.deleteObserver(aiExMove);
                 MobileAssualt.instance.endMOA();
-                doNextMove();
+                if (arrUnits.size() == 0) {
+                    EventAI.instance.hide();
+                    WinModal.instance.release();
+                    NextPhase.instance.nextPhase();
+                    return;
+                }else {
+                    doNextMove();
+                }
                 return;
             } else if (((ObserverPackage) arg).type == ObserverPackage.Type.CombatDisplayResults) {
                 CombatDisplayResults.instance.deleteObserver(this);
