@@ -63,6 +63,8 @@ public class Weather {
         int totalCount = Airplane.instance.getCount();
         String strWeather = i18NBundle.format("weather", currentType.toString() + "\n");
         String strAir = i18NBundle.format("airpower", Integer.toString(totalCount));
+        Gdx.app.log("Weather", "Next Turn Weather ="+strWeather+" air ="+strAir);
+
         EventPopUp.instance.show(strWeather+" "+strAir);
 
 
@@ -70,6 +72,7 @@ public class Weather {
     }
     private int calculateBombers() {
         int tableToUse = currentType.ordinal();
+        Gdx.app.log("Weather", "Table to Use ="+tableToUse);
         int totDie = getDieRoll() + getDieRoll();
         Gdx.app.log("Weather", "calculate Bombers tot dice ="+totDie);
 
@@ -83,6 +86,8 @@ public class Weather {
         if (ixBombers > 3){
             ixBombers = 3;
         }
+        Gdx.app.log("Weather", "Bombers="+bombers[ixBombers]);
+
         return bombers[ixBombers];
     }
 

@@ -205,7 +205,7 @@ public class Combat implements Observer {
                            @Override
                            public void run() {
                                if (NextPhase.instance.getPhase() == Phase.ALLIED_COMBAT.ordinal() ||
-                                   NextPhase.instance.getPhase() == Phase.ALLIED_COMBAT.ordinal() ) {
+                                   NextPhase.instance.getPhase() == Phase.GERMAN_COMBAT.ordinal()) {
                                    SoundsLoader.instance.playLimber();
                                    createCombatImage(hex, true);
                                }

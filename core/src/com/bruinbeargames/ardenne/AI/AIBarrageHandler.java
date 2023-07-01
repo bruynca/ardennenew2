@@ -59,7 +59,9 @@ public class AIBarrageHandler implements Observer {
          *
          */
         arrShooters.addAll(Barrage.instance.getArrArtilleryShooters());
-        if (arrShooters.size() == 0) {
+        int cntAir = Airplane.instance.getCount();
+
+        if (arrShooters.size() == 0 && cntAir == 0) {
             Barrage.instance.clearCrossHairs();
             EventOK.instance.addObserver(this);
             if (isOffensive) {
@@ -77,13 +79,11 @@ public class AIBarrageHandler implements Observer {
             arrPosition.add(unit.getHexOccupy());
         }
         ArrayList<Hex> arrCombatHex = AICombat.instance.getCombatHex();
-        int cnrAir = Airplane.instance.getCount();
         arrAIOrders = getMostDamageChances(arrShooters, arrPosition, arrCombatHex);
         /**
          * lets take top one for now
          */
         Barrage.instance.clearCrossHairs();
-        int cntAir = Airplane.instance.getCount();
 
         if (arrAIOrders != null && arrAIOrders.size() > 0) {
             AIOrders aiPick = arrAIOrders.get(0);

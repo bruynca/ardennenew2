@@ -165,7 +165,11 @@ public class AccessInternet {
                 params.put(strKey,"");
             }
         }
-        params.put("winner", strWinner);
+        if (strWinner.length() > 0) {
+            params.put("winner", strWinner);
+        }else{
+            params.put("winner","unkown");
+        }
 
         String formEncodedContent = HttpParametersUtils.convertHttpParameters(params);
         httpPost.setContent(formEncodedContent);

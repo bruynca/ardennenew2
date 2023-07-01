@@ -21,6 +21,8 @@ public class AIAdvance {
                 cntAttack = unit.getCurrenAttackFactor();
             }
         }
-        Move.instance.moveUnitAfterAdvance(unitAdvance, attack.getHexTarget());
+        if (!attack.getHexTarget().isAxisOccupied()) {
+            Move.instance.moveUnitAfterAdvance(unitAdvance, attack.getHexTarget());
+        }
     }
 }

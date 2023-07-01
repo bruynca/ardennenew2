@@ -393,7 +393,7 @@ public LoadGame(String gameToLoad, boolean isSpecial) {
 	 */
 
 	private void setPhase(int phase) {
-		if (NextPhase.instance.turn == GameSetup.instance.getScenario().getLength()){
+		if (NextPhase.instance.turn > GameSetup.instance.getScenario().getLength()){
 			String winner = VictoryPopup.instance.determineVictor();
 			BottomMenu.instance.setEnablePhaseChange(false);
 			return;

@@ -455,12 +455,12 @@ public class Supply implements Observer{
             image.remove();
         }
         for (Unit unit:Unit.getOnBoardAxis()){
-            if (unit.getCurrentMovement() == 0 && !unit.isArtillery){
+            if (unit.getCurrentMovement() < 3 && !unit.isArtillery){
                 if (!unit.isMechanized){
                     unit.setCurrentMovement(3);
 
                 }else{
-                    unit.setCurrentMovement(1);
+                    unit.setCurrentMovement(2);
                 }
                 unit.getMapCounter().getCounterStack().setPoints();
             }
@@ -567,12 +567,12 @@ public class Supply implements Observer{
         }
         for (Unit unit:Unit.getOnBoardAllies()){
 
-            if (unit.getCurrentMovement() == 0 && !unit.isArtillery){
+            if (unit.getCurrentMovement() < 3 && !unit.isArtillery){
                 if (!unit.isMechanized){
                     unit.setCurrentMovement(3);
 
                 }else{
-                    unit.setCurrentMovement(1);
+                    unit.setCurrentMovement(2);
                 }
                 unit.getMapCounter().getCounterStack().setPoints();
             }

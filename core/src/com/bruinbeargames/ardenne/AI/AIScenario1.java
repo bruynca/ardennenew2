@@ -585,20 +585,16 @@ public class AIScenario1 {
         for (Unit unit : arrNodupes.get(0).arrUnit) {
             if (unit.getHexOccupy() == AIReinforcementScenario1.hexWiltz) {
                 arrREmove.add(unit);
-                arrNodupes.get(0).arrHexMoveTo.remove(ix);
-                arrNodupes.get(0).arrHexMobileAssault.remove(ix);
             }
             ix++;
         }
         for (Unit unit : arrNodupes.get(0).arrUnit) {
             if (unit.getHexOccupy() == Hex.hexEttlebruck) {
                 arrREmove.add(unit);
-                arrNodupes.get(0).arrHexMoveTo.remove(ix);
-                arrNodupes.get(0).arrHexMobileAssault.remove(ix);
             }
             ix++;
         }
-        arrNodupes.get(0).arrUnit.removeAll(arrREmove);
+        arrNodupes.get(0).remove(arrREmove);
         if (arrNodupes.size() == 0) {
             AIMover.instance.execute(arrOrdersIn.get(0));
         }else{

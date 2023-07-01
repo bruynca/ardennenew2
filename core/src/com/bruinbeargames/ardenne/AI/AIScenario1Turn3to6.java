@@ -144,7 +144,6 @@ public class AIScenario1Turn3to6 implements Observer {
                 }
             }
         }
-
         /**
          * Hand over to mover
          * for now use top of last orders.
@@ -164,15 +163,18 @@ public class AIScenario1Turn3to6 implements Observer {
         int score = AIScorer.instance.getScore(type, arrUnits, aiUse, 2);
         int ix=0;
         ArrayList<Unit> arrREmove  = new ArrayList<>();
+        int oneInEttBruck = 0;
         for (Unit unit:aiUse.arrUnit){
             if (unit.getHexOccupy() == AIReinforcementScenario1.hexWiltz){
                 arrREmove.add(unit);
-                aiUse.arrHexMoveTo.remove(ix);
-                aiUse.arrHexMobileAssault.remove(ix);
+            }
+            if (unit.getHexOccupy() == Hex.hexEttlebruck && oneInEttBruck == 0){
+                arrREmove.add(unit);
+                oneInEttBruck++;
             }
             ix++;
         }
-        aiUse.arrUnit.removeAll(arrREmove);
+        aiUse.remove(arrREmove);
 
         AIMover.instance.execute(aiUse);
     }
@@ -185,6 +187,9 @@ public class AIScenario1Turn3to6 implements Observer {
         Gdx.app.log("AISceanrio1Turn3to6", "Do Group working on="+ixWorkingOn);
 
         ArrayList<Unit> arrUnitsWork = arrUnitKampgruppe[ixWorkingOn];
+        if (arrUnitsWork.contains(Unit.getUnitByID(69))){
+            int b=0;
+        }
         arrOrders[ixWorkingOn] = new ArrayList<>();
         ArrayList<AIOrders> arrAIorders = arrOrders[ixWorkingOn];
         Gdx.app.log("AISceanrio1Turn3to6", "Units cnt="+arrUnitsWork.size());
@@ -202,6 +207,7 @@ public class AIScenario1Turn3to6 implements Observer {
             if (arr.size() == 0){
                 arr.add(arrUnitsWork.get(ix).getHexOccupy()); // leave in hex
             }
+            ix++;
         }
         /**
          *  get the aiOrders
@@ -235,6 +241,9 @@ public class AIScenario1Turn3to6 implements Observer {
         Gdx.app.log("AISceanrio1Turn3to6", "dupes allowed="+arrAllowDuplicates);
         ArrayList<AIOrders> arrNodupes = AIOrders.removeDupeMoveToHexes(arrStart,arrAllowDuplicates);
         arrAIorders = AIOrders.removeOverstack(arrNodupes);
+        if (arrAIorders.size() == 0){
+            arrAIorders.addAll(arrNodupes);
+        }
         arrOrders[ixWorkingOn] = arrAIorders;
         Gdx.app.log("AISceanrio1Turn3to6", "Aiorders count after dupe check="+arrAIorders.size());
         for (AIOrders aiO:arrAIorders){

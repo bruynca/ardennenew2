@@ -96,7 +96,10 @@ public class AILimber implements Observer {
             arrPosition.add(unit.getHexOccupy());
         }
         ArrayList<Hex> arrNoCombatHex = new ArrayList<>();
-        arrAIStayBombard.addAll(AIBarrageHandler.instance.getMostDamageChances(arrArtillery,arrPosition,arrNoCombatHex));
+        ArrayList<AIOrders> arrWork = AIBarrageHandler.instance.getMostDamageChances(arrArtillery,arrPosition,arrNoCombatHex);
+        if (arrWork != null) {
+            arrAIStayBombard.addAll(arrWork);
+        }
         return arrAIBasicBombard;
     }
 

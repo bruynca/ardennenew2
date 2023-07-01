@@ -5,6 +5,7 @@ import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.UI.EventAI;
+import com.bruinbeargames.ardenne.Unit.Unit;
 
 import java.util.ArrayList;
 
@@ -47,6 +48,18 @@ public class AIMover {
      * @param aiOrders
      */
     public void execute(AIOrders aiOrders) {
+        /**
+         *  remove any aiorders that are not going anywhere
+         */
+        ArrayList<Unit> arrREmove  = new ArrayList<>();
+        int ix =0 ;
+        for (Unit unit : aiOrders.arrUnit) {
+            if (unit.getHexOccupy() == aiOrders.arrHexMoveTo.get(ix)) {
+                arrREmove.add(unit);
+            }
+            ix++;
+        }
+        aiOrders.remove(arrREmove);
         AIExecute.instance.moveAndMOA(aiOrders);
     }
 }

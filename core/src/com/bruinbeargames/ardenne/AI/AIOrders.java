@@ -217,6 +217,9 @@ public class AIOrders {
             int ix =0;
             boolean isOK = true;
             for (Hex hex: aiO.arrHexMoveTo){
+                if (hex == Hex.hexTable[7][10]){
+                    int b=0;
+                }
                 HexUnits.add(hex,aiO.arrUnit.get(ix));
                 ix++;
                 for (Unit unit:hex.getUnitsInHex()){
@@ -224,8 +227,12 @@ public class AIOrders {
                         HexUnits.add(hex,unit);
                     }
                 }
-                int stack = 0;
                 for (HexUnits hU:HexUnits.arrHexUnits){
+                    if (hU.getArrUnits().size() > 2)
+                    {
+                        int b=0;
+                    }
+                    int stack = 0;
                     for (Unit unit:hU.getArrUnits()){
                         stack +=unit.getCurrentStep();
                     }
@@ -394,6 +401,19 @@ public class AIOrders {
         for (int i=0; i< arrHexMobileAssault.size(); i++){;
             arrHexMobileAssault.set(i,null);
         }
+    }
+
+    /**
+     *  remove units  from orders
+     * @param arrREmove
+     */
+    public void remove(ArrayList<Unit> arrREmove) {
+        for (Unit unit : arrREmove) {
+        int ix = arrUnit.indexOf(unit);
+          arrUnit.remove(ix);
+          arrHexMoveTo.remove(ix);
+          arrHexMobileAssault.remove(ix);
+       }
     }
 
     public enum Type{Bombard,MoveTo,SupplyBlocks}

@@ -220,7 +220,7 @@ public class ClickAction implements Observer {
                  */
                 int stackPossible = hex.getStacksIn();
                 stackPossible +=unit.getCurrentStep();
-                if (stackPossible >Hex.stackMax){
+                if (stackPossible >Hex.stackMax && !isAI){
                     hexConfirm = hex;
                     unitConfirm = unit;
                     i18NBundle = GameMenuLoader.instance.localization;

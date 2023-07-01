@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.I18NBundle;
+import com.bruinbeargames.ardenne.AccessInternet;
 import com.bruinbeargames.ardenne.Fonts;
 import com.bruinbeargames.ardenne.GameLogic.SoundsLoader;
 import com.bruinbeargames.ardenne.GameMenuLoader;
@@ -167,11 +168,18 @@ public class VictoryPopup {
             Hex.hexTable[8][11].isAxisEntered() &&
             Hex.hexTable[8][12].isAxisEntered()){
             updateText(i18NBundle.get("germanscene1victor"),"german");
+            saveWinner("German");
             return "German";
         }else{
+            saveWinner("allied");
             updateText(i18NBundle.get("americanscene1victor"),"usa");
             return "allied";
         }
+
+    }
+    private void saveWinner(String strVic){
+        AccessInternet.updateGame(GameSetup.instance.getScenario().getLength(), strVic);
+        return;
 
     }
 }

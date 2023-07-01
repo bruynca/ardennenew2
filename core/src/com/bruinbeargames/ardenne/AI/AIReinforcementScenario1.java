@@ -644,6 +644,15 @@ public class AIReinforcementScenario1 implements Observer {
         return;
     }
     public void execute(){
+        ArrayList<Unit> arrREmove  = new ArrayList<>();
+        int ix =0 ;
+        for (Unit unit : aiEttleBruck.arrUnit) {
+            if (unit.getHexOccupy() == aiEttleBruck.arrHexMoveTo.get(ix)) {
+                arrREmove.add(unit);
+            }
+            ix++;
+        }
+        aiEttleBruck.remove(arrREmove);
         AIExecute.instance.Reinforcement(aiEttleBruck);
         Gdx.app.log("AIReinforcementScenario1", "doEttleBruck");
     }

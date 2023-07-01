@@ -157,6 +157,9 @@ public class Move extends Observable {
 
     ArrayList<Hex> arrMove;
     public void moveUnitFromClick(Unit unit, Hex hex, boolean isAI) {
+        if (unit.getID() == 69){
+            int b=0;
+        }
         UnitMove unitMove = new UnitMove(unit, unit.getCurrentMovement(),true,true,0);
         arrMove=  unitMove.getLeastPath(hex, true, null);
  //       SoundsLoader.instance.playTrucksSound();
