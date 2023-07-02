@@ -199,6 +199,13 @@ public class GamePreferences {
         boolean ret = prefs.getBoolean(str);
         return  ret;
     }
+    public static void  resetPhaseInfo(){
+        for (Phase phase:Phase.values()){
+            prefs.putBoolean(phase.toString(), false);
+            prefs.flush();
+        }
+
+    }
     public static void setPhaseInfo(Phase phase){
         prefs.putBoolean(phase.toString(),true);
         prefs.flush();

@@ -44,6 +44,8 @@ public class GameMenu extends Observable {
     private Label creditsText;
     private CheckBox fullScreen;
     private CheckBox windowed;
+
+    private CheckBox resetHelp;
     private SelectBox windowsSizeSelectBox;
     private Label windowTextLabel;
     private ButtonGroup buttonGroup;
@@ -85,6 +87,7 @@ public class GameMenu extends Observable {
         initializeCreditsTextLabel();
         initializeWindowTextLabel();
         initializeFullScreenCheckBox();
+        initializeResetHelpCheckBox();
         initializeWindowedCheckBox();
         // TODO: Needs more work
         //initializeWindowsSizeSelectBox();
@@ -133,6 +136,7 @@ public class GameMenu extends Observable {
     }
 
     private void showOptions(){
+        resetHelp.setVisible(true);
         windowed.setVisible(true);
         fullScreen.setVisible(true);
         windowTextLabel.setVisible(true);
@@ -161,6 +165,7 @@ public class GameMenu extends Observable {
         optionsButton.setVisible(false);
         gameOptionsButton.setVisible(true);
         windowTextLabel.setVisible(false);
+        resetHelp.setVisible(false);
         windowed.setVisible(false);
         fullScreen.setVisible(false);
         backButton.setVisible(false);
@@ -180,6 +185,7 @@ public class GameMenu extends Observable {
         optionsButton.setVisible(false);
         windowTextLabel.setVisible(false);
         windowed.setVisible(false);
+        resetHelp.setVisible(false);
         fullScreen.setVisible(false);
         backButton.setVisible(false);
         gameOptionsButton.setVisible(false);
@@ -608,7 +614,7 @@ public class GameMenu extends Observable {
         style.font = Fonts.getFont24();
         windowTextLabel = new Label(i18NBundle.get("windowtext"),style);
         windowTextLabel.setSize(281/1, 44/1);
-        windowTextLabel.setPosition(backGroundImage.getX() + (50 / 1), backGroundImage.getY() + backGroundImage.getHeight() - ((200) / 1));
+        windowTextLabel.setPosition(backGroundImage.getX() + (50 / 1), backGroundImage.getY() + backGroundImage.getHeight() - ((150) / 1));
         windowTextLabel.setVisible(false);
 
         stage.addActor(windowTextLabel);
@@ -643,7 +649,7 @@ public class GameMenu extends Observable {
     private void initializeWindowedCheckBox(){
 
         windowed = new CheckBox("  " + i18NBundle.get("windowed"),checkBoxStyle);
-        windowed.setPosition(backGroundImage.getX() + (50 / 1), backGroundImage.getY() + backGroundImage.getHeight() - ((150) / 1));
+        windowed.setPosition(backGroundImage.getX() + (300 / 1), backGroundImage.getY() + backGroundImage.getHeight() - ((100) / 1));
 
         windowed.setVisible(false);
         windowed.setChecked(false);
@@ -663,7 +669,28 @@ public class GameMenu extends Observable {
 
         stage.addActor(windowed);
     }
+    private void initializeResetHelpCheckBox(){
 
+        resetHelp = new CheckBox("  " + i18NBundle.get("resethelp"),checkBoxStyle);
+        resetHelp.setPosition(backGroundImage.getX() + (50 / 1), backGroundImage.getY() + backGroundImage.getHeight() - ((200) / 1));
+
+        resetHelp.setVisible(false);
+        resetHelp.setChecked(false);
+
+        resetHelp.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (!event.getType().equals("touchUp")) {
+
+                    if (resetHelp.isChecked()) {
+                        GamePreferences.resetPhaseInfo();
+                    }
+                }
+            }
+        });
+
+        stage.addActor(resetHelp);
+    }
 
     private void initializeWindowsSizeSelectBox(){
         List.ListStyle listStyle = new List.ListStyle();
