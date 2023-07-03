@@ -25,7 +25,7 @@ public class LanguageSupport extends Observable {
         screenWidth = Gdx.graphics.getWidth();
         group = new Group();
 
-        group.addActor(initializeChinaButton());
+//        group.addActor(initializeChinaButton());
         group.addActor(initializeFranceButton());
         group.addActor(initializeGermanyButton());
         group.addActor(initializeSpainButton());
@@ -154,7 +154,7 @@ public class LanguageSupport extends Observable {
         spainButton.setSize(60  / 1,40  / 1);
         spainButton.setVisible(true);
 
-        spainButton.setPosition(screenWidth - (122 / 1),
+        spainButton.setPosition(screenWidth - (184 / 1),
                 10  / 1);
 
         spainButton.addListener(new ClickListener() {
@@ -188,7 +188,7 @@ public class LanguageSupport extends Observable {
         germanyButton.setSize(60 / 1,40  / 1);
         germanyButton.setVisible(true);
 
-        germanyButton.setPosition(screenWidth - (60 / 1),
+        germanyButton.setPosition(screenWidth - (122 / 1),
                 10 / 1);
 
         germanyButton.addListener(new ClickListener() {
