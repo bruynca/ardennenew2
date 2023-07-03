@@ -426,7 +426,8 @@ public class GameMenu extends Observable {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (!event.getType().equals("touchUp")) {
-                    //Gdx.net.openURI(GamePreferences.getGameManualURL());
+                   String url="https://bruinbeargames.com/ardenne/pdf/bastognebreakoutmanual.pdf";
+                   Gdx.net.openURI(url);
                 }
             }
         });
