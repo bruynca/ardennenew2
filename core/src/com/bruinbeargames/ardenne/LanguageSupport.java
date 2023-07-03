@@ -2,6 +2,8 @@ package com.bruinbeargames.ardenne;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.I18NBundleLoader;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -11,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.I18NBundle;
 
+import java.util.Locale;
 import java.util.Observable;
 
 public class LanguageSupport extends Observable {
@@ -95,9 +98,10 @@ public class LanguageSupport extends Observable {
             public void clicked(InputEvent event, float x, float y) {
                 if (!event.getType().equals("touchUp")) {
                     assetManager = new AssetManager();
-                    assetManager.load("i18n/language_fr", I18NBundle.class);
+                    I18NBundleLoader.I18NBundleParameter param = new I18NBundleLoader.I18NBundleParameter(Locale.FRANCE, "UTF-8");
+                    assetManager.load("i18n/language_fr", I18NBundle.class,param);
                     assetManager.finishLoading();
-                    GameMenuLoader.instance.localization = assetManager.get("i18n/language_fr", I18NBundle.class);
+                    GameMenuLoader.instance.localization = (assetManager.get("i18n/language_fr"));
                     setChanged();
                     notifyObservers(EventMessages.LANGUAGE_CHANGED);
 
