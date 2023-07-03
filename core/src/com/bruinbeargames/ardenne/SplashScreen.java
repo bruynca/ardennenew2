@@ -27,7 +27,7 @@ public class SplashScreen {
     Texture bruinbearLogo;
     Logo logo;
 
-    private final AssetManager assetManager;
+    private  AssetManager assetManager;
     public AssetManager soundsManager;
     public AssetManager effectsManager;
     private AssetManager mapsManager;
@@ -41,7 +41,7 @@ public class SplashScreen {
     private TextureRegion menuimage = null;
     private boolean beenHere;
     public final BitmapFont font = new BitmapFont();
-    private final Stage stage;
+    private  Stage stage;
     private float screenHeight;
     private float screenWidth;
     private String status;
@@ -84,14 +84,16 @@ public class SplashScreen {
         gameMenuManager.load("menus/flags.txt", TextureAtlas.class);
         gameMenuManager.load("menus/victory.txt", TextureAtlas.class);
         gameMenuManager.load("fonts/chinese24.fnt", BitmapFont.class);
-        gameMenuManager.load("i18n/language", I18NBundle.class);
+        String language = "i18n/"+GamePreferences.getLanguage();
+        gameMenuManager.load(language, I18NBundle.class);
 //        gameMenuManager.load("console/uiskin.atlas", TextureAtlas.class);
         gameMenuManager.load("menus/gameselectionbuttons.txt", TextureAtlas.class);
 
         gameMenuManager.finishLoading();
         GameMenuLoader.instance.assignAssets(gameMenuManager);
         atlas = gameMenuManager.get("menus/gamemenu.txt");
-        GameMenuLoader.instance.localization = gameMenuManager.get("i18n/language", I18NBundle.class);
+//        language = "i18n/"+GamePreferences.getLanguage();
+        GameMenuLoader.instance.localization = gameMenuManager.get(language, I18NBundle.class);
 
         soundsManager = new AssetManager();
         effectsManager = new AssetManager();

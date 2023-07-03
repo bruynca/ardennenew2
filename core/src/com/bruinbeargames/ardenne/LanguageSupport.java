@@ -66,6 +66,8 @@ public class LanguageSupport extends Observable {
                     assetManager.load("i18n/language", I18NBundle.class);
                     assetManager.finishLoading();
                     GameMenuLoader.instance.localization = assetManager.get("i18n/language", I18NBundle.class);
+                    GamePreferences.putLanguage("language");
+
                     setChanged();
                     notifyObservers(EventMessages.LANGUAGE_CHANGED);
 
@@ -102,6 +104,7 @@ public class LanguageSupport extends Observable {
                     assetManager.load("i18n/language_fr", I18NBundle.class,param);
                     assetManager.finishLoading();
                     GameMenuLoader.instance.localization = (assetManager.get("i18n/language_fr"));
+                    GamePreferences.putLanguage("language_fr");
                     setChanged();
                     notifyObservers(EventMessages.LANGUAGE_CHANGED);
 
@@ -112,38 +115,6 @@ public class LanguageSupport extends Observable {
         return franceButton;
     }
 
-    private Button initializeChinaButton() {
-
-        Button.ButtonStyle style = new Button.ButtonStyle ();
-
-        style.up = new TextureRegionDrawable(new TextureRegion(GameMenuLoader.instance.flags.assets.get("china")));
-        style.down = new TextureRegionDrawable(new TextureRegion(GameMenuLoader.instance.flags.assets.get("china")));
-        style.checked = new TextureRegionDrawable(new TextureRegion(GameMenuLoader.instance.flags.assets.get("china")));
-        style.over = new TextureRegionDrawable(new TextureRegion(GameMenuLoader.instance.flags.assets.get("chinaover")));
-
-        Button chinaButton = new Button(style);
-        chinaButton.setSize(60 *(1 / 1),40 *(1 / 1));
-        chinaButton.setVisible(true);
-
-        chinaButton.setPosition(screenWidth - (184 / 1),
-                10 / 1);
-
-        chinaButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                if (!event.getType().equals("touchUp")) {
-                    assetManager = new AssetManager();
-                    assetManager.load("i18n/language_cn", I18NBundle.class);
-                    assetManager.finishLoading();
-                    GameMenuLoader.instance.localization = assetManager.get("i18n/language_cn", I18NBundle.class);
-                    setChanged();
-                    notifyObservers(EventMessages.LANGUAGE_CHANGED);
-                }
-            }
-        });
-
-        return chinaButton;
-    }
 
     private Button initializeSpainButton() {
 
@@ -169,6 +140,8 @@ public class LanguageSupport extends Observable {
                     assetManager.load("i18n/language_es", I18NBundle.class);
                     assetManager.finishLoading();
                     GameMenuLoader.instance.localization = assetManager.get("i18n/language_es", I18NBundle.class);
+                    GamePreferences.putLanguage("language_es");
+
                     setChanged();
                     notifyObservers(EventMessages.LANGUAGE_CHANGED);
 
@@ -202,6 +175,8 @@ public class LanguageSupport extends Observable {
 
                     assetManager = new AssetManager();
                     assetManager.load("i18n/language_de", I18NBundle.class);
+                    GamePreferences.putLanguage("language_de");
+
                     assetManager.finishLoading();
                     GameMenuLoader.instance.localization = assetManager.get("i18n/language_de", I18NBundle.class);
                     setChanged();
@@ -212,5 +187,38 @@ public class LanguageSupport extends Observable {
 
         return germanyButton;
     }
+    private Button initializeChinaButton() {
+
+        Button.ButtonStyle style = new Button.ButtonStyle ();
+
+        style.up = new TextureRegionDrawable(new TextureRegion(GameMenuLoader.instance.flags.assets.get("china")));
+        style.down = new TextureRegionDrawable(new TextureRegion(GameMenuLoader.instance.flags.assets.get("china")));
+        style.checked = new TextureRegionDrawable(new TextureRegion(GameMenuLoader.instance.flags.assets.get("china")));
+        style.over = new TextureRegionDrawable(new TextureRegion(GameMenuLoader.instance.flags.assets.get("chinaover")));
+
+        Button chinaButton = new Button(style);
+        chinaButton.setSize(60 *(1 / 1),40 *(1 / 1));
+        chinaButton.setVisible(true);
+
+        chinaButton.setPosition(screenWidth - (62 / 1),
+                10 / 1);
+
+        chinaButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (!event.getType().equals("touchUp")) {
+                    assetManager = new AssetManager();
+                    assetManager.load("i18n/language_cn", I18NBundle.class);
+                    assetManager.finishLoading();
+                    GameMenuLoader.instance.localization = assetManager.get("i18n/language_cn", I18NBundle.class);
+                    setChanged();
+                    notifyObservers(EventMessages.LANGUAGE_CHANGED);
+                }
+            }
+        });
+
+        return chinaButton;
+    }
+
 }
 

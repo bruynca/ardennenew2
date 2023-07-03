@@ -141,9 +141,10 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 		gd = new GestureDetector(this);
 		batch = new SpriteBatch();
 //		Hex.loadHexes();
-		GamePreferences gamePreferences = new GamePreferences();
+//		GamePreferences gamePreferences = new GamePreferences();
 
 		CreateInputProcessors();
+		GamePreferences gamePreferences = new GamePreferences();
 		splashScreen = new SplashScreen();
 		i18NBundle = GameMenuLoader.instance.localization;
 		VisUI.load();

@@ -38,8 +38,8 @@ public class GameMenuLoader implements Disposable, AssetErrorListener {
         gameButtons = new GameButtons(atlas);
         atlas = assetManager.get("menus/victory.txt");
         victory = new Victory(atlas);
-
-        localization = assetManager.get("i18n/language", I18NBundle.class);
+        String language = "i18n/"+GamePreferences.getLanguage();
+        localization = assetManager.get(language, I18NBundle.class);
         font = assetManager.get("fonts/chinese24.fnt", BitmapFont.class);
     }
 

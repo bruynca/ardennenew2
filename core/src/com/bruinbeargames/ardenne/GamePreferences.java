@@ -26,6 +26,7 @@ public class GamePreferences {
     private static String buildNumber = "1.0.0.0";
     private static String gameDir = "bruinbeargames/ardenne/savedgames/";
     String strIPAddress = "IPAddress";
+    String strLanguage = "language";
 
 
     public GamePreferences() {
@@ -222,6 +223,19 @@ public class GamePreferences {
             prefs.flush();
         }
         return ipAddress;
+    }
+    public static String getLanguage() {
+        String language = prefs.getString(instance.strLanguage);
+        if (language.isEmpty()) {
+            language = "language";
+            prefs.putString(instance.strLanguage, language);
+            prefs.flush();
+        }
+        return language;
+    }
+    public static void putLanguage(String language){
+        prefs.putString(instance.strLanguage, language);
+        prefs.flush();
     }
 
 
