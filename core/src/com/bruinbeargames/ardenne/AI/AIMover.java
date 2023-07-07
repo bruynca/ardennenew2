@@ -6,6 +6,7 @@ import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.UI.EventAI;
 import com.bruinbeargames.ardenne.Unit.Unit;
+import com.bruinbeargames.ardenne.WinModal;
 
 import java.util.ArrayList;
 
@@ -60,6 +61,11 @@ public class AIMover {
             ix++;
         }
         aiOrders.remove(arrREmove);
-        AIExecute.instance.moveAndMOA(aiOrders);
+        if (aiOrders.arrHexMoveTo.size() == 0){
+            EventAI.instance.hide();
+            NextPhase.instance.nextPhase();
+      }else {
+            AIExecute.instance.moveAndMOA(aiOrders);
+        }
     }
 }

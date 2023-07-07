@@ -223,7 +223,9 @@ public class AIReinforcementScenario1 implements Observer {
 
         AIOrders aiEmpty  = new AIOrders();
         ArrayList<AIOrders> arrAIWork = AIOrders.removeDupeMoveToHexes(arrStart,arrAllowDuplicates);
-
+        if (arrAIWork.size() == 0){
+            arrAIWork.addAll(arrStart);
+        }
         ArrayList<HexInt> arrHexStackCnt =  AIUtil.setStackCount(isAllies,arrAIWork, aiEmpty);
         arrAiOrdersBastogne = AIUtil.checkStaking(arrHexStackCnt, arrAIWork);
 
@@ -511,6 +513,9 @@ public class AIReinforcementScenario1 implements Observer {
         type = AIScorer.Type.ReinEttlebruck;
         arrAiOrdersEttleBruck.clear();
         ArrayList<AIOrders> arrNoDupes= AIOrders.removeDupeMoveToHexes(arrStart,arrAllowDuplicates);
+        if (arrNoDupes.size() == 0){
+            arrNoDupes.addAll(arrStart);
+        }
         /**
          *  add up score
          */
