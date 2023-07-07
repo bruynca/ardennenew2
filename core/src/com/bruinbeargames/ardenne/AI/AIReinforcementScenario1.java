@@ -3,10 +3,12 @@ package com.bruinbeargames.ardenne.AI;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.bruinbeargames.ardenne.GameLogic.Reinforcement;
+import com.bruinbeargames.ardenne.GameLogic.SignPost;
 import com.bruinbeargames.ardenne.GameLogic.Supply;
 import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.Hex.HexInt;
+import com.bruinbeargames.ardenne.Hex.HexSurround;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.ObserverPackage;
 import com.bruinbeargames.ardenne.Unit.Unit;
@@ -147,6 +149,13 @@ public class AIReinforcementScenario1 implements Observer {
         arrReinDestBastogneLimit.add(hexWiltz);
         arrReinDestBastogneLimit.addAll(hexWiltz.getSurround());
         AIUtil.RemoveDuplicateHex(arrReinDestBastogneLimit);
+        if (SignPost.instance.turnPlayed == NextPhase.instance.getTurn()){
+            ArrayList<Hex> arrWork = new ArrayList<>();
+            for (Hex hex:arrReinDestBastogneLimit){
+                arrWork.addAll(HexSurround.GetSurroundMapArr(hex,6));
+            }
+            AIUtil.RemoveDuplicateHex(arrWork);
+        }
         Gdx.app.log("AIReinforcementsScenario1", "destinations ="+ arrReinDestBastogneLimit.size());
         arrUnits.clear();
         arrUnits.addAll(Reinforcement.instance.getReinforcementsAvailable(hexBastogneReinforceEntry));
@@ -454,6 +463,14 @@ public class AIReinforcementScenario1 implements Observer {
         arrReinDestBastogneLimit.addAll(Supply.instance.getGermanBottlenecks());
         arrReinDestBastogneLimit.addAll(hexWiltz.getSurround());
         AIUtil.RemoveDuplicateHex(arrReinDestBastogneLimit);
+        if (SignPost.instance.turnPlayed == NextPhase.instance.getTurn()){
+            ArrayList<Hex> arrWork = new ArrayList<>();
+            for (Hex hex:arrReinDestBastogneLimit){
+                arrWork.addAll(HexSurround.GetSurroundMapArr(hex,6));
+            }
+            AIUtil.RemoveDuplicateHex(arrWork);
+        }
+
         Gdx.app.log("AIReinforcementsScenario1", "ettlebruck destinations ="+ arrReinDestBastogneLimit.size());
         arrUnits.clear();
         arrUnits.addAll(Reinforcement.instance.getReinforcementsAvailable(hexEttlebruckReinforceEntry));
