@@ -263,10 +263,12 @@ private Label alliedResults;
         background.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+
                 if (!event.getType().equals("touchUp")) {
+                    Gdx.app.log("combatdisplayresults","clicked");
                     if (isAttackDisplayed && isDefenseDisplayed){
                         CombatDisplay.instance.end();
-                        Gdx.app.log("combatdisplayresults","clicked");
+                        Gdx.app.log("combatdisplayresults","call attack");
                         attack.afterDisplay(this);
                     }
                     hide();
@@ -304,7 +306,7 @@ private Label alliedResults;
             public void clicked(InputEvent event, float x, float y) {
                 if (!event.getType().equals("touchUp")) {
 
-                    hide();
+                  //  hide();
                 }
             }
 
@@ -336,7 +338,7 @@ private Label alliedResults;
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (!event.getType().equals("touchUp")) {
-                    hide();
+                //   hide();
                 }
             }
 
@@ -371,7 +373,7 @@ private Label alliedResults;
             public void clicked(InputEvent event, float x, float y) {
                 if (!event.getType().equals("touchUp")) {
 
-                    hide();
+                   // hide();
                 }
             }
 
@@ -409,7 +411,7 @@ private Label alliedResults;
             public void clicked(InputEvent event, float x, float y) {
                 if (!event.getType().equals("touchUp")) {
 
-                    hide();
+                  //  hide();
                 }
             }
 

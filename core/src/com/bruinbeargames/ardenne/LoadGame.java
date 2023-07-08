@@ -102,10 +102,10 @@ public LoadGame(String gameToLoad, boolean isSpecial) {
      for (Element xmlunit: xmlUnitAll)
     {
    	    int ID  = Integer.parseInt(xmlunit.getChildByName("ID").getAttribute("value"));
-// 	  	if (ID == 85){
-// 	  		int i=0;
-//
-//		}
+ 	  	if (ID == 17){
+ 	  		int i=0;
+
+		}
  	    Unit unit=Unit.getUnitByID(ID);
  	    if (arrCheck.contains(unit))
  	    {
@@ -134,6 +134,14 @@ public LoadGame(String gameToLoad, boolean isSpecial) {
 		boolean isDG = Boolean.parseBoolean(xmlunit.getChildByName("dg").getAttribute("value"));
 		if (isDG) {
 			unit.setDisorganized();
+		}
+		if (unit.isArtillery) {
+			boolean isLimber = Boolean.parseBoolean(xmlunit.getChildByName("limber").getAttribute("value"));
+			if (isLimber) {
+				unit.setArtilleryLimbered();
+			} else {
+				unit.setArtilleryUnLimbered();
+			}
 		}
 		if (xmlunit.hasChild("attacked")) {
 			unit.hasAttackedThisTurn = Boolean.parseBoolean(xmlunit.getChildByName("attacked").getAttribute("value"));

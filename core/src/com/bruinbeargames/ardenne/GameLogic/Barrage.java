@@ -456,7 +456,7 @@ public class Barrage {
 	public ArrayList<Unit> getAllShooters(Hex hex) {
 		ArrayList<Unit> unitArrayList = new ArrayList<>();
 		for (Unit unit:arrArtilleryShooters){
-			ArrayList<Hex> arrHexSearch = HexHelper.getSurroundinghexes(unit.getHexOccupy(), 4);
+			ArrayList<Hex> arrHexSearch = HexHelper.getSurroundinghexes(unit.getHexOccupy(), unit.getRange());
 			if (arrHexSearch.contains(hex)){
 				unitArrayList.add(unit);
 			}

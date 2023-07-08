@@ -709,6 +709,7 @@ public class Unit {
 		final String strCurrentDefense = "<currentDefense value=\"";
 		final String strAtStartAttack = "<atstartAttack value=\"";
 		final String strAtStartDefense = "<atstartDefense value=\"";
+		final String strLimbered = "<limber value=\"";
 
 		final String strMoveTurn = "<turnMoved value=\"";
 		final String strOTTurn = "<turnOT value=\"";
@@ -761,6 +762,13 @@ public class Unit {
 
 			sXML.append(strCanAttack);
 			if (unit.canAttackThisTurn) {
+				sXML.append("true");
+			}else{
+				sXML.append("false");
+			}
+			sXML.append(strTerm);
+			sXML.append(strLimbered);
+			if (unit.isLimbered()) {
 				sXML.append("true");
 			}else{
 				sXML.append("false");
