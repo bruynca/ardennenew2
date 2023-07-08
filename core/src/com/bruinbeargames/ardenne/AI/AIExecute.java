@@ -257,7 +257,6 @@ public class AIExecute {
                 Combat.instance.createAttackDisplay(hexAttack);
                 Combat.instance.setAttackForAI(attack);
                 Gdx.app.log("AIExCombat ", "update arrUnits=" + arrUnitsOnAttack);
-
                 for (Unit unit : arrUnitsOnAttack) {
                     unit.getMapCounter().getCounterStack().hilite();
                     Combat.instance.addUnit(unit);

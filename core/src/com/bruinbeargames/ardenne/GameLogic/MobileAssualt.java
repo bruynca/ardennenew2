@@ -68,7 +68,12 @@ public class MobileAssualt implements Observer {
         this.unitMOA = unit;
         this.isAI = isAI;
         isAllies = unit.isAllies;
-        arrHexMobile.addAll(arrHex);
+        for (Hex hex:arrHex){
+            if (getAttackFromHex(hex) != null){
+                arrHexMobile.add(hex);
+            }
+        }
+  //      arrHexMobile.addAll(arrHex);
 
         for (Hex hex:arrHexMobile){
             if (!isAI) {

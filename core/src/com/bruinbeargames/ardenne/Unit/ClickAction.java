@@ -3,6 +3,7 @@ package com.bruinbeargames.ardenne.Unit;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.utils.I18NBundle;
+import com.bruinbeargames.ardenne.AI.AIUtil;
 import com.bruinbeargames.ardenne.GameLogic.AdvanceAfterCombat;
 import com.bruinbeargames.ardenne.GameLogic.Combat;
 import com.bruinbeargames.ardenne.GameLogic.MobileAssualt;
@@ -278,6 +279,7 @@ public class ClickAction implements Observer {
         }
         ArrayList<Hex> arrHexMove = new ArrayList<>();
         arrHexMove.addAll(unitMove.getMovePossible());
+        AIUtil.RemoveDuplicateHex(arrHexMove);
         ArrayList<Hex> arrHexMobileAssualt = new ArrayList<>();
         for (Hex hex:unitMove.getMovePossible()){
             if ((hex.checkAlliesInHex() && unit.isAxis) || (hex.checkAxisInHex() && unit.isAllies)){
