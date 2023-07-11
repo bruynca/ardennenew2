@@ -299,9 +299,6 @@ public class NextPhase {
                     isAlliedPlayer = false;
                     Move.instance.endMove(false, false);
 //                    Hex.checkStacking();
-                    if (SecondPanzerHalts.instance.is2NDPanzerHalted()){
-                        SecondPanzerHalts.instance.restore();
-                    }
  //                   Hex.checkStacking();
  //                   OverStacking.instance.check();
                     nextPhase();
@@ -354,7 +351,9 @@ public class NextPhase {
                     if (LehrHalts.instance.isLehrHalted()){
                         LehrHalts.instance.restore();
                     }
-
+                    if (SecondPanzerHalts.instance.is2NDPanzerHalted()){
+                        SecondPanzerHalts.instance.restore();
+                    }
                     nextPhase();
                     break;
                 case GERMAN_SUPPLY:

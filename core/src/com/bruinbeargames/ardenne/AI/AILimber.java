@@ -58,14 +58,17 @@ public class AILimber implements Observer {
         if (NextPhase.instance.getTurn() < 3){
             limberAll();
             return;
+        }else{
+            unLimberAll();
+            return;
         }
-        ArrayList<AIOrders> arrBasic =  loadarrAIBasic(); // movement and move and bombard
+ /*       ArrayList<AIOrders> arrBasic =  loadarrAIBasic(); // movement and move and bombard
         ArrayList<AIOrders> arrStay = loadBestBombard(); // stay and bombard
         EventOK.instance.addObserver(this);
         EventAI.instance.hide();
-        EventOK.instance.show(i18NBundle.format("ailimberend"));
+        EventOK.instance.show(i18NBundle.format("ailimberend")); */
 
-        return;
+        //return;
     }
 
     /**
@@ -76,6 +79,26 @@ public class AILimber implements Observer {
         for (Unit unit:arrArtillery){
             if (!unit.isEliminated()) {
                 unit.setArtilleryLimbered();
+                unit.getMapCounter().getCounterStack().setPoints();
+                Counter.rePlace(unit.getHexOccupy());
+                if (i == 0) {
+                    i++;
+                    CenterScreen.instance.start(unit.getHexOccupy());
+                }
+            }
+        }
+        EventOK.instance.addObserver(this);
+        EventOK.instance.show(i18NBundle.format("ailimberend"));
+
+    }
+    /**
+     *  limber all the artillery
+     */
+    private void unLimberAll() {
+        int i=0;
+        for (Unit unit:arrArtillery){
+            if (!unit.isEliminated()) {
+                unit.setArtilleryUnLimbered();
                 unit.getMapCounter().getCounterStack().setPoints();
                 Counter.rePlace(unit.getHexOccupy());
                 if (i == 0) {

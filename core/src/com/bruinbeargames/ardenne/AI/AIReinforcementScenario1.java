@@ -388,17 +388,21 @@ public class AIReinforcementScenario1 implements Observer {
          */
         ArrayList<AIOrders> arrWorkAI = new ArrayList<>();
         ArrayList<Hex> arrNoCombatHex = new ArrayList<>();
-        ArrayList<AIOrders> arrAIBasicBombard = new ArrayList<>();
         for (AIOrders aiO:arrAIBasicMoveTo){
             /**
-             *  from getBestBombard in AILimber
+             *  from ge Bestin range of bastogne
              */
-            for (int ix=0;ix< aiO.arrUnit.size();ix++){;
-                ArrayList<Hex> arrHex = AIBarrageHandler.instance.getArrayOfHexesCanBombard(aiO.arrUnit.get(ix),aiO.arrHexMoveTo.get(ix));
-                int score=0;
-                if (arrHex != null){
-                    for (Hex hex : arrHex) {
-                        score += hex.getAttackPointsInHex();
+            int score=0;
+            for (Unit unit:aiO.arrUnit){
+                Hex hexLook = aiO.arrHexMoveTo.get(aiO.arrUnit.indexOf(unit));
+                ArrayList<Hex> arrHex = HexSurround.GetSurroundMapArr(hexLook,unit.getRange());
+                AIUtil.RemoveDuplicateHex(arrHex);
+                for (Hex hex:arrHex){
+                    if (hex == Hex.hexBastogne1 || hex == Hex.hexBastogne2){
+                        score +=10;
+                    }
+                    if (Hex.hexBastogne1.getSurround().contains(hex) || Hex.hexBastogne2.getSurround().contains(hex)){
+                        score +=5;
                     }
                 }
                 aiO.setScoreBombard(score);
@@ -424,15 +428,20 @@ public class AIReinforcementScenario1 implements Observer {
                     if (hex.isCity()) {
                         score += 8;
                     }
-                }
+                    if (aiBastogne.arrHexMoveTo.contains(hex)){
+                        score += 8;
+                    }
 
-                ai.setScoreBombard(score);
+                }
             }
+            ai.setScoreBombard(score);
         }
+        ArrayList<AIOrders> arrAIBasicBombard = new ArrayList<>();
+
         i=0;
         for (AIOrders ai:arrAIBasicMoveTo) {
             for (i = 0; i < arrAIBasicBombard.size(); i++) {
-                if (ai.scoreBombard > arrAIBasicMoveTo.get(i).scoreBombard){
+                if (ai.scoreBombard > arrAIBasicBombard.get(i).scoreBombard){
                     break;
                 }
             }
