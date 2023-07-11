@@ -5,9 +5,11 @@ import com.bruinbeargames.ardenne.GameLogic.Supply;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.ObserverPackage;
+import com.bruinbeargames.ardenne.UI.EventAI;
 import com.bruinbeargames.ardenne.Unit.Unit;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Observable;
 import java.util.Observer;
@@ -95,7 +97,11 @@ public class AIScenario1Turn3to6 implements Observer {
         }
         arrHexLimit = limitHex(bastogneWiltzDefenseStatus);
         ixWorkingOn = 0;
-        doGroup(ixWorkingOn);
+        if (arrUnitKampgruppe.length > 0){
+            doGroup(ixWorkingOn);
+        }else{
+            doFinal();
+        }
     }
 
     /**
@@ -131,6 +137,11 @@ public class AIScenario1Turn3to6 implements Observer {
          */
         Gdx.app.log("AIScenario1Turn3to6", "doFinal");
         AIOrders aiFinal;
+        if (arrOrders.length == 0){
+            EventAI.instance.hide();
+            NextPhase.instance.nextPhase();
+            return;
+        }
         if (arrOrders.length == 1){
             aiFinal = arrOrders[0].get(0);
         }else{
