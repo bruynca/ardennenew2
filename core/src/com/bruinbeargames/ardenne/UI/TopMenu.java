@@ -174,8 +174,8 @@ public class TopMenu {
 
 
                 // Mac
-
-                Gdx.net.openURI("https://steamcdn-a.akamaihd.net/steam/apps/1294000/manuals/Krim_Manual.pdf?t=1593984784");
+                String url="https://bruinbeargames.com/ardenne/pdf/bastognebreakoutmanual.pdf";
+                Gdx.net.openURI(url);
 
                 // Windows
                 /**

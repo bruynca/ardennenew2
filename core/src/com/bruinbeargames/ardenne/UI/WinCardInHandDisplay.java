@@ -64,7 +64,8 @@ public class WinCardInHandDisplay {
         i18NBundle = GameMenuLoader.instance.localization;
         Gdx.app.log("WinCardInHandDisplay", "Constructor allied="+isAllies);
         arrCardToChoose.clear();
-        if (isAllies) {
+        arrCardToChoose.clear();
+       if (isAllies) {
             arrCardToChoose.addAll(CardHandler.instance.getArrCardsChosenAllied());
         }else{
             arrCardToChoose.addAll(CardHandler.instance.getArrCardsChosenGerman());
