@@ -305,8 +305,15 @@ private Label alliedResults;
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (!event.getType().equals("touchUp")) {
+                    if (isAttackDisplayed && isDefenseDisplayed){
+                        CombatDisplay.instance.end();
+                        Gdx.app.log("combatdisplayresults","call attack");
+                        attack.afterDisplay(this);
+                        hide();
+                    }
 
-                  //  hide();
+
+                    //  hide();
                 }
             }
 
@@ -338,7 +345,12 @@ private Label alliedResults;
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (!event.getType().equals("touchUp")) {
-                //   hide();
+                    if (isAttackDisplayed && isDefenseDisplayed){
+                        CombatDisplay.instance.end();
+                        Gdx.app.log("combatdisplayresults","call attack");
+                        attack.afterDisplay(this);
+                        hide();
+                    }
                 }
             }
 
@@ -372,8 +384,12 @@ private Label alliedResults;
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (!event.getType().equals("touchUp")) {
-
-                   // hide();
+                    if (isAttackDisplayed && isDefenseDisplayed){
+                        CombatDisplay.instance.end();
+                        Gdx.app.log("combatdisplayresults","call attack");
+                        attack.afterDisplay(this);
+                        hide();
+                    }
                 }
             }
 
@@ -410,8 +426,12 @@ private Label alliedResults;
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 if (!event.getType().equals("touchUp")) {
-
-                  //  hide();
+                    if (isAttackDisplayed && isDefenseDisplayed){
+                        CombatDisplay.instance.end();
+                        Gdx.app.log("combatdisplayresults","call attack");
+                        attack.afterDisplay(this);
+                        hide();
+                    }
                 }
             }
 
