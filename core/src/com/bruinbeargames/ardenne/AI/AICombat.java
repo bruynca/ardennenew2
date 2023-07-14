@@ -35,7 +35,10 @@ public class AICombat {
     }
 
     public void doCombatExecute(){
+
         if (arrToBeScored.size() > 0) {
+            Gdx.app.log("AICombat", "docombat execute siz >0");
+
             AIExecute.instance.Combat(arrToBeScored);
         }else{
             EventAI.instance.hide();

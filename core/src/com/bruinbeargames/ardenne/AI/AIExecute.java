@@ -188,6 +188,8 @@ public class AIExecute {
          * @param arrIn ArrayList Of AOIORDERS Combat
          */
         AIExCombat(ArrayList<AIOrdersCombat> arrIn) {
+            Gdx.app.log("AIExecute", "AIEXsetArrToBeScored");
+
             aiExCombat = this;
             aiOrdersCombats.addAll(arrIn);
             if (aiOrdersCombats.get(0).getUnits().get(0).isAllies) {

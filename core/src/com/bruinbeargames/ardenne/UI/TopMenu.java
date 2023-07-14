@@ -406,7 +406,7 @@ public class TopMenu {
         });
 
         cardButton.addListener(new TextTooltip(
-                GameMenuLoader.instance.localization.get("objectivestooltip"),
+                GameMenuLoader.instance.localization.get("cardsinhandtooltip"),
                 tooltipStyle));
     }
     private void initializeTECButton(int x) {
@@ -439,7 +439,7 @@ public class TopMenu {
         });
 
         tecButton.addListener(new TextTooltip(
-                GameMenuLoader.instance.localization.get("objectivestooltip"),
+                GameMenuLoader.instance.localization.get("tectooltip"),
                 tooltipStyle));
     }
 

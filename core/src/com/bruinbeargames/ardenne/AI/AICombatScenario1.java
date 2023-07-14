@@ -31,6 +31,7 @@ public class AICombatScenario1 {
     public void doInitialCombatTurn1to3(boolean isAllies) {
         Gdx.app.log("AICombatScenario1", "doInitialCombatTurn1to3");
         this.isAllies = isAllies;
+        arrToBeScored.clear();
         for (Hex hex : Combat.instance.getAttackedHexesForAI(isAllies)) {
             ArrayList<Unit> arrUnits = Combat.instance.getUnitsCanAttackForAI(hex,isAllies);
             AIOrdersCombat aiOrdersCombat = new AIOrdersCombat(arrUnits, hex);

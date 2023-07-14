@@ -217,9 +217,6 @@ public class AIOrders {
             int ix =0;
             boolean isOK = true;
             for (Hex hex: aiO.arrHexMoveTo){
-                if (hex == Hex.hexTable[7][10]){
-                    int b=0;
-                }
                 HexUnits.add(hex,aiO.arrUnit.get(ix));
                 ix++;
                 for (Unit unit:hex.getUnitsInHex()){

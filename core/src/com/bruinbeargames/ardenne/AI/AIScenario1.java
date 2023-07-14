@@ -5,6 +5,7 @@ import com.bruinbeargames.ardenne.GameLogic.Supply;
 import com.bruinbeargames.ardenne.Hex.Bridge;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.NextPhase;
+import com.bruinbeargames.ardenne.UI.EventAI;
 import com.bruinbeargames.ardenne.Unit.Unit;
 import com.bruinbeargames.ardenne.Unit.UnitMove;
 
@@ -565,7 +566,7 @@ public class AIScenario1 {
             }
             arrSortedAscending.add(i,aiO);
         }
-        arrSortedAscending.get(0).display();
+ //       arrSortedAscending.get(0).display();
         ArrayList<AIOrders> arrTop = AIOrders.gettopPercent(arrSortedAscending, .3f);
         AISupply.instance.doSupplyAnalysis(arrTop, true);
         return;
@@ -581,7 +582,11 @@ public class AIScenario1 {
          */
         int ix=0;
         ArrayList<Unit> arrREmove  = new ArrayList<>();
-
+        if (arrNodupes.size() == 0){
+            EventAI.instance.hide();
+            NextPhase.instance.nextPhase();
+            return;
+        }
         for (Unit unit : arrNodupes.get(0).arrUnit) {
             if (unit.getHexOccupy() == AIReinforcementScenario1.hexWiltz) {
                 arrREmove.add(unit);

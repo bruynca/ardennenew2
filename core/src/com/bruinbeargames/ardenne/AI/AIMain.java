@@ -157,11 +157,11 @@ public class AIMain implements Observer {
                 break;
             case ALLIED_BARRAGE_ATTACK:
                 EventPopUp.instance.hide();
-                aiCombat.doCombatAnalysis(true);
                 aiBarrageHandler.doAlliedOffense();
                 break;
             case ALLIED_COMBAT:
                 Combat.instance.Intialize(true, true);
+                aiCombat.doCombatAnalysis(true);
                 aiCombat.doCombatExecute();
                 break;
             case ALLIED_COMBAT_END:
