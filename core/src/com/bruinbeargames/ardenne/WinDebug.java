@@ -55,7 +55,7 @@ public class WinDebug {
         float y = (float) height - textButton.getHeight();
 //		textButton.remove();
         textButton.setPosition(x, y);
-        guiStage.addActor(textButton);
+ //       guiStage.addActor(textButton);
     }
     boolean clicked = true;
     public void ClickButton(InputEvent event, float xIn, float yIN)

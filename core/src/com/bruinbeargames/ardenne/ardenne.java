@@ -131,7 +131,7 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 		GameAnalytics gameAnalytics = new GameAnalytics();
 		Analytics analytics;
 		analytics = new Analytics(GamePreferences.instance.getBuildNumber());
-//		analytics.registerUncaughtExceptionHandler();
+		analytics.registerUncaughtExceptionHandler();
 
 
 		music = new MusicGame();

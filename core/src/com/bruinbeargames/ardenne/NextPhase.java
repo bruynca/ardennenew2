@@ -199,7 +199,7 @@ public class NextPhase {
 
 
         BottomMenu.instance.showBottomMenu();
-        SaveGame.SaveDebug("Debug "+cntDebug+" Turn="+getTurn()+" "+Phases[phase].toString()+"  ",cntDebug);
+ //       SaveGame.SaveDebug("Debug "+cntDebug+" Turn="+getTurn()+" "+Phases[phase].toString()+"  ",cntDebug);
         SaveGame.SaveLastPhase(" Last Phase",2);
         if (phase == 0){
             BottomMenu.instance.enablePhaseChange();
@@ -224,7 +224,7 @@ public class NextPhase {
     public void continuePhaseFirstTime(){ // for initial start
         BottomMenu.instance.showBottomMenu();
         setPhase();
-        SaveGame.SaveDebug("Debug "+cntDebug+" Turn="+getTurn()+" "+Phases[phase].toString()+"  ",cntDebug);
+ //       SaveGame.SaveDebug("Debug "+cntDebug+" Turn="+getTurn()+" "+Phases[phase].toString()+"  ",cntDebug);
         HelpPage.instance.nextPhase();
     }
 
