@@ -26,7 +26,7 @@ public class FontFactory {
          * FontFactory called by uNFORTUNATLY
          */
 //		TextOverlay textOverlay = new TextOverlay();
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/ariblk.TTF"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/ariblk.ttf"));
         parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
         parameter.size = 26;
         parameter.color = Color.BLACK;

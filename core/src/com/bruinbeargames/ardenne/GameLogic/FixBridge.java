@@ -188,7 +188,7 @@ public class FixBridge implements Observer {
         }else{
                 BlowBridge.instance.moveToHexStage();
 
-  //              NextPhase.instance.nextPhase();
+                NextPhase.instance.nextPhase();
             // see update for eventpopup
         }
     }

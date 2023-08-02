@@ -9,7 +9,7 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.2'
+        classpath 'com.android.tools.build:gradle:8.0.0'
         classpath 'com.mobidevelop.robovm:robovm-gradle-plugin:2.3.19'
         
 
@@ -75,7 +75,7 @@ project(":android") {
         natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86_64"
         implementation "de.golfgl.gdxgameanalytics:gdx-gameanalytics-android:$gaVersion"
         api "com.badlogicgames.gdx:gdx-ai:$aiVersion"
-        
+
     }
 }
 

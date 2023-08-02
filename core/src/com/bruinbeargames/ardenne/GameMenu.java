@@ -604,7 +604,7 @@ public class GameMenu extends Observable {
         style.font = Fonts.getFont24();
         creditsText = new Label(i18NBundle.get("creditstext"),style);
         creditsText.setSize(281/1, 44/1);
-        creditsText.setPosition(backGroundImage.getX() + ((backGroundImage.getWidth()/2) - (creditsButton.getWidth()/2)), backGroundImage.getY() + backGroundImage.getHeight() - ((150) / 1));
+        creditsText.setPosition(backGroundImage.getX() + ((backGroundImage.getWidth()/2) - (creditsButton.getWidth()/2)), backGroundImage.getY() + backGroundImage.getHeight() - ((200) / 1));
         creditsText.setVisible(false);
 
         stage.addActor(creditsText);
