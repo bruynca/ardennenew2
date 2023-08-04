@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.bruinbeargames.ardenne.GameMenuLoader;
+import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Bridge;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.NextPhase;
@@ -75,6 +76,36 @@ public class CardHandler implements Observer {
         }
 
     }
+    public void adjustForScenario(GameSetup.Scenario scenario) {
+        Gdx.app.log("CardHandler", "adjustForScenario");
+        /**
+         *  dont do anything for first scenario
+         */
+        if (scenario == GameSetup.Scenario.SecondPanzer){
+            ArrayList<CardsforGame> arrRemove = new ArrayList<>();
+            for (CardsforGame card:arrCardsAllied){
+                if (card.description.contains("2ndpanzerhalts") ||
+                    card.description.contains("2ndpanzerloses2units"))
+                  {
+                    arrRemove.add(card);
+                  }
+                if (card.description.contains("blownbridge")){
+                    card.number += 1;
+                }
+
+            }
+            arrCardsAllied.removeAll(arrRemove);
+        }
+        for (CardsforGame card:arrCardsGerman){
+             if (card.description.contains("fixbridge")){
+                card.number += 1;
+            }
+
+        }
+    }
+
+
+
 
     public void setCountAllied(int countAllied) {
         this.countAllied = countAllied;
@@ -411,6 +442,7 @@ public class CardHandler implements Observer {
             }
         }
     }
+
 }
 
 

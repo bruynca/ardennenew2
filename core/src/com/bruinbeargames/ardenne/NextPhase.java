@@ -25,6 +25,7 @@ import com.bruinbeargames.ardenne.GameLogic.MoreAmmo;
 import com.bruinbeargames.ardenne.GameLogic.MoreGermanAmmo;
 import com.bruinbeargames.ardenne.GameLogic.Move;
 import com.bruinbeargames.ardenne.GameLogic.Reinforcement;
+import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
 import com.bruinbeargames.ardenne.GameLogic.SecondPanzerHalts;
 import com.bruinbeargames.ardenne.GameLogic.SecondPanzerLoses;
 import com.bruinbeargames.ardenne.GameLogic.SignPost;
@@ -128,7 +129,10 @@ public class NextPhase {
         VictoryPopup victoryPopup = new VictoryPopup();
         ExitWest exitWest = new ExitWest();
         WinAIDisplay winAIDisplay = new WinAIDisplay();
-        aiMain = new AIMain();
+        if (GameSetup.instance.getScenario() == GameSetup.Scenario.SecondPanzer) {
+            SecondPanzerExits s = new SecondPanzerExits();
+        }
+            aiMain = new AIMain();
 
         //      CardHandler cardHandler = new CardHandler(); not here but gamesetup
         i18NBundle= GameMenuLoader.instance.localization;
@@ -192,14 +196,19 @@ public class NextPhase {
             createProgramUID();
             AccessInternet.registerGame(false);
             EventPopUp.instance.setSpecial();
-            EventPopUp.instance.show(i18NBundle.get("event1"));
+            if (GameSetup.instance.getScenario() == GameSetup.Scenario.SecondPanzer){
+                EventPopUp.instance.show(i18NBundle.get("event2"));
+            }else{
+                EventPopUp.instance.show(i18NBundle.get("event1"));
+            }
+
             return;
         }
         Reinforcement.instance.resetUnitsLoaded();
 
 
         BottomMenu.instance.showBottomMenu();
- //       SaveGame.SaveDebug("Debug "+cntDebug+" Turn="+getTurn()+" "+Phases[phase].toString()+"  ",cntDebug);
+        SaveGame.SaveDebug("Debug "+cntDebug+" Turn="+getTurn()+" "+Phases[phase].toString()+"  ",cntDebug);
         SaveGame.SaveLastPhase(" Last Phase",2);
         if (phase == 0){
             BottomMenu.instance.enablePhaseChange();

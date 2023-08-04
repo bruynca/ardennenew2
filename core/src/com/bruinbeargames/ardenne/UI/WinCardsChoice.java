@@ -190,7 +190,8 @@ public class WinCardsChoice {
         winWidth = screenWidth * winsScale;
         int xOffsett = 4;
 
-        perCard = screenWidth/ arrCardToChoose.size();
+//        perCard = screenWidth/ arrCardToChoose.size();
+        perCard = screenWidth/ 5;
         perCard -= 10; // border
         for (CardsforGame card: arrCardToChoose){
             arrCardsAllowed.add(card.getCardsAllowed());

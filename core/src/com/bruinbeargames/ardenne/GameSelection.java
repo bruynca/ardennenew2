@@ -474,11 +474,10 @@ public class GameSelection {
                         game1Label.setText(i18NBundle.get("scenario1"));
                         GameSetup.instance.setScenario(GameSetup.Scenario.Intro);
                     }else if (choice.equals("2nd Panzer Goes West")){
-                        EventOK.instance.show(i18NBundle.get("notavailable"));
-                        list.setSelected("Introduction");
-                        return;
-                       // game1Label.setText(i18NBundle.get("scenario2"));
-                       // GameSetup.instance.setScenario(GameSetup.Scenario.SecondPanzer);
+                        list.setSelected("2nd Panzer Goes West");
+                        game1Label.setText(i18NBundle.get("scenario2"));
+                        GameSetup.instance.setScenario(GameSetup.Scenario.SecondPanzer);
+                        CardHandler.instance.adjustForScenario(GameSetup.Scenario.SecondPanzer);
                     }else if (choice.equals("Bastogne Breakout")){
                         EventOK.instance.show(i18NBundle.get("notavailable"));
                         list.setSelected("Introduction");

@@ -956,6 +956,17 @@ public class Unit {
 		}
 		return arrReturn;
 	}
+	public static ArrayList<Unit> getAxis() {
+		ArrayList<Unit> arrReturn = new ArrayList<>();
+		for (Unit unit:arrGameCombatUnits)
+		{
+			if (unit.isAxis)
+			{
+				arrReturn.add(unit);
+			}
+		}
+		return arrReturn;
+	}
 	public static ArrayList<Unit> getOnBoardAllies() {
 		ArrayList<Unit> arrReturn = new ArrayList<>();
 		for (Unit unit:arrGameCombatUnits)
