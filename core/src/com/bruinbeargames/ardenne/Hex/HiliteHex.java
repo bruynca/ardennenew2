@@ -14,6 +14,7 @@ import java.util.Observer;
 
 public class HiliteHex implements Observer {
     static public HiliteHex instance;
+
     ArrayList<Hex> arrHex = new ArrayList<>();
     private static ArrayList<HexHiliteDisplay> arrHexHilite = new ArrayList<>();
     TypeHilite type;
@@ -43,6 +44,17 @@ public class HiliteHex implements Observer {
         if (typeIn != TypeHilite.Debug) {
             ardenne.instance.addObserver(this);
         }
+    }
+    public void addSecondPanzer(ArrayList<Hex> arrHexIn){
+        for (Hex hex:arrHexIn){
+            HexHiliteDisplay hh = new HexHiliteDisplay(hex, TypeHilite.MoveExit);
+            arrHexHilite.add(hh);
+//            if (typeIn == TypeHilite.Move) {
+//                hexHiliteEdge.createBorderImage(hex);
+//            }
+
+        }
+
     }
     @Override
     public void update(Observable observable, Object o) {
@@ -129,7 +141,7 @@ public class HiliteHex implements Observer {
 
 
     public  enum TypeHilite {Move,Advance,Supply,SupplyAmerican, None, Reinforcement,Range,ReinforceDisplay,
-        Debug,AI,ShowSupply, MoveExit }{
+        Debug,AI,ShowSupply,MoveExit}{
 
     }
     

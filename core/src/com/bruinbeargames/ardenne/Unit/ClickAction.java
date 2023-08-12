@@ -217,10 +217,10 @@ public class ClickAction implements Observer {
         switch(typeAction){
             case Move:
                 app.log("ClickAction", "process Move " + unit+" toHex="+hex);
-                if (type !=null && type == HiliteHex.TypeHilite.MoveExit){
-                    SecondPanzerExits.instance.exit(unit, hex);
-                    break;
-                }
+ //               if (type !=null && type == HiliteHex.TypeHilite.MoveExit){
+ //                   SecondPanzerExits.instance.exit(unit, hex);
+ //                   break;
+ //               }
                 /**
                  *  Give warning for overstacking
                  */
@@ -304,13 +304,21 @@ public class ClickAction implements Observer {
             arrHexMove.remove(Hex.hexTable[27][24]);
         }
         HiliteHex.TypeHilite type = HiliteHex.TypeHilite.Move;
-        if (GameSetup.instance.getScenario() == GameSetup.Scenario.SecondPanzer) {
-            if (SecondPanzerExits.instance.isInExit(arrHexMove)){
-                type = HiliteHex.TypeHilite.MoveExit;
+
+        hiliteHex = new HiliteHex(arrHexMove, type, this);
+        if (GameSetup.instance.getScenario() == GameSetup.Scenario.SecondPanzer){
+            if (SecondPanzerExits.instance.isInSecond(unit)) {
+                ArrayList<Hex> arrHexWork = new ArrayList<>();
+                for (Hex hex : arrHexMove) {
+                    if (SecondPanzerExits.instance.isInExit(hex)){
+                        arrHexWork.add(hex);
+                    }
+                }
+                if (arrHexWork.size() > 0){
+                    hiliteHex.addSecondPanzer(arrHexWork);
+                }
             }
         }
-
-            hiliteHex = new HiliteHex(arrHexMove, type, this);
     }
     public static int getClickActionsLeft(){
         return arrClickAction.size();

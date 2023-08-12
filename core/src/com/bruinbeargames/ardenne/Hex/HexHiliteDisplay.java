@@ -96,13 +96,7 @@ public class HexHiliteDisplay {
             image = new Image(backHiliteCannonRange);
         }else if (type != HiliteHex.TypeHilite.ShowSupply) {
             image = new Image(backHiliteCannonRange);
-        }else if (type != HiliteHex.TypeHilite.MoveExit) {
-            if (SecondPanzerExits.instance.isInExit(hex)) {
-                image = new Image(backHiliteExit);
-            }else{
-                type = HiliteHex.TypeHilite.Move;
-                image = new Image(backHiliteMove);
-            }
+
         }
         if (image != null) {
             image.setTouchable(Touchable.enabled);

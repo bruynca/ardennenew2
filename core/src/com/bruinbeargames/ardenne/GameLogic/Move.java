@@ -5,6 +5,7 @@ import com.badlogic.gdx.utils.I18NBundle;
 import com.badlogic.gdx.utils.Timer;
 import com.bruinbeargames.ardenne.ErrorGame;
 import com.bruinbeargames.ardenne.GameMenuLoader;
+import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Bridge;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.Hex.River;
@@ -190,6 +191,16 @@ public class Move extends Observable {
         float timer = steps;
 
         int i = 0;
+        Hex hexEnd = null;
+        if (GameSetup.instance.getScenario() == GameSetup.Scenario.SecondPanzer)
+        {
+            if (SecondPanzerExits.instance.isInSecond(unit)){
+                Hex hexWork = arrMove.get(arrMove.size()-1);
+                if (SecondPanzerExits.instance.isInExit(hexWork)){
+                    hexEnd = hexWork                   ;
+                }
+            }
+        }
         for (Hex hex : arrMove) {
             final Hex hexTime = hex;
             final Hex hexPrevious;
@@ -224,17 +235,18 @@ public class Move extends Observable {
         timer += .1f;
         final Unit unitDone  = unit;
         final AfterMove after = afterMove;
+        final Hex finalHexEnd = hexEnd;
         Timer.schedule(new Timer.Task() {
                            @Override
                            public void run() {
-                              afterMoveDisplay(after, unitDone, isAI);
+                              afterMoveDisplay(after, unitDone, isAI, finalHexEnd);
                            }
 
 
                        }, timer  //delay * 2f
         );
     }
-    public void  afterMoveDisplay(AfterMove af, Unit unit, boolean isAI){
+    public void  afterMoveDisplay(AfterMove af, Unit unit, boolean isAI, Hex hexEnd){
         WinModal.instance.release();
         SoundsLoader.instance.stopSounds();
         if (af == AfterMove.ToClick){
@@ -245,7 +257,7 @@ public class Move extends Observable {
        //     unit.getMapCounter().getCounterStack().setSupplyGas();
             int i = unit.getCurrentMovement();
             if (!isAI) {
-                moveReturnFromClick(true);
+                moveReturnFromClick(true,hexEnd,unit);
             }else{
                 setChanged();
                 notifyObservers(new ObserverPackage(ObserverPackage.Type.MoveFinished,null,0,0));
@@ -256,7 +268,7 @@ public class Move extends Observable {
         if (af == AfterMove.ToAdvance){
             unit.setMovedThisTurn(NextPhase.instance.getTurn());
             unit.getMapCounter().getCounterStack().shade();
-            moveReturnFromClick(false);
+            moveReturnFromClick(false, hexEnd, unit);
             return;
         }
         if (af == AfterMove.ToMOA){
@@ -285,7 +297,7 @@ public class Move extends Observable {
 
     }
 
-    public void moveReturnFromClick(boolean isSaveMove){
+    public void moveReturnFromClick(boolean isSaveMove, Hex hexExit2ndPanzer, Unit unit){
         if (isSaveMove) {
             SaveGame.SaveLastPhase(" Last Turn", 2);
         }
@@ -294,6 +306,9 @@ public class Move extends Observable {
         /**
          * check if anymoves left
          */
+        if (hexExit2ndPanzer != null){
+            SecondPanzerExits.instance.exitUnit(hexExit2ndPanzer,unit);
+        }
         ClickAction.unLock();
         if (Move.instance.anyMovesLeft(isAI))
         {

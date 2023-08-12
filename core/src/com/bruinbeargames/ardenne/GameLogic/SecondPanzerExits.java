@@ -49,4 +49,8 @@ public class SecondPanzerExits {
      */
     public void exit(Unit unit, Hex hex) {
     }
+
+    public void exitUnit(Hex hexExit2ndPanzer, Unit unit) {
+        int b=0;
+    }
 }
