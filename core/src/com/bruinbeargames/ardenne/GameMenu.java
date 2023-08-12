@@ -22,6 +22,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.I18NBundle;
+import com.bruinbeargames.ardenne.UI.EventOK;
+import com.bruinbeargames.ardenne.UI.EventPopUp;
 
 import java.io.File;
 import java.util.Observable;
@@ -638,6 +640,7 @@ public class GameMenu extends Observable {
                     }else{
                         GamePreferences.saveFullScreen(false);
                     }
+                    EventOK.instance.show(i18NBundle.get("windowtext"));
                 }
             }
         });
@@ -664,6 +667,8 @@ public class GameMenu extends Observable {
                         GamePreferences.saveWindowSize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
                         GamePreferences.saveFullScreen(false);
                     }
+                    EventOK.instance.show(i18NBundle.get("windowtext"));
+
                 }
             }
         });

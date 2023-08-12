@@ -236,6 +236,9 @@ public class AIFaker extends Observable {
                 if (isAllies && GameSetup.instance.getScenario() == GameSetup.Scenario.Intro) {
                     AIScenario1.instance.doNext(type, arrOrders);
                 }
+                if (isAllies && GameSetup.instance.getScenario() == GameSetup.Scenario.SecondPanzer) {
+                    AIScenario1.instance.doNext(type, arrOrders);
+                }
                 break;
             case ReinBastogneOcupy:
             case ReinBastogneAttack:

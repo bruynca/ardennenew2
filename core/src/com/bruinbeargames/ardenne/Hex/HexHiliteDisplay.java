@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.bruinbeargames.ardenne.FontFactory;
+import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
 import com.bruinbeargames.ardenne.GameLogic.Supply;
 import com.bruinbeargames.ardenne.SplashScreen;
 import com.bruinbeargames.ardenne.UI.MouseImage;
@@ -29,6 +30,7 @@ public class HexHiliteDisplay {
     static TextureRegion backHiliteReinDisplay =  textureAtlas.findRegion("hilitehexreindisplay");
     static TextureRegion backHiliteCannonRange =  textureAtlas.findRegion("hilitehexcannonrange");
     static TextureRegion backHiliteMove =  textureAtlas.findRegion("hilitehexmove3");
+    static TextureRegion backHiliteExit =  textureAtlas.findRegion("hilitehexexit");
     static ArrayList<HexHiliteDisplay> arrHexHilite = new ArrayList<>();
     static Label.LabelStyle labelStyleName
             = new Label.LabelStyle(FontFactory.instance.yellowFont, Color.YELLOW);
@@ -77,6 +79,13 @@ public class HexHiliteDisplay {
             image = new Image(backHiliteReinDisplay);
         }else if (type == HiliteHex.TypeHilite.Range){
             image = new Image(backHiliteCannonRange);
+        }else if (type == HiliteHex.TypeHilite.MoveExit) {
+            if (SecondPanzerExits.instance.isInExit(hex)) {
+                image = new Image(backHiliteExit);
+            } else {
+                type = HiliteHex.TypeHilite.Move;
+                image = new Image(backHiliteMove);
+            }
         }else if (type == HiliteHex.TypeHilite.Move){
             image = new Image(backHiliteMove);
         }else if (type != HiliteHex.TypeHilite.Debug) {
@@ -87,6 +96,13 @@ public class HexHiliteDisplay {
             image = new Image(backHiliteCannonRange);
         }else if (type != HiliteHex.TypeHilite.ShowSupply) {
             image = new Image(backHiliteCannonRange);
+        }else if (type != HiliteHex.TypeHilite.MoveExit) {
+            if (SecondPanzerExits.instance.isInExit(hex)) {
+                image = new Image(backHiliteExit);
+            }else{
+                type = HiliteHex.TypeHilite.Move;
+                image = new Image(backHiliteMove);
+            }
         }
         if (image != null) {
             image.setTouchable(Touchable.enabled);

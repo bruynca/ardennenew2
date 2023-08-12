@@ -432,7 +432,7 @@ public class AIExecute {
                                        @Override
                                        public void run() {
                                            Move.instance.addObserver(aiExMove);
-                                           clickAction.process(hexCurrent, true);
+                                           clickAction.process(hexCurrent, true, null);
                                        }
                                    }
                             , .5f                    //    (delay)

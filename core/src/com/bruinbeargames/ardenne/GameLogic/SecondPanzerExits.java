@@ -14,6 +14,7 @@ public class SecondPanzerExits {
     Hex hexExit2 = Hex.hexTable[0][19];
     ArrayList<Unit> unitExit2 = new ArrayList<>();
     public SecondPanzerExits(){
+        instance = this;
         for (Unit unit:Unit.getAxis()){
             if (unit.designation.contains("2nd")){
                 arrUnits.add(unit);
@@ -27,4 +28,25 @@ public class SecondPanzerExits {
         return false;
     }
 
+    public boolean isInExit(Hex hex) {
+         if (hex == hexExit1 || hex == hexExit2){
+             return true;
+         }
+         return false;
+    }
+    public boolean isInExit(ArrayList<Hex> arrHexes){
+        if(arrHexes.contains(hexExit1) || arrHexes.contains(hexExit2)){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * exit the the unit
+     *
+     * @param unit
+     * @param hex
+     */
+    public void exit(Unit unit, Hex hex) {
+    }
 }

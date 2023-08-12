@@ -129,10 +129,8 @@ public class NextPhase {
         VictoryPopup victoryPopup = new VictoryPopup();
         ExitWest exitWest = new ExitWest();
         WinAIDisplay winAIDisplay = new WinAIDisplay();
-        if (GameSetup.instance.getScenario() == GameSetup.Scenario.SecondPanzer) {
-            SecondPanzerExits s = new SecondPanzerExits();
-        }
-            aiMain = new AIMain();
+        SecondPanzerExits s = new SecondPanzerExits();
+        aiMain = new AIMain();
 
         //      CardHandler cardHandler = new CardHandler(); not here but gamesetup
         i18NBundle= GameMenuLoader.instance.localization;

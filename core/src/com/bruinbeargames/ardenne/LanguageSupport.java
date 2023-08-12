@@ -12,6 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Button;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.I18NBundle;
+import com.bruinbeargames.ardenne.UI.EventOK;
+import com.bruinbeargames.ardenne.UI.EventPopUp;
 
 import java.util.Locale;
 import java.util.Observable;
@@ -21,6 +23,8 @@ public class LanguageSupport extends Observable {
     private AssetManager assetManager;
     private int screenWidth;
     private Group group;
+    private I18NBundle i18NBundle;
+
 
 
     public LanguageSupport(){
@@ -67,6 +71,9 @@ public class LanguageSupport extends Observable {
                     assetManager.finishLoading();
                     GameMenuLoader.instance.localization = assetManager.get("i18n/language", I18NBundle.class);
                     GamePreferences.putLanguage("language");
+                    i18NBundle= GameMenuLoader.instance.localization;
+
+                    EventOK.instance.show(i18NBundle.get("restart"));
 
                     setChanged();
                     notifyObservers(EventMessages.LANGUAGE_CHANGED);
@@ -107,6 +114,10 @@ public class LanguageSupport extends Observable {
                     GamePreferences.putLanguage("language_fr");
                     setChanged();
                     notifyObservers(EventMessages.LANGUAGE_CHANGED);
+                    i18NBundle= GameMenuLoader.instance.localization;
+
+                    EventOK.instance.show(i18NBundle.get("restart"));
+
 
                 }
             }
@@ -144,6 +155,10 @@ public class LanguageSupport extends Observable {
 
                     setChanged();
                     notifyObservers(EventMessages.LANGUAGE_CHANGED);
+                    i18NBundle= GameMenuLoader.instance.localization;
+
+                    EventOK.instance.show(i18NBundle.get("restart"));
+
 
                 }
             }
@@ -181,6 +196,10 @@ public class LanguageSupport extends Observable {
                     GameMenuLoader.instance.localization = assetManager.get("i18n/language_de", I18NBundle.class);
                     setChanged();
                     notifyObservers(EventMessages.LANGUAGE_CHANGED);
+                    i18NBundle= GameMenuLoader.instance.localization;
+
+                    EventOK.instance.show(i18NBundle.get("restart"));
+
                 }
             }
         });

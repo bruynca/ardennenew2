@@ -102,7 +102,7 @@ public class HiliteHex implements Observer {
         }
         else{
             if (clickAction != null) {
-                clickAction.process(hex, false);
+                clickAction.process(hex, false, type);
             }
         }
     }
@@ -129,7 +129,7 @@ public class HiliteHex implements Observer {
 
 
     public  enum TypeHilite {Move,Advance,Supply,SupplyAmerican, None, Reinforcement,Range,ReinforceDisplay,
-        Debug,AI,ShowSupply }{
+        Debug,AI,ShowSupply, MoveExit }{
 
     }
     

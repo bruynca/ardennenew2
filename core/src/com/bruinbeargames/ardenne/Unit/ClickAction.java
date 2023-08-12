@@ -8,6 +8,7 @@ import com.bruinbeargames.ardenne.GameLogic.AdvanceAfterCombat;
 import com.bruinbeargames.ardenne.GameLogic.Combat;
 import com.bruinbeargames.ardenne.GameLogic.MobileAssualt;
 import com.bruinbeargames.ardenne.GameLogic.Move;
+import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
 import com.bruinbeargames.ardenne.GameLogic.Supply;
 import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.GameSetup;
@@ -212,10 +213,14 @@ public class ClickAction implements Observer {
     }
     private Unit unitConfirm;
     private Hex  hexConfirm;
-    public void process(Hex hex, boolean isAI) {
+    public void process(Hex hex, boolean isAI, HiliteHex.TypeHilite type) {
         switch(typeAction){
             case Move:
                 app.log("ClickAction", "process Move " + unit+" toHex="+hex);
+                if (type !=null && type == HiliteHex.TypeHilite.MoveExit){
+                    SecondPanzerExits.instance.exit(unit, hex);
+                    break;
+                }
                 /**
                  *  Give warning for overstacking
                  */
@@ -298,7 +303,15 @@ public class ClickAction implements Observer {
             arrHexMove.remove(Hex.hexTable[9][24]);
             arrHexMove.remove(Hex.hexTable[27][24]);
         }
-        hiliteHex = new HiliteHex(arrHexMove, HiliteHex.TypeHilite.Move, this);  }
+        HiliteHex.TypeHilite type = HiliteHex.TypeHilite.Move;
+        if (GameSetup.instance.getScenario() == GameSetup.Scenario.SecondPanzer) {
+            if (SecondPanzerExits.instance.isInExit(arrHexMove)){
+                type = HiliteHex.TypeHilite.MoveExit;
+            }
+        }
+
+            hiliteHex = new HiliteHex(arrHexMove, type, this);
+    }
     public static int getClickActionsLeft(){
         return arrClickAction.size();
     }

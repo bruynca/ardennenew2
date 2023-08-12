@@ -233,7 +233,9 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 		if (img != null){
 			img.dispose();
 		}
-		FontFactory.instance.dispose();
+		if (FontFactory.instance != null) {
+			FontFactory.instance.dispose();
+		}
 		VisUI.dispose();
 	}
 	@Override
