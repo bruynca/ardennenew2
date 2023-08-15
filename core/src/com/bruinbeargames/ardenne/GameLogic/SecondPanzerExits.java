@@ -1,6 +1,11 @@
 package com.bruinbeargames.ardenne.GameLogic;
 
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.SplashScreen;
 import com.bruinbeargames.ardenne.Unit.Unit;
 
 import java.util.ArrayList;
@@ -13,6 +18,12 @@ public class SecondPanzerExits {
     ArrayList<Unit> unitExit1 = new ArrayList<>();
     Hex hexExit2 = Hex.hexTable[0][19];
     ArrayList<Unit> unitExit2 = new ArrayList<>();
+    static TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
+    static TextureRegion tExitBoard =  textureAtlas.findRegion("exitboard");
+    Stack exit1Stack;
+    Stack exit2Stack;
+    Label exit1Label;
+    Label exit2Label;
     public SecondPanzerExits(){
         instance = this;
         for (Unit unit:Unit.getAxis()){
@@ -20,6 +31,7 @@ public class SecondPanzerExits {
                 arrUnits.add(unit);
             }
         }
+
     }
     public boolean isInSecond(Unit unit){
         if (arrUnits.contains(unit)){
@@ -51,6 +63,12 @@ public class SecondPanzerExits {
     }
 
     public void exitUnit(Hex hexExit2ndPanzer, Unit unit) {
-        int b=0;
+        unit.eliminate();
+        if (hexExit2ndPanzer == hexExit1){
+            unitExit1.add(unit);
+        }else{
+            unitExit2.add(unit);
+        }
+
     }
 }
