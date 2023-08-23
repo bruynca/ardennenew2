@@ -206,7 +206,9 @@ public class NextPhase {
 
 
         BottomMenu.instance.showBottomMenu();
-        SaveGame.SaveDebug("Debug "+cntDebug+" Turn="+getTurn()+" "+Phases[phase].toString()+"  ",cntDebug);
+        if (GamePreferences.isDEbug) {
+            SaveGame.SaveDebug("Debug " + cntDebug + " Turn=" + getTurn() + " " + Phases[phase].toString() + "  ", cntDebug);
+        }
         SaveGame.SaveLastPhase(" Last Phase",2);
         if (phase == 0){
             BottomMenu.instance.enablePhaseChange();
