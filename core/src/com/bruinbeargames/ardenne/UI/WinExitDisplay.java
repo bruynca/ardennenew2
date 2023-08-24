@@ -159,14 +159,17 @@ public class WinExitDisplay implements Observer {
         Label.LabelStyle labelStyle = new Label.LabelStyle(Fonts.getFont24(), Color.WHITE);
         String str = i18NBundle.format("secondexit");
         label = new Label(str, labelStyle);
-        window.add(label).colspan(maxRows);
+        window.add(label).colspan(maxRows).align(Align.left);
         window.row();
         Table table = loadTable(arrUnits2nth);
         window.add(table).padBottom(15);
+        window.row();
+
         if (GameSetup.instance.getScenario() == GameSetup.Scenario.Lehr) {
+
             str = i18NBundle.format("lehrexit");
             label = new Label(str, labelStyle);
-            window.add(label).colspan(maxRows);
+            window.add(label).colspan(maxRows).align(Align.left);
             window.row();
             table = loadTable(arrUnitsLehr);
             window.add(table).padBottom(15);

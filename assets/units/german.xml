@@ -504,7 +504,7 @@
 			<movementFactor value="12" />
 		</unit>
 		<unit>
-			<unitDesignation value="2nd PZ" />
+			<unitDesignation value="2nd Pz" />
 			<unitSubDesignation value="38 Panzer Jagrs"/>
 			<unitMechanized value="true" />
 			<unitGroundCombat value="true" />

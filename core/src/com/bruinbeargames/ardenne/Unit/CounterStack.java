@@ -104,6 +104,9 @@ public class CounterStack {
         }else{
             backGround = new Image(backGerman);
         }
+        if (unit.subDesignation.contains("38")){
+            int b=0;
+        }
         stack.add(backGround);
 //        stack.setScale(.8f);
         stack.setSize(Counter.size,Counter.size);

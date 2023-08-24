@@ -18,6 +18,7 @@ import com.bruinbeargames.ardenne.GameLogic.Division;
 import com.bruinbeargames.ardenne.GameLogic.ExitWest;
 import com.bruinbeargames.ardenne.GameLogic.FixBridge;
 import com.bruinbeargames.ardenne.GameLogic.HooufGas;
+import com.bruinbeargames.ardenne.GameLogic.LehrExits;
 import com.bruinbeargames.ardenne.GameLogic.LehrHalts;
 import com.bruinbeargames.ardenne.GameLogic.LimberArtillery;
 import com.bruinbeargames.ardenne.GameLogic.MobileAssualt;
@@ -130,6 +131,7 @@ public class NextPhase {
         ExitWest exitWest = new ExitWest();
         WinAIDisplay winAIDisplay = new WinAIDisplay();
         SecondPanzerExits s = new SecondPanzerExits();
+        LehrExits l = new LehrExits();
         aiMain = new AIMain();
 
         //      CardHandler cardHandler = new CardHandler(); not here but gamesetup
@@ -196,7 +198,9 @@ public class NextPhase {
             EventPopUp.instance.setSpecial();
             if (GameSetup.instance.getScenario() == GameSetup.Scenario.SecondPanzer){
                 EventPopUp.instance.show(i18NBundle.get("event2"));
-            }else{
+            }else if (GameSetup.instance.getScenario() == GameSetup.Scenario.Lehr){
+                EventPopUp.instance.show(i18NBundle.get("event2")); }
+            else{
                 EventPopUp.instance.show(i18NBundle.get("event1"));
             }
 

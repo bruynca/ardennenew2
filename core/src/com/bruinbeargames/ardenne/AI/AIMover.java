@@ -35,7 +35,8 @@ public class AIMover {
             }
 
         }
-        if (isAllies && GameSetup.instance.getScenario() == GameSetup.Scenario.SecondPanzer) {
+        if ((isAllies && GameSetup.instance.getScenario() == GameSetup.Scenario.SecondPanzer) ||
+                isAllies && GameSetup.instance.getScenario() == GameSetup.Scenario.Lehr) {
             if (NextPhase.instance.getTurn() < 3){ // first reinforcements
                 AIScenario1.instance.doInitialMoveAlliesTurn1to3();
             }else{

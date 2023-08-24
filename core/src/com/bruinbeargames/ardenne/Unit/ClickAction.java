@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.I18NBundle;
 import com.bruinbeargames.ardenne.AI.AIUtil;
 import com.bruinbeargames.ardenne.GameLogic.AdvanceAfterCombat;
 import com.bruinbeargames.ardenne.GameLogic.Combat;
+import com.bruinbeargames.ardenne.GameLogic.LehrExits;
 import com.bruinbeargames.ardenne.GameLogic.MobileAssualt;
 import com.bruinbeargames.ardenne.GameLogic.Move;
 import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
@@ -306,7 +307,7 @@ public class ClickAction implements Observer {
         HiliteHex.TypeHilite type = HiliteHex.TypeHilite.Move;
 
         hiliteHex = new HiliteHex(arrHexMove, type, this);
-        if (GameSetup.instance.getScenario() == GameSetup.Scenario.SecondPanzer){
+        if (GameSetup.instance.getScenario().ordinal() <= GameSetup.Scenario.Lehr.ordinal()){
             if (SecondPanzerExits.instance.isInSecond(unit)) {
                 ArrayList<Hex> arrHexWork = new ArrayList<>();
                 for (Hex hex : arrHexMove) {
@@ -318,6 +319,18 @@ public class ClickAction implements Observer {
                     hiliteHex.addSecondPanzer(arrHexWork);
                 }
             }
+            if (LehrExits.instance.isInSecond(unit)) {
+                ArrayList<Hex> arrHexWork = new ArrayList<>();
+                for (Hex hex : arrHexMove) {
+                    if (LehrExits.instance.isInExit(hex)){
+                        arrHexWork.add(hex);
+                    }
+                }
+                if (arrHexWork.size() > 0){
+                    hiliteHex.addSecondPanzer(arrHexWork);
+                }
+            }
+
         }
     }
     public static int getClickActionsLeft(){

@@ -192,7 +192,7 @@ public class Move extends Observable {
 
         int i = 0;
         Hex hexEnd = null;
-        if (GameSetup.instance.getScenario() == GameSetup.Scenario.SecondPanzer)
+        if (GameSetup.instance.getScenario().ordinal() <= GameSetup.Scenario.Lehr.ordinal())
         {
             if (SecondPanzerExits.instance.isInSecond(unit)){
                 Hex hexWork = arrMove.get(arrMove.size()-1);
@@ -200,7 +200,15 @@ public class Move extends Observable {
                     hexEnd = hexWork                   ;
                 }
             }
+            if (LehrExits.instance.isInSecond(unit)){
+                Hex hexWork = arrMove.get(arrMove.size()-1);
+                if (LehrExits.instance.isInExit(hexWork)){
+                    hexEnd = hexWork                   ;
+                }
+            }
+
         }
+
         for (Hex hex : arrMove) {
             final Hex hexTime = hex;
             final Hex hexPrevious;
@@ -297,17 +305,22 @@ public class Move extends Observable {
 
     }
 
-    public void moveReturnFromClick(boolean isSaveMove, Hex hexExit2ndPanzer, Unit unit){
+    public void moveReturnFromClick(boolean isSaveMove, Hex hexExitPanzer, Unit unit){
         if (isSaveMove) {
             SaveGame.SaveLastPhase(" Last Turn", 2);
         }
 
         MobileAssualt.instance.endMOA();
         /**
+         *
          * check if anymoves left
          */
-        if (hexExit2ndPanzer != null){
-            SecondPanzerExits.instance.exitUnit(hexExit2ndPanzer,unit);
+        if (hexExitPanzer != null){
+            if (SecondPanzerExits.instance.isInSecond(unit)) {
+                SecondPanzerExits.instance.exitUnit(hexExitPanzer, unit);
+            }else{
+                LehrExits.instance.exitUnit(hexExitPanzer,unit);
+            }
         }
         ClickAction.unLock();
         if (Move.instance.anyMovesLeft(isAI))

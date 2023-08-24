@@ -13,6 +13,7 @@ import com.bruinbeargames.ardenne.GameLogic.ExitWest;
 import com.bruinbeargames.ardenne.GameLogic.HooufGas;
 import com.bruinbeargames.ardenne.GameLogic.MoreGermanAmmo;
 import com.bruinbeargames.ardenne.GameLogic.Reinforcement;
+import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
 import com.bruinbeargames.ardenne.GameLogic.SignPost;
 import com.bruinbeargames.ardenne.GameLogic.Supply;
 import com.bruinbeargames.ardenne.GameLogic.Weather;
@@ -327,11 +328,34 @@ public LoadGame(String gameToLoad, boolean isSpecial) {
 			ExitWest.instance.add2ndPanzer(unit);
 		}
 	}
+	Element panzerexit1 =   root.getChildByName("2ndpanzerexit1");
+	if (panzerexit1 != null) {
+
+		xmlUnitAll = panzerexit1.getChildrenByName("unit");
+		for (Element xmlunit: xmlUnitAll)
+		{
+			int ID = Integer.parseInt(xmlunit.getChildByName("ID").getAttribute("value"));
+			Unit unit= Unit.getUnitByID(ID);
+			SecondPanzerExits.instance.exitUnitLoad(SecondPanzerExits.instance.hexExit1,unit);
+		}
+	}
+	Element panzerexit2 =   root.getChildByName("2ndpanzerexit2");
+	if (panzerexit2 != null) {
+
+		xmlUnitAll = panzerexit2.getChildrenByName("unit");
+		for (Element xmlunit: xmlUnitAll)
+		{
+			int ID = Integer.parseInt(xmlunit.getChildByName("ID").getAttribute("value"));
+			Unit unit= Unit.getUnitByID(ID);
+			SecondPanzerExits.instance.exitUnitLoad(SecondPanzerExits.instance.hexExit2,unit);
+		}
+	}
 
 
-		/**
-         * Get all Supply source that are german, game automatically sets all hexs to russian
-         */
+
+	/**
+     * Get all Supply source that are german, game automatically sets all hexs to russian
+     */
 
 	/**
 	 *  only set game specific info if its a regular saved game

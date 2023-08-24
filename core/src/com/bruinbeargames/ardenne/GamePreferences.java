@@ -27,7 +27,7 @@ public class GamePreferences {
     private static String gameDir = "bruinbeargames/ardenne/savedgames/";
     String strIPAddress = "IPAddress";
     String strLanguage = "language";
-    public static boolean isDEbug=false;
+    public static boolean isDEbug=true;
 
 
     public GamePreferences() {

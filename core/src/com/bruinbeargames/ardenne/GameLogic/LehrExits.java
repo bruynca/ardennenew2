@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class LehrExits {
     public static LehrExits instance;
-    int[] numOfUnitsToExit = {0,0,0,2,4,5,6};
+    int[] numOfUnitsToExit = {0,0,0,2,3,4,5,6};
     ArrayList<Unit> arrUnits = new ArrayList<>();
     Hex hexExit1 = Hex.hexTable[0][8];
     ArrayList<Unit> unitExit1 = new ArrayList<>();

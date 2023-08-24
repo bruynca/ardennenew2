@@ -13,12 +13,12 @@ import java.util.ArrayList;
 
 public class SecondPanzerExits {
     public static SecondPanzerExits instance;
-    int[] numOfUnitsToExit = {0,0,0,2,4,5,6};
+    int[] numOfUnitsToExit = {0,0,0,2,4,5,7};
     ArrayList<Unit> arrUnits = new ArrayList<>();
-    Hex hexExit1 = Hex.hexTable[0][8];
-    ArrayList<Unit> unitExit1 = new ArrayList<>();
-    Hex hexExit2 = Hex.hexTable[0][19];
-    ArrayList<Unit> unitExit2 = new ArrayList<>();
+    public Hex hexExit1 = Hex.hexTable[0][8];
+    public ArrayList<Unit> unitExit1 = new ArrayList<>();
+    public Hex hexExit2 = Hex.hexTable[0][19];
+    public ArrayList<Unit> unitExit2 = new ArrayList<>();
     static TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
     static TextureRegion tExitBoard =  textureAtlas.findRegion("exitboard");
     Stack exit1Stack;
@@ -72,7 +72,15 @@ public class SecondPanzerExits {
         }
         WinExitDisplay winExitDisplay = new WinExitDisplay();
 
+    }   public void exitUnitLoad(Hex hexExit2ndPanzer, Unit unit) {
+        if (hexExit2ndPanzer == hexExit1){
+            unitExit1.add(unit);
+        }else{
+            unitExit2.add(unit);
+        }
+
     }
+
     public ArrayList<Unit> getExitted()
     {
         ArrayList<Unit> arrUnits = new ArrayList<>();

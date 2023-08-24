@@ -53,6 +53,7 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 	Game game;
 	boolean isMainMenu = false;
 	public boolean isNoInput = true;
+	private boolean isSaveGame = false;
 	InputMultiplexer im;
 	GestureDetector gd;
 	static public ardenne instance;
@@ -241,6 +242,9 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 	@Override
 	public boolean keyDown(int keycode) {
 		// TODO Auto-generated method stub
+		if (isSaveGame){
+			return false;
+		}
 		if (keycode == Input.Keys.LEFT){
 			pan(0,0,100,0);
 		}
@@ -548,4 +552,10 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
     	aiRender = b;
     	cntAiRender = 0;
     }
+	public void setSaveGame(){
+		isSaveGame = true;
+	}
+	public void setSaveGameOver(){
+		isSaveGame = false;
+	}
 }

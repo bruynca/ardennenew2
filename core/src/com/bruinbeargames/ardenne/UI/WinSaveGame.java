@@ -93,12 +93,13 @@ public class WinSaveGame {
         image.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-
+                ardenne.instance.setSaveGame();
                 String str = visTextField.getText();
                 if (str != null) {
                 SaveGame saveGame = new SaveGame(str);
                 EventPopUp.instance.show(i18NBundle.format("gamesaved") + "\n\n" + str);
             }
+                ardenne.instance.setSaveGameOver();
                 end();
             }
         });

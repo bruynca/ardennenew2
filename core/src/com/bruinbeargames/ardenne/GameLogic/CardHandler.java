@@ -81,7 +81,7 @@ public class CardHandler implements Observer {
         /**
          *  dont do anything for first scenario
          */
-        if (scenario == GameSetup.Scenario.SecondPanzer){
+        if (scenario.ordinal() <= GameSetup.Scenario.Lehr.ordinal()){
             ArrayList<CardsforGame> arrRemove = new ArrayList<>();
             for (CardsforGame card:arrCardsAllied){
                 if (card.description.contains("2ndpanzerhalts") ||
