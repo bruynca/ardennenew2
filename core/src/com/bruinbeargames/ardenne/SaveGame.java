@@ -6,6 +6,7 @@ import com.bruinbeargames.ardenne.GameLogic.CardHandler;
 import com.bruinbeargames.ardenne.GameLogic.CardsforGame;
 import com.bruinbeargames.ardenne.GameLogic.ExitWest;
 import com.bruinbeargames.ardenne.GameLogic.HooufGas;
+import com.bruinbeargames.ardenne.GameLogic.LehrExits;
 import com.bruinbeargames.ardenne.GameLogic.Reinforcement;
 import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
 import com.bruinbeargames.ardenne.GameLogic.Supply;
@@ -223,6 +224,28 @@ public class SaveGame {
 				saveGame.append("</unit>");
 			}
 			saveGame.append("</2ndpanzerexit2>");
+		}
+		if (LehrExits.instance.unitExit1.size() > 0){
+			saveGame.append("<lehrpanzerexit1>");
+			for (Unit unit:SecondPanzerExits.instance.unitExit1){
+				saveGame.append("<unit>");
+				saveGame.append("<ID value=\"");
+				saveGame.append(String.format("%02d", unit.ID));
+				saveGame.append( "\"/>");
+				saveGame.append("</unit>");
+			}
+			saveGame.append("</lehrpanzerexit1>");
+		}
+		if (LehrExits.instance.unitExit2.size() > 0){
+			saveGame.append("<lehrpanzerexit2>");
+			for (Unit unit:SecondPanzerExits.instance.unitExit2){
+				saveGame.append("<unit>");
+				saveGame.append("<ID value=\"");
+				saveGame.append(String.format("%02d", unit.ID));
+				saveGame.append( "\"/>");
+				saveGame.append("</unit>");
+			}
+			saveGame.append("</lehrpanzerexit2>");
 		}
 
 			/**

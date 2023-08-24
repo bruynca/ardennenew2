@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class SecondPanzerExits {
     public static SecondPanzerExits instance;
-    int[] numOfUnitsToExit = {0,0,0,2,4,5,7};
+    public int[] numOfUnitsToExit = {0,0,0,2,4,5,7};
     ArrayList<Unit> arrUnits = new ArrayList<>();
     public Hex hexExit1 = Hex.hexTable[0][8];
     public ArrayList<Unit> unitExit1 = new ArrayList<>();

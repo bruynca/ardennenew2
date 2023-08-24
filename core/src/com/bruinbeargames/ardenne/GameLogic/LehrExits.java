@@ -6,18 +6,19 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.SplashScreen;
+import com.bruinbeargames.ardenne.UI.WinExitDisplay;
 import com.bruinbeargames.ardenne.Unit.Unit;
 
 import java.util.ArrayList;
 
 public class LehrExits {
     public static LehrExits instance;
-    int[] numOfUnitsToExit = {0,0,0,2,3,4,5,6};
+    public int[] numOfUnitsToExit = {0,0,0,2,3,4,5,6};
     ArrayList<Unit> arrUnits = new ArrayList<>();
-    Hex hexExit1 = Hex.hexTable[0][8];
-    ArrayList<Unit> unitExit1 = new ArrayList<>();
-    Hex hexExit2 = Hex.hexTable[0][19];
-    ArrayList<Unit> unitExit2 = new ArrayList<>();
+    public Hex hexExit1 = Hex.hexTable[0][8];
+    public ArrayList<Unit> unitExit1 = new ArrayList<>();
+    public Hex hexExit2 = Hex.hexTable[0][19];
+    public ArrayList<Unit> unitExit2 = new ArrayList<>();
     static TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
     static TextureRegion tExitBoard =  textureAtlas.findRegion("exitboard");
     Stack exit1Stack;
@@ -64,6 +65,15 @@ public class LehrExits {
 
     public void exitUnit(Hex hexExitLehr, Unit unit) {
         unit.eliminate();
+        if (hexExitLehr == hexExit1){
+            unitExit1.add(unit);
+        }else{
+            unitExit2.add(unit);
+        }
+        WinExitDisplay winExitDisplay = new WinExitDisplay();
+
+    }
+    public void exitUnitLoad(Hex hexExitLehr, Unit unit) {
         if (hexExitLehr == hexExit1){
             unitExit1.add(unit);
         }else{

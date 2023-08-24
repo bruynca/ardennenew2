@@ -447,11 +447,11 @@ public class GameSelection {
         List<String> list = new List<>(listStyle);
         File folder = GamePreferences.getSaveGamesLocation().file();
         int filecount = 0;
-        String[] strings = new String[4];
+        String[] strings = new String[3];
         strings[0] = "Introduction";
         strings[1] = "2nd Panzer Goes West";
         strings[2] = "Bastogne Breakout";
-        strings[3] = "CounterAttack";
+ //       strings[3] = "CounterAttack";
 
         list.setItems(strings);
 
@@ -479,11 +479,10 @@ public class GameSelection {
                         GameSetup.instance.setScenario(GameSetup.Scenario.SecondPanzer);
                         CardHandler.instance.adjustForScenario(GameSetup.Scenario.SecondPanzer);
                     }else if (choice.equals("Bastogne Breakout")){
-                        EventOK.instance.show(i18NBundle.get("notavailable"));
-                        list.setSelected("Introduction");
-                        return;
-//                        game1Label.setText(i18NBundle.get("scenario3"));
-//                        GameSetup.instance.setScenario(GameSetup.Scenario.Lehr);
+                        list.setSelected("Bastogne Breakout");
+                        game1Label.setText(i18NBundle.get("scenario3"));
+                        GameSetup.instance.setScenario(GameSetup.Scenario.Lehr);
+                        CardHandler.instance.adjustForScenario(GameSetup.Scenario.SecondPanzer);
                     }else{
                         EventOK.instance.show(i18NBundle.get("notavailable"));
                         list.setSelected("Introduction");

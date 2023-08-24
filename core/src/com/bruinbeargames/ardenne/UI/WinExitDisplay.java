@@ -27,6 +27,7 @@ import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.GamePreferences;
 import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.ObserverPackage;
 import com.bruinbeargames.ardenne.SplashScreen;
 import com.bruinbeargames.ardenne.UILoader;
@@ -161,7 +162,10 @@ public class WinExitDisplay implements Observer {
         label = new Label(str, labelStyle);
         window.add(label).colspan(maxRows).align(Align.left);
         window.row();
-        Table table = loadTable(arrUnits2nth);
+        Table table = genTable(arrUnits2nth, true);
+        window.add(table);
+        window.row();
+        table = loadTable(arrUnits2nth);
         window.add(table).padBottom(15);
         window.row();
 
@@ -178,6 +182,33 @@ public class WinExitDisplay implements Observer {
 
 
     }
+
+    private Table genTable(ArrayList<Unit> arrUnitsExited, boolean is2nd) {
+        Table table = new Table();
+        int turn = NextPhase.instance.getTurn();
+        int exited = arrUnitsExited.size();
+        int exitCurrent = 0;
+        int exitNext = 0;
+        int exitLast = 0;
+        if (is2nd){
+
+            exitCurrent =
+
+        }
+        int exitCurrent =
+        int remainThisTurn =  tu
+        Label.LabelStyle labelStyle = new Label.LabelStyle(Fonts.getFont24(), Color.WHITE);
+        Label label = new Label("dummy",labelStyle);
+        for (int i=turn; i< SecondPanzerExits.instance.numOfUnitsToExit.length;i++) {
+            String str = i18NBundle.format("turn") + "=" + i;
+            label = new Label(str, labelStyle);
+            table.add(label);
+        }
+        return table;
+
+
+    }
+
     private Table loadTable(ArrayList<Unit> arrUnits) {
         Table table = new Table();
         final int size =100;

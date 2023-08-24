@@ -11,6 +11,7 @@ import com.bruinbeargames.ardenne.GameLogic.CardHandler;
 import com.bruinbeargames.ardenne.GameLogic.CardsforGame;
 import com.bruinbeargames.ardenne.GameLogic.ExitWest;
 import com.bruinbeargames.ardenne.GameLogic.HooufGas;
+import com.bruinbeargames.ardenne.GameLogic.LehrExits;
 import com.bruinbeargames.ardenne.GameLogic.MoreGermanAmmo;
 import com.bruinbeargames.ardenne.GameLogic.Reinforcement;
 import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
@@ -348,6 +349,28 @@ public LoadGame(String gameToLoad, boolean isSpecial) {
 			int ID = Integer.parseInt(xmlunit.getChildByName("ID").getAttribute("value"));
 			Unit unit= Unit.getUnitByID(ID);
 			SecondPanzerExits.instance.exitUnitLoad(SecondPanzerExits.instance.hexExit2,unit);
+		}
+	}
+	Element lpanzerexit1 =   root.getChildByName("lehrpanzerexit1");
+	if (lpanzerexit1 != null) {
+
+		xmlUnitAll = lpanzerexit1.getChildrenByName("unit");
+		for (Element xmlunit: xmlUnitAll)
+		{
+			int ID = Integer.parseInt(xmlunit.getChildByName("ID").getAttribute("value"));
+			Unit unit= Unit.getUnitByID(ID);
+			LehrExits.instance.exitUnitLoad(LehrExits.instance.hexExit1,unit);
+		}
+	}
+	Element lpanzerexit2 =   root.getChildByName("lehrpanzerexit2");
+	if (lpanzerexit2 != null) {
+
+		xmlUnitAll = lpanzerexit2.getChildrenByName("unit");
+		for (Element xmlunit: xmlUnitAll)
+		{
+			int ID = Integer.parseInt(xmlunit.getChildByName("ID").getAttribute("value"));
+			Unit unit= Unit.getUnitByID(ID);
+			LehrExits.instance.exitUnitLoad(LehrExits.instance.hexExit2,unit);
 		}
 	}
 
