@@ -59,8 +59,8 @@ public class TopMenu {
     static TextureRegion bCardP = textureAtlas.findRegion("cardbuttonp");
     static TextureRegion bTec = textureAtlas.findRegion("tectop");
     static TextureRegion bTecP = textureAtlas.findRegion("tectoppushed");
-    static TextureRegion bExit = textureAtlas.findRegion("exitbutton");
-    static TextureRegion bExitP = textureAtlas.findRegion("exitbuttonpushed");
+    static TextureRegion bExitP = textureAtlas.findRegion("exitbutton");
+    static TextureRegion bExit = textureAtlas.findRegion("exitbuttonpushed");
     Stage stage;
 
 
