@@ -21,7 +21,6 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.bruinbeargames.ardenne.Fonts;
 import com.bruinbeargames.ardenne.GameLogic.LehrExits;
-import com.bruinbeargames.ardenne.GameLogic.Reinforcement;
 import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
 import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.GamePreferences;
@@ -150,59 +149,74 @@ public class WinExitDisplay implements Observer {
             window.setPosition(v2.x, v2.y);
 
         }
+        winWidth = 470;
         if (maxCounters > 1) {
-            winWidth = maxCounters * (Counter.sizeOnMap + 5) + 100;
-        }else {
-            winWidth =  (int) (2.4 *(Counter.sizeOnMap + 1))  + 100;
+            int calWinWidth = maxCounters * (Counter.sizeOnMap + 5) + 100;
+            if (calWinWidth >winWidth){
+                winWidth = calWinWidth;
+            }
         }
         winHeight = (maxRows * (counterSize + 50) + 100);
-        window.setSize(winWidth,winHeight);
+        winHeight = 200;
         Label.LabelStyle labelStyle = new Label.LabelStyle(Fonts.getFont24(), Color.WHITE);
         String str = i18NBundle.format("secondexit");
         label = new Label(str, labelStyle);
         window.add(label).colspan(maxRows).align(Align.left);
         window.row();
-        Table table = genTable(arrUnits2nth, true);
-        window.add(table);
+        Table table = genTable(SecondPanzerExits.instance.numOfUnitsToExit,arrUnits2nth, true);
+        window.add(table).width(450);
         window.row();
-        table = loadTable(arrUnits2nth);
-        window.add(table).padBottom(15);
-        window.row();
+        if (arrUnits2nth.size() > 0) {
+            table = loadTable(arrUnits2nth);
+            winHeight += (counterSize + 50);
+            window.add(table);
+            window.row();
+
+        }
 
         if (GameSetup.instance.getScenario() == GameSetup.Scenario.Lehr) {
-
+            winHeight += 50;
             str = i18NBundle.format("lehrexit");
             label = new Label(str, labelStyle);
-            window.add(label).colspan(maxRows).align(Align.left);
             window.row();
-            table = loadTable(arrUnitsLehr);
-            window.add(table).padBottom(15);
+            window.add(label).colspan(maxRows).align(Align.bottomLeft).expand();
+            table = genTable(LehrExits.instance.numOfUnitsToExit,arrUnitsLehr, true);
+            window.row();
+            window.add(table).width(450);
+            window.row();
+            if (arrUnitsLehr.size() > 0) {
+                table = loadTable(arrUnitsLehr);
+                window.add(table).padBottom(50);
+                winHeight += (counterSize + 50);
+            }
         }
-            stage.addActor(window);
+        window.setSize(winWidth,winHeight);
+        stage.addActor(window);
 
 
     }
 
-    private Table genTable(ArrayList<Unit> arrUnitsExited, boolean is2nd) {
-        Table table = new Table();
-        int turn = NextPhase.instance.getTurn();
+    private Table genTable(int[] numOfUnitsToExit, ArrayList<Unit> arrUnitsExited, boolean is2nd) {
+        int[] workTable = new int[numOfUnitsToExit.length];
         int exited = arrUnitsExited.size();
-        int exitCurrent = 0;
-        int exitNext = 0;
-        int exitLast = 0;
-        if (is2nd){
 
-            exitCurrent =
-
+        for (int i=0; i<numOfUnitsToExit.length;i++){;
+            workTable[i] = numOfUnitsToExit[i] - exited;
+            if (workTable[i] < 0){
+                workTable[i] = 0;
+            }
         }
-        int exitCurrent =
-        int remainThisTurn =  tu
+        Table table = new Table();
+        table.debugTable();
+
+        int turn = NextPhase.instance.getTurn();
         Label.LabelStyle labelStyle = new Label.LabelStyle(Fonts.getFont24(), Color.WHITE);
         Label label = new Label("dummy",labelStyle);
-        for (int i=turn; i< SecondPanzerExits.instance.numOfUnitsToExit.length;i++) {
-            String str = i18NBundle.format("turn") + "=" + i;
+        for (int i=turn; i< workTable.length;i++) {
+            int left= workTable[i] ;
+            String str = i18NBundle.format("turn") +  i+"\n"+"   "+left;
             label = new Label(str, labelStyle);
-            table.add(label);
+            table.add(label).width(50).expand();
         }
         return table;
 

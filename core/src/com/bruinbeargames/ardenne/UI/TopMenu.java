@@ -44,6 +44,7 @@ public class TopMenu {
     private Button btButton;
     private Button cardButton;
     private Button tecButton;
+    private Button exitButton;
     private final TextTooltip.TextTooltipStyle tooltipStyle;
     private Group group;
     public static TopMenu instance;
@@ -58,6 +59,8 @@ public class TopMenu {
     static TextureRegion bCardP = textureAtlas.findRegion("cardbuttonp");
     static TextureRegion bTec = textureAtlas.findRegion("tectop");
     static TextureRegion bTecP = textureAtlas.findRegion("tectoppushed");
+    static TextureRegion bExit = textureAtlas.findRegion("exitbutton");
+    static TextureRegion bExitP = textureAtlas.findRegion("exitbuttonpushed");
     Stage stage;
 
 
@@ -78,6 +81,10 @@ public class TopMenu {
         x +=soundButton.getWidth()+5;
         initializeReinForcementButton(x);
         x +=reinforcementButton.getWidth()+5;
+        if (GameSetup.instance.getScenario().ordinal() > 0){
+            initializeExitButton(x);
+            x +=exitButton.getWidth()+5;
+        }
         initializeCrtButton(x);
         x +=crtButton.getWidth()+5;
         initializeBtButton(x);
@@ -109,6 +116,9 @@ public class TopMenu {
         group.addActor(objectivesButton);
         group.addActor(crtButton);
         group.addActor(btButton);
+        if (GameSetup.instance.getScenario().ordinal() > 0) {
+            group.addActor(exitButton);
+        }
         group.addActor(cardButton);
  //       group.addActor(effectsButton);
         group.addActor(keyboardButton);
@@ -228,6 +238,38 @@ public class TopMenu {
                 tooltipStyle));
     }
 
+    private void initializeExitButton(int x) {
+
+        Button.ButtonStyle style = new Button.ButtonStyle();
+
+        style.up = new TextureRegionDrawable(bExitP);
+        style.down = new TextureRegionDrawable(bExitP);
+        style.checked = new TextureRegionDrawable(bExit);
+
+        exitButton = new Button(style);
+        exitButton.setHeight(70  );
+        exitButton.setWidth(70  );
+        exitButton.setChecked(false);
+        exitButton.setVisible(true);
+
+        exitButton.setPosition(10 + x, menuButton.getY() - soundButton.getHeight() - 5);
+
+        exitButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                if (!event.getType().equals("touchUp")) {
+                    WinExitDisplay winExitDisplay = new WinExitDisplay();
+                    exitButton.setChecked(false);
+                    group.addAction(Actions.sequence(Actions.fadeOut(0.5f), Actions.visible(false)));
+                    menuButton.setChecked(false);
+                }
+            }
+        });
+
+        exitButton.addListener(new TextTooltip(
+                GameMenuLoader.instance.localization.get("exittooltip"),
+                tooltipStyle));
+    }
     private void initializeReinForcementButton(int x) {
 
         Button.ButtonStyle style = new Button.ButtonStyle();

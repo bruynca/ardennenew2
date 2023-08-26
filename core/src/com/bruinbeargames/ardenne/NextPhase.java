@@ -199,7 +199,7 @@ public class NextPhase {
             if (GameSetup.instance.getScenario() == GameSetup.Scenario.SecondPanzer){
                 EventPopUp.instance.show(i18NBundle.get("event2"));
             }else if (GameSetup.instance.getScenario() == GameSetup.Scenario.Lehr){
-                EventPopUp.instance.show(i18NBundle.get("event2")); }
+                EventPopUp.instance.show(i18NBundle.get("event3")); }
             else{
                 EventPopUp.instance.show(i18NBundle.get("event1"));
             }
