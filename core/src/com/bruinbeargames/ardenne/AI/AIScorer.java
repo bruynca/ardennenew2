@@ -511,7 +511,9 @@ public class AIScorer {
             }
         }
         arrEnemy.addAll(Unit.getOnBoardAxis());
-
+        if (type == null){
+            int b=0;
+        }
         switch (type){
             case GermanPenetration:
             case GermanRegular:

@@ -71,11 +71,11 @@ public class WinExitDisplay implements Observer {
     public WinExitDisplay() {
         this.hex = hex;
         stage = ardenne.instance.guiStage;
-        i18NBundle = GameMenuLoader.instance.localization;
         ardenne.instance.addObserver(this);
         /**
          * tooltip
          */
+        i18NBundle = GameMenuLoader.instance.localization;
 
         tooltipStyle = new TextTooltip.TextTooltipStyle();
         tooltipStyle.label = new Label.LabelStyle(Fonts.getFont24(), Color.WHITE);
@@ -210,6 +210,7 @@ public class WinExitDisplay implements Observer {
         table.debugTable();
 
         int turn = NextPhase.instance.getTurn();
+        turn--; // point to correct table
         Label.LabelStyle labelStyle = new Label.LabelStyle(Fonts.getFont24(), Color.WHITE);
         Label label = new Label("dummy",labelStyle);
         for (int i=turn; i< workTable.length;i++) {

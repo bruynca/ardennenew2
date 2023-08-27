@@ -170,9 +170,36 @@ public class NextPhase {
                 String winner = VictoryPopup.instance.determineVictor();
                 BottomMenu.instance.setEnablePhaseChange(false);
                 AccessInternet.updateGame(turn, winner);
-
                 return;
             }
+            /**
+             *  check for loss because units not exitted
+             *  do this before the turn changes
+             */
+            if (turn > 3) {
+                boolean iswarned = false;
+                if (GameSetup.instance.getScenario().ordinal() > 0) {
+                    if (SecondPanzerExits.instance.checkExits()){
+                        String winner = VictoryPopup.instance.determineVictor();
+                        BottomMenu.instance.setEnablePhaseChange(false);
+                        AccessInternet.updateGame(turn, winner);
+                        return;
+                    }
+                }
+                if (GameSetup.instance.getScenario().ordinal() > 1 && !iswarned) {
+                    if (LehrExits.instance.checkExits()){
+                        String winner = VictoryPopup.instance.determineVictor();
+                        BottomMenu.instance.setEnablePhaseChange(false);
+                        AccessInternet.updateGame(turn, winner);
+                        return;
+                    }
+                }
+            }
+
+            /**
+             *  check for end of game no exit
+             */
+
             phase = 0;
             Unit.initCanAttack();
             turn++;
@@ -210,6 +237,25 @@ public class NextPhase {
 
 
         BottomMenu.instance.showBottomMenu();
+        /**
+         *  warning for exitted units
+         */
+        if (turn > 3 && phase == 0) {
+            boolean iswarned = false;
+            if (GameSetup.instance.getScenario().ordinal() > 0) {
+                if (SecondPanzerExits.instance.checkExits()){
+                    String str = i18NBundle.format("2ndmustexit");
+                    EventPopUp.instance.show(str);
+                    iswarned = true;
+                }
+            }
+            if (GameSetup.instance.getScenario().ordinal() > 1 && !iswarned) {
+                if (LehrExits.instance.checkExits()){
+                    String str = i18NBundle.format("2ndmustexit");
+                    EventPopUp.instance.show(str);
+                }
+            }
+        }
         if (GamePreferences.isDEbug) {
             SaveGame.SaveDebug("Debug " + cntDebug + " Turn=" + getTurn() + " " + Phases[phase].toString() + "  ", cntDebug);
         }

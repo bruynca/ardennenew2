@@ -36,14 +36,14 @@ public class AIReinforcement {
          *  kick off appropriate scenario
          */
 
-        if (isAllies && GameSetup.instance.getScenario() == GameSetup.Scenario.Intro) {
+ //       if (isAllies && GameSetup.instance.getScenario() == GameSetup.Scenario.Intro) {
             /**
              *  if no reinforcements go to next phase
              */
             if (!AIReinforcementScenario1.instance.doReinforcementAllies(isAllies,arrSupply)){
                 NextPhase.instance.nextPhase();
             }
-        }
+ //       }
 
 
     }

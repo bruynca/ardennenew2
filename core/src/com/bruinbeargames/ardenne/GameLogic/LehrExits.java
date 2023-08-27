@@ -4,8 +4,12 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
+import com.badlogic.gdx.utils.I18NBundle;
+import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.SplashScreen;
+import com.bruinbeargames.ardenne.UI.EventPopUp;
 import com.bruinbeargames.ardenne.UI.WinExitDisplay;
 import com.bruinbeargames.ardenne.Unit.Unit;
 
@@ -25,6 +29,8 @@ public class LehrExits {
     Stack exit2Stack;
     Label exit1Label;
     Label exit2Label;
+    private I18NBundle i18NBundle;
+
     public LehrExits(){
         instance = this;
         for (Unit unit:Unit.getAxis()){
@@ -32,6 +38,8 @@ public class LehrExits {
                 arrUnits.add(unit);
             }
         }
+        i18NBundle = GameMenuLoader.instance.localization;
+
 
     }
     public boolean isInSecond(Unit unit){
@@ -87,6 +95,15 @@ public class LehrExits {
         arrUnits.addAll(unitExit1);
         arrUnits.addAll(unitExit2);
         return arrUnits;
+    }
+    public boolean checkExits() {
+        int turn = NextPhase.instance.getTurn();
+        turn--; //look in table;
+        if (numOfUnitsToExit[turn] > getExitted().size()){
+            return true;
+        }
+        return false;
+
     }
 
 }

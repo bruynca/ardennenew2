@@ -18,6 +18,7 @@ import com.bruinbeargames.ardenne.GameLogic.SoundsLoader;
 import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.SoundEffects;
 import com.bruinbeargames.ardenne.SplashScreen;
 import com.bruinbeargames.ardenne.ardenne;
@@ -143,11 +144,9 @@ public class VictoryPopup {
         if (GameSetup.instance.getScenario() == GameSetup.Scenario.Intro){
             return checkIntro();
         }else  if (GameSetup.instance.getScenario() == GameSetup.Scenario.Lehr) {
-            checkLehr();
-            return "";
+            return checkLehr();
         }if (GameSetup.instance.getScenario() == GameSetup.Scenario.SecondPanzer) {
-            checkSecondPanzer();
-            return "";
+            return checkSecondPanzer();
         }else{
             checkCounterAttack();
             return"";
@@ -157,10 +156,31 @@ public class VictoryPopup {
     private void checkCounterAttack() {
     }
 
-    private void checkSecondPanzer() {
+    private String checkSecondPanzer() {
+        /**
+         * if end of game check supply
+         */
+        int turn = NextPhase.instance.getTurn();
+        if (turn == GameSetup.instance.getScenario().getLength()){
+            return ""; // to be coded
+        }
+        saveWinner("allied");
+        updateText(i18NBundle.get("2ndlosernoexit"),"usa");
+        return "allied";
     }
 
-    private void checkLehr() {
+    private String checkLehr() {
+        /**
+         * if end of game check supply
+         */
+        int turn = NextPhase.instance.getTurn();
+        if (turn == GameSetup.instance.getScenario().getLength()){
+            return ""; // to be coded
+        }
+        saveWinner("allied");
+        updateText(i18NBundle.get("lehrlosernoexit"),"usa");
+        return "allied";
+
     }
 
     private String  checkIntro() {

@@ -140,11 +140,15 @@ public class Reinforcement {
         return false;
     }
 
-    public ArrayList<Unit> getReinforcementsAvailable(Hex hex) {
+    public ArrayList<Unit> getReinforcementsAvailable(Hex hex,boolean byTurn) {
         ArrayList<Unit> arrUnit =  new ArrayList<>();
         int x = hex.xTable;
         int y= hex.yTable;
+        int turn = NextPhase.instance.getTurn();
         for (Unit unit:getReinforcementsAvailable()){
+            if (byTurn && unit.entryNum > turn){
+                break;
+            }
             if (unit.getEntryY() == y && unit.getEntryX() == x){
                 arrUnit.add(unit);
             }

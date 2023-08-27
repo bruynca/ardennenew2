@@ -158,7 +158,7 @@ public class AIReinforcementScenario1 implements Observer {
         }
         Gdx.app.log("AIReinforcementsScenario1", "destinations ="+ arrReinDestBastogneLimit.size());
         arrUnits.clear();
-        arrUnits.addAll(Reinforcement.instance.getReinforcementsAvailable(hexBastogneReinforceEntry));
+        arrUnits.addAll(Reinforcement.instance.getReinforcementsAvailable(hexBastogneReinforceEntry,true));
 //        arrUnits.addAll(Reinforcement.instance.getReinforcementsAvailable(hexMartelangeReinforceEntry));
 //        arrUnits.addAll(Reinforcement.instance.getReinforcementsAvailable(hexEttlebruckReinforceEntry));
         Gdx.app.log("AIReinforcementsScenario1", "Bastogne units ="+arrUnits.size());
@@ -253,7 +253,7 @@ public class AIReinforcementScenario1 implements Observer {
         Gdx.app.log("AIReinforcementsScenario1", "doMartelange");
         aiMartelang = new AIOrders(); // create empty just in case
         arrUnits.clear();
-        arrUnits.addAll(Reinforcement.instance.getReinforcementsAvailable(hexMartelangeReinforceEntry));
+        arrUnits.addAll(Reinforcement.instance.getReinforcementsAvailable(hexMartelangeReinforceEntry,true));
         Gdx.app.log("AIReinforcementsScenario1", "Martelange units ="+arrUnits.size());
         /**
          *     generate the moves
@@ -291,7 +291,7 @@ public class AIReinforcementScenario1 implements Observer {
             return;
         }
 
- //       bastogneWiltzDefenseStatus = new BastogneWiltzDefenseStatus(arrUnits,arrMoves);
+        bastogneWiltzDefenseStatus = new BastogneWiltzDefenseStatus(arrUnits,arrMoves);
         Gdx.app.log("AIReinforcementsScenario1", "bastognewiltz strategy="+bastogneWiltzDefenseStatus.strategy);
 
         /**
@@ -482,7 +482,7 @@ public class AIReinforcementScenario1 implements Observer {
 
         Gdx.app.log("AIReinforcementsScenario1", "ettlebruck destinations ="+ arrReinDestBastogneLimit.size());
         arrUnits.clear();
-        arrUnits.addAll(Reinforcement.instance.getReinforcementsAvailable(hexEttlebruckReinforceEntry));
+        arrUnits.addAll(Reinforcement.instance.getReinforcementsAvailable(hexEttlebruckReinforceEntry, true));
         arrUnits.retainAll(arrReinforcementsThisTurn); // dont want all
 
         Gdx.app.log("AIReinforcementsScenario1", "EttleBruck units ="+arrUnits.size());

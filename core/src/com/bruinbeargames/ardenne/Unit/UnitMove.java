@@ -68,7 +68,7 @@ public class UnitMove {
 	 *  Redo agin so that the calcmovecost are reset
 	 */
 	public void reDO(){
-		Gdx.app.log("UnitMove", "reDo");
+//		Gdx.app.log("UnitMove", "reDo");
 
 		Hex.loadCalcMoveCost(thread);
 		if (unit.getCurrenAttackFactor() < 1){

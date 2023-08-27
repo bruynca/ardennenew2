@@ -246,7 +246,12 @@ public class AIScenario1Turn3to6 implements Observer {
                 arrAllowDuplicates.addAll(AIReinforcementScenario1.hexWiltz.getSurround());
                 break;
             default:
+                type = AIScorer.Type.GermanPenetration;
+                arrAllowDuplicates.addAll(AIReinforcementScenario1.arrBastogne);
+                arrAllowDuplicates.addAll(AIReinforcementScenario1.arrBastogneRing);
+                arrAllowDuplicates.addAll(AIReinforcementScenario1.arrBastogneOuterDefense);
                 break;
+
 
         }
         Gdx.app.log("AISceanrio1Turn3to6", "dupes allowed="+arrAllowDuplicates);

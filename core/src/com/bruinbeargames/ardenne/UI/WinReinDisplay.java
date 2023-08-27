@@ -25,6 +25,7 @@ import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.GamePreferences;
 import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.ObserverPackage;
 import com.bruinbeargames.ardenne.SplashScreen;
 import com.bruinbeargames.ardenne.UILoader;
@@ -121,7 +122,8 @@ public class WinReinDisplay implements Observer {
     }
 
     private void createdisplayUnits() {
-        arrUnits =  Reinforcement.instance.getReinforcementsAvailable(hex);
+        arrUnits =  Reinforcement.instance.getReinforcementsAvailable(hex,false);
+        int turn = NextPhase.instance.getTurn();
         for (Unit unit:arrUnits){
             Integer in = unit.entryNum;
             if (arrTurns.contains(in)){
