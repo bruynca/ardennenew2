@@ -86,7 +86,7 @@ public class GameSetup {
 
 
 
-    public enum Scenario{Intro(6),SecondPanzer(7),Lehr(8),CounterAttack(10);
+    public enum Scenario{Intro(6),SecondPanzer(8),Lehr(9),CounterAttack(11);
 
             private int length;
             Scenario(int length){

@@ -416,6 +416,13 @@ public class NextPhase {
                     nextPhase();
                     break;
                 case GERMAN_SUPPLY:
+                    if (turn == GameSetup.instance.getScenario().getLength()) {
+                        if (GameSetup.instance.getScenario().ordinal() > 0){
+                            String str = i18NBundle.format("exitinsupply");
+                            EventPopUp.instance.show(str);
+                        }
+                    }
+
                     isAlliedPlayer = false;
                     Unit.initOutOfSupplyThisTurn(false);
                     Supply.instance.doGermanSupply();
