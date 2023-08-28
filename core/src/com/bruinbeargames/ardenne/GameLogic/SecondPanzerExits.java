@@ -1,10 +1,16 @@
 package com.bruinbeargames.ardenne.GameLogic;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.utils.I18NBundle;
+import com.bruinbeargames.ardenne.CenterScreen;
+import com.bruinbeargames.ardenne.Fonts;
 import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
@@ -13,6 +19,7 @@ import com.bruinbeargames.ardenne.SplashScreen;
 import com.bruinbeargames.ardenne.UI.EventPopUp;
 import com.bruinbeargames.ardenne.UI.WinExitDisplay;
 import com.bruinbeargames.ardenne.Unit.Unit;
+import com.bruinbeargames.ardenne.ardenne;
 
 import java.util.ArrayList;
 
@@ -70,6 +77,7 @@ public class SecondPanzerExits {
 
     public void exitUnit(Hex hexExit2ndPanzer, Unit unit) {
         unit.eliminate();
+        addIcon(hexExit2ndPanzer);
         if (hexExit2ndPanzer == hexExit1){
             unitExit1.add(unit);
         }else{
@@ -78,6 +86,7 @@ public class SecondPanzerExits {
         WinExitDisplay winExitDisplay = new WinExitDisplay();
 
     }   public void exitUnitLoad(Hex hexExit2ndPanzer, Unit unit) {
+        addIcon(hexExit2ndPanzer);
         if (hexExit2ndPanzer == hexExit1){
             unitExit1.add(unit);
         }else{
@@ -101,5 +110,59 @@ public class SecondPanzerExits {
             return true;
         }
         return false;
+    }
+    public void addIcon(Hex hex){
+        Icon icFound = null;
+        for (Icon ic:arrIcons){
+            if (ic.hex == hex){
+                icFound = ic;
+                break;
+            }
+        }
+        if (icFound == null){
+            Icon icon = new Icon(hex);
+        }else{
+            icFound.addCount();
+        }
+
+    }
+    static public ArrayList<Icon> arrIcons = new ArrayList<Icon>();
+
+    public class Icon{
+        Hex hex;
+        int count;
+        Image image;
+        Label label;
+        Stack stack;
+        Icon(Hex hex){
+            this.hex = hex;
+            count = 1;
+            Image image = new Image(tExitBoard);
+            image.setScale(.5f);
+            Label.LabelStyle labelStyle = new Label.LabelStyle(Fonts.getFont24(), Color.WHITE);
+            label = new Label(Integer.toString(count),labelStyle);
+            stack = new Stack();
+//            stack.addActor(label);
+            stack.addActor(image);
+            Vector2 v2 = hex.getCounterPosition();
+            float x = 0;
+            float y=0;
+  //          stack.setPosition(v2.x-70,v2.y+10);
+            x = v2.x-80;
+            y=v2.y+10;
+            if (hex == hexExit1){
+                y +=120;
+            }else{
+                y +=5;
+            }
+            stack.setPosition(x,y);
+
+            ardenne.instance.mapStage.addActor(stack);
+        }
+        void addCount(){
+            count++;
+            label.setText(Integer.toString(count));
+        }
+
     }
 }

@@ -213,9 +213,10 @@ public class WinExitDisplay implements Observer {
         turn--; // point to correct table
         Label.LabelStyle labelStyle = new Label.LabelStyle(Fonts.getFont24(), Color.WHITE);
         Label label = new Label("dummy",labelStyle);
-        for (int i=turn; i< workTable.length;i++) {
+        for (int i=turn; i < workTable.length;i++) {
             int left= workTable[i] ;
-            String str = i18NBundle.format("turn") +  i+"\n"+"   "+left;
+            int cnt = i+1;
+            String str = i18NBundle.format("turn") +  cnt+"\n"+"   "+left;
             label = new Label(str, labelStyle);
             table.add(label).width(50).expand();
         }

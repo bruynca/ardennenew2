@@ -73,6 +73,8 @@ public class LehrExits {
 
     public void exitUnit(Hex hexExitLehr, Unit unit) {
         unit.eliminate();
+        SecondPanzerExits.instance.addIcon(hexExitLehr);
+
         if (hexExitLehr == hexExit1){
             unitExit1.add(unit);
         }else{
@@ -82,6 +84,8 @@ public class LehrExits {
 
     }
     public void exitUnitLoad(Hex hexExitLehr, Unit unit) {
+        SecondPanzerExits.instance.addIcon(hexExitLehr);
+
         if (hexExitLehr == hexExit1){
             unitExit1.add(unit);
         }else{
