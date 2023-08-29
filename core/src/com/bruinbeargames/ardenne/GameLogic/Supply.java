@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.Timer;
 import com.bruinbeargames.ardenne.AI.AIUtil;
 import com.bruinbeargames.ardenne.CenterScreen;
 import com.bruinbeargames.ardenne.GameMenuLoader;
+import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.Hex.HexHelper;
 import com.bruinbeargames.ardenne.Hex.HexUnits;
@@ -50,6 +51,8 @@ public class Supply implements Observer{
     public final int toUnit =10;
     private I18NBundle i18NBundle;
     ArrayList<Unit> arrTransports = new ArrayList<Unit>();
+    ArrayList<Unit> arrExits = new ArrayList<Unit>();
+
     Unit unitTransportWorkOn = null;
     //Counter counterWorkedOn = null;
     HiliteHex hiliteHex;
@@ -134,16 +137,41 @@ public class Supply implements Observer{
         }
         TurnCounter.instance.updateText(i18NBundle.get("germansupply"));
         Unit.initShade(false);
-  //      arrCounter.clear();
+
+        //      arrCounter.clear();
         unitTransportWorkOn = null;
         arrTransports.clear();
+        arrExits.clear();
         arrTransports = Unit.getTransports(false);
+        if (NextPhase.instance.getTurn() == GameSetup.instance.getScenario().getLength()) {
+            if (GameSetup.instance.getScenario().ordinal() > 0) {
+                arrExits.addAll(Unit.getExits(false));
+                ArrayList<Unit> arrRemove = new ArrayList<>();
+                if (SecondPanzerExits.instance.unitExit1.size() > 0) {
+                    arrExits.get(0).placeOnBoard(SecondPanzerExits.instance.hexExit1);
+                    arrExits.get(0).getMapCounter().getCounterStack().setInvisible();
+                    SecondPanzerExits.arrIcons.get(0).shade();
+                } else {
+                    arrRemove.add(arrExits.get(0));
+                }
+                if (SecondPanzerExits.instance.unitExit2.size() > 0) {
+                    arrExits.get(1).placeOnBoard(SecondPanzerExits.instance.hexExit2);
+                    arrExits.get(1).getMapCounter().getCounterStack().setInvisible();
+                    SecondPanzerExits.arrIcons.get(1).shade();
+
+                } else {
+                    arrRemove.add(arrExits.get(1));
+                }
+                arrExits.removeAll(arrRemove);
+            }
+    }
 
         /**
          *  initialize units being supplied
          *  and which supply truck is supplying them
          */
         arrUnitsSupply = Unit.getOnBoardAxis();
+        arrUnitsSupply.addAll(arrExits);
         for (Unit unit:arrUnitsSupply){
             if (unit.isDisorganized()){
                 unit.setOffDisorganized();
@@ -175,43 +203,6 @@ public class Supply implements Observer{
             CenterScreen.instance.start(Hex.hexTable[17][2]);
             EventPopUp.instance.show(  i18NBundle.get("Houfflaize"));
         }
-        /**
-         *  create the transport display
-         */
-/**
-        int width = Gdx.graphics.getWidth();
-        int height =  Gdx.graphics.getHeight() - 100;
-        int i=1;
-        for (final Unit unit:arrTransports) {
-            final Counter counter = new Counter(unit, Counter.TypeCounter.GUICounter);
-            Stack stack = counter.getCounterStack().getStack();
-            arrCounter.add(counter);
-            ardenne.instance.guiStage.addActor(stack);
-            float y = height - ((stack.getHeight() + 15)*i);
-            float x = width - (stack.getWidth()+ 15);
-            stack.setPosition(x, y);
-            i++;
-            counter.stack.addListener(new ClickListener(Input.Buttons.LEFT) {
-                @Override public void clicked (InputEvent event, float x, float y)
-                {
-                    if (counter.getCounterStack().isHilited()) {
-                        counter.getCounterStack().removeHilite();
-                        unitTransportWorkOn = null;
-                        cancelTransport(unit);
-                    }
-                    else
-                    {
-                        counter.getCounterStack().hilite();
-   //                     if (unitTransportWorkOn != null){
-   //                         cancelTransport(unit);
-   //                         unitTransportWorkOn = unit;
-   //                     }
-      //                  counterWorkedOn = counter;
-                        createHexChoice(unit);
-                    }
-               }
-            })
-       }*/
     }
     public ArrayList<Hex> createHexChoice(Unit unit, int thread, boolean isAI){
         unitTransportWorkOn = unit;
@@ -284,6 +275,9 @@ public class Supply implements Observer{
 
         unitCheck.getMapCounter().getCounterStack().setPoints();
         unitCheck.getMapCounter().getCounterStack().removeShade();
+        if (unitCheck.isExit){
+            SecondPanzerExits.instance.supply(unitCheck.getHexOccupy());
+        }
     }
 
 
@@ -404,39 +398,7 @@ public class Supply implements Observer{
 
         return arrHexWork;
     }
-    private void oldSupply(){
-        ArrayList<Unit> arrTransport =  new ArrayList<>();
-        arrTransport.addAll(Unit.getTransports(false));
-        ArrayList<ArrayList> arrArrsSupply = new ArrayList<>();
-        for (int i=0; i < arrTransport.size();i++) {
-            UnitMove unitMove = new UnitMove(arrTransport.get(i), initialRange, false, true, arrGermanSupply.get(i),0);
-            ArrayList<Hex> arrWork = new ArrayList<>();
-            arrWork.addAll(unitMove.getMovePossible());
-            HexHelper.removeDupes(arrWork);
-            arrArrsSupply.add(arrWork);
-        }
-      //  HiliteHex hiliteHex = new HiliteHex()
-        ArrayList<Unit> arrUnits = Unit.getOnBoardAxis();
-        HexUnits.init();
-        /**
-         * Create the Hex Units
-         */
-        for (Unit unit:arrUnits){
-            UnitMove unitMove = new UnitMove(unit, toUnit, false, true,0);
-            ArrayList<Hex> arrWork = new ArrayList<>();
-            arrWork.addAll(unitMove.getMovePossible());
-            HexHelper.removeDupes(arrWork);
-            for (Hex hex:arrWork){
-                HexUnits.add(hex,unit);
-            }
 
-        }
-        ArrayList<Unit> arrSolution = new ArrayList<>();
-        HexUnits.sortbyNumberOfUnits(HexUnits.arrHexUnits);
-        for (HexUnits hU:HexUnits.arrHexUnits){
-
-        }
-    }
     public void removeHoufflaize(){
         isHoufflaizeOperational = false;
     }

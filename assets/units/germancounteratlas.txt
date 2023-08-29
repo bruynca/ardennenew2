@@ -1,809 +1,816 @@
 germancounterimage.png
-size: 1857, 2254
+size: 1721, 2254
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 5pzarmy
   rotate: false
-  xy: 1109, 1039
+  xy: 811, 1115
   size: 240, 240
   orig: 240, 240
   offset: 0, 0
   index: -1
 abn101
   rotate: false
-  xy: 1486, 91
+  xy: 115, 205
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 airplane
   rotate: false
-  xy: 1444, 451
+  xy: 604, 565
   size: 187, 147
   orig: 187, 147
   offset: 0, 0
   index: -1
 airplane2
   rotate: false
-  xy: 0, 658
+  xy: 1075, 921
   size: 190, 187
   orig: 190, 187
   offset: 0, 0
   index: -1
 alliedNew
   rotate: false
-  xy: 1606, 91
+  xy: 235, 205
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 arm4
   rotate: false
-  xy: 1726, 91
+  xy: 355, 205
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 arm9
   rotate: false
-  xy: 0, 211
+  xy: 475, 205
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 arm10
   rotate: false
-  xy: 120, 211
+  xy: 595, 205
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 artcorp
   rotate: false
-  xy: 240, 211
+  xy: 715, 205
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 attackarrow0
   rotate: false
-  xy: 527, 0
+  xy: 883, 0
   size: 65, 65
   orig: 65, 65
   offset: 0, 0
   index: -1
 backgroundallied
   rotate: false
-  xy: 1349, 1039
+  xy: 0, 1389
   size: 230, 350
   orig: 230, 350
   offset: 0, 0
   index: -1
 backgroundgerman
   rotate: false
-  xy: 1579, 1039
+  xy: 230, 1389
   size: 230, 350
   orig: 230, 350
   offset: 0, 0
   index: -1
 barrageallies
   rotate: false
-  xy: 213, 1039
+  xy: 410, 921
   size: 230, 180
   orig: 230, 180
   offset: 0, 0
   index: -1
 barragexis
   rotate: false
-  xy: 443, 1039
+  xy: 640, 921
   size: 230, 180
   orig: 230, 180
   offset: 0, 0
   index: -1
 bastognesign
   rotate: false
-  xy: 967, 451
+  xy: 333, 565
   size: 130, 136
   orig: 130, 136
   offset: 0, 0
   index: -1
 binoculars
   rotate: false
-  xy: 387, 0
+  xy: 799, 0
   size: 42, 42
   orig: 42, 42
   offset: 0, 0
   index: -1
 blowbridge
   rotate: false
-  xy: 496, 91
+  xy: 651, 91
   size: 127, 101
   orig: 127, 101
   offset: 0, 0
   index: -1
 bridge
   rotate: false
-  xy: 135, 0
+  xy: 101, 0
   size: 42, 24
   orig: 42, 24
   offset: 0, 0
   index: -1
 bridgeblown
   rotate: false
-  xy: 356, 91
+  xy: 948, 0
   size: 140, 80
   orig: 140, 80
   offset: 0, 0
   index: -1
 bt
   rotate: false
-  xy: 592, 0
+  xy: 1088, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 btpushed
   rotate: false
-  xy: 685, 0
+  xy: 1181, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 button
   rotate: false
-  xy: 778, 0
+  xy: 1274, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 cardbutton
   rotate: false
-  xy: 871, 0
+  xy: 1367, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 cardbuttonp
   rotate: false
-  xy: 964, 0
+  xy: 1460, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 close
   rotate: false
-  xy: 21, 0
+  xy: 42, 0
   size: 20, 20
   orig: 20, 20
   offset: 0, 0
   index: -1
 crt
   rotate: false
-  xy: 0, 1389
+  xy: 460, 1389
   size: 200, 407
   orig: 200, 407
   offset: 0, 0
   index: -1
 crtback
   rotate: false
-  xy: 471, 0
+  xy: 743, 0
   size: 56, 39
   orig: 56, 39
   offset: 0, 0
   index: -1
 crttop
   rotate: false
-  xy: 1057, 0
+  xy: 1553, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 crttoppushed
   rotate: false
-  xy: 1150, 0
+  xy: 0, 91
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 exitboard
   rotate: false
-  xy: 738, 91
+  xy: 1286, 91
+  size: 120, 114
+  orig: 120, 114
+  offset: 0, 0
+  index: -1
+exitboarddarken
+  rotate: false
+  xy: 1406, 91
   size: 120, 114
   orig: 120, 114
   offset: 0, 0
   index: -1
 exitbutton
   rotate: false
-  xy: 1243, 0
+  xy: 93, 91
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 exitbuttonpushed
   rotate: false
-  xy: 1336, 0
+  xy: 186, 91
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 explosion1
   rotate: false
-  xy: 978, 91
+  xy: 778, 91
   size: 127, 111
   orig: 127, 111
   offset: 0, 0
   index: -1
 explosion2
   rotate: false
-  xy: 1105, 91
+  xy: 905, 91
   size: 127, 111
   orig: 127, 111
   offset: 0, 0
   index: -1
 explosion3
   rotate: false
-  xy: 1232, 91
+  xy: 1032, 91
   size: 127, 111
   orig: 127, 111
   offset: 0, 0
   index: -1
 explosion4
   rotate: false
-  xy: 1359, 91
+  xy: 1159, 91
   size: 127, 111
   orig: 127, 111
   offset: 0, 0
   index: -1
 fj5
   rotate: false
-  xy: 360, 211
+  xy: 835, 205
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 germanNew
   rotate: false
-  xy: 480, 211
+  xy: 955, 205
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 hexedgemove0
   rotate: false
-  xy: 1230, 845
+  xy: 870, 921
   size: 205, 182
   orig: 205, 182
   offset: 0, 0
   index: -1
 hexedgemove1
   rotate: false
-  xy: 390, 658
+  xy: 791, 565
   size: 205, 178
   orig: 205, 178
   offset: 0, 0
   index: -1
 hexedgemove2
   rotate: false
-  xy: 595, 658
+  xy: 996, 565
   size: 205, 178
   orig: 205, 178
   offset: 0, 0
   index: -1
 hexedgemove3
   rotate: false
-  xy: 800, 658
+  xy: 1201, 565
   size: 205, 178
   orig: 205, 178
   offset: 0, 0
   index: -1
 hexedgemove4
   rotate: false
-  xy: 1005, 658
+  xy: 1406, 565
   size: 205, 178
   orig: 205, 178
   offset: 0, 0
   index: -1
 hexedgemove5
   rotate: false
-  xy: 1210, 658
+  xy: 0, 743
   size: 205, 178
   orig: 205, 178
   offset: 0, 0
   index: -1
 hilite
   rotate: false
-  xy: 600, 211
+  xy: 1075, 205
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 hilitehex
   rotate: false
-  xy: 1415, 658
+  xy: 205, 743
   size: 205, 178
   orig: 205, 178
   offset: 0, 0
   index: -1
 hilitehexcannonrange
   rotate: false
-  xy: 1620, 658
+  xy: 410, 743
   size: 205, 178
   orig: 205, 178
   offset: 0, 0
   index: -1
 hilitehexexit
   rotate: false
-  xy: 0, 845
+  xy: 615, 743
   size: 205, 178
   orig: 205, 178
   offset: 0, 0
   index: -1
 hilitehexmove
   rotate: false
-  xy: 205, 845
+  xy: 820, 743
   size: 205, 178
   orig: 205, 178
   offset: 0, 0
   index: -1
 hilitehexmove2
   rotate: false
-  xy: 410, 845
+  xy: 1025, 743
   size: 205, 178
   orig: 205, 178
   offset: 0, 0
   index: -1
 hilitehexmove3
   rotate: false
-  xy: 190, 658
+  xy: 1230, 743
   size: 200, 178
   orig: 200, 178
   offset: 0, 0
   index: -1
 hilitehexreindisplay
   rotate: false
-  xy: 615, 845
+  xy: 1430, 743
   size: 205, 178
   orig: 205, 178
   offset: 0, 0
   index: -1
 hilitehexreindisplay2
   rotate: false
-  xy: 820, 845
+  xy: 0, 921
   size: 205, 178
   orig: 205, 178
   offset: 0, 0
   index: -1
 hilitehexreindisplay3
   rotate: false
-  xy: 1025, 845
+  xy: 205, 921
   size: 205, 178
   orig: 205, 178
   offset: 0, 0
   index: -1
 inf26
   rotate: false
-  xy: 720, 211
+  xy: 1195, 205
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 inf28
   rotate: false
-  xy: 840, 211
+  xy: 1315, 205
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 inf80
   rotate: false
-  xy: 960, 211
+  xy: 1435, 205
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 info
   rotate: false
-  xy: 2, 0
+  xy: 62, 0
   size: 19, 20
   orig: 19, 20
   offset: 0, 0
   index: -1
 lehr
   rotate: false
-  xy: 1080, 211
+  xy: 1555, 205
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 luftwaffeNew
   rotate: false
-  xy: 1200, 211
+  xy: 0, 325
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 mechattack
   rotate: false
-  xy: 61, 0
+  xy: 0, 0
   size: 42, 17
   orig: 42, 17
   offset: 0, 0
   index: -1
 mobileassualt
   rotate: false
-  xy: 840, 451
+  xy: 206, 565
   size: 127, 126
   orig: 127, 126
   offset: 0, 0
   index: -1
 moved
   rotate: false
-  xy: 623, 91
+  xy: 0, 205
   size: 115, 115
   orig: 115, 115
   offset: 0, 0
   index: -1
 ok
   rotate: false
-  xy: 41, 0
+  xy: 81, 0
   size: 20, 20
   orig: 20, 20
   offset: 0, 0
   index: -1
 onestep
   rotate: false
-  xy: 1320, 211
+  xy: 120, 325
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 pz2
   rotate: false
-  xy: 1440, 211
+  xy: 240, 325
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 pzlehr
   rotate: false
-  xy: 1560, 211
+  xy: 360, 325
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 rienforcementbutton
   rotate: false
-  xy: 1429, 0
+  xy: 279, 91
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 rienforcementbuttonpressed
   rotate: false
-  xy: 1522, 0
+  xy: 372, 91
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 river
   rotate: false
-  xy: 177, 0
+  xy: 143, 0
   size: 42, 24
   orig: 42, 24
   offset: 0, 0
   index: -1
 shell
   rotate: false
-  xy: 429, 0
+  xy: 841, 0
   size: 42, 43
   orig: 42, 43
   offset: 0, 0
   index: -1
 silamericaninf
   rotate: false
-  xy: 1680, 211
+  xy: 480, 325
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silantitank
   rotate: false
-  xy: 0, 331
+  xy: 600, 325
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silarm
   rotate: false
-  xy: 120, 331
+  xy: 720, 325
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silart
   rotate: false
-  xy: 240, 331
+  xy: 840, 325
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silgermanart
   rotate: false
-  xy: 360, 331
+  xy: 960, 325
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silgermaninf
   rotate: false
-  xy: 480, 331
+  xy: 1080, 325
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 siljagd
   rotate: false
-  xy: 600, 331
+  xy: 1200, 325
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silmairart
   rotate: false
-  xy: 720, 331
+  xy: 1320, 325
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silmarder
   rotate: false
-  xy: 840, 331
+  xy: 1440, 325
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silmobileart
   rotate: false
-  xy: 960, 331
+  xy: 1560, 325
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silneber
   rotate: false
-  xy: 1080, 331
+  xy: 0, 445
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silpanzergrenadier
   rotate: false
-  xy: 1200, 331
+  xy: 120, 445
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silpuma
   rotate: false
-  xy: 1320, 331
+  xy: 240, 445
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silsherman
   rotate: false
-  xy: 1440, 331
+  xy: 360, 445
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 silstug
   rotate: false
-  xy: 1560, 331
+  xy: 480, 445
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 siltank
   rotate: false
-  xy: 1680, 331
+  xy: 600, 445
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 star
   rotate: false
-  xy: 858, 91
+  xy: 1526, 91
   size: 120, 114
   orig: 120, 114
   offset: 0, 0
   index: -1
 supply
   rotate: false
-  xy: 0, 451
+  xy: 720, 445
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 supplymouse
   rotate: false
-  xy: 103, 0
+  xy: 711, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 surprise
   rotate: false
-  xy: 219, 0
+  xy: 185, 0
   size: 42, 24
   orig: 42, 24
   offset: 0, 0
   index: -1
 tecbridge
   rotate: false
-  xy: 1097, 451
+  xy: 463, 565
   size: 141, 136
   orig: 141, 136
   offset: 0, 0
   index: -1
 tecclear
   rotate: false
-  xy: 673, 1039
+  xy: 210, 1115
   size: 223, 200
   orig: 223, 200
   offset: 0, 0
   index: -1
 tecforest
   rotate: false
-  xy: 1645, 845
+  xy: 1265, 921
   size: 212, 193
   orig: 212, 193
   offset: 0, 0
   index: -1
 tecmain
   rotate: false
-  xy: 662, 1389
+  xy: 660, 1389
   size: 1061, 865
   orig: 1061, 865
   offset: 0, 0
   index: -1
 tecprimeroad
   rotate: false
-  xy: 0, 1039
+  xy: 1477, 921
   size: 213, 194
   orig: 213, 194
   offset: 0, 0
   index: -1
 tecriver
   rotate: false
-  xy: 1631, 451
+  xy: 433, 1115
   size: 165, 207
   orig: 165, 207
   offset: 0, 0
   index: -1
 tecsecroad
   rotate: false
-  xy: 1435, 845
+  xy: 0, 1115
   size: 210, 194
   orig: 210, 194
   offset: 0, 0
   index: -1
 tectop
   rotate: false
-  xy: 1615, 0
+  xy: 465, 91
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 tectoppushed
   rotate: false
-  xy: 1708, 0
+  xy: 558, 91
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 tectown
   rotate: false
-  xy: 200, 1389
+  xy: 1051, 1115
   size: 462, 274
   orig: 462, 274
   offset: 0, 0
   index: -1
 tecvillage
   rotate: false
-  xy: 896, 1039
+  xy: 598, 1115
   size: 213, 213
   orig: 213, 213
   offset: 0, 0
   index: -1
 tfback
   rotate: false
-  xy: 171, 91
+  xy: 355, 0
   size: 185, 30
   orig: 185, 30
   offset: 0, 0
   index: -1
 tfcusor
   rotate: false
-  xy: 0, 0
+  xy: 353, 0
   size: 2, 28
   orig: 2, 28
   offset: 0, 0
   index: -1
 tfselected
   rotate: false
-  xy: 0, 91
+  xy: 540, 0
   size: 171, 30
   orig: 171, 30
   offset: 0, 0
   index: -1
 threestep
   rotate: false
-  xy: 120, 451
+  xy: 840, 445
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 town
   rotate: false
-  xy: 261, 0
+  xy: 227, 0
   size: 42, 24
   orig: 42, 24
   offset: 0, 0
   index: -1
 trees
   rotate: false
-  xy: 303, 0
+  xy: 269, 0
   size: 42, 24
   orig: 42, 24
   offset: 0, 0
   index: -1
 truck
   rotate: false
-  xy: 240, 451
+  xy: 960, 445
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 twostep
   rotate: false
-  xy: 360, 451
+  xy: 1080, 445
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 usflag
   rotate: false
-  xy: 1238, 451
+  xy: 0, 565
   size: 206, 121
   orig: 206, 121
   offset: 0, 0
   index: -1
 vg26
   rotate: false
-  xy: 480, 451
+  xy: 1200, 445
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 vg276
   rotate: false
-  xy: 600, 451
+  xy: 1320, 445
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 vg352
   rotate: false
-  xy: 720, 451
+  xy: 1440, 445
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
   index: -1
 village
   rotate: false
-  xy: 345, 0
+  xy: 311, 0
   size: 42, 24
   orig: 42, 24
   offset: 0, 0

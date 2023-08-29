@@ -493,4 +493,7 @@ public class CounterStack {
         }
     }
 
+    public void setInvisible() {
+        this.stack.setVisible(false);
+    }
 }

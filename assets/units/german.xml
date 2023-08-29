@@ -683,5 +683,39 @@
 			<defenseFactor value="3" />
 			<movementFactor value="10" />
 		</unit>
+		<unit>
+			<unitDesignation value="Supply" />
+			<unitSubDesignation value="Exit panzer Army" />
+			<unitMechanized value="true" />
+			<unitGroundCombat value="false" />
+			<unitType value="Exit" />
+			<unitSize value="Regiment" />
+			<entryAreaX value="39" />
+			<entryAreaY value="21" />
+			<unitEntry value="99" />
+			<unitStepAtStart value="2" />
+			<unitSteps value="2" />
+			<attackFactor value="0" />
+			<defenseFactor value="0" />
+			<movementFactor value="35" />
+		</unit>
+		<unit>
+			<unitDesignation value="Supply" />
+			<unitSubDesignation value="Exit panzer Army" />
+			<unitMechanized value="true" />
+			<unitGroundCombat value="false" />
+			<unitType value="Exit" />
+			<unitSize value="Regiment" />
+			<entryAreaX value="39" />
+			<entryAreaY value="21" />
+			<unitEntry value="99" />
+			<unitStepAtStart value="2" />
+			<unitSteps value="2" />
+			<attackFactor value="0" />
+			<defenseFactor value="0" />
+			<movementFactor value="35" />
+		</unit>
+
+
 
 	</units>

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class LehrExits {
     public static LehrExits instance;
-    public int[] numOfUnitsToExit = {0,0,0,2,3,4,5,6};
+    public int[] numOfUnitsToExit = {0,0,0,2,3,4,5,6,6};
     ArrayList<Unit> arrUnits = new ArrayList<>();
     public Hex hexExit1 = Hex.hexTable[0][8];
     public ArrayList<Unit> unitExit1 = new ArrayList<>();

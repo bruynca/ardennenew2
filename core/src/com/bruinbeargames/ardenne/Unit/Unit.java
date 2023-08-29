@@ -74,6 +74,7 @@ public class Unit {
 	public boolean isHQ;
 	public boolean isArtillery;
 	public boolean isTransport;
+	public boolean isExit;
 
 	public int entryTurn;
 
@@ -217,6 +218,9 @@ public class Unit {
 		if (type.compareTo("Transport" )== 0){
 			isTransport = true;
 		}
+		if (type.compareTo("Exit" )== 0){
+			isExit = true;
+		}
 		if (type.compareTo("Artillery") == 0 || type.compareTo("Neber") == 0){
 			isArtillery = true;
 			attackFactorLimbered = Integer.parseInt(childXML.getChildByName("attackFactorMove").getAttribute("value"));
@@ -301,6 +305,15 @@ public class Unit {
 		ArrayList<Unit> arrReturn = new ArrayList<>();
 		for (Unit unit:arrGameOtherUnits){
 			if (unit.isTransport && unit.isAllies == isAllies){
+				arrReturn.add(unit);
+			}
+		}
+		return arrReturn;
+	}
+	public static ArrayList<Unit> getExits(boolean isAllies) {
+		ArrayList<Unit> arrReturn = new ArrayList<>();
+		for (Unit unit:arrGameOtherUnits){
+			if (unit.isExit && unit.isAllies == isAllies){
 				arrReturn.add(unit);
 			}
 		}

@@ -420,6 +420,11 @@ public class NextPhase {
                         if (GameSetup.instance.getScenario().ordinal() > 0){
                             String str = i18NBundle.format("exitinsupply");
                             EventPopUp.instance.show(str);
+                            if (SecondPanzerExits.instance.unitExit1.size() > 0){
+                                CenterScreen.instance.start(SecondPanzerExits.instance.hexExit1);
+                            }else{
+                                CenterScreen.instance.start(SecondPanzerExits.instance.hexExit1);
+                            }
                         }
                     }
 

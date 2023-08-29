@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class SecondPanzerExits {
     public static SecondPanzerExits instance;
-    public int[] numOfUnitsToExit = {0,0,0,2,4,5,7};
+    public int[] numOfUnitsToExit = {0,0,0,2,4,5,7,7};
     ArrayList<Unit> arrUnits = new ArrayList<>();
     public Hex hexExit1 = Hex.hexTable[0][8];
     public ArrayList<Unit> unitExit1 = new ArrayList<>();
@@ -33,6 +33,7 @@ public class SecondPanzerExits {
     public ArrayList<Unit> unitExit2 = new ArrayList<>();
     static TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
     static TextureRegion tExitBoard =  textureAtlas.findRegion("exitboard");
+    static TextureRegion tExitBoardShade =  textureAtlas.findRegion("exitboarddarken");
     private I18NBundle i18NBundle;
 
     public SecondPanzerExits(){
@@ -121,6 +122,7 @@ public class SecondPanzerExits {
         }
         if (icFound == null){
             Icon icon = new Icon(hex);
+            arrIcons.add(icon);
         }else{
             icFound.addCount();
         }
@@ -128,26 +130,74 @@ public class SecondPanzerExits {
     }
     static public ArrayList<Icon> arrIcons = new ArrayList<Icon>();
 
+    public void shade(Hex hex) {
+        Icon ic = findIcon(hex);
+        ic.shade();
+    }
+
+    public void removeShade(Hex hex) {
+        Icon ic = findIcon(hex);
+        ic.unShade();
+
+    }
+    private Icon findIcon(Hex hex){
+        for (Icon ic:arrIcons){
+            if (ic.hex == hex){
+                return ic;
+            }
+        }
+        return null;
+    }
+
+    public void supply(Hex hex) {
+        Icon ic = findIcon(hex);
+        ic.unShade();
+        ic.setSupplied();
+
+    }
+
     public class Icon{
         Hex hex;
         int count;
+        boolean inSupply = false;
         Image image;
-        Label label;
-        Stack stack;
+ //       Label label;
+ //       Stack stack;
         Icon(Hex hex){
             this.hex = hex;
             count = 1;
-            Image image = new Image(tExitBoard);
-            image.setScale(.5f);
-            Label.LabelStyle labelStyle = new Label.LabelStyle(Fonts.getFont24(), Color.WHITE);
-            label = new Label(Integer.toString(count),labelStyle);
-            stack = new Stack();
-//            stack.addActor(label);
-            stack.addActor(image);
+            addImage(tExitBoard);
+        }
+        public void shade(){
+                image.addAction(Actions.forever(Actions.sequence(
+                        Actions.alpha(0),
+                        Actions.fadeIn(0.5f),
+                        Actions.delay(0.5f),
+                        Actions.fadeOut(0.5f)
+                )));
+
+        }
+        public void unShade(){
+            image.clearActions();
+        }
+
+        /**
+         *  replace ICON with shade
+         * @param hex
+         * @param texIN
+         */
+        Icon(Hex hex, TextureRegion texIN){
+            this.hex = hex;
+            count = 1;
+            addImage(texIN);
+        }
+
+        private void addImage(TextureRegion texIN) {
+            image = new Image(texIN);
+            image.setScale(.9f);
             Vector2 v2 = hex.getCounterPosition();
             float x = 0;
             float y=0;
-  //          stack.setPosition(v2.x-70,v2.y+10);
             x = v2.x-80;
             y=v2.y+10;
             if (hex == hexExit1){
@@ -155,14 +205,18 @@ public class SecondPanzerExits {
             }else{
                 y +=5;
             }
-            stack.setPosition(x,y);
+            image.setPosition(x,y);
+            ardenne.instance.mapStage.addActor(image);
 
-            ardenne.instance.mapStage.addActor(stack);
         }
+
         void addCount(){
             count++;
-            label.setText(Integer.toString(count));
+ //           label.setText(Integer.toString(count));
         }
 
+        public void setSupplied() {
+            inSupply = true;
+        }
     }
 }
