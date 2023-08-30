@@ -148,14 +148,14 @@ public class HexHiliteDisplay {
              for (Unit unit:hex2.getUnitsInHex()){
                  if (unit.isAxis){
                      if (unit.getMapCounter() != null){
+                         if (unit.isExit){
+                             Hex hex=unit.getHexOccupy();
+                             SecondPanzerExits.instance.removeShade(hex);
+                             arrUnitsToShade.add(unit);
+                         }
                          if (unit.getMapCounter().getCounterStack().isShaded()){
                              arrUnitsToShade.add(unit);
                              unit.getMapCounter().getCounterStack().removeShade();
-                             if (unit.isExit){
-                                 Hex hex=unit.getHexOccupy();
-                                 SecondPanzerExits.instance.removeShade(hex);
-
-                             }
                          }
                      }
                  }
@@ -167,9 +167,10 @@ public class HexHiliteDisplay {
                 for (Unit unit:arrUnitsToShade){
                     if (!unit.getInSupplyThisTurn()) {
                         unit.getMapCounter().getCounterStack().shade();
-                    }
-                    if (unit.isExit){
-                        SecondPanzerExits.instance.removeShade(unit.getHexOccupy());
+                        if (unit.isExit){
+                            SecondPanzerExits.instance.shade(unit.getHexOccupy());
+                        }
+
                     }
                 }
                 arrUnitsToShade.clear();

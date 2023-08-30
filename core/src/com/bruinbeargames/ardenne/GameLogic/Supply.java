@@ -150,6 +150,7 @@ public class Supply implements Observer{
                 if (SecondPanzerExits.instance.unitExit1.size() > 0) {
                     arrExits.get(0).placeOnBoard(SecondPanzerExits.instance.hexExit1);
                     arrExits.get(0).getMapCounter().getCounterStack().setInvisible();
+                    arrExits.get(0).setOffSupplyThisTurn();
                     SecondPanzerExits.arrIcons.get(0).shade();
                 } else {
                     arrRemove.add(arrExits.get(0));
@@ -158,6 +159,8 @@ public class Supply implements Observer{
                     arrExits.get(1).placeOnBoard(SecondPanzerExits.instance.hexExit2);
                     arrExits.get(1).getMapCounter().getCounterStack().setInvisible();
                     SecondPanzerExits.arrIcons.get(1).shade();
+                    arrExits.get(1).setOffSupplyThisTurn();
+
 
                 } else {
                     arrRemove.add(arrExits.get(1));

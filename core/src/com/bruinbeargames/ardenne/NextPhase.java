@@ -309,6 +309,11 @@ public class NextPhase {
     }
 
     public void setPhase() {
+        if (turn < GameSetup.instance.getScenario().getLength()){
+            return;
+        }
+
+
         isAIControl = true;
         isInBarrage = false;
         ClickAction.unLock();
@@ -435,12 +440,25 @@ public class NextPhase {
                 case GERMAN_SUPPLY_END:
                     isAlliedPlayer = false;
                     Supply.instance.EndSupplyGerman();
+                    if (turn == GameSetup.instance.getScenario().getLength()) {
+                        if (GameSetup.instance.getScenario().ordinal() > 0){
+                            VictoryPopup.instance.determineVictor();
+                            return;
+                        }
+                    }
+
 // done in Supply                    nextPhase();
                     break;
                 case GERMAN_END:
                     isAlliedPlayer = false;
                     Unit.initUnShade();
                     ClickAction.cancelAll();
+                    if (turn == GameSetup.instance.getScenario().getLength()) {
+                        if (GameSetup.instance.getScenario().ordinal() > 0){
+                            VictoryPopup.instance.determineVictor();
+                            return;
+                        }
+                    }
                     nextPhase();
                     break;
                 case ALLIED_PRE_MOVEMENT:

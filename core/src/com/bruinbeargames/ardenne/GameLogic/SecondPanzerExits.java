@@ -17,8 +17,10 @@ import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.SplashScreen;
 import com.bruinbeargames.ardenne.UI.EventPopUp;
+import com.bruinbeargames.ardenne.UI.VictoryPopup;
 import com.bruinbeargames.ardenne.UI.WinExitDisplay;
 import com.bruinbeargames.ardenne.Unit.Unit;
+import com.bruinbeargames.ardenne.WinModal;
 import com.bruinbeargames.ardenne.ardenne;
 
 import java.util.ArrayList;
@@ -44,6 +46,7 @@ public class SecondPanzerExits {
             }
         }
         i18NBundle = GameMenuLoader.instance.localization;
+        arrIcons.clear();
 
 
     }
@@ -153,7 +156,19 @@ public class SecondPanzerExits {
         Icon ic = findIcon(hex);
         ic.unShade();
         ic.setSupplied();
+        /**
+         *  check victory
+         */
 
+    }
+    public boolean checkVictory(){
+        boolean isVictory = true;
+        for (Icon icon:arrIcons){
+            if (!icon.inSupply){
+                isVictory = false;
+            }
+        }
+        return isVictory;
     }
 
     public class Icon{
@@ -169,16 +184,18 @@ public class SecondPanzerExits {
             addImage(tExitBoard);
         }
         public void shade(){
-                image.addAction(Actions.forever(Actions.sequence(
-                        Actions.alpha(0),
-                        Actions.fadeIn(0.5f),
-                        Actions.delay(0.5f),
-                        Actions.fadeOut(0.5f)
-                )));
+            image.clearActions();
+            image.addAction(Actions.forever(Actions.sequence(
+                    Actions.alpha(0),
+                    Actions.fadeIn(0.25f),
+                    Actions.delay(0.25f),
+                    Actions.fadeOut(0.25f)
+            )));
 
         }
         public void unShade(){
             image.clearActions();
+            image.addAction(Actions.fadeIn(.25f));
         }
 
         /**

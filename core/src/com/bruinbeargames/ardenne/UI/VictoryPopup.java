@@ -14,6 +14,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.bruinbeargames.ardenne.AccessInternet;
 import com.bruinbeargames.ardenne.Fonts;
+import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
 import com.bruinbeargames.ardenne.GameLogic.SoundsLoader;
 import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.GameSetup;
@@ -162,7 +163,12 @@ public class VictoryPopup {
          */
         int turn = NextPhase.instance.getTurn();
         if (turn == GameSetup.instance.getScenario().getLength()){
-            return ""; // to be coded
+            if (SecondPanzerExits.instance.checkVictory()){
+                saveWinner("German");
+                updateText(i18NBundle.get("exitvictory"),"german");
+                return "German";
+
+            }
         }
         saveWinner("allied");
         updateText(i18NBundle.get("2ndlosernoexit"),"usa");
@@ -175,7 +181,13 @@ public class VictoryPopup {
          */
         int turn = NextPhase.instance.getTurn();
         if (turn == GameSetup.instance.getScenario().getLength()){
-            return ""; // to be coded
+            if (SecondPanzerExits.instance.checkVictory()){
+                saveWinner("German");
+                updateText(i18NBundle.get("exitvictory"),"german");
+                return "German";
+
+            }
+
         }
         saveWinner("allied");
         updateText(i18NBundle.get("lehrlosernoexit"),"usa");
