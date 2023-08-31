@@ -147,9 +147,8 @@ public class Reinforcement {
         int turn = NextPhase.instance.getTurn();
         for (Unit unit:getReinforcementsAvailable()){
             if (byTurn && unit.entryNum > turn){
-                break;
-            }
-            if (unit.getEntryY() == y && unit.getEntryX() == x){
+                // do nothing
+            }else if (unit.getEntryY() == y && unit.getEntryX() == x){
                 arrUnit.add(unit);
             }
         }

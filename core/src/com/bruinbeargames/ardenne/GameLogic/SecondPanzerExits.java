@@ -113,6 +113,7 @@ public class SecondPanzerExits {
         if (numOfUnitsToExit[turn] > getExitted().size()){
             return true;
         }
+
         return false;
     }
     public void addIcon(Hex hex){

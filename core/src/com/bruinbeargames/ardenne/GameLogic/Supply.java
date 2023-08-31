@@ -25,6 +25,7 @@ import com.bruinbeargames.ardenne.UI.WinSupply;
 import com.bruinbeargames.ardenne.Unit.ClickAction;
 import com.bruinbeargames.ardenne.Unit.Unit;
 import com.bruinbeargames.ardenne.Unit.UnitMove;
+import com.bruinbeargames.ardenne.WinModal;
 import com.bruinbeargames.ardenne.ardenne;
 
 import java.util.ArrayList;
@@ -356,6 +357,7 @@ public class Supply implements Observer{
         hex.moveUnitToFront(unitTransportWorkOn);
         loopHex = hex;
         loopUnitMove = unitMove;
+        WinModal.instance.set();
         startSupplying();
 
         return;
@@ -367,6 +369,7 @@ public class Supply implements Observer{
 
     private void startSupplying() {
         if (arrInRange.size() == 0){
+            WinModal.instance.release();
             return;
         }else{
             Unit unitWork = arrInRange.get(0);

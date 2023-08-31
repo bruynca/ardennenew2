@@ -183,6 +183,7 @@ public class NextPhase {
                         String winner = VictoryPopup.instance.determineVictor();
                         BottomMenu.instance.setEnablePhaseChange(false);
                         AccessInternet.updateGame(turn, winner);
+                        iswarned = true;
                         return;
                     }
                 }
@@ -251,7 +252,7 @@ public class NextPhase {
             }
             if (GameSetup.instance.getScenario().ordinal() > 1 && !iswarned) {
                 if (LehrExits.instance.checkExits()){
-                    String str = i18NBundle.format("2ndmustexit");
+                    String str = i18NBundle.format("lehrmustexit");
                     EventPopUp.instance.show(str);
                 }
             }
@@ -309,7 +310,7 @@ public class NextPhase {
     }
 
     public void setPhase() {
-        if (turn < GameSetup.instance.getScenario().getLength()){
+        if (turn > GameSetup.instance.getScenario().getLength()){
             return;
         }
 

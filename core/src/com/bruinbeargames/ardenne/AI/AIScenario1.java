@@ -539,7 +539,8 @@ public class AIScenario1 {
 
         ArrayList<AIOrders> arrAINonPenetrate = AIUtil.GetIterations(arrUnitsScenario,0,false,arrHexToCheck,AIMobileAssault.getAssualt(),aiOrders);
         ArrayList<Hex> arrAllowDuplicates = new ArrayList<>();
-        ArrayList<AIOrders> arrNodupes = AIOrders.removeDupeMoveToHexes(arrAINonPenetrate, arrAllowDuplicates);
+
+        ArrayList<AIOrders> arrNodupes = AIOrders.removeDupeMoveToHexesAllow(arrAINonPenetrate, arrAllowDuplicates,1);
         ArrayList<AIOrders> arrNoEnemy = AIOrders.removeEnemyPlace(arrNodupes, isAllies);
 
         setArrToBeScored(arrNoEnemy, AIScorer.Type.NonPenetrate);
@@ -569,14 +570,17 @@ public class AIScenario1 {
  //       arrSortedAscending.get(0).display();
         ArrayList<AIOrders> arrTop = AIOrders.gettopPercent(arrSortedAscending, .3f);
         AISupply.instance.doSupplyAnalysis(arrTop, true);
+ //       handOffToMover(arrTop);
         return;
     }
     public void handOffToMover(ArrayList<AIOrders> arrOrdersIn){
+        Gdx.app.log("AIScenario1", "handOffToMover");
+
         /**
          *  *  remove any iterations that are going to same hex(duplicates)
          */
         ArrayList<Hex> arrAllowDuplicates = new ArrayList<>();
-        ArrayList<AIOrders> arrNodupes = AIOrders.removeDupeMoveToHexes(arrOrdersIn, arrAllowDuplicates);
+        ArrayList<AIOrders> arrNodupes = AIOrders.removeDupeMoveToHexesAllow(arrOrdersIn, arrAllowDuplicates,1);
         /**
          *  force units in wiltz to stay if no one is moving there
          */

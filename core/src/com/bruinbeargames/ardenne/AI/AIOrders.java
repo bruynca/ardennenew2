@@ -92,6 +92,37 @@ public class AIOrders {
         return arrReturn;
     }
 
+    /**
+     *  same as abbobe but allow n dupes
+     * @param arrIn
+     * @param arrAllowDuplicates
+     * @param allow
+     * @return
+     */
+    public static ArrayList<AIOrders> removeDupeMoveToHexesAllow(ArrayList<AIOrders> arrIn, ArrayList<Hex> arrAllowDuplicates, int allow) {
+        ArrayList<AIOrders> arrReturn = new ArrayList<AIOrders>();
+        for (AIOrders aiO:arrIn){
+            ArrayList<Hex> arrHexWork = new ArrayList<>();
+            boolean isGood = true;
+            int dupes=0;
+            for (Hex hex:aiO.arrHexMoveTo){
+                if (arrHexWork.contains(hex) && !arrAllowDuplicates.contains(hex)){
+                    dupes++;
+                    if (dupes > allow) {
+                        isGood = false;
+                        break;
+                    }
+                }else{
+                    arrHexWork.add(hex);
+                }
+            }
+            if (isGood){
+                arrReturn.add(aiO);
+            }
+        }
+        return arrReturn;
+    }
+
     public static AIOrders combine(AIOrders aiO1, AIOrders aiO2, boolean isTotal) {
         AIOrders aiOrders =  new AIOrders();
         aiOrders.arrUnit.addAll(aiO1.arrUnit);
