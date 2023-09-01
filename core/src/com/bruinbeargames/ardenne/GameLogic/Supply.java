@@ -91,15 +91,11 @@ public class Supply implements Observer{
             image.setScale(.8f);
             arrSupplyImages.add(image);
         }
+         for (Unit unit:Unit.getExits(false)){
+             unit.placeOnBoard(SecondPanzerExits.instance.hexExit1);
+             unit.getMapCounter().getCounterStack().setInvisible();
 
-
-  /*      for (int[] in:alliedSupply){
-            Hex hex = Hex.hexTable[in[0]][in[1]];
-            arrAlliedSupply.add(hex);
-            Image image = new Image(supplyIcon);
-            image.setScale(.8f);
-            arrSupplyImages.add(image);
-        }*/
+         }
 
         i18NBundle= GameMenuLoader.instance.localization;
 
@@ -144,31 +140,25 @@ public class Supply implements Observer{
         arrTransports.clear();
         arrExits.clear();
         arrTransports = Unit.getTransports(false);
-        if (NextPhase.instance.getTurn() == GameSetup.instance.getScenario().getLength()) {
+ //       if (NextPhase.instance.getTurn() == GameSetup.instance.getScenario().getLength()) {
             if (GameSetup.instance.getScenario().ordinal() > 0) {
                 arrExits.addAll(Unit.getExits(false));
                 ArrayList<Unit> arrRemove = new ArrayList<>();
                 if (SecondPanzerExits.instance.unitExit1.size() > 0) {
-                    arrExits.get(0).placeOnBoard(SecondPanzerExits.instance.hexExit1);
-                    arrExits.get(0).getMapCounter().getCounterStack().setInvisible();
                     arrExits.get(0).setOffSupplyThisTurn();
                     SecondPanzerExits.arrIcons.get(0).shade();
                 } else {
                     arrRemove.add(arrExits.get(0));
                 }
                 if (SecondPanzerExits.instance.unitExit2.size() > 0) {
-                    arrExits.get(1).placeOnBoard(SecondPanzerExits.instance.hexExit2);
-                    arrExits.get(1).getMapCounter().getCounterStack().setInvisible();
                     SecondPanzerExits.arrIcons.get(1).shade();
                     arrExits.get(1).setOffSupplyThisTurn();
-
-
                 } else {
                     arrRemove.add(arrExits.get(1));
                 }
                 arrExits.removeAll(arrRemove);
             }
-    }
+ //   }
 
         /**
          *  initialize units being supplied

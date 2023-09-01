@@ -319,7 +319,7 @@ public class ClickAction implements Observer {
                     hiliteHex.addSecondPanzer(arrHexWork);
                 }
             }
-            if (LehrExits.instance.isInSecond(unit)) {
+            if (LehrExits.instance.isInLehr(unit)) {
                 ArrayList<Hex> arrHexWork = new ArrayList<>();
                 for (Hex hex : arrHexMove) {
                     if (LehrExits.instance.isInExit(hex)){

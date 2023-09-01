@@ -200,7 +200,7 @@ public class Move extends Observable {
                     hexEnd = hexWork                   ;
                 }
             }
-            if (LehrExits.instance.isInSecond(unit)){
+            if (LehrExits.instance.isInLehr(unit)){
                 Hex hexWork = arrMove.get(arrMove.size()-1);
                 if (LehrExits.instance.isInExit(hexWork)){
                     hexEnd = hexWork                   ;

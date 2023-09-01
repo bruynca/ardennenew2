@@ -107,6 +107,9 @@ public class NextPhase {
         CombatDisplay combatDisplay = new CombatDisplay();
         CombatDisplayResults combatDisplayResults = new CombatDisplayResults();
   //      MouseImage mouseImage   = new MouseImage();
+        SecondPanzerExits s = new SecondPanzerExits();
+        LehrExits l = new LehrExits();
+
         Supply supply = new Supply();
         BombardDisplay bombardDisplay = new BombardDisplay();
         Gdx.app.log("NextPhase", "Constructor End");
@@ -130,8 +133,6 @@ public class NextPhase {
         VictoryPopup victoryPopup = new VictoryPopup();
         ExitWest exitWest = new ExitWest();
         WinAIDisplay winAIDisplay = new WinAIDisplay();
-        SecondPanzerExits s = new SecondPanzerExits();
-        LehrExits l = new LehrExits();
         aiMain = new AIMain();
 
         //      CardHandler cardHandler = new CardHandler(); not here but gamesetup

@@ -14,7 +14,9 @@ import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.bruinbeargames.ardenne.ErrorGame;
+import com.bruinbeargames.ardenne.GameLogic.LehrExits;
 import com.bruinbeargames.ardenne.GameLogic.MoreGermanAmmo;
+import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.SplashScreen;
 import com.bruinbeargames.ardenne.ardenne;
@@ -485,6 +487,8 @@ public class Unit {
          *  changed to remove isEliminated out of timer
          *   other program logic depends on it being set immediatly
          */
+		SecondPanzerExits.instance.checkEliminate(this);
+		LehrExits.instance.checkEliminate(this);
 		isEliminated = true;
 		float x=0; float y=0;
 		if (counter != null) {
@@ -512,11 +516,6 @@ public class Unit {
 					, 1f                    //    (delay)
 			);
 		}
-
-	}
-	public void eliminateNoDisplay(){
-		isEliminated = true;
-		removeFromBoard(this);
 
 	}
 

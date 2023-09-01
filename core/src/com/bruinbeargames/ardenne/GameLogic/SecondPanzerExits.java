@@ -37,6 +37,7 @@ public class SecondPanzerExits {
     static TextureRegion tExitBoard =  textureAtlas.findRegion("exitboard");
     static TextureRegion tExitBoardShade =  textureAtlas.findRegion("exitboarddarken");
     private I18NBundle i18NBundle;
+    boolean hasEnoughUnits = true;
 
     public SecondPanzerExits(){
         instance = this;
@@ -47,6 +48,7 @@ public class SecondPanzerExits {
         }
         i18NBundle = GameMenuLoader.instance.localization;
         arrIcons.clear();
+        hasEnoughUnits = true;
 
 
     }
@@ -68,6 +70,11 @@ public class SecondPanzerExits {
             return true;
         }
         return false;
+    }
+    public void checkEliminate(Unit unit){
+        if (isInSecond(unit)){
+            hasEnoughUnits = false;
+        }
     }
 
     /**
@@ -113,7 +120,9 @@ public class SecondPanzerExits {
         if (numOfUnitsToExit[turn] > getExitted().size()){
             return true;
         }
-
+        if (!hasEnoughUnits){
+            return true;
+        }
         return false;
     }
     public void addIcon(Hex hex){
@@ -185,6 +194,7 @@ public class SecondPanzerExits {
             addImage(tExitBoard);
         }
         public void shade(){
+            setUnSupply();
             image.clearActions();
             image.addAction(Actions.forever(Actions.sequence(
                     Actions.alpha(0),
@@ -235,6 +245,9 @@ public class SecondPanzerExits {
 
         public void setSupplied() {
             inSupply = true;
+        }
+        public void setUnSupply(){
+            inSupply = false;
         }
     }
 }
