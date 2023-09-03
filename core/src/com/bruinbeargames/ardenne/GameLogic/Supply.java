@@ -231,6 +231,9 @@ public class Supply implements Observer{
     private void supply(Unit unitCheck, Hex hexSupply, Unit unitTransportWorkOn, UnitMove unitMove) {
 
         int ix = arrUnitsSupply.indexOf(unitCheck);
+        if (ix < 0){
+            int b=0;
+        }
         arrUnitsBeingSupplied[ix].add(unitTransportWorkOn);
 
         move[ix] = unitCheck.getCurrentMovement();
@@ -334,7 +337,7 @@ public class Supply implements Observer{
         for (Hex hex2:arrHexWork){
             if (hex2.checkAxisInHex()){
                 for (Unit unitCheck:hex2.getUnitsInHex()){
-                    if (!unitCheck.isTransport) {
+                    if (!unitCheck.isTransport && arrUnitsSupply.contains(unitCheck)) {
                         arrInRange.add(unitCheck);
  //                       supply(unitCheck, hex, unitTransportWorkOn, unitMove);
                     }

@@ -19,7 +19,7 @@
 		-->
 		<unit>
 			<unitDesignation value="Supply" />
-			<unitSubDesignation value="5th panzer Army" />
+			<unitSubDesignation value="5th panzer Supply" />
 			<unitMechanized value="true" />
 			<unitGroundCombat value="false" />
 			<unitType value="Transport" />
@@ -35,7 +35,7 @@
 		</unit>
 		<unit>
 			<unitDesignation value="Supply" />
-			<unitSubDesignation value="5th Panzer Army" />
+			<unitSubDesignation value="5th Panzer Supply" />
 			<unitMechanized value="true" />
 			<unitGroundCombat value="false" />
 			<unitType value="Transport" />
@@ -51,7 +51,7 @@
 		</unit>
 		<unit>
 			<unitDesignation value="Supply" />
-			<unitSubDesignation value="5th Panzer Army" />
+			<unitSubDesignation value="5th Panzer Supply" />
 			<unitMechanized value="true" />
 			<unitGroundCombat value="false" />
 			<unitType value="Transport" />
@@ -685,7 +685,7 @@
 		</unit>
 		<unit>
 			<unitDesignation value="Supply" />
-			<unitSubDesignation value="Exit panzer Army" />
+			<unitSubDesignation value="Exit panzer Army1" />
 			<unitMechanized value="true" />
 			<unitGroundCombat value="false" />
 			<unitType value="Exit" />
@@ -701,7 +701,7 @@
 		</unit>
 		<unit>
 			<unitDesignation value="Supply" />
-			<unitSubDesignation value="Exit panzer Army" />
+			<unitSubDesignation value="Exit panzer Army2" />
 			<unitMechanized value="true" />
 			<unitGroundCombat value="false" />
 			<unitType value="Exit" />
