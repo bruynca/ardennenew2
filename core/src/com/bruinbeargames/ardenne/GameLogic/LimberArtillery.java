@@ -39,6 +39,7 @@ public class LimberArtillery {
         for (Unit unit:arrUnitWork){
             unit.getMapCounter().getCounterStack().shade();
             if (unit.isArtillery){
+                unit.setArtilleryLimbered();
                 arrUnitToLimber.add(unit);
             }
         }

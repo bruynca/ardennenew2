@@ -1001,53 +1001,6 @@ public class Unit {
 
 
 
-	/**
-	 * Can this unit reach the hex with current movement
-	 * @return
-	 */
-	/**
-	 * Load Units and Hexes from xml
-	 * @param xmlSetup - string of xml ???????
-	 */
-	public static ArrayList<UnitHex> getUnitHex(String xmlSetup) {
-		ArrayList<UnitHex> arrReturn = new ArrayList<>();
-		XmlReader reader = new XmlReader();
-		Element root = reader.parse(xmlSetup);
-		Array<Element> xmlUnitAll = root.getChildrenByName("unit");
-		for (Element xmlunit: xmlUnitAll)
-		{
-			int ID  = Integer.parseInt(xmlunit.getChildByName("ID").getAttribute("value"));
-			Unit unit=getUnitByID(ID);
-			String strHex = xmlunit.getChildByName("hex").getAttribute("value");
-//			Hex  hex = stateEngine.getMapLayer().getHexMap().get(strHex);
-		//	UnitHex unitHex = new UnitHex(unit, hex);
-		//	arrReturn.add(unitHex);
-
-		}
-		return arrReturn;
-	}
-	/**
-	 *  Get units that come on board this turn
-	 * @param isAllies
-	 * @param turn
-	 *
-	 * @return
-	 */
-	public static ArrayList<Unit> getUnitsForThisTurn(boolean isAllies, int turn) {
-		ArrayList<Unit> arrReturn = new ArrayList<>();
-		for (Unit unit:arrGameCombatUnits)
-		{
-			if (unit.entryNum == turn && !unit.isOnBoard  && unit.isAllies)
-			{
-				arrReturn.add(unit);
-			}
-		}
-		return arrReturn;
-	}
-
-
-
-
 	public static ArrayList<Unit> getEliminated(boolean isAllies) {
 		ArrayList<Unit> arrReturn = new ArrayList<>();
 		for (Unit unit:arrGameCombatUnits)
@@ -1060,26 +1013,7 @@ public class Unit {
 		return arrReturn;
 
 	}
-	public static ArrayList<Unit> getNotFullStrength(boolean isAllies) {
-		ArrayList<Unit> arrReturn = new ArrayList<>();
-		ArrayList<Unit> arrAll = new ArrayList<>();
-		if (isAllies){
-			arrAll.addAll(Unit.getOnBoardAllied());
-		}else{
-			arrAll.addAll(Unit.getOnBoardAxis());
-		}
-		for (Unit unit:arrAll)
-		{
-			if (unit.isAllies == isAllies && unit.getCurrentStep()  != 0
-			)
-			{
-				arrReturn.add(unit);
-			}
-		}
 
-		return arrReturn;
-
-	}
 
 
 	public static void initOutOfSupplyThisTurn(boolean isAlliesFlag)
@@ -1087,6 +1021,22 @@ public class Unit {
 		for (Unit unit:arrGameCombatUnits){
 			if (unit.isAllies == isAlliesFlag) {
 				unit.setOffSupplyThisTurn();
+			}
+		}
+	}
+	public static void initLimber(boolean isAllied)
+	{
+		if (isAllied){
+			for (Unit unit:Unit.getAllied()){
+				if (unit.isArtillery){
+					unit.setArtilleryLimbered();
+				}
+			}
+		}else{
+			for (Unit unit:Unit.getAxis()){
+				if (unit.isArtillery){
+					unit.setArtilleryLimbered();
+				}
 			}
 		}
 	}
