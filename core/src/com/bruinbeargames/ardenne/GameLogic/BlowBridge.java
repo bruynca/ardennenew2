@@ -217,7 +217,7 @@ public class BlowBridge implements Observer {
             return true;
         }
         for (Bridge bridge:arrBlown){
-            if (bridge.getTurnBlown() == 1){ // only blow bridges turn 1
+            if (bridge.getTurnBlown() == 1 && NextPhase.instance.getTurn() == 1){ // only blow bridges turn 1
                 arrBridgesToBlow.add(bridge);
             }
         }

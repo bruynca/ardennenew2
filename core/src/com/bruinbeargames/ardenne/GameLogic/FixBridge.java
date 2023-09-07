@@ -128,7 +128,8 @@ public class FixBridge implements Observer {
             if (cardsforGame != null) {
                 CardHandler.instance.removeCard(cardsforGame);
             }
-            Timer.schedule(new Timer.Task() {
+
+                Timer.schedule(new Timer.Task() {
                                @Override
                                public void run() {
                                    //                              cntProcess++;
@@ -208,6 +209,13 @@ public class FixBridge implements Observer {
                 int need = bridgeDieRoll.getDieNeedAbove();
                 EventPopUp.instance.show(i18NBundle.format("bridgenotfixed",need));
             }
+            int ix=0;
+            for (Bridge bridgeDisable : BlowBridge.instance.getBlown()) {
+                Image image = BlowBridge.instance.getBlownImage().get(ix);
+                image.clearListeners();
+                ix++;
+            }
+
 
             Timer.schedule(new Timer.Task() {
                                @Override

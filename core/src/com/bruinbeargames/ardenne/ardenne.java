@@ -34,6 +34,8 @@ import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.Observable;
 
 import de.golfgl.gdxgameanalytics.GameAnalytics;
@@ -133,6 +135,7 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 		Analytics analytics;
 		analytics = new Analytics(GamePreferences.instance.getBuildNumber());
 		if (!GamePreferences.isDEbug) {
+			DoRedirectConsole();
 			analytics.registerUncaughtExceptionHandler();
 		}
 
@@ -559,5 +562,33 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 	}
 	public void setSaveGameOver(){
 		isSaveGame = false;
+	}
+	private static void DoRedirectConsole() {
+		// This pipes everything from stdout/stdout into output file, for debugging.
+		PrintStream printStream = null;
+
+		PrintStream originalOut = System.out;
+		PrintStream originalErr = System.err;
+
+		try {
+			printStream = new PrintStream(new FileOutputStream("debuglog.txt"), true, "UTF-8");
+			System.setOut(printStream);
+			System.setErr(printStream);
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+
+			// If there are problems, close it and go back to console output
+			if (printStream != null) {
+				printStream.flush();
+				printStream.close();
+			}
+			System.setOut(originalOut);
+			System.setErr(originalErr);
+		}
+
+
 	}
 }

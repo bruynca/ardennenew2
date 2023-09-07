@@ -145,12 +145,16 @@ public class SecondPanzerExits {
 
     public void shade(Hex hex) {
         Icon ic = findIcon(hex);
-        ic.shade();
+        if (ic != null) {
+            ic.shade();
+        }
     }
 
     public void removeShade(Hex hex) {
         Icon ic = findIcon(hex);
-        ic.unShade();
+        if (ic != null) {
+            ic.unShade();
+        }
 
     }
     private Icon findIcon(Hex hex){
@@ -164,8 +168,10 @@ public class SecondPanzerExits {
 
     public void supply(Hex hex) {
         Icon ic = findIcon(hex);
-        ic.unShade();
-        ic.setSupplied();
+        if (ic != null) {
+            ic.unShade();
+            ic.setSupplied();
+        }
         /**
          *  check victory
          */
