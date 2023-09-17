@@ -147,6 +147,7 @@ public class CounterStack {
             case "VG 276":
                 image=new Image(vg276);
                 break;
+
             case "2nd Pz":
                 image=new Image(pz2);
                 break;

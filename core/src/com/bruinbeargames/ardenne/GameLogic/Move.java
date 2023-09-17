@@ -3,6 +3,7 @@ package com.bruinbeargames.ardenne.GameLogic;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.badlogic.gdx.utils.Timer;
+import com.bruinbeargames.ardenne.AI.AIUtil;
 import com.bruinbeargames.ardenne.ErrorGame;
 import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.GameSetup;
@@ -27,9 +28,18 @@ public class Move extends Observable {
     boolean isAllies;
     boolean isAI;
     ArrayList<Unit> arrUnitsInMoa = new ArrayList<>();
+    public ArrayList<Hex> arrEntryPoints = new ArrayList<>();
     public Move(){
         instance = this;
         i18NBundle= GameMenuLoader.instance.localization;
+        for (Unit unit:Unit.getAllAllied()){
+            Hex hex = Hex.hexTable[unit.getEntryX()][unit.getEntryY()];
+            if (unit.entryNum > 1){
+                arrEntryPoints.add(hex);
+            }
+
+        }
+        AIUtil.RemoveDuplicateHex(arrEntryPoints);
 
     }
 

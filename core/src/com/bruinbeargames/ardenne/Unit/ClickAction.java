@@ -304,6 +304,12 @@ public class ClickAction implements Observer {
             arrHexMove.remove(Hex.hexTable[9][24]);
             arrHexMove.remove(Hex.hexTable[27][24]);
         }
+        /**
+         *  remove entry points for Germans
+         */
+        if (!unit.isAllies){
+            arrHexMove.removeAll(Move.instance.arrEntryPoints);
+        }
         HiliteHex.TypeHilite type = HiliteHex.TypeHilite.Move;
 
         hiliteHex = new HiliteHex(arrHexMove, type, this);

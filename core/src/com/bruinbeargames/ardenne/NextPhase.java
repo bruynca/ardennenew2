@@ -259,7 +259,7 @@ public class NextPhase {
             }
         }
         if (GamePreferences.isDEbug) {
-            SaveGame.SaveDebug("Debug " + cntDebug + " Turn=" + getTurn() + " " + Phases[phase].toString() + "  ", cntDebug);
+            SaveGame.SaveDebug("Debug " + cntDebug +"Scene="+GameSetup.instance.getScenario().ordinal()+ " Turn=" + getTurn() + " " + Phases[phase].toString() + "  ", cntDebug);
         }
         SaveGame.SaveLastPhase(" Last Phase",2);
         if (phase == 0){
@@ -454,6 +454,7 @@ public class NextPhase {
                 case GERMAN_END:
                     isAlliedPlayer = false;
                     Unit.initUnShade();
+                    SecondPanzerExits.unShadeAll();
                     ClickAction.cancelAll();
                     if (turn == GameSetup.instance.getScenario().getLength()) {
                         if (GameSetup.instance.getScenario().ordinal() > 0){
@@ -473,7 +474,7 @@ public class NextPhase {
                         Supply.instance.loadOtherUSSupply();
                     }
                     if (Reinforcement.instance.getReinforcementsAvailable(turn).size() > 0){
-                        Reinforcement.instance.showWindow();
+                        Reinforcement.instance.showWindow(false);
                     }else{
                         nextPhase();
                     }

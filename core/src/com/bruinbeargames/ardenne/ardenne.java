@@ -294,7 +294,8 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 			}
 		}
 		if ((keycode == Input.Keys.ALT_LEFT)) {
-				isSetHotSeat = true;
+		//		isSetHotSeat = true;
+			WinDebug.instance.toggle();
 		}
 		return false;
 	}

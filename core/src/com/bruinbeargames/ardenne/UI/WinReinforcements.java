@@ -34,6 +34,7 @@ import com.bruinbeargames.ardenne.Hex.HiliteHex;
 import com.bruinbeargames.ardenne.Map;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.ObserverPackage;
+import com.bruinbeargames.ardenne.Phase;
 import com.bruinbeargames.ardenne.SplashScreen;
 import com.bruinbeargames.ardenne.UILoader;
 import com.bruinbeargames.ardenne.Unit.Counter;
@@ -77,9 +78,11 @@ public class WinReinforcements {
     boolean isMovableReinforcement = true;
     boolean isStillReinforcements = true;
     boolean isWindowActive = false;
+    boolean isAI=false;
 
-    public WinReinforcements() {
+    public WinReinforcements(boolean isAI) {
         isWindowActive = true;
+        this.isAI = isAI;
         stage= ardenne.instance.guiStage;
         arrUnits.addAll(Reinforcement.instance.getReinforcementsAvailable(NextPhase.instance.getTurn()));
         sortUnits();
@@ -408,7 +411,9 @@ public class WinReinforcements {
         if (imageReinforce != null) {
             imageReinforce.remove();
         }
-        NextPhase.instance.nextPhase();
+        if (NextPhase.instance.getPhase() == Phase.ALLIED_REINFORCEMENT.ordinal()){
+            NextPhase.instance.nextPhase();
+        }
     }
     public boolean isWindowStillActive(){
         return isWindowActive;
@@ -425,6 +430,7 @@ public class WinReinforcements {
             unitWorkOn.placeOnBoard(hexPlace);
             ArrayList<Hex> arrHex = unitMove.getLeastPath(hex,false,null);
             Move.instance.actualMove(unitWorkOn,arrHex, Move.AfterMove.ToReinforcement, false);
+            unitWorkOn.setMovedThisTurn(NextPhase.instance.getTurn());
         }else{
             unitWorkOn.placeOnBoard(hex);
             unitWorkOn.setMovedThisTurn(NextPhase.instance.getTurn());

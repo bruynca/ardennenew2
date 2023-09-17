@@ -1,13 +1,16 @@
 package com.bruinbeargames.ardenne.GameLogic;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.bruinbeargames.ardenne.CenterScreen;
 import com.bruinbeargames.ardenne.Fonts;
@@ -166,6 +169,7 @@ public class SecondPanzerExits {
         return null;
     }
 
+
     public void supply(Hex hex) {
         Icon ic = findIcon(hex);
         if (ic != null) {
@@ -185,6 +189,12 @@ public class SecondPanzerExits {
             }
         }
         return isVictory;
+    }
+    public static void unShadeAll(){
+        for (Icon ic:arrIcons){
+            ic.unShade();
+        }
+
     }
 
     public class Icon{
@@ -240,6 +250,14 @@ public class SecondPanzerExits {
                 y +=5;
             }
             image.setPosition(x,y);
+            ClickListener clickListener = new ClickListener(Input.Buttons.LEFT) {
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    WinExitDisplay winExitDisplay = new WinExitDisplay();
+                }
+            };
+
+            image.addListener(clickListener);
             ardenne.instance.mapStage.addActor(image);
 
         }

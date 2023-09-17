@@ -53,9 +53,21 @@ public class WinDebug {
         // set position 3/4 of the width and at top
         float x =  (float) width * 1/10 + 100F;
         float y = (float) height - textButton.getHeight();
-//		textButton.remove();
+		textButton.remove();
         textButton.setPosition(x, y);
- //       guiStage.addActor(textButton);
+        guiStage.addActor(textButton);
+        textButton.setVisible(false);
+    }
+    boolean isVisible = false;
+    public void toggle(){
+        if (isVisible){
+            textButton.setVisible(false);
+            isVisible = false;
+        }else{
+            textButton.setVisible(true);
+            isVisible = true;
+        }
+
     }
     boolean clicked = true;
     public void ClickButton(InputEvent event, float xIn, float yIN)

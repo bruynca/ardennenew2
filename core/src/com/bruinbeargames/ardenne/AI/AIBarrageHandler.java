@@ -309,6 +309,12 @@ public class AIBarrageHandler implements Observer {
         if (arrGermanHex.contains(AIReinforcementScenario1.hexWiltz)) {
             arrAirAllocate.add(new HexInt(AIReinforcementScenario1.hexWiltz, 0));
         }
+        if (arrGermanHex.contains(Hex.hexEttlebruck)) {
+            arrAirAllocate.add(new HexInt(Hex.hexEttlebruck, 0));
+        }
+        if (arrGermanHex.contains(Hex.hexMartelange)) {
+            arrAirAllocate.add(new HexInt(Hex.hexMartelange, 0));
+        }
         /**
          *  create an array sorted with highest atta points
          */

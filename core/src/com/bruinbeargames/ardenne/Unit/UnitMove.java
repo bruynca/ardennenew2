@@ -198,7 +198,10 @@ public class UnitMove {
 				}
 			}
 		}
+		if (unit.getID() == 43) {
+			int b=0;
 
+		}
 		if (isRedoCalc) {
 			Gdx.app.log("UnitMove","getLeastPath reDo");
 			reDO(); // get correct calcmove

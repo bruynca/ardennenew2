@@ -48,7 +48,7 @@ public class HexHiliteDisplay {
       if (pos == null){
             int brk = 0;
         }
-        String str = Float.toString(hex.getCalcMoveCost(0))+" x"+hex.xTable+" y"+hex.yTable;
+        String str = Float.toString(hex.aiScore)+" x"+hex.xTable+" y"+hex.yTable;
         if (hex.isAxisOccupied()){
             str +="G";
         }

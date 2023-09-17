@@ -225,7 +225,7 @@ public class FixBridge implements Observer {
                                    cleanup();
                                }
                            }
-                    , 1f                    //    (delay)
+                    , 3f                    //    (delay)
             );
             return;
         }

@@ -35,6 +35,7 @@ public class Hex {
         public static Hex hexBastogne1;
         public static Hex hexBastogne2;
         public static Hex hexEttlebruck;
+        public static Hex hexMartelange;
         static public ArrayList<Hex> arrMajorCities = new ArrayList<>();
 
  //       public Hex[] tableSurroundHex = new Hex[6];
@@ -56,6 +57,7 @@ public class Hex {
     private boolean isAxisZOCOccupied = false;
     private boolean isAxisEntered = false;
     private boolean isAlliedEntered = false;
+    public int aiScore=0;
 
     public ArrayList<Unit> arrUnitsInHex = new ArrayList<>();
     public static void initHex(){
@@ -125,6 +127,7 @@ public class Hex {
         return arrWork;
 
     }
+
 
     public static ArrayList<Hex> getFakesAlliedOccupied(int thread) {
         ArrayList<Hex> arrReturn = new ArrayList<>();
@@ -225,7 +228,9 @@ public class Hex {
      *  used by
      */
     private int range;
-
+    public void setAI(int score){
+        aiScore = score;
+    }
     public Hex(int xIn, int yIn)
         {
             xTable = xIn;
@@ -640,6 +645,8 @@ public class Hex {
             hexWiltz = hexTable[19][14];
             arrMajorCities.add(hexWiltz);
             hexEttlebruck = hexTable[28][23];
+            arrMajorCities.add(hexEttlebruck);
+            hexMartelange = hexTable[9][23];
             arrMajorCities.add(hexEttlebruck);
 
 

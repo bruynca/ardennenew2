@@ -40,8 +40,13 @@ public class AIMain implements Observer {
     private AIScenario1Turn3to6 aiScenario1Turn3to6;
     private boolean isWaitForEvent = false;
 
-
-//    int[][] bestHexDefense ={{28,23},{24,15},{25,8},{9,23}};
+    /**
+     *  Hex for AI with their point value for deense
+     */
+    int[][] bestHexDefense ={{8,10,3},{8,11,4},{8,12,4},{14,10,3},{18,9,2},{11,7,3},{11,12,2},
+                            {9,14,2},{9,23,3},{11,22,2},{6,18,1},{28,23,3},{28,22,2},
+                            {19,14,3},{20,14,2},{24,15,2},{25,14,2},{28,13,2},{28,11,2},{27,8,3},
+                            {26,8,3},{25,8,3},{18,16,1},{23,6,1}};
 
 //    ArrayList<Hex> arrBestDefense = new ArrayList<>();
 //    ArrayList<Unit> arrUnits = new ArrayList<>();
@@ -65,10 +70,10 @@ public class AIMain implements Observer {
         aiReinforcementScenario1 = new AIReinforcementScenario1();
         aiSupply = new AISupply();
         aiScenario1Turn3to6 = new AIScenario1Turn3to6();
- //       for (int[] hexI:bestHexDefense){
- //           Hex hex = Hex.hexTable[hexI[0]][hexI[1]];
- //           arrBestDefense.add(hex);
- //       }
+        for (int[] hexI:bestHexDefense){
+            Hex hex = Hex.hexTable[hexI[0]][hexI[1]];
+            hex.setAI(hexI[2]);
+        }
 
     }
 
@@ -134,7 +139,7 @@ public class AIMain implements Observer {
                 if (Reinforcement.instance.getReinforcementsAvailable(turn).size() > 0){
  //                   AISupply.instance.doSupplyAnalysis();
                     WinModal.instance.set();
-                    Reinforcement.instance.showWindow();
+                    Reinforcement.instance.showWindow(true);
                     AIReinforcement.instance.reinforceAnalysis(true);
                     WinModal.instance.release();
                 }else{

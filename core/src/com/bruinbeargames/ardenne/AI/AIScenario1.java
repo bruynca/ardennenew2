@@ -10,6 +10,7 @@ import com.bruinbeargames.ardenne.Unit.Unit;
 import com.bruinbeargames.ardenne.Unit.UnitMove;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class AIScenario1 {
     public static AIScenario1 instance;
@@ -625,8 +626,10 @@ public class AIScenario1 {
         /**
          *  sort the orders ascending
          */
+        Collections.sort(arrIn, new AIOrders.SortbyScoreDescending());
+
         ArrayList<AIOrders> arrSortedAscending = new ArrayList<>();
-        int i=0;
+/*        int i=0;
         for (AIOrders aiO: arrIn){
             for (i=0; i< arrSortedAscending.size(); i++){;
                 if (aiO.scoreMain < arrSortedAscending.get(i).scoreMain){
@@ -634,12 +637,12 @@ public class AIScenario1 {
                 }
             }
             arrSortedAscending.add(i,aiO);
-        }
-
+        } */
+        arrSortedAscending.addAll(arrIn);
         ArrayList<AIOrders> arrTop = AIOrders.gettopPercent(arrSortedAscending, .3f);
 //        ArrayList<AIOrders> attTopDefense = AIScenario1.instance.bestDefense(arrTopTen);
         Gdx.app.log("AIMover", "Top Ten");
-        AIOrders.display(arrIn);
+//        AIOrders.display(arrIn);
         ArrayList<AIOrders> arrFinal = getTopInPaths(arrTop);
         AIOrders aiPenetrationOrders = arrFinal.get(0); // get top for now
         Gdx.app.log("AIMover", "Penetration to follow");
@@ -686,7 +689,7 @@ public class AIScenario1 {
             arrReturn.add(i,aiO);
         }
         Gdx.app.log("AIMover", "After GetTopInPath");
-        AIOrders.display(arrReturn);
+       // AIOrders.display(arrReturn);
 
         return arrReturn;
 
@@ -698,13 +701,11 @@ public class AIScenario1 {
      * @param arrScored
      */
     public void doNext(AIScorer.Type type, ArrayList<AIOrders> arrScored) {
-        if (NextPhase.instance.getTurn() < 3){ // first reinforcements
             if (type == AIScorer.Type.GermanPenetration) {
                 endPenetrationAnalysis(arrScored);
             }else if (type == AIScorer.Type.GermanRegular || type == AIScorer.Type.NonPenetrate){
                 AIScenario1.instance.endTurn1to3(arrScored);
             }
-        }
     }
 
     /**

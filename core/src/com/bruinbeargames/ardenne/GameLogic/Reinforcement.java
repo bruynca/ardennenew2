@@ -107,8 +107,8 @@ public class Reinforcement {
     public WinReinforcements getScreen(){
         return winReinforcements;
     }
-    public void showWindow() {
-        winReinforcements = new WinReinforcements();
+    public void showWindow(boolean isAI) {
+        winReinforcements = new WinReinforcements(isAI);
 
     }
 

@@ -18,6 +18,7 @@ import com.bruinbeargames.ardenne.GameLogic.LehrExits;
 import com.bruinbeargames.ardenne.GameLogic.MoreGermanAmmo;
 import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.Hex.HexSurround;
 import com.bruinbeargames.ardenne.SplashScreen;
 import com.bruinbeargames.ardenne.ardenne;
 
@@ -338,6 +339,32 @@ public class Unit {
 		}
 		currentMoveFactor = moveAtStartLimbered;
 		isLimbered = true;
+		if (getMapCounter() != null) {
+			this.getMapCounter().getCounterStack().setPoints();
+		}
+
+	}
+	public void checkInitLimber(){
+		ArrayList<Hex> arrHex =  HexSurround.GetSurroundMapArr(getHexOccupy(),getRange());
+		boolean isLimber = true;
+		for (Hex hex:arrHex){
+			if (isAxis){
+				if (hex.checkAlliesInHex()){
+					isLimber =false;
+					break;
+				}
+			}else{
+				if (hex.checkAxisInHex()){
+					isLimber =false;
+					break;
+				}
+			}
+		}
+		if(isLimber){
+			setArtilleryLimbered();
+		}else{
+			setArtilleryUnLimbered();
+		}
 	}
 	public void setArtilleryUnLimbered(){
 		Gdx.app.log("Unit", "Set UnLimbered ="+this);
@@ -351,6 +378,10 @@ public class Unit {
 		 }
 		currentMoveFactor = moveAtStartUnLimbered;
 		isLimbered = false;
+		 if (getMapCounter() != null) {
+			 this.getMapCounter().getCounterStack().setPoints();
+		 }
+
 	}
 
 	/**
@@ -368,6 +399,7 @@ public class Unit {
 			this.getMapCounter().getCounterStack().setPoints();
 		}
 	}
+
 
     public static ArrayList<Unit> getOnBoardAlliedNotEliminated() {
 		ArrayList<Unit> arrReturn = new ArrayList<>();
@@ -932,6 +964,17 @@ public class Unit {
 		for (Unit unit:arrGameCombatUnits)
 		{
 			if (unit.isOnBoard  && unit.isAllies&& !unit.isEliminated)
+			{
+				arrReturn.add(unit);
+			}
+		}
+		return arrReturn;
+	}
+	public static ArrayList<Unit> getAllAllied() {
+		ArrayList<Unit> arrReturn = new ArrayList<>();
+		for (Unit unit:arrGameCombatUnits)
+		{
+			if (unit.isAllies&& !unit.isEliminated)
 			{
 				arrReturn.add(unit);
 			}
