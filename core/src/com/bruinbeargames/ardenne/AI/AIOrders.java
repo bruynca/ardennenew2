@@ -448,13 +448,50 @@ public class AIOrders {
     static class SortbyScoreAscending implements Comparator<AIOrders>{
         public int compare(AIOrders a, AIOrders b){
 
-            return a.scoreMain - b.scoreMain;
+            if (a == null && b== null){
+                return 0;
+            }
+            if (a == null){
+                return 1;
+            }
+            if (b == null){
+                return -1;
+            }
+            if (b.scoreMain == a.scoreMain){
+                return 0;
+            }
+            if (b.scoreMain > a.scoreMain){
+                return -1;
+            }
+            if (b.scoreMain < a.scoreMain){
+                return 1;
+            }
+
+            return   0;
         }
     }
     static class SortbyScoreDescending implements Comparator<AIOrders>{
         public int compare(AIOrders a, AIOrders b){
+            if (a == null && b== null){
+                return 0;
+            }
+            if (a == null){
+                return -1;
+            }
+            if (b == null){
+                return 1;
+            }
+            if (b.scoreMain == a.scoreMain){
+                return 0;
+            }
+            if (b.scoreMain > a.scoreMain){
+                return 1;
+            }
+            if (b.scoreMain < a.scoreMain){
+                return -1;
+            }
 
-            return   b.scoreMain - a.scoreMain;
+            return   0;
         }
     }
 }
