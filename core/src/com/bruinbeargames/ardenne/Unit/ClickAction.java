@@ -67,6 +67,14 @@ public class ClickAction implements Observer {
     public static void clearClickListeners(){
         arrClickAction.clear();
     }
+    public static void clearClickListenersOnUnit(){
+        for (ClickAction cl:arrClickAction){
+            if (cl.unit.getMapCounter() != null){
+                cl.unit.getMapCounter().removeClickAction();
+            }
+        }
+        arrClickAction.clear();
+    }
 
 
     public static void unLock() {

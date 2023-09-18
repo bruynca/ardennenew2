@@ -77,6 +77,7 @@ public class SecondPanzerExits {
     public void checkEliminate(Unit unit){
         if (isInSecond(unit)){
             hasEnoughUnits = false;
+            VictoryPopup.instance.announceVictorEliminate(true);
         }
     }
 

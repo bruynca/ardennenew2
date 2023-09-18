@@ -9,6 +9,7 @@ import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.SplashScreen;
+import com.bruinbeargames.ardenne.UI.VictoryPopup;
 import com.bruinbeargames.ardenne.UI.WinExitDisplay;
 import com.bruinbeargames.ardenne.Unit.Unit;
 
@@ -31,6 +32,7 @@ public class LehrExits {
     private I18NBundle i18NBundle;
     boolean hasEnoughUnits = true;
     int eliminated = 0;
+    final int maxElimnated = 2;
 
     public LehrExits(){
         instance = this;
@@ -120,8 +122,9 @@ public class LehrExits {
     public void checkEliminate(Unit unit) {
         if (isInLehr(unit)){
             eliminated++;
-            if (eliminated > 1){
+            if (eliminated > maxElimnated){
                 hasEnoughUnits = false;
+                VictoryPopup.instance.announceVictorEliminate(false);
             }
         }
     }

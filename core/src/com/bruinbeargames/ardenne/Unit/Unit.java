@@ -17,6 +17,7 @@ import com.bruinbeargames.ardenne.ErrorGame;
 import com.bruinbeargames.ardenne.GameLogic.LehrExits;
 import com.bruinbeargames.ardenne.GameLogic.MoreGermanAmmo;
 import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
+import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.Hex.HexSurround;
 import com.bruinbeargames.ardenne.SplashScreen;
@@ -519,8 +520,12 @@ public class Unit {
          *  changed to remove isEliminated out of timer
          *   other program logic depends on it being set immediatly
          */
-		SecondPanzerExits.instance.checkEliminate(this);
-		LehrExits.instance.checkEliminate(this);
+		if (GameSetup.instance.getScenario().ordinal() > 0) {
+			SecondPanzerExits.instance.checkEliminate(this);
+		}
+		if (GameSetup.instance.getScenario().ordinal() > 1) {
+			LehrExits.instance.checkEliminate(this);
+		}
 		isEliminated = true;
 		float x=0; float y=0;
 		if (counter != null) {

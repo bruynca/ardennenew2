@@ -168,7 +168,7 @@ public class NextPhase {
              *  check for end of game
              */
             if (turn == GameSetup.instance.getScenario().getLength()){
-                String winner = VictoryPopup.instance.determineVictor();
+                String winner = VictoryPopup.instance.announceVictorAtEnd();
                 BottomMenu.instance.setEnablePhaseChange(false);
                 AccessInternet.updateGame(turn, winner);
                 return;
@@ -181,7 +181,7 @@ public class NextPhase {
                 boolean iswarned = false;
                 if (GameSetup.instance.getScenario().ordinal() > 0) {
                     if (SecondPanzerExits.instance.checkExits()){
-                        String winner = VictoryPopup.instance.determineVictor();
+                        String winner = VictoryPopup.instance.announceVictorAtEnd();
                         BottomMenu.instance.setEnablePhaseChange(false);
                         AccessInternet.updateGame(turn, winner);
                         iswarned = true;
@@ -190,7 +190,7 @@ public class NextPhase {
                 }
                 if (GameSetup.instance.getScenario().ordinal() > 1 && !iswarned) {
                     if (LehrExits.instance.checkExits()){
-                        String winner = VictoryPopup.instance.determineVictor();
+                        String winner = VictoryPopup.instance.announceVictorAtEnd();
                         BottomMenu.instance.setEnablePhaseChange(false);
                         AccessInternet.updateGame(turn, winner);
                         return;
@@ -444,7 +444,7 @@ public class NextPhase {
                     Supply.instance.EndSupplyGerman();
                     if (turn == GameSetup.instance.getScenario().getLength()) {
                         if (GameSetup.instance.getScenario().ordinal() > 0){
-                            VictoryPopup.instance.determineVictor();
+                            VictoryPopup.instance.announceVictorAtEnd();
                             return;
                         }
                     }
@@ -458,7 +458,7 @@ public class NextPhase {
                     ClickAction.cancelAll();
                     if (turn == GameSetup.instance.getScenario().getLength()) {
                         if (GameSetup.instance.getScenario().ordinal() > 0){
-                            VictoryPopup.instance.determineVictor();
+                            VictoryPopup.instance.announceVictorAtEnd();
                             return;
                         }
                     }

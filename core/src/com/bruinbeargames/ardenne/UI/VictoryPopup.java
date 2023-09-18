@@ -14,14 +14,15 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.bruinbeargames.ardenne.AccessInternet;
 import com.bruinbeargames.ardenne.Fonts;
+import com.bruinbeargames.ardenne.GameLogic.Combat;
 import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
 import com.bruinbeargames.ardenne.GameLogic.SoundsLoader;
 import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.NextPhase;
-import com.bruinbeargames.ardenne.SoundEffects;
 import com.bruinbeargames.ardenne.SplashScreen;
+import com.bruinbeargames.ardenne.Unit.ClickAction;
 import com.bruinbeargames.ardenne.ardenne;
 
 public class VictoryPopup {
@@ -140,24 +141,42 @@ public class VictoryPopup {
         return isDisplayed;
     }
 
-    public String determineVictor() {
+    public String announceVictorAtEnd() {
         SoundsLoader.instance.playTada();
         if (GameSetup.instance.getScenario() == GameSetup.Scenario.Intro){
             return checkIntro();
         }else  if (GameSetup.instance.getScenario() == GameSetup.Scenario.Lehr) {
             return checkLehr();
         }if (GameSetup.instance.getScenario() == GameSetup.Scenario.SecondPanzer) {
-            return checkSecondPanzer();
+            return checkSecondPanzerEnd();
         }else{
             checkCounterAttack();
             return"";
         }
     }
+    public  void announceVictorEliminate(boolean isSecondPanzer){
+        SoundsLoader.instance.playTada();
+        BottomMenu.instance.setEnablePhaseChange(false);
+        saveWinner("allied");
+        AccessInternet.updateGame(NextPhase.instance.getTurn(),  "Allies");
+        if (isSecondPanzer){
+            updateText(i18NBundle.get("2ndlosernoexit"),"usa");
+        }else{
+            updateText(i18NBundle.get("lehrlosernoexit"),"usa");
+        }
+        ClickAction.cancelAll();
+        Combat.instance.cleanup(true);
+        CombatDisplayResults.instance.hide();
+        BottomMenu.instance.setEnablePhaseChange(false);
+        AccessInternet.updateGame(NextPhase.instance.getTurn(), "Allied");
+        return;
+
+    }
 
     private void checkCounterAttack() {
     }
 
-    private String checkSecondPanzer() {
+    private String checkSecondPanzerEnd() {
         /**
          * if end of game check supply
          */

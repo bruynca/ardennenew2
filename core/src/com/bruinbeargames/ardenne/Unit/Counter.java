@@ -161,7 +161,6 @@ public class Counter {
     }
     public void removeClickAction(){
  //       Gdx.app.log("Counter","removeClickAction="+unit);
-
         clickAction = null;
     }
 
