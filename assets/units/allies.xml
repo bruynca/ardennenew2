@@ -156,7 +156,7 @@
         <unitSize value="Brigade" />
         <entryAreaX value="9" />
         <entryAreaY value="24" />
-        <unitEntry value="7" />
+        <unitEntry value="5" />
         <unitStepAtStart value="2" />
         <unitSteps value="2" />
         <attackFactor value="7" />
@@ -172,7 +172,7 @@
         <unitSize value="Brigade" />
         <entryAreaX value="9" />
         <entryAreaY value="24" />
-        <unitEntry value="7" />
+        <unitEntry value="5" />
         <unitStepAtStart value="2" />
         <unitSteps value="2" />
         <attackFactor value="7" />
@@ -188,7 +188,7 @@
         <unitSize value="Brigade" />
         <entryAreaX value="9" />
         <entryAreaY value="24" />
-        <unitEntry value="7" />
+        <unitEntry value="5" />
         <unitStepAtStart value="2" />
         <unitSteps value="2" />
         <attackFactor value="7" />
@@ -335,7 +335,7 @@
         <unitSize value="Regiment" />
         <entryAreaX value="28" />
         <entryAreaY value="24" />
-        <unitEntry value="7" />
+        <unitEntry value="6" />
         <unitStepAtStart value="3" />
         <unitSteps value="3" />
         <attackFactor value="3" />
@@ -351,7 +351,7 @@
         <unitSize value="Regiment" />
         <entryAreaX value="28" />
         <entryAreaY value="24" />
-        <unitEntry value="7" />
+        <unitEntry value="6" />
         <unitStepAtStart value="3" />
         <unitSteps value="3" />
         <attackFactor value="3" />
@@ -367,7 +367,7 @@
         <unitSize value="Regiment" />
         <entryAreaX value="28" />
         <entryAreaY value="24" />
-        <unitEntry value="7" />
+        <unitEntry value="6" />
         <unitStepAtStart value="3" />
         <unitSteps value="3" />
         <attackFactor value="3" />
@@ -383,7 +383,7 @@
         <unitSize value="Regiment" />
         <entryAreaX value="28" />
         <entryAreaY value="24" />
-        <unitEntry value="7" />
+        <unitEntry value="6" />
         <unitStepAtStart value="1" />
         <unitSteps value="1" />
         <attackFactor value="3" />
