@@ -16,8 +16,7 @@ public class CardsforGame {
     int turnStart;
     int turnPlayed;
     int turnEnd;
-    ArrayList<Unit> arr2NDLehr = new ArrayList<>();
-    ArrayList<Integer> arr2NDLehrMovementSave = new ArrayList<>();
+
 
 
     boolean isConfirm = false;

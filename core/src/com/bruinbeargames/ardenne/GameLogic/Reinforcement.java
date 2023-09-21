@@ -154,6 +154,18 @@ public class Reinforcement {
         }
         return arrUnit;
     }
+    public int getThisTurnCount(){
+        int count =0;
+        int turn = NextPhase.instance.getTurn();
+        for (Unit unit:getReinforcementsAvailable()){
+            if (unit.entryNum == turn){
+                count++;
+            }
+        }
+        return count;
+
+
+    }
     public String getName(Hex hex){
         int ix =arrHexDesc.indexOf(hex);
         if (ix <0){

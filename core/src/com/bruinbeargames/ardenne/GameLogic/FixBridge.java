@@ -15,6 +15,7 @@ import com.bruinbeargames.ardenne.FontFactory;
 import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.Hex.Bridge;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.Hex.HiliteHex;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.ObserverPackage;
 import com.bruinbeargames.ardenne.UI.DiceEffect;
@@ -36,6 +37,8 @@ public class FixBridge implements Observer {
     ArrayList<Bridge> arrBridgeGone = new ArrayList<>();
     ArrayList<Image> arrBridgeGoneImage = new ArrayList<>();
     ArrayList<Label> arrLabel = new ArrayList<>();
+    ArrayList<Hex> arrHexBlown = new ArrayList<>();
+    HiliteHex hiliteHex;
     static Label.LabelStyle labelStyleName
             = new Label.LabelStyle(FontFactory.instance.jumboFont, Color.YELLOW);
 
@@ -84,10 +87,13 @@ public class FixBridge implements Observer {
          *
          */
         int ix = 0;
+        arrHexBlown.clear();
         for (final Bridge bridge : BlowBridge.instance.getBlown()) {
             Image image = BlowBridge.instance.getBlownImage().get(ix);
             image.remove(); // remove from hexStage
             ardenne.instance.mapStage.addActor(image);
+            arrHexBlown.add(bridge.getHex1());
+            arrHexBlown.add(bridge.getHex2());
             ClickListener clickListener = new ClickListener(Input.Buttons.LEFT) {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
@@ -119,6 +125,7 @@ public class FixBridge implements Observer {
             isFixBridge = true;
             EventPopUp.instance.show(i18NBundle.get("fixbridge4"));
         }
+  //      hiliteHex = new HiliteHex(arrHexBlown, HiliteHex.TypeHilite.Hilite,null);
     }
 
     private void bridgeClicked(Bridge bridge) {
@@ -180,6 +187,7 @@ public class FixBridge implements Observer {
             label.remove();
         }
         arrLabel.clear();
+//        hiliteHex.remove();
         if (cardsforGame != null) {
             if (cardsforGame.isAllies) {
                 CardHandler.instance.alliedCardPhase(NextPhase.instance.getTurn());

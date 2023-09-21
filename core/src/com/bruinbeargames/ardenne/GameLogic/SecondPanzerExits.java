@@ -91,7 +91,7 @@ public class SecondPanzerExits {
     }
 
     public void exitUnit(Hex hexExit2ndPanzer, Unit unit) {
-        unit.eliminate();
+        unit.eliminate(true);
         addIcon(hexExit2ndPanzer);
         if (hexExit2ndPanzer == hexExit1){
             unitExit1.add(unit);

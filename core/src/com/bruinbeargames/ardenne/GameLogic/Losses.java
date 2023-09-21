@@ -43,7 +43,7 @@ public class Losses{
                 CombatResults cr = CombatResults.find(unitSuffer);
                 cr.setStepLosses(true);
             }else {
-                unitSuffer.eliminate();
+                unitSuffer.eliminate(false);
                 arrSorted.remove(unitSuffer);
                 CombatResults cr = CombatResults.find(unitSuffer);
                 cr.setDestroyed(true);

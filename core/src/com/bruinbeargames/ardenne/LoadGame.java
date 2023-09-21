@@ -159,7 +159,7 @@ public LoadGame(String gameToLoad, boolean isSpecial) {
 			boolean isEliminated = Boolean.parseBoolean(xmlunit.getChildByName("eliminated").getAttribute("value"));
 			if (isEliminated)
 			{
-				unit.eliminate();
+				unit.eliminate(false);
 			}
 		}
 		if (!unit.isEliminated()){

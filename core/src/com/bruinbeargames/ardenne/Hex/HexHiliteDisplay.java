@@ -77,8 +77,11 @@ public class HexHiliteDisplay {
 
         if (type == HiliteHex.TypeHilite.ReinforceDisplay){
             image = new Image(backHiliteReinDisplay);
-        }else if (type == HiliteHex.TypeHilite.Range){
+        }else if (type == HiliteHex.TypeHilite.Range) {
             image = new Image(backHiliteCannonRange);
+        }
+        else if (type == HiliteHex.TypeHilite.Hilite){
+                image = new Image(backHilite);
         }else if (type == HiliteHex.TypeHilite.MoveExit) {
             if (SecondPanzerExits.instance.isInExit(hex)) {
                 image = new Image(backHiliteExit);

@@ -77,7 +77,7 @@ public class LehrExits {
     }
 
     public void exitUnit(Hex hexExitLehr, Unit unit) {
-        unit.eliminate();
+        unit.eliminate(true);
         SecondPanzerExits.instance.addIcon(hexExitLehr);
 
         if (hexExitLehr == hexExit1){

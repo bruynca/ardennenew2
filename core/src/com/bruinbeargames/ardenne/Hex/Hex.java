@@ -16,6 +16,7 @@ import com.bruinbeargames.ardenne.Unit.Counter;
 import com.bruinbeargames.ardenne.Unit.Unit;
 
 import java.util.ArrayList;
+import java.util.concurrent.CancellationException;
 
 public class Hex {
         //
@@ -58,6 +59,7 @@ public class Hex {
     private boolean isAxisEntered = false;
     private boolean isAlliedEntered = false;
     public int aiScore=0;
+    public int aiScoreGen = 0;
 
     public ArrayList<Unit> arrUnitsInHex = new ArrayList<>();
     public static void initHex(){
@@ -159,6 +161,37 @@ public class Hex {
             }
         }
         return arrReturn;
+
+    }
+
+    public static void initTempAI() {
+        for (Hex hex:arrHexMap){
+             hex.aiScoreGen = hex.aiScore;
+        }
+
+    }
+
+    /**
+     *  All hexes get an temp score of 1 if
+     *  they are not occupied by germans
+     *  and they can attack germans
+     */
+    public static void addAIScoreSurroundGerman() {
+        for (Hex hex:arrHexMap){
+            if (!hex.isAxisOccupied()) {
+                boolean canAttack = false;
+                for (Hex hexCheck : hex.getSurround()) {
+
+                    if (hexCheck.isAxisOccupied()) {
+                        canAttack = true;
+                        break;
+                    }
+                }
+                if (hex.aiScoreGen == 0) {
+                    hex.aiScoreGen = 1;
+                }
+            }
+        }
 
     }
 
@@ -661,6 +694,17 @@ public class Hex {
                 }
             }
             AIUtil.RemoveDuplicateHex(arrAIHex);
+    }
+    private static ArrayList<Hex> loadAIHexes(int minAiScore) {
+        ArrayList<Hex> arrHexReturn = new ArrayList<>();
+        for (Hex hex:arrHexMap){
+            if (hex.aiScoreGen > minAiScore){
+                arrHexReturn.add(hex);
+
+            }
+        }
+        AIUtil.RemoveDuplicateHex(arrHexReturn);
+        return arrHexReturn;
     }
 
     public static void initCombatFlags(){

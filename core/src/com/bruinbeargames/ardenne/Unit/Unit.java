@@ -514,17 +514,19 @@ public class Unit {
 		return currentStep;
 	}
 
-	public void eliminate(){
+	public void eliminate(boolean isExit){
         Gdx.app.log("Unit","eliminate ="+this);
         /**
          *  changed to remove isEliminated out of timer
          *   other program logic depends on it being set immediatly
          */
-		if (GameSetup.instance.getScenario().ordinal() > 0) {
-			SecondPanzerExits.instance.checkEliminate(this);
-		}
-		if (GameSetup.instance.getScenario().ordinal() > 1) {
-			LehrExits.instance.checkEliminate(this);
+		if (!isExit) {
+			if (GameSetup.instance.getScenario().ordinal() > 0) {
+				SecondPanzerExits.instance.checkEliminate(this);
+			}
+			if (GameSetup.instance.getScenario().ordinal() > 1) {
+				LehrExits.instance.checkEliminate(this);
+			}
 		}
 		isEliminated = true;
 		float x=0; float y=0;
