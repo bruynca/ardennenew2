@@ -3,12 +3,14 @@ package com.bruinbeargames.ardenne.AI;
 import com.badlogic.gdx.Gdx;
 import com.bruinbeargames.ardenne.GameLogic.Reinforcement;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.ObserverPackage;
 import com.bruinbeargames.ardenne.Unit.Unit;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Observable;
+import java.util.Observer;
 
-import sun.jvm.hotspot.utilities.Observable;
-import sun.jvm.hotspot.utilities.Observer;
 
 public class AIReinforcementScenarioOther implements Observer {
     static public AIReinforcementScenarioOther instance;
@@ -54,20 +56,22 @@ public class AIReinforcementScenarioOther implements Observer {
          *  if none availabel then there will be zero
          */
         arrUnitReinArea = new ArrayList[3];
+        arrOrdersReinArea = new ArrayList[3];
         int ix = 0;
         for (Hex hex : arrReinforceAreas) {
             ArrayList<Unit> arrUnit = new ArrayList<>();
             arrUnit.addAll(Reinforcement.instance.getReinforcementsAvailable(hex, true));
             arrUnitReinArea[ix] = arrUnit;
+            ix++;
         }
-        ixCurrentReinArea = 0;
+        ixCurrentReinArea = -1;
         doNextReinArea();
         return;
     }
 
     private void doNextReinArea() {
         Gdx.app.log("AIReinforcementsOther", "doNextReinArea ix"+ixCurrentReinArea);
-        Gdx.app.log("AIReinforcementsOther", "doNextReinArea size ="+arrUnitReinArea[ixCurrentReinArea].size());
+        Gdx.app.log("AIReinforcementsOther", "doNextReinArea size ="+arrUnitReinArea[ixCurrentReinArea+1].size());
         /**
          *  initialize the aiScore used
          *  also check for Germa occupied
@@ -80,16 +84,17 @@ public class AIReinforcementScenarioOther implements Observer {
          *  if none go to next
          *  else if none left go to do final
          */
-        if (arrUnitReinArea[ixCurrentReinArea].size() >0){
-            ixCurrentReinArea++;
-            if (ixCurrentReinArea > arrUnitReinArea.length){
-                doFinalAllAreasProcessign();
-            }else{
-                doNextReinArea();
-                return;
-            }
+        ixCurrentReinArea++;
+        if (ixCurrentReinArea > arrUnitReinArea.length) {
+            doFinalAllAreasProcessign();
+            return;
         }
-        ArrayList<Unit> arrWorkingOn = arrUnitReinArea[ixCurrentReinArea];
+        if (arrUnitReinArea[ixCurrentReinArea].size() == 0){
+            doNextReinArea();
+            return;
+        }
+        ArrayList<Unit>  arrWorkingOn = new ArrayList<>();
+        arrWorkingOn.addAll(arrUnitReinArea[ixCurrentReinArea]);
         /**
          * seperate artillery
          */
@@ -118,8 +123,10 @@ public class AIReinforcementScenarioOther implements Observer {
          */
         ArrayList<ArrayList<Hex>> arrWork = new ArrayList<>();
         ArrayList<Unit> arrCantMove = new ArrayList<>();
+        int entryCost=0;
         for (Unit unit : arrWorkingOn) {
-            ArrayList<Hex> arrHexMove = AIReinforcementScenario1.instance.findHexesOnReinforcement(unit,arrReinforceAreas.get(ixCurrentReinArea));
+            ArrayList<Hex> arrHexMove = AIReinforcementScenario1.instance.findHexesOnReinforcement(unit,entryCost);
+            entryCost++;
             AIUtil.RemoveDuplicateHex(arrHexMove);
             if (arrHexMove.size() > 0) {
                 arrWork.add(arrHexMove);
@@ -134,8 +141,10 @@ public class AIReinforcementScenarioOther implements Observer {
             doNextReinArea();
             return;
         }
-        aiProcess = new AIProcess(arrWorkingOn,arrWork);
-        if (aiProcess.isFailed){
+        ArrayList<Hex> arrDupes = new ArrayList<>(); // no dupes at moment
+        AIFaker.instance.addObserver(this);
+        aiProcess = new AIProcess(arrWorkingOn,arrWork,arrDupes);
+        if (aiProcess.isFailed()){
             doNextReinArea();
             return;
         }
@@ -145,8 +154,27 @@ public class AIReinforcementScenarioOther implements Observer {
     }
 
 
+
     @Override
-    public void update(Observable observable, Object o) {
+    public void update(Observable observable, Object arg) {
+        if (((ObserverPackage) arg).type == ObserverPackage.Type.FakerDone) {
+            Gdx.app.log("AIReinforcementsOther", "Received Faker");
+            AIFaker.instance.deleteObserver(this);
+            /**
+             *  orders returned
+             *  sort descending
+             *  get top 10%
+             *  move into storage are for this reinforcement area
+             */
+            ArrayList<AIOrders> arrWork = new ArrayList<>();
+            arrWork.addAll(aiProcess.getAIOrders());
+            Collections.sort(arrWork, new AIOrders.SortbyScoreDescending());
+            ArrayList<AIOrders> arrTop = AIOrders.gettopPercent(arrWork, .1f);
+            arrOrdersReinArea[ixCurrentReinArea] = new ArrayList<>();
+            arrOrdersReinArea[ixCurrentReinArea].addAll(arrTop);
+
+            doNextReinArea();
+        }
 
     }
 }

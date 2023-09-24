@@ -36,6 +36,7 @@ public class AIMain implements Observer {
     private AICombatScenario1 aiCombatScenario1;
     private AIReinforcement aiReinforcement;
     private AIReinforcementScenario1 aiReinforcementScenario1;
+    private AIReinforcementScenarioOther aiReinforcementScenarioOther;
     private AISupply aiSupply;
     private AIScenario1Turn3to6 aiScenario1Turn3to6;
     private boolean isWaitForEvent = false;
@@ -70,6 +71,8 @@ public class AIMain implements Observer {
         aiReinforcementScenario1 = new AIReinforcementScenario1();
         aiSupply = new AISupply();
         aiScenario1Turn3to6 = new AIScenario1Turn3to6();
+        aiReinforcementScenarioOther = new AIReinforcementScenarioOther();
+        Hex.initAI();
         for (int[] hexI:bestHexDefense){
             Hex hex = Hex.hexTable[hexI[0]][hexI[1]];
             hex.setAI(hexI[2]);

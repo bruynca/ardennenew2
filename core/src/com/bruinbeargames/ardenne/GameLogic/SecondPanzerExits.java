@@ -32,9 +32,9 @@ public class SecondPanzerExits {
     public static SecondPanzerExits instance;
     public int[] numOfUnitsToExit = {0,0,0,2,4,5,7,7};
     ArrayList<Unit> arrUnits = new ArrayList<>();
-    public Hex hexExit1 = Hex.hexTable[0][8];
+    public static Hex hexExit1 = Hex.hexTable[0][8];
     public ArrayList<Unit> unitExit1 = new ArrayList<>();
-    public Hex hexExit2 = Hex.hexTable[0][19];
+    public static Hex hexExit2 = Hex.hexTable[0][19];
     public ArrayList<Unit> unitExit2 = new ArrayList<>();
     static TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
     static TextureRegion tExitBoard =  textureAtlas.findRegion("exitboard");

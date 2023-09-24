@@ -5,6 +5,7 @@ import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.Unit.Unit;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -13,21 +14,25 @@ import java.util.Observer;
  * for scenario 2 and 3
  *
  * Assume the Hex AI scoreGen has been set
+ *
  * Simplicity
  */
 public class AIProcess{
     /**
      *  Do common processing for AIMve
-     * @param arrUnitsIn
-     * @param arrArrayOfHexArray
+     * @param arrUnitsIn      Units
+     * @param arrArrayOfHexArray Moves for Units
+     * @param arrDupes Hexes that allow duplication for arttacking purposes
      */
-    public boolean isFailed = false;
-    AIProcess(ArrayList<Unit> arrUnitsIn, ArrayList<ArrayList<Hex>> arrArrayOfHexArray){
+    private boolean isFailed = false;
+    ArrayList<AIOrders> arrAIOrders = new ArrayList<>();
+    AIProcess(ArrayList<Unit> arrUnitsIn, ArrayList<ArrayList<Hex>> arrArrayOfHexArray,ArrayList<Hex> arrDupes){
         Gdx.app.log("AIProcess", "Constructor #Units="+arrUnitsIn.size()
                     +"  hex arrays="+arrArrayOfHexArray.size());
         /**
          * reduce amount of hexes to check
          * we can adjust this later in case we get too many by changing the aitoCheck
+         * This is driven by AIScoreTemp - set by INVOKING
          */
         reduceHexsToCheck(arrArrayOfHexArray,1);
         /**
@@ -46,13 +51,16 @@ public class AIProcess{
             }
             ix++;
         }
-        Gdx.app.log("AIProcess", "Remove ="+arrRemove.size();
+        Gdx.app.log("AIProcess", "Remove ="+arrRemove.size());
         arrArrayOfHexArray.removeAll(arrRemove);
         if (arrArrayOfHexArray.size() == 0){
             Gdx.app.log("AIProcess", "Failed");
             isFailed = true;
             return;
         }
+        /**
+         *  change Moves to differant format for Iterator
+         */
         ArrayList<Hex> arrNewHexMove[] = new ArrayList[arrArrayOfHexArray.size()];
         for (int i=0; i < arrArrayOfHexArray.size();i++ ){
             arrNewHexMove[i] = arrArrayOfHexArray.get(i);
@@ -63,9 +71,21 @@ public class AIProcess{
         Gdx.app.log("AIProcess", "Staring Iterations");
         ArrayList<AIOrders> arrStart = AIUtil.GetIterations(arrUnitsIn, arrNewHexMove);
         Gdx.app.log("AIProcess", "Iterations count ="+arrStart.size());
+        AIUtil.RemoveDuplicateHex(arrDupes); // cleanup just in case
+        /**
+         *  remove duplicates
+         */
+        arrAIOrders.addAll(AIOrders.removeDupeMoveToHexes(arrStart,arrDupes));
+        Gdx.app.log("AIProcess", "After Dupe Removal count ="+arrAIOrders.size());
 
+        if (arrAIOrders.size() == 0){
+            Gdx.app.log("AIProcess", "Failed");
+            isFailed = true;
+            return;
+        }
 
-
+        AIScorer.Type type = AIScorer.Type.ReinOther;
+        AIFaker.instance.startScoringOrders(arrAIOrders, type, true);
     }
 
     private void reduceHexsToCheck(ArrayList<ArrayList<Hex>> arrArrayOfHexArray, int aiToCheck) {
@@ -75,8 +95,8 @@ public class AIProcess{
          *  It is assumed that invoking rtn will have set the aiScoreGen
          */
         for (ArrayList<Hex> arr:arrArrayOfHexArray){
-            ArrayList<Hex> arrRemove = new ArrayList<>();
             AIUtil.RemoveDuplicateHex(arr);
+            ArrayList<Hex> arrRemove = new ArrayList<>();
             for (Hex hex:arr){
                 if (hex.aiScoreGen < 1){
                     arrRemove.add(hex);
@@ -84,5 +104,12 @@ public class AIProcess{
             }
             arr.removeAll(arrRemove);
         }
+    }
+    public boolean isFailed(){
+        return isFailed;
+    }
+
+    public ArrayList<AIOrders> getAIOrders() {
+        return arrAIOrders;
     }
 }

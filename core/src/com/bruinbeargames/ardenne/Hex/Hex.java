@@ -58,7 +58,7 @@ public class Hex {
     private boolean isAxisZOCOccupied = false;
     private boolean isAxisEntered = false;
     private boolean isAlliedEntered = false;
-    public int aiScore=0;
+    private int aiScore=0;
     public int aiScoreGen = 0;
 
     public ArrayList<Unit> arrUnitsInHex = new ArrayList<>();
@@ -69,6 +69,14 @@ public class Hex {
             hex.isAxisOccupied[0] = false;
             hex.isAxisZOC[0] = false;
             hex.isAlliedZOC[0] = false;
+        }
+    }
+    public int getAiScore(){
+        return aiScore;
+    }
+    public static void initAI(){
+        for (Hex hex:arrHexMap){
+            hex.aiScore = 0;
         }
     }
     public static void initOccupied(){
@@ -172,23 +180,26 @@ public class Hex {
     }
 
     /**
-     *  All hexes get an temp score of 1 if
+     *  All hexes get an add temp score of 1 if
      *  they are not occupied by germans
      *  and they can attack germans
+     *  and Germans are in a high aiscore hex
      */
     public static void addAIScoreSurroundGerman() {
-        for (Hex hex:arrHexMap){
-            if (!hex.isAxisOccupied()) {
-                boolean canAttack = false;
-                for (Hex hexCheck : hex.getSurround()) {
+        for (Hex hex:arrHexMap) {
+            if (hex.aiScore > 1) {
+                if (hex.isAxisOccupied()) {
+                    boolean canAttack = false;
+                    for (Hex hexCheck : hex.getSurround()) {
 
-                    if (hexCheck.isAxisOccupied()) {
-                        canAttack = true;
-                        break;
+                        if (hexCheck.isAlliedOccupied()) {
+                            canAttack = true;
+                            break;
+                        }
                     }
-                }
-                if (hex.aiScoreGen == 0) {
-                    hex.aiScoreGen = 1;
+                    if (canAttack) {
+                        hex.aiScoreGen++;
+                    }
                 }
             }
         }
@@ -695,7 +706,14 @@ public class Hex {
             }
             AIUtil.RemoveDuplicateHex(arrAIHex);
     }
-    private static ArrayList<Hex> loadAIHexes(int minAiScore) {
+
+    /**
+     *  return an array of hexes that have AISCoreGen greater ahn
+     *  the minimum
+     * @param minAiScore
+     * @return
+     */
+    public static ArrayList<Hex> loadAIHexes(int minAiScore) {
         ArrayList<Hex> arrHexReturn = new ArrayList<>();
         for (Hex hex:arrHexMap){
             if (hex.aiScoreGen > minAiScore){

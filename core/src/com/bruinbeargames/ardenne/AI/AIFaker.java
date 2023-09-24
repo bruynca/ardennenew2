@@ -1,6 +1,8 @@
 package com.bruinbeargames.ardenne.AI;
 
 import com.badlogic.gdx.Gdx;
+import com.bruinbeargames.ardenne.GameLogic.LehrExits;
+import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
 import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.ObserverPackage;
@@ -12,7 +14,7 @@ import java.util.Observable;
 
 public class AIFaker extends Observable {
     static public AIFaker instance;
-    ArrayList<Unit> arrUnits = new ArrayList<Unit>();
+    ArrayList<Unit> arrGermanOnBoardUnits = new ArrayList<Unit>();
     ArrayList<UnitHex> arrUnitHex = new ArrayList<>();
     static public Hex Wiltz = Hex.hexTable[19][14];
     static public Hex MartleBurg = Hex.hexTable[9][23];
@@ -27,8 +29,8 @@ public class AIFaker extends Observable {
         instance = this;
     }
     public void setUnits(ArrayList<Unit> arrIn){
-        arrUnits.clear();
-        arrUnits.addAll(arrIn);
+        arrGermanOnBoardUnits.clear();
+        arrGermanOnBoardUnits.addAll(arrIn);
     }
     public void setUnitHex(ArrayList<UnitHex> arrIn){
         arrUnitHex.clear();
@@ -74,9 +76,24 @@ public class AIFaker extends Observable {
          *  make sure we do not use thread zero its for game flow
          */
         i =0; //
-        if (arrUnits == null){
-            arrUnits = new ArrayList<>();
-            arrUnits.addAll((Unit.getOnBoardAxis()));
+        if (arrGermanOnBoardUnits == null){
+            arrGermanOnBoardUnits = new ArrayList<>();
+            arrGermanOnBoardUnits.addAll((Unit.getOnBoardAxis()));
+            if (GameSetup.instance.getScenario().ordinal() > 0){
+                ArrayList<Unit> arrSave = new ArrayList<>();
+                for (Unit unit:arrGermanOnBoardUnits){
+                    if (SecondPanzerExits.instance.isInSecond(unit)){
+                        arrSave.add(unit);
+                    }
+                    if (GameSetup.instance.getScenario().ordinal() == 2){
+                        if (LehrExits.instance.isInLehr(unit)){
+                            arrSave.add(unit);
+                        }
+                    }
+                }
+                arrGermanOnBoardUnits.clear();
+                arrGermanOnBoardUnits.addAll(arrSave);
+            }
         }
         for (ArrayList<AIOrders> aiArr:aiArray){
             generateScore(aiArray[i], type,i+1);
@@ -131,12 +148,18 @@ public class AIFaker extends Observable {
                             break;
                         case ReinBastogneAttack:
                         case ReinEttlebruck:
-                            score = AIScorer.instance.getScore(type, arrUnits, aiO, thread);
+                            score = AIScorer.instance.getScore(type, arrGermanOnBoardUnits, aiO, thread);
                             aiO.setScoreMain(score);
                             // do scoring
                             break;
+                        case ReinOther:
+                            int tempScore = aiO.getScoreMain();
+                            score = AIScorer.instance.getScore(type, arrGermanOnBoardUnits, aiO, thread);
+                            aiO.setScoreMain(score + tempScore);
+                            // do scoring
+                            break;
                         case ReinMartelange:
-                            score = AIScorer.instance.getScore(type, arrUnits, aiO, thread);
+                            score = AIScorer.instance.getScore(type, arrGermanOnBoardUnits, aiO, thread);
                             int supplyScore = AISupply.instance.getScore(thread);
                             supplyScore *= 10;
                             if (score > 0) {
@@ -148,7 +171,7 @@ public class AIFaker extends Observable {
                             break;
                         case NonPenetrate:
                         default:
-                            score = AIScorer.instance.getScore(type, arrUnits, aiO, thread);
+                            score = AIScorer.instance.getScore(type, arrGermanOnBoardUnits, aiO, thread);
                             if (score > 0){
                                 int b=0;
                             }
@@ -259,6 +282,10 @@ public class AIFaker extends Observable {
             case GermanMoveScenario1:
                 setChanged();
                 notifyObservers(new ObserverPackage(ObserverPackage.Type.FakeScenario1Done, null, 0, 0));
+                break;
+            case ReinOther:
+                setChanged();
+                notifyObservers(new ObserverPackage(ObserverPackage.Type.FakerDone, null, 0, 0));
                 break;
 
         }

@@ -2,6 +2,7 @@ package com.bruinbeargames.ardenne.AI;
 
 import com.bruinbeargames.ardenne.GameLogic.Attack;
 import com.bruinbeargames.ardenne.GameLogic.Combat;
+import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
 import com.bruinbeargames.ardenne.GameLogic.Supply;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.Hex.HexHandler;
@@ -61,6 +62,9 @@ public class AIScorer {
                     }
                 }
                 break;
+            case ReinOther:
+                score = find2nDLehrThatCanExit(arrGermans,aiO,thread);
+                break;
             case ReinMartelange:
             case ReinBastogneAttack:
                 score = getGermanPenetration(arrGermans,aiO,thread);
@@ -82,6 +86,19 @@ public class AIScorer {
 
         }
 
+        return score;
+    }
+
+    private int find2nDLehrThatCanExit(ArrayList<Unit> arrGermans, AIOrders aiO, int thread) {
+        final int scoreForExit = -40;
+        int score =0;
+        ArrayList<Hex>[] arrArrGermans = createGermanMoves(arrGermans, thread);
+        for (ArrayList<Hex> arr:arrArrGermans){
+            if (arr.contains(SecondPanzerExits.hexExit2) ||
+                    arr.contains(SecondPanzerExits.hexExit1)){
+                score += scoreForExit;
+            }
+        }
         return score;
     }
 
@@ -515,6 +532,7 @@ public class AIScorer {
             int b=0;
         }
         switch (type){
+            case ReinOther:
             case GermanPenetration:
             case GermanRegular:
                 // do nothing
@@ -645,7 +663,7 @@ public class AIScorer {
 
 
     public enum Type {GermanPenetration, NonPenetrate, GermanRegular,ReinBastogneAttack,ReinBastogneOcupy,GermanMoveScenario1,
-        ReinEttlebruck, ReinMartelange, AIPath,Supply, AttackBastogne, AttackWiltz}
+        ReinEttlebruck, ReinMartelange, AIPath,Supply, AttackBastogne, AttackWiltz,ReinOther}
 
 
 }
