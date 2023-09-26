@@ -7,8 +7,12 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.bruinbeargames.ardenne.AI.AIUtil;
 import com.bruinbeargames.ardenne.ErrorGame;
+import com.bruinbeargames.ardenne.GameLogic.LehrExits;
 import com.bruinbeargames.ardenne.GameLogic.Losses;
+import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
 import com.bruinbeargames.ardenne.GameMenuLoader;
+import com.bruinbeargames.ardenne.GamePreferences;
+import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Map;
 import com.bruinbeargames.ardenne.ScreenGame;
 import com.bruinbeargames.ardenne.UI.EventPopUp;
@@ -187,22 +191,44 @@ public class Hex {
      */
     public static void addAIScoreSurroundGerman() {
         for (Hex hex:arrHexMap) {
+            if (hex.aiScore > 1 && hex.isAxisOccupied()) {
+                    for (Hex hexCheck : hex.getSurround()) {
+                        hexCheck.aiScoreGen +=hex.aiScore;
+                    }
+            }
+        }
+    }
+    public static void addAISecondPanzerLehrOccupied(){
+        boolean isSecondLook = false;
+        boolean isLehrLook = false;
+        if (GameSetup.instance.getScenario().ordinal() > 0){
+            isSecondLook = true;
+            if (GameSetup.instance.getScenario().ordinal() > 1){
+                isLehrLook = true;
+            }
+        }
+        for (Hex hex:arrHexMap) {
             if (hex.aiScore > 1) {
                 if (hex.isAxisOccupied()) {
-                    boolean canAttack = false;
-                    for (Hex hexCheck : hex.getSurround()) {
-
-                        if (hexCheck.isAlliedOccupied()) {
-                            canAttack = true;
-                            break;
+                    boolean isAdd= false;
+                    for (Unit unit:hex.getUnitsInHex()) {
+                        if (isSecondLook && SecondPanzerExits.instance.isInSecond(unit)) {
+                            isAdd = true;
+                        }
+                        if (isLehrLook && LehrExits.instance.isInLehr(unit)) {
+                            isAdd = true;
                         }
                     }
-                    if (canAttack) {
-                        hex.aiScoreGen++;
+                    if (isAdd) {
+                        for (Hex hexA:hex.getSurround()) {
+                            hexA.aiScoreGen++;
+                        }
                     }
+
                 }
             }
         }
+
 
     }
 

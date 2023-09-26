@@ -48,7 +48,7 @@ public class HexHiliteDisplay {
       if (pos == null){
             int brk = 0;
         }
-        String str = Float.toString(hex.getAiScore())+" x"+hex.xTable+" y"+hex.yTable;
+        String str = (hex.aiScoreGen+" x"+hex.xTable+" y"+hex.yTable);
         if (hex.isAxisOccupied()){
             str +="G";
         }
@@ -58,7 +58,7 @@ public class HexHiliteDisplay {
         String str2 = Float.toString(hex.getCalcMoveCost(0));
 
         label = new Label(str,labelStyleName);
-        label.setPosition(pos.x-20, pos.y+40);
+        label.setPosition(pos.x-40, pos.y+40);
         label2 = new Label(str2,labelStyleName) ;
         label2.setPosition(pos.x, pos.y+50);
 

@@ -90,6 +90,7 @@ public class AIReinforcementScenarioOther implements Observer {
          */
         Hex.initTempAI();
         Hex.addAIScoreSurroundGerman();
+        Hex.addAISecondPanzerLehrOccupied();
 
         /**
          *  Do the next area based on ixCurrentInArea
@@ -178,11 +179,29 @@ public class AIReinforcementScenarioOther implements Observer {
             winReinforcements.end();
             return;
         }
+        if (arrArtillery.size() > 0){
+            doArtillery(aiStart);
+        }
         Gdx.app.log("AIReinforcementScenarioOther", "execute");
 
         execute(aiStart);
 
     }
+
+    private void doArtillery(AIOrders aiStart) {
+        Hex hex = AIUtil.findClosestHex(aiStart.arrHexMoveTo,Hex.hexBastogne2);
+        if (aiStart.arrHexMoveTo.contains(Hex.hexBastogne1)){
+            hex = Hex.hexBastogne1;
+        }
+        if (aiStart.arrHexMoveTo.contains(Hex.hexBastogne2)){
+            hex = Hex.hexBastogne2;
+        }
+        for (Unit unit:arrArtillery){
+            aiStart.arrUnit.add(unit);
+            aiStart.arrHexMoveTo.add(hex);
+        }
+    }
+
     public void execute(AIOrders aiOrdersIn){
         Gdx.app.log("AIReinforcementScenarioOther", "execute");
         AIExecute.instance.Reinforcement(aiOrdersIn);

@@ -77,7 +77,11 @@ public class AIProcess{
          *  remove duplicates
          */
         if (arrStart.size() > 1) {
-            arrAIOrders.addAll(AIOrders.removeDupeMoveToHexes(arrStart, arrDupes));
+            if (AIOrders.removeDupeMoveToHexes(arrStart, arrDupes).size() > 0) {
+                arrAIOrders.addAll(AIOrders.removeDupeMoveToHexes(arrStart, arrDupes));
+            }else{
+                arrAIOrders.addAll(arrStart);
+            }
         }else{
             arrAIOrders.addAll(arrStart);
         }
