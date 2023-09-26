@@ -31,6 +31,8 @@ public class AICombat {
     //        if (NextPhase.instance.getTurn() < 3){ // first reinforcements
                 AICombatScenario1.instance.doInitialCombatTurn1to3(isAllies);
     //        }
+        }else{
+            AICombatScenario1.instance.doInitialCombatTurn1to3(isAllies);
         }
     }
 
@@ -60,7 +62,7 @@ public class AICombat {
         /**
          *  input has been sorted and is viable meaning highest
          */
- //       AIExecute.instance.Combat(arrToBeScored);
+       AIExecute.instance.Combat(arrToBeScored);
     }
 
     public ArrayList<Hex> getCombatHex() {

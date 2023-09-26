@@ -43,7 +43,8 @@ public class AICombatScenario1 {
         ArrayList<AIOrdersCombat> arrREmove = new ArrayList<>();
         for (AIOrdersCombat aiC:arrToBeScored){
             for (Unit unit: aiC.getUnits()){
-                if (Hex.arrMajorCities.contains(unit.getHexOccupy())){
+                if (Hex.arrMajorCities.contains(unit.getHexOccupy()) &&
+                    !Hex.arrMajorCities.contains(aiC.hexAttackedByUnits.getHex())){
                     arrREmove.add(aiC);
                     break;
                 }
