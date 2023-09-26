@@ -40,8 +40,7 @@ public class AIMover {
             if (NextPhase.instance.getTurn() < 3){ // first reinforcements
                 AIScenario1.instance.doInitialMoveAlliesTurn1to3();
             }else{
-                AIScenario1Turn3to6.instance.doAlliesMove();
-
+                AIScenarioOther.instance.doAlliesMove();
             }
 
         }

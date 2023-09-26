@@ -263,9 +263,6 @@ public class AIUtil {
             UnitMove unitMove = new UnitMove(unit,move,isMOA,true, thread);
             ArrayList<Hex> arrHexMove = new ArrayList<>();
             arrHexMove.addAll(unitMove.getMovePossible());
-            if (arrHexMove.contains(Hex.hexTable[8][11])){
-                int b=0;
-            }
             arrReturn[ix]= arrHexMove;
             ix++;
         }
