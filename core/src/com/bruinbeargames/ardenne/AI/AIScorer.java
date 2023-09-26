@@ -64,6 +64,9 @@ public class AIScorer {
                 break;
             case ReinOther:
                 score = find2nDLehrThatCanExit(arrGermans,aiO,thread);
+                for (Hex hex:aiO.arrHexMoveTo){
+                        score += hex.aiScoreGen;
+                }
                 break;
             case ReinMartelange:
             case ReinBastogneAttack:
@@ -90,7 +93,7 @@ public class AIScorer {
     }
 
     private int find2nDLehrThatCanExit(ArrayList<Unit> arrGermans, AIOrders aiO, int thread) {
-        final int scoreForExit = -40;
+        final int scoreForExit = -700;
         int score =0;
         ArrayList<Hex>[] arrArrGermans = createGermanMoves(arrGermans, thread);
         for (ArrayList<Hex> arr:arrArrGermans){

@@ -33,6 +33,7 @@ public class AIProcess{
          * reduce amount of hexes to check
          * we can adjust this later in case we get too many by changing the aitoCheck
          * This is driven by AIScoreTemp - set by INVOKING
+         * also it will eliminate any hexes already occupied
          */
         reduceHexsToCheck(arrArrayOfHexArray,1);
         /**
@@ -75,7 +76,11 @@ public class AIProcess{
         /**
          *  remove duplicates
          */
-        arrAIOrders.addAll(AIOrders.removeDupeMoveToHexes(arrStart,arrDupes));
+        if (arrStart.size() > 1) {
+            arrAIOrders.addAll(AIOrders.removeDupeMoveToHexes(arrStart, arrDupes));
+        }else{
+            arrAIOrders.addAll(arrStart);
+        }
         Gdx.app.log("AIProcess", "After Dupe Removal count ="+arrAIOrders.size());
 
         if (arrAIOrders.size() == 0){
@@ -98,7 +103,7 @@ public class AIProcess{
             AIUtil.RemoveDuplicateHex(arr);
             ArrayList<Hex> arrRemove = new ArrayList<>();
             for (Hex hex:arr){
-                if (hex.aiScoreGen < 1){
+                if (hex.aiScoreGen < aiToCheck || hex.isAlliedOccupied()){
                     arrRemove.add(hex);
                 }
             }

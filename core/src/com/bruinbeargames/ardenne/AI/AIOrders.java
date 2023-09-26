@@ -205,6 +205,37 @@ public class AIOrders {
 
     }
 
+    /**
+     * Get the top number of aiorders
+     * @param arrSortedIn
+     * @param cntIn
+     * @return
+     */
+    public static ArrayList<AIOrders> gettopNumber(ArrayList<AIOrders> arrSortedIn, int cntIn) {
+        ArrayList<AIOrders> arrReturn = new ArrayList<>();
+        if (arrSortedIn.size() == 0){
+            return arrReturn;
+        }
+        if (arrSortedIn.size() == 1){
+            arrReturn.add(arrSortedIn.get(0));
+            return arrReturn;
+        }
+        int cntToGet = cntIn;
+        if (cntToGet < 1){
+            cntToGet = 1;
+        }
+        int i =0;
+        for (AIOrders aiO:arrSortedIn){
+            arrReturn.add(aiO);
+            i++;
+            if (i == cntToGet){
+                break;
+            }
+        }
+        return arrReturn;
+
+    }
+
     public static void display(ArrayList<AIOrders> arrIn) {
         Gdx.app.log("AIOrders", "Display Start");
         for (AIOrders ao:arrIn){

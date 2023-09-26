@@ -3,13 +3,17 @@ package com.bruinbeargames.ardenne.AI;
 import com.badlogic.gdx.Gdx;
 import com.bruinbeargames.ardenne.GameLogic.Reinforcement;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.ObserverPackage;
+import com.bruinbeargames.ardenne.UI.WinReinforcements;
 import com.bruinbeargames.ardenne.Unit.Unit;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Observable;
 import java.util.Observer;
+
+import static com.bruinbeargames.ardenne.AI.AIOrders.combine;
 
 
 public class AIReinforcementScenarioOther implements Observer {
@@ -29,6 +33,11 @@ public class AIReinforcementScenarioOther implements Observer {
     Hex hexBastogneReinforceEntry = Hex.hexTable[0][19];
     Hex hexMartelangeReinforceEntry = Hex.hexTable[9][24];
     Hex hexEttlebruckReinforceEntry = Hex.hexTable[28][24];
+    /**
+     * because we have broken this up into 3 areas
+     * Arrcovered will be set by each so that we do not have too many units
+     */
+    ArrayList<Hex> arrCovered = new ArrayList<>();
 
 
     public AIReinforcementScenarioOther(){
@@ -48,6 +57,7 @@ public class AIReinforcementScenarioOther implements Observer {
         /**
          *  initialize the aiScore used
          */
+        arrCovered.clear();
         Hex.initTempAI();
 
         arrArtillery.clear();
@@ -71,7 +81,9 @@ public class AIReinforcementScenarioOther implements Observer {
 
     private void doNextReinArea() {
         Gdx.app.log("AIReinforcementsOther", "doNextReinArea ix"+ixCurrentReinArea);
-        Gdx.app.log("AIReinforcementsOther", "doNextReinArea size ="+arrUnitReinArea[ixCurrentReinArea+1].size());
+        if (ixCurrentReinArea + 1 < arrUnitReinArea.length ) {
+            Gdx.app.log("AIReinforcementsOther", "doNextReinArea size =" + arrUnitReinArea[ixCurrentReinArea + 1].size());
+        }
         /**
          *  initialize the aiScore used
          *  also check for Germa occupied
@@ -85,7 +97,7 @@ public class AIReinforcementScenarioOther implements Observer {
          *  else if none left go to do final
          */
         ixCurrentReinArea++;
-        if (ixCurrentReinArea > arrUnitReinArea.length) {
+        if (ixCurrentReinArea >= arrUnitReinArea.length) {
             doFinalAllAreasProcessign();
             return;
         }
@@ -128,6 +140,7 @@ public class AIReinforcementScenarioOther implements Observer {
             ArrayList<Hex> arrHexMove = AIReinforcementScenario1.instance.findHexesOnReinforcement(unit,entryCost);
             entryCost++;
             AIUtil.RemoveDuplicateHex(arrHexMove);
+            arrHexMove.removeAll(arrCovered);
             if (arrHexMove.size() > 0) {
                 arrWork.add(arrHexMove);
             } else {
@@ -151,7 +164,30 @@ public class AIReinforcementScenarioOther implements Observer {
     }
 
     private void doFinalAllAreasProcessign() {
+        AIOrders aiStart = new AIOrders();
+        for (ArrayList<AIOrders> arr:arrOrdersReinArea){
+            if (arr != null){
+                AIOrders aiNew = AIOrders.combine(aiStart,arr.get(0),true);
+                aiStart = aiNew;
+            }
+        }
+        Gdx.app.log("AIReinforcementScenarioOther", "do final processing # units="+aiStart.arrUnit.size());
+
+        if (aiStart.arrUnit.size() == 0) {
+            WinReinforcements winReinforcements = Reinforcement.instance.getScreen();
+            winReinforcements.end();
+            return;
+        }
+        Gdx.app.log("AIReinforcementScenarioOther", "execute");
+
+        execute(aiStart);
+
     }
+    public void execute(AIOrders aiOrdersIn){
+        Gdx.app.log("AIReinforcementScenarioOther", "execute");
+        AIExecute.instance.Reinforcement(aiOrdersIn);
+    }
+
 
 
 
@@ -169,7 +205,10 @@ public class AIReinforcementScenarioOther implements Observer {
             ArrayList<AIOrders> arrWork = new ArrayList<>();
             arrWork.addAll(aiProcess.getAIOrders());
             Collections.sort(arrWork, new AIOrders.SortbyScoreDescending());
-            ArrayList<AIOrders> arrTop = AIOrders.gettopPercent(arrWork, .1f);
+            ArrayList<AIOrders> arrTop = AIOrders.gettopNumber(arrWork, 1);
+            for (Hex hex:arrTop.get(0).arrHexMoveTo){
+                arrCovered.add(hex);
+            }
             arrOrdersReinArea[ixCurrentReinArea] = new ArrayList<>();
             arrOrdersReinArea[ixCurrentReinArea].addAll(arrTop);
 
