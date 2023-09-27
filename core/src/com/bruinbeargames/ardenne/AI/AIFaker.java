@@ -213,6 +213,9 @@ public class AIFaker extends Observable {
 
     public static void setFakeOccupied(AIOrders aiO, boolean b, int thread) {
         for (Hex hex:aiO.arrHexMoveTo){
+            if (hex == null){
+                int z=0;
+            }
             hex.setFakeOccupiedAllies(b, thread);
         }
     }

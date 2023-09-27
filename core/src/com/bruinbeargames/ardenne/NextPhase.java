@@ -420,6 +420,9 @@ public class NextPhase {
                     if (SecondPanzerHalts.instance.is2NDPanzerHalted()){
                         SecondPanzerHalts.instance.restore();
                     }
+                    if (noExitCheck()){
+                        return;
+                    }
                     nextPhase();
                     break;
                 case GERMAN_SUPPLY:
@@ -588,7 +591,28 @@ public class NextPhase {
         }, .065F);
    }
 
+    private boolean noExitCheck(){
+        boolean iswarned = false;
+        if (GameSetup.instance.getScenario().ordinal() > 0) {
+            if (SecondPanzerExits.instance.checkExits()){
+                String winner = VictoryPopup.instance.announceVictorAtEnd();
+                BottomMenu.instance.setEnablePhaseChange(false);
+                AccessInternet.updateGame(turn, winner);
+                iswarned = true;
+                return true;
+            }
+        }
+        if (GameSetup.instance.getScenario().ordinal() > 1 && !iswarned) {
+            if (LehrExits.instance.checkExits()){
+                String winner = VictoryPopup.instance.announceVictorAtEnd();
+                BottomMenu.instance.setEnablePhaseChange(false);
+                AccessInternet.updateGame(turn, winner);
+                return true;
+            }
+        }
+        return false;
 
+    }
 
 
     public void setDebug() {

@@ -1,16 +1,16 @@
 package com.bruinbeargames.ardenne.AI;
 
 import com.badlogic.gdx.Gdx;
+import com.bruinbeargames.ardenne.GameLogic.Reinforcement;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.ObserverPackage;
+import com.bruinbeargames.ardenne.UI.WinReinforcements;
 import com.bruinbeargames.ardenne.Unit.Unit;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Observer;
-
-import sun.jvm.hotspot.utilities.Observable;
 
 public class AIScenarioOther implements Observer {
     static public AIScenarioOther instance;
@@ -18,6 +18,12 @@ public class AIScenarioOther implements Observer {
     ArrayList<AIOrders>[] arrOrders;
     AIScorer.Type type;
     AIProcess aiProcess;
+    ArrayList<AIOrders>[] arrOrdersPortion;
+    ArrayList<Unit>[] arrUnitPortion;
+    int ixNextMove;
+    ArrayList<Hex> arrCovered = new ArrayList<>();
+
+
 
     AIScenarioOther(){
         instance = this;
@@ -27,16 +33,67 @@ public class AIScenarioOther implements Observer {
         Gdx.app.log("AIScenarioOther", "doAlliesMove");
         ArrayList<Unit> arrUnits = new ArrayList<>();
         ArrayList<Unit> arrArtillery = new ArrayList<>();
-        for (Unit unit:Unit.getOnBoardAllied()){
-            if (unit.getMovedLast() < NextPhase.instance.getTurn()){
-                if (unit.isArtillery && unit.isLimbered()){
+        arrCovered.clear();
+        /**
+         * dont do artillery
+         */
+        for (Unit unit : Unit.getOnBoardAllied()) {
+            if (unit.getMovedLast() < NextPhase.instance.getTurn()) {
+                if (unit.isArtillery) {
                     arrArtillery.add(unit);
-                }else {
+                } else {
                     arrUnits.add(unit);
                 }
             }
         }
-        arrMoves = AIUtil.getUnitsMaxMove(arrUnits,0, false);
+        int portion = 4;
+        /**
+         *  get number of portions dividing by portions
+         */
+        int numPortions = (arrUnits.size() / portion);
+        if (arrUnits.size() % portion > 0){
+            numPortions++;
+        }
+        arrUnitPortion = new ArrayList[numPortions];
+        arrOrdersPortion = new ArrayList[numPortions];
+        /**
+         *  spread out units to portions
+         */
+        for (int i = 0; i < numPortions; i++) {
+            int toMOve = portion;
+            if (arrUnits.size() <= portion) {
+                toMOve = arrUnits.size();
+            }
+            arrUnitPortion[i] = new ArrayList<>();
+            for (int j = 0; j < portion; j++) {
+                if (j < arrUnits.size()) {
+                    arrUnitPortion[i].add(arrUnits.get(j));
+                }
+            }
+            arrUnits.removeAll(arrUnitPortion[i]);
+        }
+        ixNextMove = -1;
+        /**
+         *  initialize the aiScore used
+         *  also check for Germa occupied
+         */
+
+        doNextMove();
+    }
+    private void doNextMove(){
+        Gdx.app.log("AIScenarioOther", "doNextReinArea ix"+ixNextMove);
+        if (ixNextMove + 1 < arrUnitPortion.length ) {
+            Gdx.app.log("AIScenariother", "doNextReinArea size =" + arrUnitPortion[ixNextMove + 1].size());
+        }
+        ixNextMove++;
+        if (ixNextMove >= arrUnitPortion.length){
+            doHandOffToMover();
+            return;
+        }
+        arrMoves = AIUtil.getUnitsMaxMove(arrUnitPortion[ixNextMove],0, false);
+        for (ArrayList<Hex> arr:arrMoves){
+            arr.removeAll(arrCovered);
+        }
         ArrayList<ArrayList<Hex>> arrArr = new ArrayList<>();
         for (ArrayList<Hex> arr:arrMoves){
             arrArr.add(arr);
@@ -47,24 +104,39 @@ public class AIScenarioOther implements Observer {
         Hex.addAIScoreSurroundGerman();
         Hex.addAISecondPanzerLehrOccupied();
 
-        aiProcess = new AIProcess(arrUnits,arrArr,arrDupes);
+        aiProcess = new AIProcess(arrUnitPortion[ixNextMove],arrArr,arrDupes,2);
         if (aiProcess.isFailed()){
-            NextPhase.instance.nextPhase();
+            doNextMove();
             return;
         }
+        return;
     }
 
     /**
      *  all done
-     * @param arrTop should only be 1
      *
      */
-    private void doHandOffToMover(ArrayList<AIOrders> arrTop) {
-        if (arrTop.get(0).arrUnit.size() == 0){
+    private void doHandOffToMover() {
+        AIOrders aiStart = new AIOrders();
+        for (ArrayList<AIOrders> arr:arrOrdersPortion){
+            if (arr != null){
+                AIOrders aiNew = AIOrders.combine(aiStart,arr.get(0),true);
+                aiStart = aiNew;
+            }
+        }
+        Gdx.app.log("AIScenarioOther", "do final processing # units="+aiStart.arrUnit.size());
+
+        if (aiStart.arrUnit.size() == 0) {
             NextPhase.instance.nextPhase();
             return;
         }
-        AIMover.instance.execute(arrTop.get(0));
+        Gdx.app.log("AIcenarioOther", "execute");
+
+        execute(aiStart);
+    }
+    private  void execute(AIOrders aiOrdersIn){
+        Gdx.app.log("AIScenarioOther", "execute");
+        AIMover.instance.execute(aiOrdersIn);
     }
 
 
@@ -84,7 +156,12 @@ public class AIScenarioOther implements Observer {
             arrWork.addAll(aiProcess.getAIOrders());
             Collections.sort(arrWork, new AIOrders.SortbyScoreDescending());
             ArrayList<AIOrders> arrTop = AIOrders.gettopNumber(arrWork, 1);
-            doHandOffToMover(arrTop);
+            for (Hex hex:arrTop.get(0).arrHexMoveTo){
+                arrCovered.add(hex);
+            }
+            arrOrdersPortion[ixNextMove] = new ArrayList<>();
+            arrOrdersPortion[ixNextMove].addAll(arrTop);
+            doNextMove();
         }
 
     }

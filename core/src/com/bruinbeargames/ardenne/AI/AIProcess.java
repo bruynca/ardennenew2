@@ -26,7 +26,7 @@ public class AIProcess{
      */
     private boolean isFailed = false;
     ArrayList<AIOrders> arrAIOrders = new ArrayList<>();
-    AIProcess(ArrayList<Unit> arrUnitsIn, ArrayList<ArrayList<Hex>> arrArrayOfHexArray,ArrayList<Hex> arrDupes){
+    AIProcess(ArrayList<Unit> arrUnitsIn, ArrayList<ArrayList<Hex>> arrArrayOfHexArray,ArrayList<Hex> arrDupes, int aiTocheck){
         Gdx.app.log("AIProcess", "Constructor #Units="+arrUnitsIn.size()
                     +"  hex arrays="+arrArrayOfHexArray.size());
         /**
@@ -35,7 +35,19 @@ public class AIProcess{
          * This is driven by AIScoreTemp - set by INVOKING
          * also it will eliminate any hexes already occupied
          */
-        reduceHexsToCheck(arrArrayOfHexArray,1);
+        reduceHexsToCheck(arrArrayOfHexArray,aiTocheck);
+        /**
+         *  in case there are no hexes to check move in occupying hex
+         */
+        for (int ix=0; ix< arrArrayOfHexArray.size();ix++){;
+            if (arrArrayOfHexArray.get(ix).size() == 0 ){
+                arrArrayOfHexArray.get(ix).add(arrUnitsIn.get(ix).getHexOccupy());
+                if (arrUnitsIn.get(ix).getHexOccupy() == null){
+                    isFailed = true;
+                    return;
+                }
+            }
+        }
         /**
          *  Check for cases where we have no movement possible then
          *  remove it from the units

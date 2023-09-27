@@ -62,7 +62,12 @@ public class AICombat {
         /**
          *  input has been sorted and is viable meaning highest
          */
-       AIExecute.instance.Combat(arrToBeScored);
+        if (arrToBeScored.size() > 0) {
+            AIExecute.instance.Combat(arrToBeScored);
+            return;
+        }else{
+            NextPhase.instance.nextPhase();
+        }
     }
 
     public ArrayList<Hex> getCombatHex() {

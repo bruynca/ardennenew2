@@ -62,17 +62,32 @@ public class AIReinforcementScenarioOther implements Observer {
 
         arrArtillery.clear();
         /**
+         *  count reinforcement areas
+         */
+        int cntReinforceAreas = 0;
+        for (Hex hex : arrReinforceAreas) {
+            ArrayList<Unit> arrUnit = new ArrayList<>();
+            arrUnit.addAll(Reinforcement.instance.getReinforcementsAvailable(hex, true));
+            if (arrUnit.size() > 0){
+                cntReinforceAreas++;
+            }
+        }
+
+
+        /**
          *  initialize the units for each area
          *  if none availabel then there will be zero
          */
-        arrUnitReinArea = new ArrayList[3];
-        arrOrdersReinArea = new ArrayList[3];
+        arrUnitReinArea = new ArrayList[cntReinforceAreas];
+        arrOrdersReinArea = new ArrayList[cntReinforceAreas];
         int ix = 0;
         for (Hex hex : arrReinforceAreas) {
             ArrayList<Unit> arrUnit = new ArrayList<>();
             arrUnit.addAll(Reinforcement.instance.getReinforcementsAvailable(hex, true));
-            arrUnitReinArea[ix] = arrUnit;
-            ix++;
+            if (arrUnit.size() > 0) {
+                arrUnitReinArea[ix] = arrUnit;
+                ix++;
+            }
         }
         ixCurrentReinArea = -1;
         doNextReinArea();
@@ -156,11 +171,12 @@ public class AIReinforcementScenarioOther implements Observer {
             return;
         }
         ArrayList<Hex> arrDupes = new ArrayList<>(); // no dupes at moment
-        AIFaker.instance.addObserver(this);
-        aiProcess = new AIProcess(arrWorkingOn,arrWork,arrDupes);
+        aiProcess = new AIProcess(arrWorkingOn,arrWork,arrDupes,1);
         if (aiProcess.isFailed()){
             doNextReinArea();
             return;
+        }else{
+            AIFaker.instance.addObserver(this);
         }
     }
 
@@ -189,6 +205,9 @@ public class AIReinforcementScenarioOther implements Observer {
     }
 
     private void doArtillery(AIOrders aiStart) {
+        /**
+         *  add artillery closes to bastogne
+         */
         Hex hex = AIUtil.findClosestHex(aiStart.arrHexMoveTo,Hex.hexBastogne2);
         if (aiStart.arrHexMoveTo.contains(Hex.hexBastogne1)){
             hex = Hex.hexBastogne1;
