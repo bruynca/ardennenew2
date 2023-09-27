@@ -5,9 +5,6 @@ import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.Unit.Unit;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  * AIProcess will do common AI routines for Reinforcements and moves
@@ -26,6 +23,23 @@ public class AIProcess{
      */
     private boolean isFailed = false;
     ArrayList<AIOrders> arrAIOrders = new ArrayList<>();
+
+    /**
+     *  Create AIOrders Array for passed paramaters.
+     *   it is assumed that the invoking object will add and observer to AIFaker
+     *  if AIOrders can not be genarted then will set isFailed to true and Exit
+     *  1. Validate that the passed array of hexes have a hex. Use the occupying hex for the unit. If it
+     *      is  aReinforcement then fail.
+     *  2.  Get Iterations of AIOrders
+     *  3.  Remove AIOrders that have duplicate hex destinations.
+     *  4.  Set Type for AIFaker
+     *  5.  Release to AIFaker
+     *
+     * @param arrUnitsIn Units input
+     * @param arrArrayOfHexArray Arraylist of ArrayList of Hexs that the Units can move to  1:1 with the units
+     * @param arrDupes Array of hexes that can have duplicates on the AIOrder
+     * @param aiTocheck the minimum aiScoreGen to keep hex in solution
+     */
     AIProcess(ArrayList<Unit> arrUnitsIn, ArrayList<ArrayList<Hex>> arrArrayOfHexArray,ArrayList<Hex> arrDupes, int aiTocheck){
         Gdx.app.log("AIProcess", "Constructor #Units="+arrUnitsIn.size()
                     +"  hex arrays="+arrArrayOfHexArray.size());
@@ -35,6 +49,7 @@ public class AIProcess{
          * This is driven by AIScoreTemp - set by INVOKING
          * also it will eliminate any hexes already occupied
          */
+
         reduceHexsToCheck(arrArrayOfHexArray,aiTocheck);
         /**
          *  in case there are no hexes to check move in occupying hex
@@ -53,19 +68,19 @@ public class AIProcess{
          *  remove it from the units
          *  and create an array for the iterations
          */
-        ArrayList<Unit> arrValidUnits = new ArrayList<>();
+        ArrayList<Unit> arrRemoveUnits = new ArrayList<>();
         ArrayList<ArrayList<Hex>> arrRemove =  new ArrayList<>();
         int ix=0;
         for (ArrayList<Hex> arr:arrArrayOfHexArray){
-            if (arr.size() == 0 ){
+            if (arr.size() == 0 ) {
                 arrRemove.add(arr);
-            }else{
-                arrValidUnits.add(arrUnitsIn.get(ix));
+                arrRemoveUnits.add(arrUnitsIn.get(ix));
             }
             ix++;
         }
         Gdx.app.log("AIProcess", "Remove ="+arrRemove.size());
         arrArrayOfHexArray.removeAll(arrRemove);
+        arrUnitsIn.removeAll(arrRemoveUnits);
         if (arrArrayOfHexArray.size() == 0){
             Gdx.app.log("AIProcess", "Failed");
             isFailed = true;
@@ -105,7 +120,7 @@ public class AIProcess{
             return;
         }
 
-        AIScorer.Type type = AIScorer.Type.ReinOther;
+        AIScorer.Type type = AIScorer.Type.ReinAndMoveOther;
         AIFaker.instance.startScoringOrders(arrAIOrders, type, true);
     }
 

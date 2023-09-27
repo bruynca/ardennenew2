@@ -62,7 +62,7 @@ public class AIScorer {
                     }
                 }
                 break;
-            case ReinOther:
+            case ReinAndMoveOther:
                 score = find2nDLehrThatCanExit(arrGermans,aiO,thread);
                 for (Hex hex:aiO.arrHexMoveTo){
                         score += hex.aiScoreGen;
@@ -535,7 +535,7 @@ public class AIScorer {
             int b=0;
         }
         switch (type){
-            case ReinOther:
+            case ReinAndMoveOther:
             case GermanPenetration:
             case GermanRegular:
                 // do nothing
@@ -666,7 +666,8 @@ public class AIScorer {
 
 
     public enum Type {GermanPenetration, NonPenetrate, GermanRegular,ReinBastogneAttack,ReinBastogneOcupy,GermanMoveScenario1,
-        ReinEttlebruck, ReinMartelange, AIPath,Supply, AttackBastogne, AttackWiltz,ReinOther}
+        ReinEttlebruck, ReinMartelange, AIPath,Supply, AttackBastogne, AttackWiltz, ReinAndMoveOther
+    }
 
 
 }

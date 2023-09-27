@@ -29,11 +29,23 @@ public class AIScenarioOther implements Observer {
         instance = this;
     }
 
+    /**
+     * Do the AI Allied Movement
+     * 1. Initialize the aiScores
+     * 2. Get all onboard allied units  except ar oget all
+     * 3. Divide number of units into portions. prortion set to 4
+     *    currently. Used to avoid out of memory and long waits.
+     * 4. Set portion index to -1  and DoNextMove
+     */
     public void doAlliesMove() {
         Gdx.app.log("AIScenarioOther", "doAlliesMove");
         ArrayList<Unit> arrUnits = new ArrayList<>();
         ArrayList<Unit> arrArtillery = new ArrayList<>();
         arrCovered.clear();
+        Hex.initTempAI();
+        Hex.addAIScoreSurroundGerman();
+        Hex.addAISecondPanzerLehrOccupied();
+
         /**
          * dont do artillery
          */
@@ -80,6 +92,15 @@ public class AIScenarioOther implements Observer {
 
         doNextMove();
     }
+
+    /**
+     * 1. add 1 to index of portion we are working on.  if greater than
+     *    portions available then do the handoff to mover.
+     * 2. Get all the moves for each unit.
+     * 3. Remove hexes that have been covered in previous portions
+     * 4. Invoke AIProcess if it failed do the next if it
+     *      add this as an observer to AIFaker.
+     */
     private void doNextMove(){
         Gdx.app.log("AIScenarioOther", "doNextReinArea ix"+ixNextMove);
         if (ixNextMove + 1 < arrUnitPortion.length ) {
@@ -99,21 +120,21 @@ public class AIScenarioOther implements Observer {
             arrArr.add(arr);
         }
         ArrayList<Hex> arrDupes = new ArrayList<>(); // no dupes at moment
-        AIFaker.instance.addObserver(this);
-        Hex.initTempAI();
-        Hex.addAIScoreSurroundGerman();
-        Hex.addAISecondPanzerLehrOccupied();
 
         aiProcess = new AIProcess(arrUnitPortion[ixNextMove],arrArr,arrDupes,2);
         if (aiProcess.isFailed()){
             doNextMove();
             return;
+        }else{
+            AIFaker.instance.addObserver(this);
         }
         return;
     }
 
     /**
      *  all done
+     *  1. Combine portions if they are not null into 1 AIOrder
+     *  2. Execute the mover with the AIOrder
      *
      */
     private void doHandOffToMover() {

@@ -58,7 +58,14 @@ public class AIReinforcementScenarioOther implements Observer {
          *  initialize the aiScore used
          */
         arrCovered.clear();
+        /**
+         *  initialize the aiScore used
+         *  also check for Germa occupied
+         */
         Hex.initTempAI();
+        Hex.addAIScoreSurroundGerman();
+        Hex.addAISecondPanzerLehrOccupied();
+
 
         arrArtillery.clear();
         /**
@@ -70,6 +77,10 @@ public class AIReinforcementScenarioOther implements Observer {
             arrUnit.addAll(Reinforcement.instance.getReinforcementsAvailable(hex, true));
             if (arrUnit.size() > 0){
                 cntReinforceAreas++;
+                for (Hex hexAdd:hex.getSurround()){
+                    hex.aiScoreGen++;
+                    hex.aiScoreGen++;
+                }
             }
         }
 
@@ -99,13 +110,6 @@ public class AIReinforcementScenarioOther implements Observer {
         if (ixCurrentReinArea + 1 < arrUnitReinArea.length ) {
             Gdx.app.log("AIReinforcementsOther", "doNextReinArea size =" + arrUnitReinArea[ixCurrentReinArea + 1].size());
         }
-        /**
-         *  initialize the aiScore used
-         *  also check for Germa occupied
-         */
-        Hex.initTempAI();
-        Hex.addAIScoreSurroundGerman();
-        Hex.addAISecondPanzerLehrOccupied();
 
         /**
          *  Do the next area based on ixCurrentInArea

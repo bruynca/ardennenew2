@@ -19,7 +19,7 @@ public class DesktopLauncher {
 		//config.setFullscreenMode(mode);
 
 		// Windowed Version
-//		DoRedirectConsole();
+		DoRedirectConsole();
 
 
 		config.setWindowedMode(mode.width, mode.height);

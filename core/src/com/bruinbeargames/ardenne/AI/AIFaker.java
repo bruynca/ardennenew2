@@ -152,7 +152,7 @@ public class AIFaker extends Observable {
                             aiO.setScoreMain(score);
                             // do scoring
                             break;
-                        case ReinOther:
+                        case ReinAndMoveOther:
                             int tempScore = aiO.getScoreMain();
                             score = AIScorer.instance.getScore(type, arrGermanOnBoardUnits, aiO, thread);
                             aiO.setScoreMain(score + tempScore);
@@ -286,7 +286,7 @@ public class AIFaker extends Observable {
                 setChanged();
                 notifyObservers(new ObserverPackage(ObserverPackage.Type.FakeScenario1Done, null, 0, 0));
                 break;
-            case ReinOther:
+            case ReinAndMoveOther:
                 setChanged();
                 notifyObservers(new ObserverPackage(ObserverPackage.Type.FakerDone, null, 0, 0));
                 break;
