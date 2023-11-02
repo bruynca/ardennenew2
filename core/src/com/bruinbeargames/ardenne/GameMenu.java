@@ -72,7 +72,10 @@ public class GameMenu extends Observable {
         i18NBundle= GameMenuLoader.instance.localization;
         Fonts.loadFont();
         loadGamePopUp = new LoadGamePopUp(stage);
-
+        if(Gdx.app.getType() == Application.ApplicationType.Android) {
+            Fonts.setScale(8.0f);
+   //         Fonts.setScale(.1f);
+        }
         initializeStyles(atlas);
         initializeImageBackGround();
         initializeExitButton();
@@ -212,8 +215,9 @@ public class GameMenu extends Observable {
                 Fonts.getFont24());
         textButtonStyle.over = new TextureRegionDrawable(new TextureRegion(atlas.findRegion("selectedbutton")));
         if(!Gdx.app.getType().equals(Application.ApplicationType.Desktop)) {
-            textButtonStyle.font.getData().scale(1);
+            textButtonStyle.font.getData().scale(0);
         }
+
 
         checkBoxStyle = new CheckBox.CheckBoxStyle();
         checkBoxStyle.checkboxOn = new TextureRegionDrawable(new TextureRegion(GameMenuLoader.instance.gameMenu.asset.get("checkboxselected")));
@@ -243,11 +247,14 @@ public class GameMenu extends Observable {
         gameSelection = new GameSelection(stage,  sound);
 
         newGameButton = new TextButton(i18NBundle.get("newgame"),textButtonStyle);
+
         newGameButton.setSize(281/1, 44/1);
         newGameButton.setPosition(0,screenHeight);
         newGameButton.setPosition(backGroundImage.getX() + (((backGroundImage.getWidth()/2) - (newGameButton.getWidth()/2)) ), backGroundImage.getY() + backGroundImage.getHeight() - ((100) / 1));
 
         newGameButton.setVisible(true);
+        newGameButton.setTransform(true);
+    //    newGameButton.setScale(.2f);
 
         newGameButton.addListener(new ClickListener() {
             @Override
@@ -260,7 +267,6 @@ public class GameMenu extends Observable {
                             (Gdx.graphics.getHeight() / 2) - (250 / 1));
                     hide();
                     mainMenuButton.setPosition(backGroundImage.getX() + 20, backGroundImage.getY() +  (10 / 1));
-
                     gameSelection.show(true);
                 }
             }

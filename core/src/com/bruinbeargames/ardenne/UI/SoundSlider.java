@@ -126,7 +126,7 @@ public class SoundSlider {
                 Fonts.getFont24());
         textButtonStyle.over = new TextureRegionDrawable(new TextureRegion(GameMenuLoader.instance.gameMenu.asset.get("selectedbutton")));
         if(!Gdx.app.getType().equals(Application.ApplicationType.Desktop)) {
-            textButtonStyle.font.getData().scale(1);
+            textButtonStyle.font.getData().scale(0);
         }
 
         closeButton = new TextButton(i18NBundle.get("close"),textButtonStyle);

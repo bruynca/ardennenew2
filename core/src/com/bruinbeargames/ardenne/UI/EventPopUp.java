@@ -155,7 +155,7 @@ public class EventPopUp extends Observable {
         Label.LabelStyle style = new Label.LabelStyle();
         style.font = Fonts.getFont24();
         if (!Gdx.app.getType().equals(Application.ApplicationType.Desktop)) {
-            style.font.getData().scale(1);
+            style.font.getData().scale(0);
         }
         textLabel = new Label("", style);
         textLabel.setSize(480 / 1, 260 / 1);

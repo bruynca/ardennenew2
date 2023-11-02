@@ -73,12 +73,12 @@ public class Counter {
         stack.addListener(new ClickListener() {
 
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-  //              Gdx.app.log("Counter ", "enter unit="+unit);
+                Gdx.app.log("Counter ", "enter unit="+unit);
                 checkExplode(counter);
                 checkDesc(counter);
             }
             public void exit(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-  //              Gdx.app.log("Counter", "exit unit="+unit);
+                Gdx.app.log("Counter", "exit unit="+unit);
                 checkImplode();
                 checkDescGone();
             }
@@ -162,6 +162,9 @@ public class Counter {
     public void removeClickAction(){
  //       Gdx.app.log("Counter","removeClickAction="+unit);
         clickAction = null;
+    }
+    public ClickAction getClickAction(){
+        return clickAction;
     }
 
     public void updateImage() {

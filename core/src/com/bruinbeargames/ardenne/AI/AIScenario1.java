@@ -462,7 +462,9 @@ public class AIScenario1 {
         AIOrders aiOrdersArtillery = null;
         if (arrArtillery.size() > 0){
             aiOrdersArtillery = AILimber.instance.getBestBombard(arrArtillery);
-            aiOrders.combineMove(aiOrdersArtillery);
+            if (aiOrdersArtillery != null ) {
+                aiOrders.combineMove(aiOrdersArtillery);
+            }
         }
 
         /**

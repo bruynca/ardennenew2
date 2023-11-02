@@ -146,10 +146,10 @@ public class AIScenario1Turn3to6 implements Observer {
             aiFinal = arrOrders[0].get(0);
         }else{
             aiFinal = AIOrders.combine(arrOrders[0].get(0), arrOrders[1].get(0), true);
-            if (arrOrders.length > 2) {
+            if (arrOrders.length > 2 && arrOrders[2].size() > 0) {
                 AIOrders temp = AIOrders.combine(aiFinal, arrOrders[2].get(0), true);
                 aiFinal = temp;
-                if (arrOrders.length > 3) {
+                if (arrOrders.length > 3 && arrOrders[3].size() > 0) {
                     AIOrders temp2 = AIOrders.combine(aiFinal, arrOrders[3].get(0), true);
                     aiFinal = temp2;
                 }
@@ -163,6 +163,7 @@ public class AIScenario1Turn3to6 implements Observer {
         /**
          *  let see how scorere handles this
          */
+
         ArrayList<Unit> arrUnits = null;
         if (arrUnits == null){
             arrUnits = new ArrayList<>();

@@ -109,7 +109,7 @@ public class EventAI{
                 null,
                 Fonts.getFont24());
         if(!Gdx.app.getType().equals(Application.ApplicationType.Desktop)) {
-            textButtonStyle.font.getData().scale(1f);
+            textButtonStyle.font.getData().scale(0f);
         }
     }
     private void initializeImageBackGround() {
@@ -128,7 +128,7 @@ public class EventAI{
         Label.LabelStyle style = new Label.LabelStyle();
         style.font = Fonts.getFont24();
         if (!Gdx.app.getType().equals(Application.ApplicationType.Desktop)){
-            style.font.getData().scale(1f);
+            style.font.getData().scale(0f);
         }
         textLabel = new Label("",style);
         textLabel.setSize(480/1f, 260/1f);

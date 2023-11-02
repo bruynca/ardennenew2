@@ -256,7 +256,7 @@ public class AIExecute {
             if (((ObserverPackage) arg).type == ObserverPackage.Type.ScreenCentered) {
                 CenterScreen.instance.deleteObserver(this);
                 attack = new Attack(hexAttack, isAllies, false, true, null);
-                Combat.instance.createAttackDisplay(hexAttack);
+                Combat.instance.createAttackDisplay(hexAttack, true);
                 Combat.instance.setAttackForAI(attack);
                 Gdx.app.log("AIExCombat ", "update arrUnits=" + arrUnitsOnAttack);
                 for (Unit unit : arrUnitsOnAttack) {

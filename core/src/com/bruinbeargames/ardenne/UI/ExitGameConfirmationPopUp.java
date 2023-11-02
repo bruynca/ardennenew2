@@ -80,7 +80,7 @@ public class ExitGameConfirmationPopUp {
                 null,
                 Fonts.getFont24());
         if(!Gdx.app.getType().equals(Application.ApplicationType.Desktop)) {
-            textButtonStyle.font.getData().scale(1f);
+            textButtonStyle.font.getData().scale(0f);
         }
     }
 
@@ -102,7 +102,7 @@ public class ExitGameConfirmationPopUp {
         Label.LabelStyle style = new Label.LabelStyle();
         style.font = Fonts.getFont24();
         if (!Gdx.app.getType().equals(Application.ApplicationType.Desktop)){
-            style.font.getData().scale(1);
+            style.font.getData().scale(0);
         }
         textLabel = new Label("",style);
         textLabel.setSize(480, 260);

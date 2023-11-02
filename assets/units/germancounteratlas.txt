@@ -68,7 +68,7 @@ artcorp
   index: -1
 attackarrow0
   rotate: false
-  xy: 883, 0
+  xy: 903, 0
   size: 65, 65
   orig: 65, 65
   offset: 0, 0
@@ -110,7 +110,7 @@ bastognesign
   index: -1
 binoculars
   rotate: false
-  xy: 799, 0
+  xy: 819, 0
   size: 42, 42
   orig: 42, 42
   offset: 0, 0
@@ -124,49 +124,49 @@ blowbridge
   index: -1
 bridge
   rotate: false
-  xy: 101, 0
+  xy: 81, 0
   size: 42, 24
   orig: 42, 24
   offset: 0, 0
   index: -1
 bridgeblown
   rotate: false
-  xy: 948, 0
+  xy: 968, 0
   size: 140, 80
   orig: 140, 80
   offset: 0, 0
   index: -1
 bt
   rotate: false
-  xy: 1088, 0
+  xy: 1108, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 btpushed
   rotate: false
-  xy: 1181, 0
+  xy: 1201, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 button
   rotate: false
-  xy: 1274, 0
+  xy: 1294, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 cardbutton
   rotate: false
-  xy: 1367, 0
+  xy: 1387, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
   index: -1
 cardbuttonp
   rotate: false
-  xy: 1460, 0
+  xy: 1480, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
@@ -187,14 +187,14 @@ crt
   index: -1
 crtback
   rotate: false
-  xy: 743, 0
+  xy: 723, 0
   size: 56, 39
   orig: 56, 39
   offset: 0, 0
   index: -1
 crttop
   rotate: false
-  xy: 1553, 0
+  xy: 1573, 0
   size: 93, 91
   orig: 93, 91
   offset: 0, 0
@@ -453,9 +453,9 @@ moved
   index: -1
 ok
   rotate: false
-  xy: 81, 0
-  size: 20, 20
-  orig: 20, 20
+  xy: 779, 0
+  size: 40, 40
+  orig: 40, 40
   offset: 0, 0
   index: -1
 onestep
@@ -495,14 +495,14 @@ rienforcementbuttonpressed
   index: -1
 river
   rotate: false
-  xy: 143, 0
+  xy: 123, 0
   size: 42, 24
   orig: 42, 24
   offset: 0, 0
   index: -1
 shell
   rotate: false
-  xy: 841, 0
+  xy: 861, 0
   size: 42, 43
   orig: 42, 43
   offset: 0, 0
@@ -635,14 +635,14 @@ supply
   index: -1
 supplymouse
   rotate: false
-  xy: 711, 0
+  xy: 691, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 surprise
   rotate: false
-  xy: 185, 0
+  xy: 165, 0
   size: 42, 24
   orig: 42, 24
   offset: 0, 0
@@ -726,21 +726,21 @@ tecvillage
   index: -1
 tfback
   rotate: false
-  xy: 355, 0
+  xy: 335, 0
   size: 185, 30
   orig: 185, 30
   offset: 0, 0
   index: -1
 tfcusor
   rotate: false
-  xy: 353, 0
+  xy: 333, 0
   size: 2, 28
   orig: 2, 28
   offset: 0, 0
   index: -1
 tfselected
   rotate: false
-  xy: 540, 0
+  xy: 520, 0
   size: 171, 30
   orig: 171, 30
   offset: 0, 0
@@ -754,14 +754,14 @@ threestep
   index: -1
 town
   rotate: false
-  xy: 227, 0
+  xy: 207, 0
   size: 42, 24
   orig: 42, 24
   offset: 0, 0
   index: -1
 trees
   rotate: false
-  xy: 269, 0
+  xy: 249, 0
   size: 42, 24
   orig: 42, 24
   offset: 0, 0
@@ -810,7 +810,7 @@ vg352
   index: -1
 village
   rotate: false
-  xy: 311, 0
+  xy: 291, 0
   size: 42, 24
   orig: 42, 24
   offset: 0, 0

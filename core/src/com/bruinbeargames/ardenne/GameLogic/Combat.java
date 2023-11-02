@@ -28,6 +28,7 @@ import com.bruinbeargames.ardenne.UI.EventOK;
 import com.bruinbeargames.ardenne.UI.EventPopUp;
 import com.bruinbeargames.ardenne.UI.TurnCounter;
 import com.bruinbeargames.ardenne.UI.WinCRT;
+import com.bruinbeargames.ardenne.UI.WinStackCombat;
 import com.bruinbeargames.ardenne.UILoader;
 import com.bruinbeargames.ardenne.Unit.ClickAction;
 import com.bruinbeargames.ardenne.Unit.Unit;
@@ -64,6 +65,7 @@ public class Combat implements Observer {
     TextButton cancelButton;
     static Vector2 positionWinCombat = new Vector2(-100, 0);
     static Vector2 positionWinEnemy = new Vector2(-100, 0);
+    WinStackCombat winStackCombat;
 
     public Combat() {
         instance = this;        i18NBundle= GameMenuLoader.instance.localization;
@@ -87,7 +89,7 @@ public class Combat implements Observer {
     public void doCombatPhase() {
           Gdx.app.log("Combat", "doCombatphase");
         SaveGame.SaveLastPhase(" Last Turn", 2);
-
+        AttackArrows.getInstance().removeArrows();
         arrHexDefender.clear();
         arrHexCheckFirstTime.clear();
         if (isAllies){
@@ -154,7 +156,7 @@ public class Combat implements Observer {
                 Fonts.getFont24());
         textButtonStyle.over = new TextureRegionDrawable(new TextureRegion(UILoader.instance.combatDisplay.asset.get("attackbuttonover")));
         if (!Gdx.app.getType().equals(Application.ApplicationType.Desktop)) {
-            textButtonStyle.font.getData().scale(1f);
+            textButtonStyle.font.getData().scale(0f);
         }
 
         attackButton = new TextButton(GameMenuLoader.instance.localization.get("attack"), textButtonStyle);
@@ -170,7 +172,7 @@ public class Combat implements Observer {
                 Fonts.getFont24());
         textButtonStyle.over = new TextureRegionDrawable(new TextureRegion(UILoader.instance.combatDisplay.asset.get("cancelbuttonover")));
        if (!Gdx.app.getType().equals(Application.ApplicationType.Desktop)) {
-           textButtonStyle.font.getData().scale(1f);
+           textButtonStyle.font.getData().scale(0f);
        }
 
      cancelButton = new TextButton(GameMenuLoader.instance.localization.get("cancel"), textButtonStyle);
@@ -248,7 +250,7 @@ public class Combat implements Observer {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
                     attack = new Attack(hex, isAllies,false,isAI,null);
-                    createAttackDisplay(hexClick);
+                    createAttackDisplay(hexClick, false);
                 }
             };
             stack.addListener(clickListener);
@@ -266,10 +268,18 @@ public class Combat implements Observer {
      *
      * @param hex
      */
-    public void createAttackDisplay(Hex hex) {
+    public void createAttackDisplay(Hex hex, boolean isAI) {
+        /**
+         *  retained for AI  replaced by WinStack Combat
+         */
         Gdx.app.log("Combat", "createAttackDispay hex=" + hex);
         clearStacks();
-        createCombatImage(hex, false);
+        /**
+         *  only show Combat attack display for ai legacy
+          */
+        if (isAI) {
+            createCombatImage(hex, false);
+        }
         hexTarget = hex;
         /**
          * get all attackers
@@ -303,7 +313,12 @@ public class Combat implements Observer {
 
         hexTarget = hex;
         AttackArrows.getInstance().showArrows(arrHexAttackers, hexTarget);
-        ardenne.instance.addObserver(this);
+        if (!isAI) {
+
+            winStackCombat = new WinStackCombat(arrTempAttackers, hexTarget);
+        }
+        //ardenne.instance.addObserver(this);
+
     }
 
     /**
@@ -379,7 +394,7 @@ public class Combat implements Observer {
                         return;
                     } else {
                         cleanup(true);
-                        attack.dieRoll();
+                        doDieRoll();
                     }
                     return;
                 }
@@ -406,6 +421,11 @@ public class Combat implements Observer {
       ardenne.instance.mapStage.addActor(cancelButton);
        cancelButton.toFront();
 
+    }
+    public void doDieRoll(){
+        if (attack != null){
+            attack.dieRoll();
+        }
     }
 
     public void cleanup(boolean isCancel) {
@@ -453,9 +473,9 @@ public class Combat implements Observer {
 
        attack.addAttacker(unit, false);
        if (attack.arrAttackers.size() == 1){
-           addAttackCancel(attack.hexTarget);
+ //          addAttackCancel(attack.hexTarget);
        }
-       addAttackCancel(hexTarget);
+ //      addAttackCancel(hexTarget);
 
    }
 
@@ -492,6 +512,8 @@ public class Combat implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
+        Gdx.app.log("Combat", "Observer");
+
         ObserverPackage oB = (ObserverPackage) o;
         Hex hex = oB.hex;
         /**
@@ -514,8 +536,13 @@ public class Combat implements Observer {
         /**
          *  implied combatdisplayresult
          */
-        cleanup(true);
-        doCombatPhase();
+        if (winStackCombat != null && winStackCombat.isActive()){
+            // do nothing
+        }else {
+
+            cleanup(true);   // now done in WinStackCombet
+            doCombatPhase();
+        }
     }
 
 

@@ -371,7 +371,7 @@ public class Attack extends Observable implements Observer  {
          *  update combat display with advanve or continue results
          */
 
-        if (isDefendHexVacant && !attackerLosses.areAllEliminated){
+        if (isDefendHexVacant && attackerLosses != null && !attackerLosses.areAllEliminated){
             if (isMobileAssualt) {
                 for (Unit unit : arrAttackers) {
                     if (!unit.isEliminated() && unit.getCurrentMovement() > 0){

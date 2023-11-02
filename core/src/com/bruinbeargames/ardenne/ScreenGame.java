@@ -1,5 +1,6 @@
 package com.bruinbeargames.ardenne;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -57,7 +58,9 @@ public class ScreenGame {
     public ScreenGame(Stage inStage)
     {
         Gdx.app.log("ScreenGame", "Constructor");
-
+        if(Gdx.app.getType() == Application.ApplicationType.Android) {
+            zoomChange = .05f;
+        }
         instance = this;
         mapStage = ardenne.instance.mapStage;
         hexStage = ardenne.instance.hexStage;

@@ -1,5 +1,6 @@
 package com.bruinbeargames.ardenne;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -78,11 +79,18 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 	@Override
 	public void create () {
 		Gdx.app.log("Create", "Create");
-		Dimension scrnSize = Toolkit.getDefaultToolkit().getScreenSize();
-		Rectangle winSize = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
+		Dimension scrnSize = null;
+		Rectangle winSize = null;
+
+		if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
+
+			scrnSize = Toolkit.getDefaultToolkit().getScreenSize();
+			winSize = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
+
+		}
 		int taskBarHeight =0;
 
-		if (GamePreferences.isFullScreen()) {
+		if (GamePreferences.isFullScreen() || Gdx.app.getType() == Application.ApplicationType.Android) {
 			Graphics.DisplayMode mode = Gdx.graphics.getDisplayMode();
 			Gdx.graphics.setFullscreenMode(mode);
 			Gdx.graphics.setVSync(true);
@@ -444,24 +452,33 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 	@Override
 	public boolean tap(float x, float y, int count, int button) {
 		// TODO Auto-generated method stub
+		Gdx.app.log("Tap", "Initial=");
+
 		return false;
 	}
 
 	@Override
 	public boolean longPress(float x, float y) {
 		// TODO Auto-generated method stub
+		Gdx.app.log("longPress", "Initial=");
+
 		return false;
 	}
 
 	@Override
 	public boolean fling(float velocityX, float velocityY, int button) {
 		// TODO Auto-generated method stub
+		Gdx.app.log("Fling", "Initial=");
+
 		return false;
 	}
 	static boolean isPan =false;
 	@Override
 	public boolean pan(float x, float y, float deltaX, float deltaY) {
 	//	Gdx.app.log("Ardenne","Pan"+" x="+x+" y="+y+" deltaX="+deltaX+" deltay="+deltaY);
+
+		Gdx.app.log("Pan", "Initial=");
+
 		if (CenterScreen.instance != null){
 			if (CenterScreen.instance.isScrolling()){
 				return false;
@@ -477,13 +494,21 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 	@Override
 	public boolean panStop(float x, float y, int pointer, int button) {
 		// TODO Auto-generated method stub
+		Gdx.app.log("PanStop", "Initial=");
+
 		return true;
 	}
 
 	@Override
 	public boolean zoom(float initialDistance, float distance) {
 		// TODO Auto-generated method stub
-		Gdx.app.log("Zoom", "Initial=" + initialDistance);
+		Gdx.app.log("Zoom", "distance=" + distance);
+		if (distance > initialDistance) {
+			ScreenGame.instance.ZoomBigger();
+		}else{
+			ScreenGame.instance.ZoomSmaller();
+
+		}
 
 		return false;
 	}
@@ -491,7 +516,9 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 	@Override
 	public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
 		// TODO Auto-generated method stub
-		Gdx.app.log("pinch", "Initial=");
+		Gdx.app.log("pinch", "Initial="+initialPointer2+ " pointer1="+pointer1+" pointer2="+pointer2);
+
+//			ScreenGame.instance.ZoomSmaller();
 
 		return false;
 	}
@@ -499,6 +526,8 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 	@Override
 	public void pinchStop() {
 		// TODO Auto-generated method stub
+		Gdx.app.log("pinchStop", "Initial=");
+
 
 	}
 
@@ -511,12 +540,16 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
+		Gdx.app.log("Pause", "Initial=");
+
 
 	}
 
 	@Override
 	public void resume() {
 		// TODO Auto-generated method stub
+		Gdx.app.log("Resume", "Initial=");
+
 
 	}
 	public void fireHex(Hex hex, int button, int screenX, int screenY) {

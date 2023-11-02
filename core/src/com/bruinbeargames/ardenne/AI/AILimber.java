@@ -235,7 +235,11 @@ public class AILimber implements Observer {
             }
             arrFiNal.add(i,ai);
         }
-        return arrFiNal.get(0);
+        if (arrFiNal.size() > 0) {
+            return arrFiNal.get(0);
+        }else{
+            return null;
+        }
 
     }
 
