@@ -6,6 +6,7 @@ import com.bruinbeargames.ardenne.UI.BottomMenu;
 import com.bruinbeargames.ardenne.UI.TopMenu;
 import com.bruinbeargames.ardenne.UI.TurnCounter;
 import com.bruinbeargames.ardenne.UI.WinCardsChoice;
+import com.bruinbeargames.ardenne.Unit.CounterStack;
 import com.bruinbeargames.ardenne.Unit.Unit;
 
 import java.util.ArrayList;
@@ -25,6 +26,9 @@ public class Game {
         ardenne.instance.hexStage.clear();
         ardenne.instance.guiStage.clear();
         ardenne.instance.mapStage.clear();
+        Unit.loadTexture();
+        CounterStack.loadTexture();
+
 
         //       Counter.clearStack();
         Hex.initHex();

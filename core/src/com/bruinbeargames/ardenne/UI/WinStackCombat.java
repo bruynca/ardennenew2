@@ -68,7 +68,7 @@ public class WinStackCombat implements Observer {
         tooltipStyle.background = new NinePatchDrawable(np);
         np = new NinePatch(UILoader.instance.unitSelection.asset.get("window"), 10, 10, 33, 6);
         Window.WindowStyle windowStyle = new Window.WindowStyle(Fonts.getFont24(), Color.WHITE, new NinePatchDrawable(np));
-        String title = i18NBundle.format("moastackwindow");
+        String title = i18NBundle.format("combatstack");
         window = new Window(title, windowStyle);
         Label lab = window.getTitleLabel();
         lab.setScale(1.5f);
@@ -83,7 +83,7 @@ public class WinStackCombat implements Observer {
         });
         window.getTitleTable().add(image);
         hitOK = new TextTooltip(
-                i18NBundle.format("stackmoa"),
+                i18NBundle.format("stackcombat"),
                 tooltipStyle);
         image.addListener(hitOK);
 

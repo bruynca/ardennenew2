@@ -20,6 +20,8 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.bruinbeargames.ardenne.GameLogic.SoundsLoader;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.Unit.CounterStack;
+import com.bruinbeargames.ardenne.Unit.Unit;
 
 public class SplashScreen {
     static public SplashScreen instance;
@@ -224,7 +226,6 @@ public class SplashScreen {
  //           gameMenu.addObserver(this);
             languageSupport = new LanguageSupport();
  //           languageSupport.addObserver(this);
-
             beenHere = true;
         }
         batch.end();

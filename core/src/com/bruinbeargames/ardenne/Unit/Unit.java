@@ -44,8 +44,8 @@ public class Unit {
 	 */
 	private static ArrayList<Unit> arrGameCombatUnits = new ArrayList<>();
 	private static ArrayList<Unit> arrGameOtherUnits = new ArrayList<>();
-	static TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
-	static TextureRegion tStar =  textureAtlas.findRegion("star");
+	static TextureAtlas textureAtlas;
+	static TextureRegion tStar;
 	static public Unit unitAirplane = null;
 
 
@@ -118,6 +118,11 @@ public class Unit {
 				unit.setExertZoc();
 			}
 		}
+	}
+
+	public static void loadTexture() {
+		textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
+		tStar =  textureAtlas.findRegion("star");
 	}
 
 	public int getCurrentMoveNoBarrage() {

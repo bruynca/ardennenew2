@@ -1,5 +1,6 @@
 package com.bruinbeargames.ardenne.Unit;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.Stack;
@@ -20,8 +21,11 @@ public class CounterExplode {
 
     boolean isCancel = false;
     CounterExplode(Counter counter){
+        Gdx.app.log("CounterExplode ", "enter for All");
+
         this.counter = counter;
-        
+
+
         if  (counter.unit.getHexOccupy().getUnitsInHex().size() > 1) {
             final Hex hex = counter.unit.getHexOccupy();
             Timer.schedule(new Timer.Task() {
@@ -83,6 +87,15 @@ public class CounterExplode {
             ardenne.instance.guiStage.addActor(stack);
             startX +=size;
         }
+        if (Gdx.app.getType() != Application.ApplicationType.Desktop) {
+            Gdx.app.log("CounterExplode ", "enter for android");
+
+            counter.cycleUnits();
+            ardenne.setIsStopPan(true);
+            //fullScreen.remove();
+            //initializeFullScreenCheckBox();
+        }
+
 
     }
 
@@ -92,5 +105,6 @@ public class CounterExplode {
             stack.remove();
         }
         arrCounters.clear();
+        ardenne.setIsStopPan(false);
     }
 }

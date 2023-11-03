@@ -28,57 +28,56 @@ public class CounterStack {
     Image step;
     boolean isHilited;
     boolean isShaded;
-    static TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
-    static TextureRegion backGerman =  textureAtlas.findRegion("germanNew");
-    static TextureRegion backFj =  textureAtlas.findRegion("luftwaffeNew");
-    static TextureRegion backAllied =  textureAtlas.findRegion("alliedNew");
-    static TextureRegion hilitePic =  textureAtlas.findRegion("hilite");
-    static TextureRegion movePic =  textureAtlas.findRegion("moved");
-    static TextureRegion abn101 =  textureAtlas.findRegion("abn101");
-    static TextureRegion arm4 =  textureAtlas.findRegion("arm4");
-    static TextureRegion arm9 =  textureAtlas.findRegion("arm9");
-    static TextureRegion arm10 =  textureAtlas.findRegion("arm10");
-    static TextureRegion fj5 =  textureAtlas.findRegion("fj5");
-    static TextureRegion inf26 =  textureAtlas.findRegion("inf26");
-    static TextureRegion inf28 =  textureAtlas.findRegion("inf28");
-    static TextureRegion inf80 =  textureAtlas.findRegion("inf80");
-    static TextureRegion pz2 =  textureAtlas.findRegion("pz2");
-    static TextureRegion pzLehr =  textureAtlas.findRegion("pzlehr");
-    static TextureRegion artCorp =  textureAtlas.findRegion("artcorp");
-    static TextureRegion silamericaninf =  textureAtlas.findRegion("silamericaninf");
-    static TextureRegion silarm =  textureAtlas.findRegion("silarm");
-    static TextureRegion silart =  textureAtlas.findRegion("silart");
-    static TextureRegion silgermanart =  textureAtlas.findRegion("silgermanart");
-    static TextureRegion silgermaninf =  textureAtlas.findRegion("silgermaninf");
-    static TextureRegion siljagd =  textureAtlas.findRegion("siljagd");
-    static TextureRegion silmarder =  textureAtlas.findRegion("silmarder");
-    static TextureRegion silmobileart =  textureAtlas.findRegion("silmobileart");
-    static TextureRegion silnber =  textureAtlas.findRegion("silneber");
-    static TextureRegion silpanzergrenadier =  textureAtlas.findRegion("silpanzergrenadier");
-    static TextureRegion silpuma =  textureAtlas.findRegion("silpuma");
-    static TextureRegion silstug =  textureAtlas.findRegion("silstug");
-    static TextureRegion siltank =  textureAtlas.findRegion("siltank");
-    static TextureRegion silAtank =  textureAtlas.findRegion("silsherman");
-    static TextureRegion silAirArt =  textureAtlas.findRegion("silmairart");
-    static TextureRegion silantiTank =  textureAtlas.findRegion("silantitank");
-    static TextureRegion vg26 =  textureAtlas.findRegion("vg26");
-    static TextureRegion vg276 =  textureAtlas.findRegion("vg276");
-    static TextureRegion vg352 =  textureAtlas.findRegion("vg352");
-    static TextureRegion onestep =  textureAtlas.findRegion("onestep");
-    static TextureRegion twostep =  textureAtlas.findRegion("twostep");
-    static TextureRegion threestep =  textureAtlas.findRegion("threestep");
-    static TextureRegion truck =  textureAtlas.findRegion("truck");
-    static TextureRegion pzarmy =  textureAtlas.findRegion("5pzarmy");
+    static TextureAtlas textureAtlas;
+    static TextureRegion backGerman;
+    static TextureRegion backFj;
+    static TextureRegion backAllied;
+    static TextureRegion hilitePic;
+    static TextureRegion movePic;
+    static TextureRegion abn101;
+    static TextureRegion arm4;
+    static TextureRegion arm9;
+    static TextureRegion arm10;
+    static TextureRegion fj5;
+    static TextureRegion inf26;
+    static TextureRegion inf28;
+    static TextureRegion inf80;
+    static TextureRegion pz2;
+    static TextureRegion pzLehr;
+    static TextureRegion artCorp;
+    static TextureRegion silamericaninf;
+    static TextureRegion silarm;
+    static TextureRegion silart;
+    static TextureRegion silgermanart;
+    static TextureRegion silgermaninf;
+    static TextureRegion siljagd;
+    static TextureRegion silmarder;
+    static TextureRegion silmobileart;
+    static TextureRegion silnber;
+    static TextureRegion silpanzergrenadier;
+    static TextureRegion silpuma;
+    static TextureRegion silstug;
+    static TextureRegion siltank;
+    static TextureRegion silAtank;
+    static TextureRegion silAirArt;
+    static TextureRegion silantiTank;
+    static TextureRegion vg26;
+    static TextureRegion vg276;
+    static TextureRegion vg352;
+    static TextureRegion onestep;
+    static TextureRegion twostep;
+    static TextureRegion threestep;
+    static TextureRegion truck;
+    static TextureRegion pzarmy;
 
     //    static TextureRegion ammoall =  textureAtlas.findRegion("ammoall");
 //    static TextureRegion ammowarn =  textureAtlas.findRegion("ammowarn");
 //    static TextureRegion ammonone =  textureAtlas.findRegion("ammonone");
 //    static TextureRegion hqvg276 =  textureAtlas.findRegion("twoseventysix");
  //   static TextureRegion hqvg352 =  textureAtlas.findRegion("threehundredfifty");
-    static Label.LabelStyle labelStyleName
-            = new Label.LabelStyle(FontFactory.instance.largeFont, Color.RED);
+    static Label.LabelStyle labelStyleName;
 
-    static Label.LabelStyle labelStyleName2 = new Label.LabelStyle(FontFactory.instance.jumboFont, Color.WHITE);
+    static Label.LabelStyle labelStyleName2;
     static ArrayList<CounterStack> arrHilited = new ArrayList<>();
     static ArrayList<CounterStack> arrShaded = new ArrayList<>();
 
@@ -87,6 +86,7 @@ public class CounterStack {
 
     CounterStack(Unit unit, Stack stack){
 
+
         this.unit = unit;
         this.stack = stack;
         if (unit.isAxis){
@@ -94,6 +94,56 @@ public class CounterStack {
         }else{
             createAllied(stack);
         }
+
+    }
+    static public void loadTexture(){
+        textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
+        backGerman =  textureAtlas.findRegion("germanNew");
+        backFj =  textureAtlas.findRegion("luftwaffeNew");
+        backAllied =  textureAtlas.findRegion("alliedNew");
+        hilitePic =  textureAtlas.findRegion("hilite");
+        movePic =  textureAtlas.findRegion("moved");
+         abn101 =  textureAtlas.findRegion("abn101");
+         arm4 =  textureAtlas.findRegion("arm4");
+         arm9 =  textureAtlas.findRegion("arm9");
+         arm10 =  textureAtlas.findRegion("arm10");
+         fj5 =  textureAtlas.findRegion("fj5");
+         inf26 =  textureAtlas.findRegion("inf26");
+         inf28 =  textureAtlas.findRegion("inf28");
+         inf80 =  textureAtlas.findRegion("inf80");
+         pz2 =  textureAtlas.findRegion("pz2");
+         pzLehr =  textureAtlas.findRegion("pzlehr");
+         artCorp =  textureAtlas.findRegion("artcorp");
+         silamericaninf =  textureAtlas.findRegion("silamericaninf");
+         silarm =  textureAtlas.findRegion("silarm");
+         silart =  textureAtlas.findRegion("silart");
+         silgermanart =  textureAtlas.findRegion("silgermanart");
+         silgermaninf =  textureAtlas.findRegion("silgermaninf");
+         siljagd =  textureAtlas.findRegion("siljagd");
+         silmarder =  textureAtlas.findRegion("silmarder");
+         silmobileart =  textureAtlas.findRegion("silmobileart");
+         silnber =  textureAtlas.findRegion("silneber");
+         silpanzergrenadier =  textureAtlas.findRegion("silpanzergrenadier");
+         silpuma =  textureAtlas.findRegion("silpuma");
+         silstug =  textureAtlas.findRegion("silstug");
+         siltank =  textureAtlas.findRegion("siltank");
+         silAtank =  textureAtlas.findRegion("silsherman");
+         silAirArt =  textureAtlas.findRegion("silmairart");
+         silantiTank =  textureAtlas.findRegion("silantitank");
+         vg26 =  textureAtlas.findRegion("vg26");
+         vg276 =  textureAtlas.findRegion("vg276");
+         vg352 =  textureAtlas.findRegion("vg352");
+         onestep =  textureAtlas.findRegion("onestep");
+         twostep =  textureAtlas.findRegion("twostep");
+         threestep =  textureAtlas.findRegion("threestep");
+         truck =  textureAtlas.findRegion("truck");
+         pzarmy =  textureAtlas.findRegion("5pzarmy");
+         labelStyleName
+                = new Label.LabelStyle(FontFactory.instance.largeFont, Color.RED);
+         labelStyleName2 = new Label.LabelStyle(FontFactory.instance.jumboFont, Color.WHITE);
+        arrHilited.clear();
+        arrShaded.clear();
+
 
     }
 

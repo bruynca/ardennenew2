@@ -251,6 +251,11 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 			FontFactory.instance.dispose();
 		}
 		VisUI.dispose();
+		SplashScreen.instance.cardManager.dispose();
+		SplashScreen.instance.soundsManager.dispose();
+		SplashScreen.instance.effectsManager.dispose();
+		SplashScreen.instance.unitsManager.dispose();
+		Gdx.app.exit();
 	}
 	@Override
 	public boolean keyDown(int keycode) {
@@ -473,11 +478,22 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 		return false;
 	}
 	static boolean isPan =false;
+	static boolean isStopPan = false;
+
+	public static void setIsStopPan(boolean isStopPan) {
+		ardenne.isStopPan = isStopPan;
+	}
+
 	@Override
 	public boolean pan(float x, float y, float deltaX, float deltaY) {
-	//	Gdx.app.log("Ardenne","Pan"+" x="+x+" y="+y+" deltaX="+deltaX+" deltay="+deltaY);
-
-		Gdx.app.log("Pan", "Initial=");
+		Gdx.app.log("Ardenne","Pan"+" x="+x+" y="+y+" deltaX="+deltaX+" deltay="+deltaY);
+		if (deltaY == 0 && deltaY == 0 ){
+			return false;
+		}
+		if (isStopPan){
+			return false;
+		}
+	//	Gdx.app.log("Pan", "Initial=");
 
 		if (CenterScreen.instance != null){
 			if (CenterScreen.instance.isScrolling()){
@@ -541,14 +557,16 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 	public void pause() {
 		// TODO Auto-generated method stub
 		Gdx.app.log("Pause", "Initial=");
+		Gdx.app.log("Pause", "Initial=");
 
 
 	}
-
+	boolean isResumed = false;
 	@Override
 	public void resume() {
 		// TODO Auto-generated method stub
 		Gdx.app.log("Resume", "Initial=");
+		isResumed = true;
 
 
 	}

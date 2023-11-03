@@ -79,6 +79,12 @@ public class WinDisplayBombard {
             window.setPosition(v2.x, v2.y);
 
         }
+        if (window.getWidth() > Gdx.graphics.getWidth()){
+            window.setTransform(true);
+            float scale = Gdx.graphics.getWidth() /  (window.getWidth()+ 40);
+            window.setScale(scale);
+        }
+
         ardenne.instance.guiStage.addActor(window);
 
     }

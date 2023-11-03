@@ -83,7 +83,7 @@ public class Counter {
                 checkDescGone();
             }
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-  //              Gdx.app.log("Counter","TouchDown unit="+unit);
+                Gdx.app.log("Counter","TouchDown unit="+unit);
                 if (event.getButton( ) == Input.Buttons.RIGHT)
                 {
                     Gdx.app.log("Counter","Right");
