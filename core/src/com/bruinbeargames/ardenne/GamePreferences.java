@@ -141,6 +141,26 @@ public class GamePreferences {
 
 
     }
+    public static FileHandle getSaveResume(String fileName) {
+
+        File folder = new File("../resume/");
+        if (!folder.exists()) {
+            new File("../resume/").mkdir();
+        }
+        return Gdx.files.local("../resume/"+fileName);
+
+
+    }
+    public static FileHandle getSaveResume() {
+
+        File folder = new File("../resume/");
+        if (!folder.exists()) {
+            new File("../resume/").mkdir();
+        }
+        return Gdx.files.local("../resume/");
+
+
+    }
 
 
 

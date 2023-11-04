@@ -36,7 +36,7 @@ public class MobileAssualt implements Observer {
     ArrayList<Hex> arrHexMobile = new ArrayList<>();
     ArrayList<Stack> arrStack = new ArrayList<>();
     ArrayList<Unit> arrUnitsToMove = new ArrayList<>();
-    static TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
+    TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
 
     TextureRegion combat =textureAtlas.findRegion("mobileassualt");
 //    FileHandle fichier = Gdx.files.external("moa.png");

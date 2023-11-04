@@ -24,13 +24,13 @@ import com.bruinbeargames.ardenne.UILoader;
 import com.bruinbeargames.ardenne.ardenne;
 
 public class BombardDisplay {
-    static TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
-    static TextureRegion tTown =  textureAtlas.findRegion("town");
-    static TextureRegion tTrees =  textureAtlas.findRegion("trees");
-    static TextureRegion tBackGerman =  textureAtlas.findRegion("barragexis");
-    static TextureRegion tBackAllied =  textureAtlas.findRegion("barrageallies");
-    static TextureRegion tVillage =  textureAtlas.findRegion("village");
-    static TextureRegion tbinoculars =  textureAtlas.findRegion("binoculars");
+    TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
+    TextureRegion tTown =  textureAtlas.findRegion("town");
+    TextureRegion tTrees =  textureAtlas.findRegion("trees");
+    TextureRegion tBackGerman =  textureAtlas.findRegion("barragexis");
+    TextureRegion tBackAllied =  textureAtlas.findRegion("barrageallies");
+    TextureRegion tVillage =  textureAtlas.findRegion("village");
+    TextureRegion tbinoculars =  textureAtlas.findRegion("binoculars");
     private Image background;
     private Image trees;
     private Image village;

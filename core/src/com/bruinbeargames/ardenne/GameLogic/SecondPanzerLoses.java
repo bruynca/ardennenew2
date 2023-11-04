@@ -27,8 +27,8 @@ public class SecondPanzerLoses extends Observable implements Observer {
     final int toRemove = 3;
     static public SecondPanzerLoses instance;
     private I18NBundle i18NBundle;
-    static TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
-    static TextureRegion tExitBoard =  textureAtlas.findRegion("exitboard");
+    TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
+    TextureRegion tExitBoard =  textureAtlas.findRegion("exitboard");
     Unit unitWork;
 
     public SecondPanzerLoses(){

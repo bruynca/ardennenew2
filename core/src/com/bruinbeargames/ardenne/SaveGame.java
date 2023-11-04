@@ -412,6 +412,16 @@ public class SaveGame {
 
 
 	}
+	static public void SaveResume() {
+		String filename = "resume"+".xml";
+		StringBuffer saveGame = appendData();
+		FileHandle file = GamePreferences.getSaveResume(filename + ".xml");
+
+		file.writeString(saveGame.toString(), false);
+
+
+	}
+
 	static public void SaveLastPhase(String filename, int cnt) {
 //		DateFormat dateFormat = new SimpleDateFormat("d MMM yyyy HH-mm-ss");
 		/**
@@ -426,7 +436,15 @@ public class SaveGame {
 	}
 
 
-
+	public static FileHandle getResume() {
+		String strReturn = null;
+		String filename = "resume"+".xml";
+		FileHandle file = GamePreferences.getSaveResume(filename + ".xml");
+		if (file.exists()){
+			return file;
+		}
+		return null;
+	}
 }
 
 

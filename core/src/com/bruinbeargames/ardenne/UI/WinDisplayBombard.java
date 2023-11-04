@@ -33,9 +33,9 @@ import static com.badlogic.gdx.graphics.Color.WHITE;
 import static com.bruinbeargames.ardenne.GameLogic.BarrageExplode.barrageTableSTR;
 
 public class WinDisplayBombard {
-    static TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
-    static TextureRegion close =  textureAtlas.findRegion("close");
-    static TextureRegion backHilite = textureAtlas.findRegion("crtback");
+    TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
+    TextureRegion close =  textureAtlas.findRegion("close");
+    TextureRegion backHilite = textureAtlas.findRegion("crtback");
     TextTooltip.TextTooltipStyle tooltipStyle;
     Stage stage;
     Window window;

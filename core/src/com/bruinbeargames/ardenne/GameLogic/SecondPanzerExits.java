@@ -36,9 +36,9 @@ public class SecondPanzerExits {
     public ArrayList<Unit> unitExit1 = new ArrayList<>();
     public static Hex hexExit2 = Hex.hexTable[0][19];
     public ArrayList<Unit> unitExit2 = new ArrayList<>();
-    static TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
-    static TextureRegion tExitBoard =  textureAtlas.findRegion("exitboard");
-    static TextureRegion tExitBoardShade =  textureAtlas.findRegion("exitboarddarken");
+    TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
+    TextureRegion tExitBoard =  textureAtlas.findRegion("exitboard");
+    TextureRegion tExitBoardShade =  textureAtlas.findRegion("exitboarddarken");
     private I18NBundle i18NBundle;
     boolean hasEnoughUnits = true;
 

@@ -206,7 +206,7 @@ public class GameSelection {
                 if (!event.getType().equals("touchUp")) {
                     Gdx.graphics.setSystemCursor(Cursor.SystemCursor.Arrow);
                     SplashScreen.instance.end();
-                    Game game = new Game("");
+                    Game game = new Game("",false);
 //                    sound.stop();
 //                    game.showGameScreen(false);
                 }

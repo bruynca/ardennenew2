@@ -38,9 +38,9 @@ public class BlowBridge implements Observer {
     ArrayList<Image> arrBlowBridgeImage = new ArrayList<>();
     ArrayList<Bridge> arrBridgeGone = new ArrayList<>();
     ArrayList<Image>  arrBridgeGoneImage = new ArrayList<>();
-    static TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
-    static TextureRegion dynamite = textureAtlas.findRegion("blowbridge");
-    static TextureRegion bridgegone = textureAtlas.findRegion("bridgeblown");
+    TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
+    TextureRegion dynamite = textureAtlas.findRegion("blowbridge");
+    TextureRegion bridgegone = textureAtlas.findRegion("bridgeblown");
     CardsforGame cardsforGame;
     Image imageBridgeGone;
     TextTooltip.TextTooltipStyle tooltipStyle;

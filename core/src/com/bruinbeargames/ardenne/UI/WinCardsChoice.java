@@ -50,8 +50,8 @@ public class WinCardsChoice {
     private EventListener hitOK;
     TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
     TextureRegion close =  textureAtlas.findRegion("close");
-    static TextureAtlas textureAtlas2 = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
-    static TextureRegion shaded =  textureAtlas2.findRegion("moved");
+    TextureAtlas textureAtlas2 = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
+    TextureRegion shaded =  textureAtlas2.findRegion("moved");
 
     boolean isPreviousClose = false;
     boolean isAllies = false;

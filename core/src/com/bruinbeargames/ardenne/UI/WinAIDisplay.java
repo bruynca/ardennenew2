@@ -50,7 +50,7 @@ public class WinAIDisplay {
     HiliteHex hiliteHex;
     ArrayList<TextButton> arrTexButtons = new ArrayList<>();
     ArrayList<Label> arrLabel = new ArrayList<>();
-    static Label.LabelStyle labelStyleName
+    Label.LabelStyle labelStyleName
             = new Label.LabelStyle(FontFactory.instance.yellowFont, Color.YELLOW);
 
 

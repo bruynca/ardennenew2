@@ -26,16 +26,16 @@ import com.bruinbeargames.ardenne.UILoader;
 import com.bruinbeargames.ardenne.ardenne;
 
 public class CombatDisplay {
-    static TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
-    static TextureRegion tBridge =  textureAtlas.findRegion("bridge");
-    static TextureRegion tMechAttack =  textureAtlas.findRegion("mechattack");
-    static TextureRegion tRiver =  textureAtlas.findRegion("river");
-    static TextureRegion tTown =  textureAtlas.findRegion("town");
-    static TextureRegion tTrees =  textureAtlas.findRegion("trees");
-    static TextureRegion tBackGerman =  textureAtlas.findRegion("backgroundgerman");
-    static TextureRegion tBackAllied =  textureAtlas.findRegion("backgroundallied");
-    static TextureRegion tVillage =  textureAtlas.findRegion("village");
-    static TextureRegion tSurpise =  textureAtlas.findRegion("surprise");
+    TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
+    TextureRegion tBridge =  textureAtlas.findRegion("bridge");
+    TextureRegion tMechAttack =  textureAtlas.findRegion("mechattack");
+    TextureRegion tRiver =  textureAtlas.findRegion("river");
+    TextureRegion tTown =  textureAtlas.findRegion("town");
+    TextureRegion tTrees =  textureAtlas.findRegion("trees");
+    TextureRegion tBackGerman =  textureAtlas.findRegion("backgroundgerman");
+    TextureRegion tBackAllied =  textureAtlas.findRegion("backgroundallied");
+    TextureRegion tVillage =  textureAtlas.findRegion("village");
+    TextureRegion tSurpise =  textureAtlas.findRegion("surprise");
 
 
     private Image background;

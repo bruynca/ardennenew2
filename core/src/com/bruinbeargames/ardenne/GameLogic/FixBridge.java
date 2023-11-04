@@ -39,7 +39,7 @@ public class FixBridge implements Observer {
     ArrayList<Label> arrLabel = new ArrayList<>();
     ArrayList<Hex> arrHexBlown = new ArrayList<>();
     HiliteHex hiliteHex;
-    static Label.LabelStyle labelStyleName
+    Label.LabelStyle labelStyleName
             = new Label.LabelStyle(FontFactory.instance.jumboFont, Color.YELLOW);
 
     //    static TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");

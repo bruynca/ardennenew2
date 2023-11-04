@@ -34,7 +34,7 @@ import com.kotcrab.vis.ui.widget.VisTextField;
 import java.util.ArrayList;
 
 public class WinSaveGame {
-    static TextureAtlas textureAtlas2 = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
+    TextureAtlas textureAtlas2 = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
 
     TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
     TextureRegion ok =  textureAtlas.findRegion("ok");
@@ -52,9 +52,9 @@ public class WinSaveGame {
     ArrayList<Unit> arrUnits = new ArrayList<>();
     Attack attack;
     Hex hex;
-    static TextureRegion tfBack =  textureAtlas2.findRegion("tfback");
-    static TextureRegion tfSelected =  textureAtlas2.findRegion("tfselected");
-    static TextureRegion tfcusror =  textureAtlas2.findRegion("tfcusor");
+    TextureRegion tfBack =  textureAtlas2.findRegion("tfback");
+    TextureRegion tfSelected =  textureAtlas2.findRegion("tfselected");
+    TextureRegion tfcusror =  textureAtlas2.findRegion("tfcusor");
     VisTextField visTextField;
 
     private EventListener hitOK;

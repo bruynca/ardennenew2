@@ -72,6 +72,7 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 	private I18NBundle i18NBundle;
 	private boolean aiRender = false;
 	private int cntAiRender =0;
+	static boolean isResumed = false;
 
 	//
 //	Loader loader;
@@ -121,6 +122,12 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 			Gdx.graphics.setWindowedMode(width, height - (taskBarHeight+ 10));
 		}
 	}
+		Gdx.app.log("Bastogne", "Instance="+instance);
+		if (instance != null) {
+			isResumed = true;
+		}else{
+			isResumed = false;
+		}
 		instance = this;
 /*		Graphics.DisplayMode mode = Gdx.graphics.getDisplayMode();
 //		Gdx.graphics.setFullscreenMode(mode);
@@ -558,15 +565,16 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 		// TODO Auto-generated method stub
 		Gdx.app.log("Pause", "Initial=");
 		Gdx.app.log("Pause", "Initial=");
-
-
+		//isResumed = true; doesnt work
 	}
-	boolean isResumed = false;
+	public void setIsResumed(boolean isIn){
+		isResumed = isIn;
+	}
+
 	@Override
 	public void resume() {
 		// TODO Auto-generated method stub
 		Gdx.app.log("Resume", "Initial=");
-		isResumed = true;
 
 
 	}

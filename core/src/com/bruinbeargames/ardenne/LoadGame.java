@@ -32,18 +32,19 @@ public class LoadGame {
 	/**
 	 * Keep this in sync with savegame class
 	 * @param gameToLoad  the xml file for the game load
-	 * @param isSpecial if true do not set game setup info
+	 * @param isResume if true do not set game setup info
 	 */
-public LoadGame(String gameToLoad, boolean isSpecial) {
+public LoadGame(String gameToLoad, boolean isResume) {
 	isLoading = true;
     Gdx.app.log("LoadGame","loading ="+gameToLoad);
 	XmlReader reader = new XmlReader();
 	Element root = null;
-	if (!isSpecial) {
+	if (!isResume) {
 		FileHandle fileHandle = Gdx.files.external(gameToLoad);
 		root = reader.parse(fileHandle);
 	}else{
-		root = reader.parse(gameToLoad);
+		FileHandle fileHandle = SaveGame.getResume();
+		root = reader.parse(fileHandle);
 	}
 
     int turn = 0;
@@ -384,7 +385,7 @@ public LoadGame(String gameToLoad, boolean isSpecial) {
 	 *  only set game specific info if its a regular saved game
 	 */
 	boolean boolval;
-	if (!isSpecial) {
+//	if (!isSpecial) {
 		if (ardenne.instance.isSetHotSeat){
 			GameSetup.instance.setHotSeatGame(true);
 			GameSetup.instance.setGermanVersusAI(false);
@@ -431,7 +432,7 @@ public LoadGame(String gameToLoad, boolean isSpecial) {
 			}
 		}
 
-	}
+//	}
 
 
 

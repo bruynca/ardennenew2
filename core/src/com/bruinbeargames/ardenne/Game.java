@@ -1,7 +1,9 @@
 package com.bruinbeargames.ardenne;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.Hex.HexHiliteDisplay;
 import com.bruinbeargames.ardenne.UI.BottomMenu;
 import com.bruinbeargames.ardenne.UI.TopMenu;
 import com.bruinbeargames.ardenne.UI.TurnCounter;
@@ -19,7 +21,12 @@ public class Game {
 
 
     static public Game instance;
-    Game(String str) {
+    Game(String str, boolean isResume) {
+        Gdx.app.log("Game", "COnstructor");
+
+        if (isResume){
+            ardenne.instance.setIsResumed(false);
+        }
         instance = this;
         i18NBundle = GameMenuLoader.instance.localization;
         fontFactory = new FontFactory();
@@ -28,6 +35,7 @@ public class Game {
         ardenne.instance.mapStage.clear();
         Unit.loadTexture();
         CounterStack.loadTexture();
+        HexHiliteDisplay.textTureLoad();
 
 
         //       Counter.clearStack();
@@ -62,7 +70,7 @@ public class Game {
                 WinCardsChoice winCardsChoice = new WinCardsChoice(false);
             }
         }else{
-            LoadGame loadGame = new LoadGame(str, false);
+            LoadGame loadGame = new LoadGame(str, isResume);
             BottomMenu.instance.showBottomMenu();
             TopMenu topMenu = new TopMenu();
         }

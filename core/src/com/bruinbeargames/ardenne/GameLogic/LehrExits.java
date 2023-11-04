@@ -23,8 +23,8 @@ public class LehrExits {
     public ArrayList<Unit> unitExit1 = new ArrayList<>();
     public Hex hexExit2 = Hex.hexTable[0][19];
     public ArrayList<Unit> unitExit2 = new ArrayList<>();
-    static TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
-    static TextureRegion tExitBoard =  textureAtlas.findRegion("exitboard");
+    TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
+    TextureRegion tExitBoard =  textureAtlas.findRegion("exitboard");
     Stack exit1Stack;
     Stack exit2Stack;
     Label exit1Label;

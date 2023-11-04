@@ -21,7 +21,7 @@ public class WinDebug {
     Stage guiStage;
     Stage mapStage;
     public static WinDebug instance = null;
-    static Label.LabelStyle labelStyleName
+    Label.LabelStyle labelStyleName
             = new Label.LabelStyle(FontFactory.instance.yellowFont, Color.YELLOW);
 
     TextButton.TextButtonStyle tx = GameSelection.instance.textButtonStyle;

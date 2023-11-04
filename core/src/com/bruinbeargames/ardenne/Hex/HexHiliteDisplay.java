@@ -25,15 +25,14 @@ import java.util.ArrayList;
  *  put hilite display on the map
  */
 public class HexHiliteDisplay {
-    static TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
-    static TextureRegion backHilite =  textureAtlas.findRegion("hilitehex");
-    static TextureRegion backHiliteReinDisplay =  textureAtlas.findRegion("hilitehexreindisplay");
-    static TextureRegion backHiliteCannonRange =  textureAtlas.findRegion("hilitehexcannonrange");
-    static TextureRegion backHiliteMove =  textureAtlas.findRegion("hilitehexmove3");
-    static TextureRegion backHiliteExit =  textureAtlas.findRegion("hilitehexexit");
+    static TextureAtlas textureAtlas;
+    static TextureRegion backHilite;
+    static TextureRegion backHiliteReinDisplay;
+    static TextureRegion backHiliteCannonRange;
+    static TextureRegion backHiliteMove;
+    static TextureRegion backHiliteExit;
     static ArrayList<HexHiliteDisplay> arrHexHilite = new ArrayList<>();
-    static Label.LabelStyle labelStyleName
-            = new Label.LabelStyle(FontFactory.instance.yellowFont, Color.YELLOW);
+    static Label.LabelStyle labelStyleName;
 
     Image image;
     Label label;
@@ -198,6 +197,18 @@ public class HexHiliteDisplay {
             }
         }
         arrHexHilite.clear();
+    }
+    static public void textTureLoad(){
+        textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
+        backHilite =  textureAtlas.findRegion("hilitehex");
+        backHiliteReinDisplay =  textureAtlas.findRegion("hilitehexreindisplay");
+        backHiliteCannonRange =  textureAtlas.findRegion("hilitehexcannonrange");
+        backHiliteMove =  textureAtlas.findRegion("hilitehexmove3");
+        backHiliteExit =  textureAtlas.findRegion("hilitehexexit");
+        arrHexHilite = new ArrayList<>();
+        labelStyleName
+                = new Label.LabelStyle(FontFactory.instance.yellowFont, Color.YELLOW);
+
     }
 
 }

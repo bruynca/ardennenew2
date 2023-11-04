@@ -1,5 +1,6 @@
 package com.bruinbeargames.ardenne;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.I18NBundle;
@@ -261,7 +262,13 @@ public class NextPhase {
         if (GamePreferences.isDEbug) {
             SaveGame.SaveDebug("Debug " + cntDebug +"Scene="+GameSetup.instance.getScenario().ordinal()+ " Turn=" + getTurn() + " " + Phases[phase].toString() + "  ", cntDebug);
         }
-        SaveGame.SaveLastPhase(" Last Phase",2);
+        if(Gdx.app.getType() != Application.ApplicationType.Desktop) {
+            Gdx.app.log("nextPhase", "Writing Resume");
+
+            SaveGame.SaveResume();
+        }
+        SaveGame.SaveLastPhase(" Last Phase", 2);
+
         if (phase == 0){
             BottomMenu.instance.enablePhaseChange();
             return;

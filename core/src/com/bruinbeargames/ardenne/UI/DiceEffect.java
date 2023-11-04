@@ -49,8 +49,8 @@ DiceEffect extends Observable {
     private float stateTimeRedDice;
     private float stateTimeBlueDice;
     public static DiceEffect instance;
-    static TextureAtlas tDiceRed = SplashScreen.instance.effectsManager.get("effects/dicefronts.txt");
-    static TextureAtlas tDiceBlue = SplashScreen.instance.effectsManager.get("effects/dicefrontsblue.txt");
+    TextureAtlas tDiceRed = SplashScreen.instance.effectsManager.get("effects/dicefronts.txt");
+    TextureAtlas tDiceBlue = SplashScreen.instance.effectsManager.get("effects/dicefrontsblue.txt");
     Attack attack;
     public DiceEffect() {
 

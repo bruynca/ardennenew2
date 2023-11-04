@@ -48,19 +48,19 @@ public class TopMenu {
     private final TextTooltip.TextTooltipStyle tooltipStyle;
     private Group group;
     public static TopMenu instance;
-    static TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
-    static TextureRegion bReinforce =  textureAtlas.findRegion("rienforcementbuttonpressed");
-    static TextureRegion bReinforceP =  textureAtlas.findRegion("rienforcementbutton");
-    static TextureRegion bCRT = textureAtlas.findRegion("crttop");
-    static TextureRegion bCRTP = textureAtlas.findRegion("crttoppushed");
-    static TextureRegion bBt = textureAtlas.findRegion("bt");
-    static TextureRegion bBtP = textureAtlas.findRegion("btpushed");
-    static TextureRegion bCard = textureAtlas.findRegion("cardbutton");
-    static TextureRegion bCardP = textureAtlas.findRegion("cardbuttonp");
-    static TextureRegion bTec = textureAtlas.findRegion("tectop");
-    static TextureRegion bTecP = textureAtlas.findRegion("tectoppushed");
-    static TextureRegion bExitP = textureAtlas.findRegion("exitbutton");
-    static TextureRegion bExit = textureAtlas.findRegion("exitbuttonpushed");
+    TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
+    TextureRegion bReinforce =  textureAtlas.findRegion("rienforcementbuttonpressed");
+    TextureRegion bReinforceP =  textureAtlas.findRegion("rienforcementbutton");
+    TextureRegion bCRT = textureAtlas.findRegion("crttop");
+    TextureRegion bCRTP = textureAtlas.findRegion("crttoppushed");
+    TextureRegion bBt = textureAtlas.findRegion("bt");
+    TextureRegion bBtP = textureAtlas.findRegion("btpushed");
+    TextureRegion bCard = textureAtlas.findRegion("cardbutton");
+    TextureRegion bCardP = textureAtlas.findRegion("cardbuttonp");
+    TextureRegion bTec = textureAtlas.findRegion("tectop");
+    TextureRegion bTecP = textureAtlas.findRegion("tectoppushed");
+    TextureRegion bExitP = textureAtlas.findRegion("exitbutton");
+    TextureRegion bExit = textureAtlas.findRegion("exitbuttonpushed");
     Stage stage;
 
 

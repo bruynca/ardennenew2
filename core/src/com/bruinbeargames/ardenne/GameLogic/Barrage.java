@@ -69,7 +69,7 @@ public class Barrage {
 
 	TextureRegion crossHairs =new TextureRegion(UILoader.instance.combatDisplay.asset.get("target"));
 	TextureRegion gun = new TextureRegion(UILoader.instance.combatDisplay.asset.get("barrage"));
-	static TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
+	TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
 
 	TextureRegion explosion1 =textureAtlas.findRegion("explosion1");
 	TextureRegion explosion2 =textureAtlas.findRegion("explosion2");

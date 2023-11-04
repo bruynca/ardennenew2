@@ -31,9 +31,9 @@ import com.bruinbeargames.ardenne.ardenne;
 import static com.badlogic.gdx.graphics.Color.WHITE;
 
 public class WinDisplayCRT {
-    static TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
-    static TextureRegion close =  textureAtlas.findRegion("close");
-    static TextureRegion backHilite = textureAtlas.findRegion("crtback");
+    TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
+    TextureRegion close =  textureAtlas.findRegion("close");
+    TextureRegion backHilite = textureAtlas.findRegion("crtback");
     TextTooltip.TextTooltipStyle tooltipStyle;
     Stage stage;
     Window window;
