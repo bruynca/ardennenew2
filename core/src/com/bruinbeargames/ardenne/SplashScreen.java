@@ -20,6 +20,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.bruinbeargames.ardenne.GameLogic.SoundsLoader;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.UI.EventPopUp;
 import com.bruinbeargames.ardenne.Unit.CounterStack;
 import com.bruinbeargames.ardenne.Unit.Unit;
 
@@ -29,6 +30,8 @@ public class SplashScreen {
     public Image splashMapImage;
     Texture bruinbearLogo;
     Logo logo;
+    I18NBundle i18NBundle;
+
 
     private  AssetManager assetManager;
     public AssetManager soundsManager;
@@ -236,8 +239,10 @@ public class SplashScreen {
                  *  dont need actual game as its hard coded nt
                  */
                 String strResume = "Does Not Matter";
+                i18NBundle = GameMenuLoader.instance.localization;
                 if (SaveGame.getResume() != null)  {
                     Game game = new Game(strResume, true);
+                    EventPopUp.instance.show(i18NBundle.format("resumegame"));
                 }
             }
         }

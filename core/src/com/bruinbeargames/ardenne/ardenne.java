@@ -123,7 +123,7 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 		}
 	}
 		Gdx.app.log("Bastogne", "Instance="+instance);
-		if (instance != null) {
+		if (instance != null && Gdx.app.getType() != Application.ApplicationType.Desktop ) {
 			isResumed = true;
 		}else{
 			isResumed = false;
@@ -565,7 +565,7 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 		// TODO Auto-generated method stub
 		Gdx.app.log("Pause", "Initial=");
 		Gdx.app.log("Pause", "Initial=");
-		//isResumed = true; doesnt work
+		SaveGame.SaveResume();
 	}
 	public void setIsResumed(boolean isIn){
 		isResumed = isIn;
