@@ -5,6 +5,7 @@ import com.badlogic.gdx.utils.I18NBundle;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.Hex.HexHiliteDisplay;
 import com.bruinbeargames.ardenne.UI.BottomMenu;
+import com.bruinbeargames.ardenne.UI.EventPopUp;
 import com.bruinbeargames.ardenne.UI.TopMenu;
 import com.bruinbeargames.ardenne.UI.TurnCounter;
 import com.bruinbeargames.ardenne.UI.WinCardsChoice;

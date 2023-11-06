@@ -565,7 +565,9 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 		// TODO Auto-generated method stub
 		Gdx.app.log("Pause", "Initial=");
 		Gdx.app.log("Pause", "Initial=");
-		SaveGame.SaveResume();
+		if (com.bruinbeargames.ardenne.Game.instance != null) {
+			SaveGame.SaveResume();
+		}
 	}
 	public void setIsResumed(boolean isIn){
 		isResumed = isIn;

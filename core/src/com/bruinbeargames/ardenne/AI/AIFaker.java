@@ -1,5 +1,6 @@
 package com.bruinbeargames.ardenne.AI;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.bruinbeargames.ardenne.GameLogic.LehrExits;
 import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
@@ -51,6 +52,11 @@ public class AIFaker extends Observable {
     public void startScoringOrders(ArrayList<AIOrders> arrAIOrders, AIScorer.Type type, boolean isAllies) {
         Gdx.app.log("AIFakers", "startScoringOrders type="+type);
         this.isAllies = isAllies;
+        if (Gdx.app.getType() != Application.ApplicationType.Desktop){
+            numThreads =2;
+            AIUtil.reduceIterations(arrAIOrders);
+        }
+
         arrOrders = arrAIOrders;
         AIScorer.instance.initialize(type);
         ArrayList<AIOrders>[] aiArray = new ArrayList[numThreads];
@@ -133,13 +139,15 @@ public class AIFaker extends Observable {
                     }
                     k++;
                     j++;
-                    if (k > 100) {
- //                       Gdx.app.log("AIFakers", "Thread "+thread+" Type="+type+" At ="+j);
+                    if (k > 1) {
+  //                     Gdx.app.log("AIFakers", "Thread "+thread+" Type="+type+" At ="+j);
                         k=0;
                     }
                     int score =0;
                     AIFaker.setFakeOccupied(aiO, true, thread);
                     AIFaker.setFakeZoc(aiO, thread);
+                    Gdx.app.log("AIFakers", "Thread "+thread+" Type="+type+" At ="+j);
+
                     switch(type) {
                         case Supply:
                             score = AISupply.instance.getScore(thread);

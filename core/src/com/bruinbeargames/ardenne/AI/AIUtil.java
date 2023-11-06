@@ -1,5 +1,7 @@
 package com.bruinbeargames.ardenne.AI;
 
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.Hex.HexInt;
 import com.bruinbeargames.ardenne.Unit.Unit;
@@ -7,6 +9,7 @@ import com.bruinbeargames.ardenne.Unit.UnitMove;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 public class AIUtil {
@@ -360,9 +363,70 @@ public class AIUtil {
                 checkMobile(aiOrders);
             }
         }
+        if (Gdx.app.getType() != Application.ApplicationType.Desktop){
+            reduceIterations(arrReturn);
+        }
+
         return arrReturn;
       }
+
+    /**
+     *  reduce the amount o iterations beacuse of android has weaker cpu
+     * @param arrReturn
+     */
+    public static void reduceIterations(ArrayList<AIOrders> arrReturn) {
+        Gdx.app.log("AIUtil", "Reducing Iterations start="+arrReturn.size());
+
+        if (arrReturn.size() < 100) {
+            return;
+        }
+
+        float keep = 250/arrReturn.size();
+        keep *= 100; //create a percentage
+        double percentageToRemove = 100 - keep; // 30% in this example
+
+        // Calculate the number of elements to remove
+        int elementsToRemove = (int) (percentageToRemove / 100 * arrReturn.size());
+        Random random = null;
+        // Use a random number generator to select elements to remove
+        for (int i = 0; i < elementsToRemove; i++) {
+            Random diceRoller = new Random();
+            int indexToRemove = diceRoller.nextInt(arrReturn.size());
+            arrReturn.remove(indexToRemove);
+            if (arrReturn.size() < 10){
+                break;
+            }
+        }
+        Gdx.app.log("AIUtil", "Reducing Iterations end="+arrReturn.size());
+
+
+    }
+
     public static ArrayList<AIOrders> GetIterations(ArrayList<Unit> arrUnits, ArrayList<Hex>[] arrArrs) {
+        Gdx.app.log("AIUtil", "GetIterations units="+arrUnits.size());
+        if (Gdx.app.getType() != Application.ApplicationType.Desktop) {
+            int cntIters = 1;
+            for (ArrayList<Hex> arr : arrArrs) {
+                Gdx.app.log("AIUtil", "arr size==" + arr.size());
+
+                cntIters *= arr.size();
+            }
+            Gdx.app.log("AIUtil", "Possible Iters ==" + cntIters);
+
+            while (cntIters > 4000) {
+                cntIters = 1;
+                for (ArrayList<Hex> arr : arrArrs) {
+                    if (arr.size() > 4) {
+                        arr.remove(arr.size() - 1);
+                    }
+                    cntIters *= arr.size();
+                }
+            }
+            Gdx.app.log("AIUtil", "Result Iters ==" + cntIters);
+
+        }
+
+
         ArrayList<AIOrders> arrReturn = new ArrayList<>();
         ArrayList<Hex> arrPosition = new ArrayList<>();
         for (Unit unit:arrUnits){
@@ -374,100 +438,13 @@ public class AIUtil {
             arrReturn.add(aiOrders);
             aiOrders = aiIterator.doNext();
         }
+        if (Gdx.app.getType() != Application.ApplicationType.Desktop){
+            reduceIterations(arrReturn);
+        }
+
         return arrReturn;
    }
-        /**
-         *
-         * @param arrUnits
-         * @param thread
-         * @param isArtilleryOnly
-         * @param arrLimitIterate
-         * @param arrMOA
-         * @param aiOrdersInclude
-         * @param arrStart
-         * @param arrMoves
-         * @return
-         */
-    public static ArrayList<AIOrders> GetIterationsReinforcement(ArrayList<Unit> arrUnits, int thread, boolean isArtilleryOnly, ArrayList<Hex> arrLimitIterate, ArrayList<AIMobileAssault> arrMOA,AIOrders aiOrdersInclude,ArrayList<Hex> arrStart,ArrayList<Hex>[] arrMoves) {
 
-        ArrayList<AIOrders> arrReturn =  new ArrayList<>();
-        ArrayList<Hex>[] arrHexResult = arrMoves;
-
-        /**
-         *  include  Mobile assualt if available
-         */
-        boolean isMOA = false;
-        if (arrMOA != null && arrMOA.size() > 0){
-            int ix=0;
-            for (Unit unit:arrUnits){
-                ArrayList<Hex> arrHexAfterMOA =  AIMobileAssault.getHexAfter(unit);
-                if (arrHexAfterMOA != null) {
-                    arrHexAfterMOA.retainAll(arrLimitIterate);
-                    if (arrHexAfterMOA != null) {
-                        arrHexResult[ix].addAll(arrHexAfterMOA);
-                    }
-                }
-                ix++;
-            }
-            isMOA = true;
-
-        }
-        /**
-         *  add in AIOrder don in any preceeding iterations
-         */
-        if (aiOrdersInclude != null){
-            ArrayList<Hex>[] arrWork = new ArrayList[arrHexResult.length+aiOrdersInclude.arrHexMoveTo.size()];
-            int ix=0;
-            for (ArrayList<Hex> arr:arrHexResult){
-                arrWork[ix] = new ArrayList();
-                arrWork[ix].addAll(arr);
-                ix++;
-            }
-            for (Hex hex:aiOrdersInclude.arrHexMoveTo){
-                ArrayList<Hex> arrHex = new ArrayList<>();
-                arrHex.add(hex);
-                arrWork[ix] = arrHex;
-                ix++;
-            }
-            arrUnits.addAll(aiOrdersInclude.arrUnit);
-            arrHexResult = arrWork;
-
-        }
-
-        /**
-         *  retain only what we need but make sure at least one is kept
-         *  but check for AIORDERS Joined
-         */
-        int ix = 0;
-        for (ArrayList<Hex> arr:arrHexResult){
-            if (arr.size() > 1) {
-                arr.retainAll(arrLimitIterate);
-            }
-            if (arr.size() ==0){
-                arr.add(arrStart.get(ix));
-            }
-            ix++;
-        }
-        ix=0;
-        ArrayList<Hex> arrPosition = new ArrayList<>();
-        for (Unit unit:arrUnits){
-            arrPosition.add(arrStart.get(ix));
-            ix++;
-        }
-        AIIterator aiIterator = new AIIterator(arrHexResult,arrUnits,arrPosition, AIOrders.Type.MoveTo);
-        AIOrders aiOrders = aiIterator.Iteration();
-        if (isMOA) {
-            checkMobile(aiOrders);
-        }
-        while (aiOrders != null){
-            arrReturn.add(aiOrders);
-            aiOrders = aiIterator.doNext();
-            if (isMOA && aiOrders != null) {
-                checkMobile(aiOrders);
-            }
-        }
-        return arrReturn;
-    }
 
     private static void checkMobile(AIOrders aiOrders) {
         int ix =0;
