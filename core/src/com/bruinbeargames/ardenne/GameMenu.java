@@ -514,6 +514,10 @@ public class GameMenu extends Observable {
                 if (!event.getType().equals("touchUp")) {
                     exiting = true;
                     Gdx.app.exit();
+      //              ardenne.instance.dispose();
+
+                    Gdx.app.exit();
+
                 }
             }
         });
