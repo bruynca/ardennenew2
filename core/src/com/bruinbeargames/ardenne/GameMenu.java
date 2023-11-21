@@ -516,7 +516,7 @@ public class GameMenu extends Observable {
                     Gdx.app.exit();
       //              ardenne.instance.dispose();
 
-                    Gdx.app.exit();
+    //                Gdx.app.exit();
 
                 }
             }

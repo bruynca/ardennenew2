@@ -233,7 +233,6 @@ public class SplashScreen {
             if (ardenne.isResumed){
                 Gdx.app.log("SplashScreen", "inIsResume");
 
-                end();
                 /**
                  *  check if resume file exitst
                  *  dont need actual game as its hard coded nt
@@ -241,6 +240,7 @@ public class SplashScreen {
                 String strResume = "Does Not Matter";
                 i18NBundle = GameMenuLoader.instance.localization;
                 if (SaveGame.getResume() != null)  {
+                    end();
                     Game game = new Game(strResume, true);
                     EventPopUp.instance.show(i18NBundle.format("resumegame"));
                 }

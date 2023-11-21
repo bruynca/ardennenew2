@@ -9,6 +9,8 @@ import com.bruinbeargames.ardenne.ardenne;
 public class AndroidLauncher extends AndroidApplication {
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
+
+//		log("Casey Ardenne","Star");
 		super.onCreate(savedInstanceState);
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		initialize(new ardenne(), config);

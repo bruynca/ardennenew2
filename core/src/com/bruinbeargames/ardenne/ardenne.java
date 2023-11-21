@@ -76,6 +76,10 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 
 	//
 //	Loader loader;
+	ardenne(){
+		super();
+
+	}
 
 	@Override
 	public void create () {
@@ -106,7 +110,7 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 		Gdx.app.log("Bastogne", "Starting Windowed");
 
 		Graphics.DisplayMode mode = Gdx.graphics.getDisplayMode();
-			taskBarHeight = scrnSize.height - winSize.height;
+//			taskBarHeight = scrnSize.height - winSize.height;
 
 			Gdx.graphics.setFullscreenMode(mode);
 		//    Gdx.graphics.setWindowedMode((int)GamePreferences.getWindowSize().x, (int)GamePreferences.getWindowSize().y - 75);
@@ -150,7 +154,9 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 		Analytics analytics;
 		analytics = new Analytics(GamePreferences.instance.getBuildNumber());
 		if (!GamePreferences.isDEbug) {
-			DoRedirectConsole();
+			if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
+				DoRedirectConsole();
+			}
 			analytics.registerUncaughtExceptionHandler();
 		}
 
@@ -317,6 +323,13 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 		//		isSetHotSeat = true;
 			WinDebug.instance.toggle();
 		}
+		if ((keycode == Input.Keys.BACK || keycode == Input.Keys.MENU )) {
+			if(Gdx.app.getType() == Application.ApplicationType.Android) {
+				CatchBackButton catchBackButton = new CatchBackButton();
+				return false;
+			}
+		}
+
 		return false;
 	}
 	boolean isSetHotSeat = false;
@@ -563,7 +576,6 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
-		Gdx.app.log("Pause", "Initial=");
 		Gdx.app.log("Pause", "Initial=");
 		if (com.bruinbeargames.ardenne.Game.instance != null) {
 			SaveGame.SaveResume();

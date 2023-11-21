@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Stack;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.kotcrab.vis.ui.util.dialog.Dialogs;
 
-import java.awt.Desktop;
+
 import java.io.IOException;
 
 public class Logo {
@@ -69,19 +69,12 @@ public class Logo {
                     // the correct action based on it.
                     Gdx.app.log("Logo", "URL");
 //				WinMMTable.instance.show();
-                    if (Desktop.isDesktopSupported() && listeCnt == 0) {
-                        try {
-                            listeCnt++;
-                            String strCheck = Gdx.files.local("url/bburl.html").readString();
-                            String url_open =strCheck;
-                            Desktop.getDesktop().browse(java.net.URI.create(url_open));
-                        } catch (IOException ex) {
-                           // SoundEffects.instance.PlayPopUp();
-
-                            Dialogs.showDetailsDialog(ardenne.instance.guiStage, "Error", "Iternet Error",
-                                    "Can not reach internet");
-                            return;
-                        }
+                    if (listeCnt == 0) {
+                        listeCnt++;
+                        String strCheck = Gdx.files.local("url/bburl.html").readString();
+                        String url_open =strCheck;
+                        Gdx.net.openURI(url_open);
+                        //                        Desktop.getDesktop().browse(java.net.URI.create(url_open));
                     }
                     ;
 
