@@ -71,7 +71,7 @@ public class Logo {
 //				WinMMTable.instance.show();
                     if (listeCnt == 0) {
                         listeCnt++;
-                        String strCheck = Gdx.files.local("url/bburl.html").readString();
+                        String strCheck = "https://bruinbeargames.com";
                         String url_open =strCheck;
                         Gdx.net.openURI(url_open);
                         //                        Desktop.getDesktop().browse(java.net.URI.create(url_open));

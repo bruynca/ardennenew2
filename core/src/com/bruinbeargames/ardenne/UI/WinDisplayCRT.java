@@ -1,5 +1,6 @@
 package com.bruinbeargames.ardenne.UI;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
@@ -90,9 +91,16 @@ public class WinDisplayCRT {
     private void initializeLabels() {
         labelStyleg =new Label.LabelStyle(FontFactory.instance.largeFontWhite, Color.LIGHT_GRAY);
         labelStyle =new Label.LabelStyle(FontFactory.instance.largeFontWhite,Color.YELLOW);
-        labelStyle2 =new Label.LabelStyle(Fonts.getFont24(),Color.WHITE);
+        if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
+            labelStyle2 =new Label.LabelStyle(Fonts.getFont24(),Color.WHITE);
+            labelStyle2Hi =new Label.LabelStyle(Fonts.getFont24(),Color.WHITE);
+        }else{
+            labelStyle2 =new Label.LabelStyle(Fonts.getFont24Android(),Color.WHITE);
+            labelStyle2Hi =new Label.LabelStyle(Fonts.getFont24Android(),Color.WHITE);
+        }
+
+        //labelStyle2 =new Label.LabelStyle(Fonts.getFont24(),Color.WHITE);
         labelStyleHi =new Label.LabelStyle(FontFactory.instance.largeFontWhite,Color.YELLOW);
-        labelStyle2Hi =new Label.LabelStyle(Fonts.getFont24(),Color.WHITE);
         labelStyle2Hi.background = hilite;
         labelStyleHi.background = hilite;
         labelResults = new Label("RESULT",labelStyleg);

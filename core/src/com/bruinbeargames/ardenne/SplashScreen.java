@@ -90,6 +90,7 @@ public class SplashScreen {
         gameMenuManager.load("menus/flags.txt", TextureAtlas.class);
         gameMenuManager.load("menus/victory.txt", TextureAtlas.class);
         gameMenuManager.load("fonts/chinese24.fnt", BitmapFont.class);
+        gameMenuManager.load("fonts/chinese24A.fnt", BitmapFont.class);
         String language = "i18n/"+GamePreferences.getLanguage();
         gameMenuManager.load(language, I18NBundle.class);
 //        gameMenuManager.load("console/uiskin.atlas", TextureAtlas.class);
@@ -205,6 +206,7 @@ public class SplashScreen {
             Gdx.app.log("SplashScreen", "Sounds     ="+soundsManager.getProgress());
 */
             font.setColor(Color.WHITE);
+
             font.draw(batch, "Version:" + GamePreferences.getBuildNumber() + " Loading at " + Math.round((progress * 100)-18) + "%", 10,50 );
             logo.update(progress);
             //            music.setVolume(music.getVolume() + 0.01f);

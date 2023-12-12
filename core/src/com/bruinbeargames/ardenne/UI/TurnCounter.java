@@ -1,5 +1,6 @@
 package com.bruinbeargames.ardenne.UI;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
@@ -53,7 +54,11 @@ public class TurnCounter {
         group.addActor(backgroundImage);
 
         Label.LabelStyle style = new Label.LabelStyle();
-        style.font = Fonts.getFont24();
+        if(Gdx.app.getType() == Application.ApplicationType.Desktop) {
+            style.font = Fonts.getFont24();
+        }else{
+            style.font = Fonts.getFont24Android();
+        }
         phaseLabel = new Label("Game Start", style);
         phaseLabel.setHeight(40);
         phaseLabel.setWidth(260);

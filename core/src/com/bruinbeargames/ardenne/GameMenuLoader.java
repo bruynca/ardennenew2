@@ -18,6 +18,8 @@ public class GameMenuLoader implements Disposable, AssetErrorListener {
 
     public GameMenu gameMenu;
     public BitmapFont font;
+    public BitmapFont fontAndroid;
+
     public I18NBundle localization;
     public Flags flags;
     public Skin setUpSkin;
@@ -41,6 +43,7 @@ public class GameMenuLoader implements Disposable, AssetErrorListener {
         String language = "i18n/"+GamePreferences.getLanguage();
         localization = assetManager.get(language, I18NBundle.class);
         font = assetManager.get("fonts/chinese24.fnt", BitmapFont.class);
+        fontAndroid = assetManager.get("fonts/chinese24A.fnt", BitmapFont.class);
     }
 
     public class Victory {

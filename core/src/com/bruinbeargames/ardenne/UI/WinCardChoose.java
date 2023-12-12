@@ -1,5 +1,6 @@
 package com.bruinbeargames.ardenne.UI;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
@@ -212,7 +213,7 @@ public class WinCardChoose implements Observer {
         String key =card.getDecriptionKey();
 //        Gdx.app.log("WinCardsChoice", "initcards str="+key);
 
-        String strTip = i18NBundle.format(key);
+        final String strTip = i18NBundle.format(key);
 //        Gdx.app.log("WinCardsChoice", "initcards str="+strTip);
 
         hitOK = new TextTooltip(
@@ -226,12 +227,23 @@ public class WinCardChoose implements Observer {
         stack.addListener(new ClickListener() {
 
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                //              Gdx.app.log("Counter ", "enter unit="+unit);
+                 Gdx.app.log("WinCard", "enter card=");
  //               stack.setScale(1.2f);
+                if (Gdx.app.getType() != Application.ApplicationType.Desktop ) {
+                    Gdx.input.setCatchKey(Input.Keys.BACK, true);
+                    EventPopUp.instance.show(strTip, 200);
+                }
+
             }
             public void exit(InputEvent event, float x, float y, int pointer, Actor fromActor) {
-                //              Gdx.app.log("Counter", "exit unit="+unit);
+                Gdx.app.log("Counter", "exit unit=");
   //              stack.setScale(1.0f);
+                if (Gdx.app.getType() != Application.ApplicationType.Desktop ) {
+                    Gdx.input.setCatchKey(Input.Keys.BACK, true);
+                    EventPopUp.instance.hide();
+                }
+
+
             }
             public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
                 //              Gdx.app.log("Counter","TouchDown unit="+unit);

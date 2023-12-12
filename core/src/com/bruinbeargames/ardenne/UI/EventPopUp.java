@@ -68,6 +68,15 @@ public class EventPopUp extends Observable {
 
     }
 
+    /**
+     *  special offsett for tooltips for card choice so
+     *  that touchdown does not cause flickering
+     */
+    private int offsett = 0;
+    public void show(String text, int off){
+        offsett = off;
+        show(text);
+    }
     public void show(String text) {
         if (!isHelp) {
             dontShowAgain.setVisible(false);
@@ -87,11 +96,12 @@ public class EventPopUp extends Observable {
         backgroundImage.setVisible(true);
         textLabel.setSize(width, height);
         textLabel.setPosition(backgroundImage.getX() + (backgroundImage.getWidth() / 2) - (textLabel.getWidth() / 2),
-                backgroundImage.getY() + ((backgroundImage.getHeight() / 2)+25) - (textLabel.getHeight() / 2));
+                backgroundImage.getY() + ((backgroundImage.getHeight() / 2)+25) - (textLabel.getHeight() / 2) -offsett);
 
         group.addAction(Actions.sequence(Actions.visible(true), Actions.fadeIn(0.5f)));
         isShowing = true;
         ardenne.instance.guiStage.addActor(group);
+        offsett = 0;
 
     }
 

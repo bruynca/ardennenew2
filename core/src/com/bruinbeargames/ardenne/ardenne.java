@@ -133,6 +133,9 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 			isResumed = false;
 		}
 		instance = this;
+		if (Gdx.app.getType() != Application.ApplicationType.Desktop ) {
+			Gdx.input.setCatchKey(Input.Keys.BACK, true);
+		}
 /*		Graphics.DisplayMode mode = Gdx.graphics.getDisplayMode();
 //		Gdx.graphics.setFullscreenMode(mode);
 		Gdx.graphics.setWindowedMode((int)GamePreferences.getWindowSize().x, (int)GamePreferences.getWindowSize().y - 75);
