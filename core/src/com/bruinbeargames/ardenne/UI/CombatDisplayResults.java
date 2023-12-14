@@ -295,7 +295,7 @@ private Label alliedResults;
 
     private void initializeAttackerResultsLabel(){
         Label.LabelStyle style = new Label.LabelStyle();
-        style.font = Fonts.getFont24();
+        style.font = Fonts.getFont24Android();
         axisResults = new Label("",style);
         axisResults.setSize(30, 20);
         axisResults.setPosition(background.getX() + 5 , background.getY() + background.getHeight() - 127);
@@ -374,7 +374,7 @@ private Label alliedResults;
 
         private void initializeDefenderResultsLabel(){
         Label.LabelStyle style = new Label.LabelStyle();
-        style.font = Fonts.getFont24();
+        style.font = Fonts.getFont24Android();
         alliedResults = new Label("",style);
         alliedResults.setSize(30, 20);
         alliedResults.setPosition(background.getX() + background.getWidth()/2 + 5 , background.getY() + background.getHeight() - 127);
@@ -412,7 +412,7 @@ private Label alliedResults;
     }
     private void initializeTitleLabel(){
         Label.LabelStyle style = new Label.LabelStyle();
-        style.font = Fonts.getFont24();
+        style.font = Fonts.getFont24Android();
         title = new Label(GameMenuLoader.instance.localization.get("combatresults"),style);
         title.pack();
         GlyphLayout layout = title.getGlyphLayout();

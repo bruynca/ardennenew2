@@ -232,13 +232,9 @@ public class SplashScreen {
             languageSupport = new LanguageSupport();
  //           languageSupport.addObserver(this);
             beenHere = true;
-            if (ardenne.isResumed){
+/**            if (ardenne.isResumed){
                 Gdx.app.log("SplashScreen", "inIsResume");
 
-                /**
-                 *  check if resume file exitst
-                 *  dont need actual game as its hard coded nt
-                 */
                 String strResume = "Does Not Matter";
                 i18NBundle = GameMenuLoader.instance.localization;
                 if (SaveGame.getResume() != null)  {
@@ -246,7 +242,7 @@ public class SplashScreen {
                     Game game = new Game(strResume, true);
                     EventPopUp.instance.show(i18NBundle.format("resumegame"));
                 }
-            }
+            } */
         }
         batch.end();
     }
