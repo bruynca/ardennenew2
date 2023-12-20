@@ -453,6 +453,9 @@ public class Unit {
 	public boolean isOnBoard(){
 		return isOnBoard;
 	}
+	public void setOffBoard(){
+		isOnBoard = false;
+	}
 	public void placeOnBoard() {
 		if (isOnBoard || hexOccupy == null)
 		{

@@ -37,6 +37,11 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Observable;
 
 import de.golfgl.gdxgameanalytics.GameAnalytics;
@@ -126,6 +131,10 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 			Gdx.graphics.setWindowedMode(width, height - (taskBarHeight+ 10));
 		}
 	}
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		Gdx.app.log("Ardenne", "Date Time="+dateFormat.format(date));
+
 		Gdx.app.log("Bastogne", "Instance="+instance);
 		if (instance != null && Gdx.app.getType() != Application.ApplicationType.Desktop ) {
 			isResumed = true;
@@ -180,7 +189,6 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 		VisUI.load();
 		//	VisUI.load(VisUI.SkinScale.X2);
 		VisUI.setDefaultTitleAlign(Align.center);
-
 
 
 //		WinDebug winDebug = new WinDebug(mapStage,guiStage, skin);

@@ -23,7 +23,13 @@ public class GamePreferences {
     private static Preferences prefsAnalytics = Gdx.app.getPreferences("ardenne_analytics_prefs");
     private static Preferences mobileprefs = Gdx.app.getPreferences("ardenne_prefs");
     private static Preferences mobileprefsAnalytics = Gdx.app.getPreferences("ardenne_analytics_prefs");
-    private static String buildNumber = "2.7.0.0";
+    private static String buildNumber = "2.8.0.0";
+    /**
+     *
+     * Version 2.8   fix bu where save game in reinforcement
+     * Causes  isloaded flag to be set on unit when reloading causeing
+     * abend when reinforcement loads unitTransport
+     */
     private static String gameDir = "bruinbeargames/ardenne/savedgames/";
     String strIPAddress = "IPAddress";
     String strLanguage = "language";

@@ -309,6 +309,7 @@ public class Supply implements Observer{
      */
     public void process(Hex hex){
         hiliteHex.remove();
+        unitTransportWorkOn.setOffBoard(); // fix for on board in saved game
         unitTransportWorkOn.placeOnBoard(hex);
         hex.moveUnitToFront(unitTransportWorkOn);
         ClickAction clickAction = new ClickAction(unitTransportWorkOn, ClickAction.TypeAction.Supply);
