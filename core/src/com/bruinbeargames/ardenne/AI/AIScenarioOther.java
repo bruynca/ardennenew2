@@ -3,13 +3,17 @@ package com.bruinbeargames.ardenne.AI;
 import com.badlogic.gdx.Gdx;
 import com.bruinbeargames.ardenne.GameLogic.Reinforcement;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.Hex.HexCount;
+import com.bruinbeargames.ardenne.Hex.HexInt;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.ObserverPackage;
 import com.bruinbeargames.ardenne.UI.WinReinforcements;
 import com.bruinbeargames.ardenne.Unit.Unit;
+import com.bruinbeargames.ardenne.Unit.UnitMove;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Observer;
 
 public class AIScenarioOther implements Observer {
@@ -39,6 +43,7 @@ public class AIScenarioOther implements Observer {
      */
     public void doAlliesMove() {
         Gdx.app.log("AIScenarioOther", "doAlliesMove");
+        ArrayList<HexInt> arrWork = AIUtil.getAIHexStats(2);
         ArrayList<Unit> arrUnits = new ArrayList<>();
         ArrayList<Unit> arrArtillery = new ArrayList<>();
         arrCovered.clear();
@@ -186,4 +191,31 @@ public class AIScenarioOther implements Observer {
         }
 
     }
+
+    static class SortDescending implements Comparator<HexInt> {
+
+        @Override
+        public int compare(HexInt hexInt, HexInt t1) {
+            if (hexInt == null && t1 == null){
+                return 0;
+            }
+            if (hexInt == null){
+                return -1;
+            }
+            if (t1 == null){
+                return 1;
+            }
+            if (t1.count == hexInt.count){
+                return 0;
+            }
+            if (t1.count > hexInt.count){
+                return 1;
+            }
+            if (t1.count < hexInt.count){
+                return -1;
+            }
+            return 0;
+        }
+    }
+
 }

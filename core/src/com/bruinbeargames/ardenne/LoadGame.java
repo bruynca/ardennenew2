@@ -21,6 +21,7 @@ import com.bruinbeargames.ardenne.GameLogic.Weather;
 import com.bruinbeargames.ardenne.Hex.Bridge;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.UI.BottomMenu;
+import com.bruinbeargames.ardenne.UI.EventPopUp;
 import com.bruinbeargames.ardenne.UI.TurnCounter;
 import com.bruinbeargames.ardenne.UI.VictoryPopup;
 import com.bruinbeargames.ardenne.Unit.Unit;
@@ -110,7 +111,13 @@ public LoadGame(String gameToLoad, boolean isResume) {
 
 		}
  	    Unit unit=Unit.getUnitByID(ID);
- 	    if (arrCheck.contains(unit))
+		Gdx.app.log("LoadGame", "ID=" + ID);
+		if (unit == null){
+			Gdx.app.log("LoadGame", "ID is null");
+			continue;
+		}
+
+		if (arrCheck.contains(unit))
  	    {
  	    	break;
  	    }
@@ -121,6 +128,7 @@ public LoadGame(String gameToLoad, boolean isResume) {
 		int hexY = Integer.parseInt(xmlunit.getChildByName("hexY").getAttribute("value"));
 		Hex hex = Hex.hexTable[hexX][hexY];
 		int stepNum = Integer.parseInt(xmlunit.getChildByName("currentStep").getAttribute("value"));
+
 		unit.setStep(stepNum);
 		int move = Integer.parseInt(xmlunit.getChildByName("currentMove").getAttribute("value"));
 		unit.setCurrentMovement(move);
@@ -305,8 +313,10 @@ public LoadGame(String gameToLoad, boolean isResume) {
 		{
 			 int ID = Integer.parseInt(xmlunit.getChildByName("ID").getAttribute("value"));
 			 Unit unit= Unit.getUnitByID(ID);
-			 Reinforcement.instance.removeReinforcement(unit);
-		 }
+			 if (unit != null) {
+				 Reinforcement.instance.removeReinforcement(unit);
+			 }
+		}
 	 }
 	Element exitLehr =   root.getChildByName("exitlehr");
 	if (exitLehr != null) {
@@ -316,7 +326,9 @@ public LoadGame(String gameToLoad, boolean isResume) {
 		{
 			int ID = Integer.parseInt(xmlunit.getChildByName("ID").getAttribute("value"));
 			Unit unit= Unit.getUnitByID(ID);
-			ExitWest.instance.addLehr(unit);
+			if (unit != null) {
+				ExitWest.instance.addLehr(unit);
+			}
 		}
 	}
 	Element exit2ndpanzer =   root.getChildByName("exit2ndpanzer");
@@ -327,7 +339,9 @@ public LoadGame(String gameToLoad, boolean isResume) {
 		{
 			int ID = Integer.parseInt(xmlunit.getChildByName("ID").getAttribute("value"));
 			Unit unit= Unit.getUnitByID(ID);
-			ExitWest.instance.add2ndPanzer(unit);
+			if (unit != null) {
+				ExitWest.instance.add2ndPanzer(unit);
+			}
 		}
 	}
 	Element panzerexit1 =   root.getChildByName("2ndpanzerexit1");
@@ -349,7 +363,10 @@ public LoadGame(String gameToLoad, boolean isResume) {
 		{
 			int ID = Integer.parseInt(xmlunit.getChildByName("ID").getAttribute("value"));
 			Unit unit= Unit.getUnitByID(ID);
-			SecondPanzerExits.instance.exitUnitLoad(SecondPanzerExits.instance.hexExit2,unit);
+			if (unit != null) {
+				SecondPanzerExits.instance.exitUnitLoad(SecondPanzerExits.instance.hexExit2,unit);
+			}
+
 		}
 	}
 	Element lpanzerexit1 =   root.getChildByName("lehrpanzerexit1");
@@ -360,7 +377,9 @@ public LoadGame(String gameToLoad, boolean isResume) {
 		{
 			int ID = Integer.parseInt(xmlunit.getChildByName("ID").getAttribute("value"));
 			Unit unit= Unit.getUnitByID(ID);
-			LehrExits.instance.exitUnitLoad(LehrExits.instance.hexExit1,unit);
+			if (unit != null) {
+				LehrExits.instance.exitUnitLoad(LehrExits.instance.hexExit1,unit);
+			}
 		}
 	}
 	Element lpanzerexit2 =   root.getChildByName("lehrpanzerexit2");
@@ -371,7 +390,10 @@ public LoadGame(String gameToLoad, boolean isResume) {
 		{
 			int ID = Integer.parseInt(xmlunit.getChildByName("ID").getAttribute("value"));
 			Unit unit= Unit.getUnitByID(ID);
-			LehrExits.instance.exitUnitLoad(LehrExits.instance.hexExit2,unit);
+			if (unit != null) {
+				LehrExits.instance.exitUnitLoad(LehrExits.instance.hexExit1,unit);
+			}
+
 		}
 	}
 
@@ -455,6 +477,7 @@ public LoadGame(String gameToLoad, boolean isResume) {
 			return;
 		}
 		NextPhase.instance.setPhaseDirect(phase);
+		EventPopUp.instance.hide();
 		NextPhase.instance.setPhase();
 
 	}

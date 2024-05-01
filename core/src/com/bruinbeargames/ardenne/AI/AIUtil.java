@@ -3,11 +3,13 @@ package com.bruinbeargames.ardenne.AI;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.Hex.HexCount;
 import com.bruinbeargames.ardenne.Hex.HexInt;
 import com.bruinbeargames.ardenne.Unit.Unit;
 import com.bruinbeargames.ardenne.Unit.UnitMove;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -631,6 +633,52 @@ public class AIUtil {
         }
         return arrNew;
     }
+    static public ArrayList<HexInt> getAIHexStats(int thread){
+        UnitMove.setAIStat(true);
+        HexCount.init();
+        if (thread == 0){
+
+        }else {
+            Hex.fakeClearMoveFields(false, true, thread);
+        }
+        ArrayList<Hex>[] arrArr = createGermanMoves(Unit.getOnBoardAxis(),thread);
+        for (ArrayList<Hex> arr:arrArr){
+            for (Hex hex:arr){
+                HexCount hexCount = new HexCount(hex);
+            }
+        }
+        ArrayList<Hex> arrHex = HexCount.getArrHex();
+        ArrayList<Integer> arrInt = HexCount.getArrInt();
+        ArrayList<HexInt> arrWork = new ArrayList<>();
+        for (int i=0; i< arrHex.size();i++){;
+            HexInt hi = new HexInt(arrHex.get(i), arrInt.get(i));
+            arrWork.add(hi);
+        }
+        Collections.sort(arrWork, new AIScenarioOther.SortDescending());
+        UnitMove.setAIStat(false);
+        return arrWork;
+
+    }
+    private static ArrayList<Hex>[] createGermanMoves(ArrayList<Unit> arrGermans, int thread) {
+        ArrayList<Hex>[] arrArrHex = new ArrayList[arrGermans.size()];
+        int i=0;
+        for (Unit unit:arrGermans){
+
+            //          Gdx.app.log("AIFaker", "creatGermanMove="+unit);
+            UnitMove unitMove = new UnitMove(unit,unit.getCurrentMovement(),true,true,thread);
+            arrArrHex[i] = unitMove.getMovePossible(thread);
+ /*           if (arrArrHex[i].contains(Wiltz) || arrArrHex[i].contains(Hex.hexTable[8][11])) {
+                WinAIDisplay.instance.addSpecial(arrArrHex[i]);
+                int bk=0;
+            }*/
+
+            i++;
+        }
+        return arrArrHex;
+    }
+
+
+
 }
 /**
  *  Temporary Class to take threat envelopes and apply analysis to them
@@ -671,5 +719,19 @@ class AIThreatAnalysis
         return arrReturn;
 
     }
+
+    /**
+     * Get usage of hex by Germans
+     * if thread is zero then use setup zoc and occupied
+     * if thread any other then clear it
+     *
+     *  This should be used before going into allied AI
+     * @param thread  if 0
+     * @return ArrayList of HexCount
+     *
+     *
+     */
+
+
 }
 

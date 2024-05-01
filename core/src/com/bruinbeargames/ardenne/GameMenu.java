@@ -261,6 +261,7 @@ public class GameMenu extends Observable {
             public void clicked(InputEvent event, float x, float y) {
                 if (!event.getType().equals("touchUp")) {
                     backGroundImage.setHeight(backGroundHeight / (1));
+                    //backGroundImage.setWidth(1200 / (1));
                     backGroundImage.setWidth(800 / (1));
                     backGroundImage.setVisible(true);
                     backGroundImage.setPosition((Gdx.graphics.getWidth() / 2) - (400 / 1),

@@ -67,10 +67,10 @@ public class LanguageSupport extends Observable {
             public void clicked(InputEvent event, float x, float y) {
                 if (!event.getType().equals("touchUp")) {
                     assetManager = new AssetManager();
-                    assetManager.load("i18n/language", I18NBundle.class);
+                    assetManager.load("i18n/language_en", I18NBundle.class);
                     assetManager.finishLoading();
-                    GameMenuLoader.instance.localization = assetManager.get("i18n/language", I18NBundle.class);
-                    GamePreferences.putLanguage("language");
+                    GameMenuLoader.instance.localization = assetManager.get("i18n/language_en", I18NBundle.class);
+                    GamePreferences.putLanguage("language_en");
                     i18NBundle= GameMenuLoader.instance.localization;
 
                     EventOK.instance.show(i18NBundle.get("restart"));

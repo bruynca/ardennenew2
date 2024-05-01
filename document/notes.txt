@@ -1,0 +1,9 @@
+April 30 
+	Try Get all German Movement hexs for units, count them and the sort.
+	Debug123 saved game see doAlliesMove in AISEnarioOther
+	Change this to get Stats at othe Points. Remember we have not cleared anything maybe we should clear and do in 
+	theread 2
+May 1
+		Needs Work Numbers dont seem high enough
+		Created saved games MoveAllied and exploit to retest
+		Dont know if this will work maybe we have to get the UnitMoves that go the farthest and find a spot to stop them

@@ -24,6 +24,8 @@ public class UnitMove {
 	Hex hexStart;
 	boolean isFakeAI = false;
 	int thread;
+	static private boolean isAIStat;
+	static private ArrayList<Hex> arrAIStat = new ArrayList<>();
 
 	public UnitMove(Unit unit, int moveLength, boolean isAllowedMOA, boolean checkTerrain, int thread) {
 //		Gdx.app.log("UnitMove","Constructor unit="+unit+" Lenght= "+moveLength+" isAllowedMOA="+isAllowedMOA+" checkTerrain="+checkTerrain);
@@ -69,7 +71,7 @@ public class UnitMove {
 	 */
 	public void reDO(){
 //		Gdx.app.log("UnitMove", "reDo");
-
+//		 arrAIStat.clear();
 		Hex.loadCalcMoveCost(thread);
 		if (unit.getCurrenAttackFactor() < 1){
 			isAllowedMOA = false;
@@ -152,6 +154,9 @@ public class UnitMove {
 				}
 				if (moveCostLeft >= k)
 				{
+					if (isAIStat){
+						arrAIStat.add(hex);
+					}
 					moveCost = moveCostLeft - k;
 					if (arrHexSolution[thread].contains(hex)) // done hex before ?
 					{
@@ -335,5 +340,14 @@ public class UnitMove {
 			ErrorGame errorGame = new ErrorGame("Closest Hex Not Found)", this);
 		}
 		return hexReturn;
+	}
+
+	public static void setAIStat(boolean AIStat) {
+		isAIStat = AIStat;
+		arrAIStat.clear();
+	}
+
+	public static ArrayList<Hex> getArrAIStat() {
+		return arrAIStat;
 	}
 }

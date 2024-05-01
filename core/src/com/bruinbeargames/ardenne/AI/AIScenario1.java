@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.bruinbeargames.ardenne.GameLogic.Supply;
 import com.bruinbeargames.ardenne.Hex.Bridge;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.Hex.HexInt;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.UI.EventAI;
 import com.bruinbeargames.ardenne.Unit.Unit;
@@ -322,6 +323,8 @@ public class AIScenario1 {
          * 2. analyse to get least german breakthru
          */
         arrUnitsScenario.clear();
+        ArrayList<HexInt> arrWork = AIUtil.getAIHexStats(0);
+
         ArrayList<UnitMove> arrUnitMove = new ArrayList<>();
         ArrayList<UnitMove> arrUnitMoveWithMOA = new ArrayList<>();
         ArrayList<UnitMove> arrUnitMoveNoGermans = new ArrayList<>();

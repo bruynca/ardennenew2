@@ -131,9 +131,6 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 			Gdx.graphics.setWindowedMode(width, height - (taskBarHeight+ 10));
 		}
 	}
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		Date date = new Date();
-		Gdx.app.log("Ardenne", "Date Time="+dateFormat.format(date));
 
 		Gdx.app.log("Bastogne", "Instance="+instance);
 		if (instance != null && Gdx.app.getType() != Application.ApplicationType.Desktop ) {
@@ -171,6 +168,10 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 			}
 			analytics.registerUncaughtExceptionHandler();
 		}
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date date = new Date();
+		Gdx.app.log("Ardenne", "Date Time="+dateFormat.format(date));
+
 
 
 		music = new MusicGame();
@@ -517,7 +518,7 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 
 	@Override
 	public boolean pan(float x, float y, float deltaX, float deltaY) {
-		Gdx.app.log("Ardenne","Pan"+" x="+x+" y="+y+" deltaX="+deltaX+" deltay="+deltaY);
+	//	Gdx.app.log("Ardenne","Pan"+" x="+x+" y="+y+" deltaX="+deltaX+" deltay="+deltaY);
 		if (deltaY == 0 && deltaY == 0 ){
 			return false;
 		}
