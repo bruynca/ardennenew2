@@ -101,8 +101,10 @@ public class AIFaker extends Observable {
                 arrGermanOnBoardUnits.addAll(arrSave);
             }
         }
+        ArrayList<Unit> arrGermanPass = new ArrayList<>();
+        arrGermanPass.addAll(arrGermanOnBoardUnits);
         for (ArrayList<AIOrders> aiArr:aiArray){
-            generateScore(aiArray[i], type,i+1);
+            generateScore(aiArray[i], arrGermanPass,type,i+1);
             i++;
         }
         return;
@@ -115,7 +117,7 @@ public class AIFaker extends Observable {
      * @param type  of scoring
      * @param thread wich thread to use
      */
-    public void generateScore(final ArrayList<AIOrders> arrAIInput, final AIScorer.Type type, final int thread ) {
+    public void generateScore(final ArrayList<AIOrders> arrAIInput, final ArrayList<Unit> arrGerman, final AIScorer.Type type, final int thread ) {
         Gdx.app.log("AIFakers", "generateScore thread="+thread+" Count="+arrAIInput.size());
         final Thread tM= Thread.currentThread();
         startThreadCounters(thread-1);
@@ -156,18 +158,18 @@ public class AIFaker extends Observable {
                             break;
                         case ReinBastogneAttack:
                         case ReinEttlebruck:
-                            score = AIScorer.instance.getScore(type, arrGermanOnBoardUnits, aiO, thread);
+                            score = AIScorer.instance.getScore(type, arrGerman, aiO, thread);
                             aiO.setScoreMain(score);
                             // do scoring
                             break;
                         case ReinAndMoveOther:
                             int tempScore = aiO.getScoreMain();
-                            score = AIScorer.instance.getScore(type, arrGermanOnBoardUnits, aiO, thread);
+                            score = AIScorer.instance.getScore(type, arrGerman, aiO, thread);
                             aiO.setScoreMain(score + tempScore);
                             // do scoring
                             break;
                         case ReinMartelange:
-                            score = AIScorer.instance.getScore(type, arrGermanOnBoardUnits, aiO, thread);
+                            score = AIScorer.instance.getScore(type, arrGerman, aiO, thread);
                             int supplyScore = AISupply.instance.getScore(thread);
                             supplyScore *= 10;
                             if (score > 0) {
@@ -179,7 +181,7 @@ public class AIFaker extends Observable {
                             break;
                         case NonPenetrate:
                         default:
-                            score = AIScorer.instance.getScore(type, arrGermanOnBoardUnits, aiO, thread);
+                            score = AIScorer.instance.getScore(type, arrGerman, aiO, thread);
                             if (score > 0){
                                 int b=0;
                             }

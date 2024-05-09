@@ -268,7 +268,9 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 		if (AIFaker.instance != null){
 			AIFaker.instance.killFaker();
 		}
-		batch.dispose();
+		if (batch != null) {
+			batch.dispose();
+		}
 		if (img != null){
 			img.dispose();
 		}
@@ -333,7 +335,9 @@ public class ardenne extends Observable implements ApplicationListener, GestureD
 		}
 		if ((keycode == Input.Keys.ALT_LEFT)) {
 		//		isSetHotSeat = true;
-			WinDebug.instance.toggle();
+			if (WinDebug.instance != null){
+				WinDebug.instance.toggle();
+			}
 		}
 		if ((keycode == Input.Keys.BACK || keycode == Input.Keys.MENU )) {
 			if(Gdx.app.getType() == Application.ApplicationType.Android) {

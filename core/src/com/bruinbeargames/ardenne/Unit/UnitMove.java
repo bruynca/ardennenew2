@@ -269,7 +269,10 @@ public class UnitMove {
 					for (Hex hex:arrReturnBackWards){
 						Gdx.app.log("UnitMove","Hex in Array="+hex);
 					}
-					ErrorGame errorGame = new ErrorGame("In Loop check Console", this);
+					// allow this
+					arrReturnBackWards.add(hexEndSearch);
+
+//					ErrorGame errorGame = new ErrorGame("In Loop check Console", this);
 				}else {
 					arrReturnBackWards.add(hexEndSearch);
 				}

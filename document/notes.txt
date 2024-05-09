@@ -7,3 +7,6 @@ May 1
 		Needs Work Numbers dont seem high enough
 		Created saved games MoveAllied and exploit to retest
 		Dont know if this will work maybe we have to get the UnitMoves that go the farthest and find a spot to stop them
+		Remove all posiible places to put Allied as in behind enemy lines
+		Remove all ilogical places 
+		Try to get least amount of iterations.
