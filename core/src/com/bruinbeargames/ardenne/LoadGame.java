@@ -5,6 +5,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.bruinbeargames.ardenne.AI.AIMain;
 import com.bruinbeargames.ardenne.GameLogic.Airplane;
 import com.bruinbeargames.ardenne.GameLogic.Barrage;
 import com.bruinbeargames.ardenne.GameLogic.CardHandler;
@@ -453,6 +454,7 @@ public LoadGame(String gameToLoad, boolean isResume) {
 				HooufGas.instance.setBroken(boolval);
 			}
 		}
+		
 
 //	}
 
@@ -460,7 +462,7 @@ public LoadGame(String gameToLoad, boolean isResume) {
 
  	Gdx.app.log("LoadGame","Turn="+turn);
 	TurnCounter.instance.updateTurn(turn, NextPhase.instance.weather.getCurrentType());
-
+	AIMain.loadAIScore();
 	setPhase(phase);
 
 

@@ -25,8 +25,9 @@ public class AIMover {
         /**
          *  kick off appropriate scenario
          */
+        int i=0;
 
-        if (isAllies && GameSetup.instance.getScenario() == GameSetup.Scenario.Intro) {
+ /*       if (isAllies && GameSetup.instance.getScenario() == GameSetup.Scenario.Intro) {
             if (NextPhase.instance.getTurn() < 3){ // first reinforcements  
                 AIScenario1.instance.doInitialMoveAlliesTurn1to3();
             }else{
@@ -43,7 +44,7 @@ public class AIMover {
                 AIScenarioOther.instance.doAlliesMove();
             }
 
-        }
+        }*/
 
     }
 
