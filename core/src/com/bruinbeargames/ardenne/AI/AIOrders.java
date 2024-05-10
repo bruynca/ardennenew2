@@ -311,6 +311,38 @@ public class AIOrders {
         }
         return arrReturn;
     }
+    public static void removeOverStackUnits(AIOrders aiOrders){
+        int ix =0;
+        boolean isOK = true;
+        ArrayList<Unit> arrRemove = new ArrayList<>();
+        for (Hex hex: aiOrders.arrHexMoveTo){
+            HexUnits.add(hex,aiOrders.arrUnit.get(ix));
+            for (Unit unit:hex.getUnitsInHex()){
+                if (!aiOrders.arrUnit.contains(unit)){
+                    HexUnits.add(hex,unit);
+                }
+            }
+            for (HexUnits hU:HexUnits.arrHexUnits){
+                if (hU.getArrUnits().size() > 2)
+                {
+                    int b=0; // debugging
+                }
+                int stack = 0;
+                for (Unit unit:hU.getArrUnits()){
+                    stack +=unit.getCurrentStep();
+                }
+                if (stack > Hex.stackMax){
+                    arrRemove.add(aiOrders.arrUnit.get(ix));
+                    break;
+                }
+            }
+            ix++;
+        }
+        aiOrders.remove(arrRemove);
+        return;
+    }
+
+
 
     /**
      *  remove orders that place units ontop of enemy

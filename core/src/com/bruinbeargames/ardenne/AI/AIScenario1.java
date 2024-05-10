@@ -541,7 +541,7 @@ public class AIScenario1 {
         /**
          *  check if units can Mobile asault
          */
-        AIMobileAssault.createArrays(arrUnitsScenario, null);
+     //   AIMobileAssault.createArrays(arrUnitsScenario, null);
 
         ArrayList<AIOrders> arrAINonPenetrate = AIUtil.GetIterations(arrUnitsScenario,0,false,arrHexToCheck,AIMobileAssault.getAssualt(),aiOrders);
         ArrayList<Hex> arrAllowDuplicates = new ArrayList<>();

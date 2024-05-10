@@ -74,12 +74,15 @@ public class AIMain implements Observer {
         aiScenario1Turn3to6 = new AIScenario1Turn3to6();
         aiReinforcementScenarioOther = new AIReinforcementScenarioOther();
         aiScenarioOther = new AIScenarioOther();
+        loadAIScore();
+
+    }
+    public static void loadAIScore(){
         Hex.initAI();
-        for (int[] hexI:bestHexDefense){
+        for (int[] hexI:AIMain.instance.bestHexDefense){
             Hex hex = Hex.hexTable[hexI[0]][hexI[1]];
             hex.setAI(hexI[2]);
         }
-
     }
 
     /**

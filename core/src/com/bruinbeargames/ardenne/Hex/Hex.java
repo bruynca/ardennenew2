@@ -90,6 +90,7 @@ public class Hex {
 
 
     }
+
     public static void initThreadHex(int thread){
         for (Hex hex:arrHexMap){
             hex.isAlliedOccupied[thread] = false;
@@ -768,6 +769,9 @@ public class Hex {
         {
             for (int y=0; y < yEnd; y++)
             {
+                if (x==29 & y==24){
+                    int b=0;
+                }
                 if (hexTable[x][y].getStacksIn()> stackMax){
                     Hex hex=hexTable[x][y];
                     Losses losses = new Losses(hex.getUnitsInHex(), hex.getStacksIn() - stackMax );

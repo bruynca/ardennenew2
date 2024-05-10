@@ -118,7 +118,7 @@ public class AIFaker extends Observable {
      * @param thread wich thread to use
      */
     public void generateScore(final ArrayList<AIOrders> arrAIInput, final ArrayList<Unit> arrGerman, final AIScorer.Type type, final int thread ) {
-        Gdx.app.log("AIFakers", "generateScore thread="+thread+" Count="+arrAIInput.size());
+     //   Gdx.app.log("AIFakers", "generateScore thread="+thread+" Count="+arrAIInput.size());
         final Thread tM= Thread.currentThread();
         startThreadCounters(thread-1);
         final int counter = arrAIInput.size();

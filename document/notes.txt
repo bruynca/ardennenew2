@@ -10,3 +10,6 @@ May 1
 		Remove all posiible places to put Allied as in behind enemy lines
 		Remove all ilogical places 
 		Try to get least amount of iterations.
+May 8th
+		Reinforcements 80th Infantry has 3 steps and landing on same hex when reinforcements  
+		NEW New Use AIScore ton hex to drive the AI, keep it simple

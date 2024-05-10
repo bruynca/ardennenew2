@@ -59,6 +59,10 @@ public class AIMover {
      */
     public void execute(AIOrders aiOrders) {
         /**
+         *  remove overstacking units
+         */
+        AIOrders.removeOverStackUnits(aiOrders);
+        /**
          *  remove any aiorders that are not going anywhere
          */
         ArrayList<Unit> arrREmove  = new ArrayList<>();
