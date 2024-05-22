@@ -47,16 +47,22 @@ public class HexHiliteDisplay {
       if (pos == null){
             int brk = 0;
         }
-        String str = (hex.getAiScore()+" x"+hex.xTable+" y"+hex.yTable);
+        String str = "";
+        str = (hex.getAiScore() + " x" + hex.xTable + " y" + hex.yTable);
+
         if (hex.isAxisOccupied()){
-            str +="G";
+            //str +="G";
         }
         if (hex.isAlliedOccupied()){
-            str +="A";
+            //str +="A";
         }
         String str2 = Float.toString(hex.getCalcMoveCost(0));
 
         label = new Label(str,labelStyleName);
+        label.setFontScale(.8f);
+        if (hex.getAiScore() > 0){
+            label.setFontScale(1.2f);
+        }
         label.setPosition(pos.x-40, pos.y+40);
         label2 = new Label(str2,labelStyleName) ;
         label2.setPosition(pos.x, pos.y+50);

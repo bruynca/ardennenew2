@@ -23,4 +23,7 @@ May 10th
 		AISupply seems to be used at end for best of the ten percent already scored. We may have to do this before -
 			by scoring as seperate thread   
 			Supply comes before Allied Move so its not that much of a factor
+May 22
+		Check out AISCenarioOther
+		Should we do the loading of AISCore in AIMover and the do the run through in AIOTHer maybe new 
 		

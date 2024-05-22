@@ -51,6 +51,7 @@ public class AIScenarioOther implements Observer {
         Hex.addAIScoreSurroundGerman();
         Hex.addAISecondPanzerLehrOccupied();
 
+
         /**
          * dont do artillery
          */
