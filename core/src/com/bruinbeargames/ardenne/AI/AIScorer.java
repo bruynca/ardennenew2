@@ -666,7 +666,8 @@ public class AIScorer {
 
 
     public enum Type {GermanPenetration, NonPenetrate, GermanRegular,ReinBastogneAttack,ReinBastogneOcupy,GermanMoveScenario1,
-        ReinEttlebruck, ReinMartelange, AIPath,Supply, AttackBastogne, AttackWiltz, ReinAndMoveOther
+        ReinEttlebruck, ReinMartelange, AIPath,Supply, AttackBastogne, AttackWiltz, ReinAndMoveOther,
+        NewProcess;
     }
 
 

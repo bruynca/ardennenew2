@@ -13,6 +13,8 @@ import com.bruinbeargames.ardenne.Unit.UnitHex;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import jdk.javadoc.internal.tool.JavadocTodo;
+
 public class AIFaker extends Observable {
     static public AIFaker instance;
     ArrayList<Unit> arrGermanOnBoardUnits = new ArrayList<Unit>();
@@ -82,25 +84,27 @@ public class AIFaker extends Observable {
          *  make sure we do not use thread zero its for game flow
          */
         i =0; //
-        if (arrGermanOnBoardUnits == null){
-            arrGermanOnBoardUnits = new ArrayList<>();
-            arrGermanOnBoardUnits.addAll((Unit.getOnBoardAxis()));
-            if (GameSetup.instance.getScenario().ordinal() > 0){
-                ArrayList<Unit> arrSave = new ArrayList<>();
-                for (Unit unit:arrGermanOnBoardUnits){
-                    if (SecondPanzerExits.instance.isInSecond(unit)){
+        arrGermanOnBoardUnits = new ArrayList<>();
+        arrGermanOnBoardUnits.addAll((Unit.getOnBoardAxis()));
+        /**
+         *  todo check this out
+         */
+        if (GameSetup.instance.getScenario().ordinal() > 0){
+            ArrayList<Unit> arrSave = new ArrayList<>();
+            for (Unit unit:arrGermanOnBoardUnits){
+                if (SecondPanzerExits.instance.isInSecond(unit)){
+                    arrSave.add(unit);
+                }
+                if (GameSetup.instance.getScenario().ordinal() == 2){
+                    if (LehrExits.instance.isInLehr(unit)){
                         arrSave.add(unit);
                     }
-                    if (GameSetup.instance.getScenario().ordinal() == 2){
-                        if (LehrExits.instance.isInLehr(unit)){
-                            arrSave.add(unit);
-                        }
-                    }
                 }
-                arrGermanOnBoardUnits.clear();
-                arrGermanOnBoardUnits.addAll(arrSave);
             }
+            arrGermanOnBoardUnits.clear();
+            arrGermanOnBoardUnits.addAll(arrSave);
         }
+
         ArrayList<Unit> arrGermanPass = new ArrayList<>();
         arrGermanPass.addAll(arrGermanOnBoardUnits);
         for (ArrayList<AIOrders> aiArr:aiArray){
@@ -297,6 +301,10 @@ public class AIFaker extends Observable {
                 notifyObservers(new ObserverPackage(ObserverPackage.Type.FakeScenario1Done, null, 0, 0));
                 break;
             case ReinAndMoveOther:
+                setChanged();
+                notifyObservers(new ObserverPackage(ObserverPackage.Type.FakerDone, null, 0, 0));
+                break;
+            case NewProcess:
                 setChanged();
                 notifyObservers(new ObserverPackage(ObserverPackage.Type.FakerDone, null, 0, 0));
                 break;

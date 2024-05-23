@@ -318,7 +318,7 @@ public class GameMenu extends Observable {
                 if (!event.getType().equals("touchUp")) {
                     if (strGame.length() > 0) {
                         SplashScreen.instance.end();
-                        EventPopUp.instance.show(i18NBundle.format("loadsavegame"));
+   //                     EventPopUp.instance.show(i18NBundle.format("loadsavegame"));
                         Game game = new Game(strGame, false);
                     }
                 }

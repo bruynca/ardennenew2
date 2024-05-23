@@ -38,7 +38,8 @@ public class AIProcess{
      * @param arrUnitsIn Units input
      * @param arrArrayOfHexArray Arraylist of ArrayList of Hexs that the Units can move to  1:1 with the units
      * @param arrDupes Array of hexes that can have duplicates on the AIOrder
-     * @param aiTocheck the minimum aiScoreGen to keep hex in solution
+     * @param aiTocheck the minimum aiScoreGen to keep hex in solution less than 99 will be old
+     *                  process  99 is new
      */
     AIProcess(ArrayList<Unit> arrUnitsIn, ArrayList<ArrayList<Hex>> arrArrayOfHexArray,ArrayList<Hex> arrDupes, int aiTocheck){
         Gdx.app.log("AIProcess", "Constructor #Units="+arrUnitsIn.size()
@@ -49,17 +50,20 @@ public class AIProcess{
          * This is driven by AIScoreTemp - set by INVOKING
          * also it will eliminate any hexes already occupied
          */
+        if (aiTocheck < 99) {
+            reduceHexsToCheck(arrArrayOfHexArray, aiTocheck);
 
-        reduceHexsToCheck(arrArrayOfHexArray,aiTocheck);
-        /**
-         *  in case there are no hexes to check move in occupying hex
-         */
-        for (int ix=0; ix< arrArrayOfHexArray.size();ix++){;
-            if (arrArrayOfHexArray.get(ix).size() == 0 ){
-                arrArrayOfHexArray.get(ix).add(arrUnitsIn.get(ix).getHexOccupy());
-                if (arrUnitsIn.get(ix).getHexOccupy() == null){
-                    isFailed = true;
-                    return;
+            /**
+             *  in case there are no hexes to check move in occupying hex
+             */
+            for (int ix = 0; ix < arrArrayOfHexArray.size(); ix++) {
+                ;
+                if (arrArrayOfHexArray.get(ix).size() == 0) {
+                    arrArrayOfHexArray.get(ix).add(arrUnitsIn.get(ix).getHexOccupy());
+                    if (arrUnitsIn.get(ix).getHexOccupy() == null) {
+                        isFailed = true;
+                        return;
+                    }
                 }
             }
         }
@@ -115,12 +119,22 @@ public class AIProcess{
         Gdx.app.log("AIProcess", "After Dupe Removal count ="+arrAIOrders.size());
 
         if (arrAIOrders.size() == 0){
-            Gdx.app.log("AIProcess", "Failed");
+            Gdx.app.log("AIProcess", "NO Units to move");
             isFailed = true;
             return;
         }
+        /**
+         *  add in check for over a specific amount of aiorders
+         *  we can reduce
+         */
+        if (aiTocheck == 99 & arrAIOrders.size() > 1000){
+            int a = 9/0;   // to be covered
+        }
 
         AIScorer.Type type = AIScorer.Type.ReinAndMoveOther;
+        if(aiTocheck == 99){
+            type = AIScorer.Type.NewProcess;
+        }
         AIFaker.instance.startScoringOrders(arrAIOrders, type, true);
     }
 

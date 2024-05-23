@@ -33,12 +33,12 @@ public class AIMover {
         if (NextPhase.instance.getTurn() == 1){
 
             loadAIScore(bestHexDefenseTurn1);
+            AINew.instance.doAlliesMove();
         }
         /**
          *  kick off appropriate scenario
          */
         int i=0;
-        AIScenarioOther.instance.doAlliesMove();
 
  /*       if (isAllies && GameSetup.instance.getScenario() == GameSetup.Scenario.Intro) {
             if (NextPhase.instance.getTurn() < 3){ // first reinforcements  

@@ -27,3 +27,6 @@ May 22
 		Check out AISCenarioOther
 		Should we do the loading of AISCore in AIMover and the do the run through in AIOTHer maybe new 
 		
+May 23 
+		Tested untill part we we hand over to mover   but this did not score correctly
+		New Scorer required 
