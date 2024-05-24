@@ -63,6 +63,7 @@ public class Hex {
     private boolean isAxisEntered = false;
     private boolean isAlliedEntered = false;
     private int aiScore=0;
+    private int aiScoreFaker=0;
     public int aiScoreGen = 0;
 
     public ArrayList<Unit> arrUnitsInHex = new ArrayList<>();
@@ -83,6 +84,16 @@ public class Hex {
             hex.aiScore = 0;
         }
     }
+    public static void initAIFaker(){
+        for (Hex hex:arrHexMap){
+            hex.aiScoreFaker = 0;
+        }
+    }
+
+    public void setAiScoreFaker(int aiScoreFaker) {
+        this.aiScoreFaker = aiScoreFaker;
+    }
+
     public static void initOccupied(){
         for (Hex hex:arrHexMap){
             hex.establishOccupied();
