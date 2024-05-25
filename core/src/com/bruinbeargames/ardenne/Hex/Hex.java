@@ -90,8 +90,10 @@ public class Hex {
         }
     }
 
-    public void setAiScoreFaker(int aiScoreFaker) {
-        this.aiScoreFaker = aiScoreFaker;
+    public void setAiScoreFaker(int aiScoreFakerNew) {
+        if (aiScoreFakerNew > this.aiScoreFaker) {
+            this.aiScoreFaker = aiScoreFaker;
+        }
     }
 
     public static void initOccupied(){

@@ -111,7 +111,21 @@ public class AIMover {
         setScore(hexMartelange,5);
     }
 
-    private void setScore(Hex hexBastogne1, int i) {
+    /**
+     *  set the aiscoreFaker starting at hex
+     *  each branch makes score seem smaller
+     * @param hexIn
+     * @param i -score to start out
+     */
+    private void setScore(Hex hexIn, int i) {
+        int start = i;
+        hexIn.setAiScoreFaker(start);
+        start--;
+        ArrayList<Hex> arrWork = hexIn.getSurround();
+        while (start != 0){
+            for (Hex hex:arrWork)
+
+        }
     }
 
 
