@@ -24,6 +24,7 @@ public class AIMover {
     Hex hexBastogne2 = Hex.hexTable[8][12];
     Hex hexMartelange = Hex.hexTable[9][23];
     Hex hexWiltz = Hex.hexTable[19][14];
+    Hex hexEttlebruck = Hex.hexTable[28][23];
     int[][] bestHexDefenseTurn1 ={{29,9,4},{31,13,4},{33,17,4},{35,20,4},{28,23,4}, // first row of bridges
             {25,8,3},{24,15,3},{29,22,3}, //second row of bridges
             {21,6,3},{18,9,3},{14,10,3},{12,11,3}, // top road
@@ -109,6 +110,7 @@ public class AIMover {
             setScore(hexWiltz,4);
         }
         setScore(hexMartelange,5);
+        setScore(hexEttlebruck,4);
     }
 
     /**
@@ -121,11 +123,17 @@ public class AIMover {
         int start = i;
         hexIn.setAiScoreFaker(start);
         start--;
+        Hex[][] arrArr =  hexIn.getSurround(start);
         ArrayList<Hex> arrWork = hexIn.getSurround();
-        while (start != 0){
-            for (Hex hex:arrWork)
-
+        for (Hex[] arr:arrArr){
+            for (Hex hex:arr){
+                if (hex.isRoad() || hex.isPath()){
+                    hex.setAiScoreFaker(start);
+                }
+            }
+            start--;
         }
+
     }
 
 

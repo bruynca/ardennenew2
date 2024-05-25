@@ -48,7 +48,7 @@ public class HexHiliteDisplay {
             int brk = 0;
         }
         String str = "";
-        str = (hex.getAiScore() + " x" + hex.xTable + " y" + hex.yTable);
+        str = (hex.getAiScoreFaker() + " x" + hex.xTable + " y" + hex.yTable);
 
         if (hex.isAxisOccupied()){
             //str +="G";

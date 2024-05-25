@@ -79,6 +79,11 @@ public class Hex {
     public int getAiScore(){
         return aiScore;
     }
+
+    public int getAiScoreFaker() {
+        return aiScoreFaker;
+    }
+
     public static void initAI(){
         for (Hex hex:arrHexMap){
             hex.aiScore = 0;
@@ -92,7 +97,7 @@ public class Hex {
 
     public void setAiScoreFaker(int aiScoreFakerNew) {
         if (aiScoreFakerNew > this.aiScoreFaker) {
-            this.aiScoreFaker = aiScoreFaker;
+            this.aiScoreFaker = aiScoreFakerNew;
         }
     }
 
@@ -841,7 +846,72 @@ public class Hex {
         ArrayList<Hex> arrReturn = new ArrayList<Hex>();
         arrReturn.addAll(arrSurroundHex);
         return arrReturn;
-}
+    }
+
+    /**
+     *  get all surrounding hexes to range supplied
+     * @param range
+     * @return an array of hexes and distance from passed hex.
+     */
+
+    public  Hex[][] getSurround(int range){
+        ArrayList<HexInt> arrReturn = new ArrayList<>();
+        Hex[][] retTable; // jagged array to contain hexes for surround
+        // if within 7 of henderson copy the rolled version
+        //		if (startHex == Hex.hendersonField && iRange == 7 && doneHenderson)
+        //		{
+        //			retTable = Hex.sevenHendersonHex;
+        //			return retTable;
+        //		}
+        //		else
+        //		{
+        //			doneHenderson = true;
+        //		}
+        retTable = new Hex[range][]; // set up internal jagged array
+        //  1 = first surround, 2 = next etc.
+        retTable[0] = HexHandler.getSurround(this); // get initial surrounding hexes
+        // go through the entire range creating surrond hexTable
+        ArrayList<Hex> workList = new ArrayList<Hex>();
+        ArrayList<Hex> totList = new ArrayList<Hex>();
+        int prevTableLevel, prevTableSize;
+        Hex[] workHexTab;
+        for (int i = 1; i < range; i++)
+        {
+            prevTableLevel = i - 1; // get preceeding level
+            prevTableSize = retTable[prevTableLevel].length; // get preceeding level size
+            workList.clear(); // clear the array list
+            for (int  j = 0; j < prevTableSize; j++)
+            {
+                workHexTab = HexHandler.getSurround(retTable[prevTableLevel][j]);
+                for (int k = 0; k < 6; k++)
+                {
+                    if (workHexTab[k] == null)
+                    {
+                        //                           workList.Add(null); //keep track of nulls
+                        //                           totList.Add(null);
+                    }
+                    else
+                    {
+                        if (!totList.contains(workHexTab[k]))
+                        // if not in list
+                        {
+                            workList.add(workHexTab[k]); // add it to it
+                            totList.add(workHexTab[k]); // add to our dupe checker
+                            //                              MapDisplay.Character("p", Color.Coral, workHexTab[k].xTable, workHexTab[k].yTable);
+                        }
+                    }
+                }
+            }
+            // everyting in array list lets move it to hexTable
+            retTable[i] = new Hex[workList.size()];
+            for (int l = 0; l < workList.size(); l++)
+            {
+                retTable[i][l] =  workList.get(l);
+            }
+        } // next table level
+
+        return  retTable;
+    }
 
 
     private static void LoadRiversStream()
