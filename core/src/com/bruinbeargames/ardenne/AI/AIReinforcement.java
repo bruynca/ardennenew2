@@ -1,11 +1,15 @@
 package com.bruinbeargames.ardenne.AI;
 
 import com.badlogic.gdx.utils.I18NBundle;
+import com.bruinbeargames.ardenne.AIReinforcementNew;
 import com.bruinbeargames.ardenne.GameLogic.Reinforcement;
 import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.GameSetup;
+import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.UI.EventAI;
+import com.bruinbeargames.ardenne.Unit.Unit;
+import com.bruinbeargames.ardenne.Unit.UnitMove;
 
 import java.util.ArrayList;
 
@@ -34,14 +38,14 @@ public class AIReinforcement {
          *  kick off appropriate scenario
          */
 
-        if (isAllies && GameSetup.instance.getScenario() == GameSetup.Scenario.Intro) {
+   /*     if (isAllies && GameSetup.instance.getScenario() == GameSetup.Scenario.Intro) {
             /**
              *  if no reinforcements go to next phase
              */
             /**
              *  supply done before
              */
-            arrSupply.addAll(AISupply.instance.getProcessedRoadBlocks());
+     /*       arrSupply.addAll(AISupply.instance.getProcessedRoadBlocks());
             if (!AIReinforcementScenario1.instance.doReinforcementAllies(isAllies,arrSupply)){
                 NextPhase.instance.nextPhase();
             }
@@ -51,8 +55,14 @@ public class AIReinforcement {
             }else{
                     NextPhase.instance.nextPhase();
              }
+       } */
+        if (Reinforcement.instance.getThisTurnCount() > 0){
+            if (AIReinforcementNew.instance.doReinforcementAllies() == 0){
+                NextPhase.instance.nextPhase();
+            }
+        }else{
+            NextPhase.instance.nextPhase();
         }
-
 
     }
 

@@ -81,6 +81,9 @@ public class AIScorer {
             case AttackBastogne:
                 score += getAttackBastogne(aiO,thread);
                 break;
+            case NewProcess:
+                score += accumulateGerman(aiO,arrGermans,thread);
+                break;
             default:
                 score = getGermanPenetration(arrGermans,aiO,thread);
                 score /=4; // divide by 4
@@ -89,6 +92,25 @@ public class AIScorer {
 
         }
 
+        return score;
+    }
+
+    /**
+     * part of rewrite for AI
+     *
+     * @param aiO        AIORders
+     * @param arrGermans
+     * @param thread
+     * @return
+     */
+    private int accumulateGerman(AIOrders aiO, ArrayList<Unit> arrGermans, int thread) {
+        int score = 0;
+        ArrayList<Hex>[] arrHexGermanPaths = createGermanMoves(arrGermans,thread); // on thread
+        for (ArrayList<Hex> arrWork:arrHexGermanPaths){
+            for (Hex hex:arrWork){
+                score -=hex.getAiScoreFaker();
+            }
+        }
         return score;
     }
 
