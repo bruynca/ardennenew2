@@ -1,12 +1,18 @@
 package com.bruinbeargames.ardenne.AI;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.bruinbeargames.ardenne.GameLogic.Reinforcement;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.ObserverPackage;
 import com.bruinbeargames.ardenne.UI.WinReinforcements;
 import com.bruinbeargames.ardenne.Unit.Unit;
+import com.bruinbeargames.ardenne.ardenne;
+import com.kotcrab.vis.ui.widget.VisLabel;
+import com.kotcrab.vis.ui.widget.VisTextButton;
+import com.kotcrab.vis.ui.widget.VisWindow;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,6 +44,10 @@ public class AIReinforcementScenarioOther implements Observer {
      * Arrcovered will be set by each so that we do not have too many units
      */
     ArrayList<Hex> arrCovered = new ArrayList<>();
+    private VisWindow visWindow;
+    int[][] bastogneDefense ={{8,11,6},{8,12,6},{9,10,5},{9,11,5},{9,12,5}, // first row of bridges
+            {8,13,5},{10,11,3},{12,11,3}, //second row of bridges
+            {14,10,4},{11,12,4},{9,14,4},{6,18,3}};
 
 
     public AIReinforcementScenarioOther(){
@@ -62,9 +72,9 @@ public class AIReinforcementScenarioOther implements Observer {
          *  initialize the aiScore used
          *  also check for Germa occupied
          */
-        Hex.initTempAI();
-        Hex.addAIScoreSurroundGerman();
-        Hex.addAISecondPanzerLehrOccupied();
+ //       Hex.initTempAI();
+ //       Hex.addAIScoreSurroundGerman();
+ //       Hex.addAISecondPanzerLehrOccupied();
 
 
         arrArtillery.clear();
@@ -101,7 +111,12 @@ public class AIReinforcementScenarioOther implements Observer {
             }
         }
         ixCurrentReinArea = -1;
-        doNextReinArea();
+        /**
+         *      set up the aimap
+         */
+        setupAiScoreandFaker(arrReinforceAreas.get(0));
+
+//        doNextReinArea();
         return;
     }
 
@@ -144,13 +159,6 @@ public class AIReinforcementScenarioOther implements Observer {
             return;
         }
         /**
-         *  this is our chance to change the aiscoreGen  in Hex
-         *  it has been initialized
-         *  for now we are not doing amything to keep it simple
-         */
-
-
-        /**
          * Create the moves
          */
         ArrayList<ArrayList<Hex>> arrWork = new ArrayList<>();
@@ -184,6 +192,7 @@ public class AIReinforcementScenarioOther implements Observer {
         }
     }
 
+  
     private void doFinalAllAreasProcessign() {
         AIOrders aiStart = new AIOrders();
         for (ArrayList<AIOrders> arr:arrOrdersReinArea){
@@ -203,7 +212,6 @@ public class AIReinforcementScenarioOther implements Observer {
             doArtillery(aiStart);
         }
         Gdx.app.log("AIReinforcementScenarioOther", "execute");
-
         execute(aiStart);
 
     }
@@ -258,4 +266,61 @@ public class AIReinforcementScenarioOther implements Observer {
         }
 
     }
+
+    /**
+     *  new AI
+     *  create the AIMaps 
+     *  AIScore for initial creation of the AIOrders this is where we want to move to
+     *  AIScoreFakers for the scoring this is how we find the best solution  ie german paenetration
+     * @param hex
+     */
+    private void setupAiScoreandFaker(Hex hex) {
+        Hex.initAI();
+        Hex.initAIFaker();
+        if (hexBastogneReinforceEntry == hexBastogneReinforceEntry){
+            setupBastogne();
+            Hex.addNewAIScoreSurroundGerman();
+        }else{
+            if (hexEttlebruckReinforceEntry == hex){
+                setUpEttleBruck();
+            }else{
+                setUpMatrelange();
+            }
+        }
+        creatAIWindow();
+        
+    }
+
+    private void setUpMatrelange() {
+    }
+
+    private void setUpEttleBruck() {
+        
+    }
+
+    private void setupBastogne() {
+        for (int[] hexI:bastogneDefense){
+            Hex hex = Hex.hexTable[hexI[0]][hexI[1]];
+            hex.setAI(hexI[2]);
+        }
+
+
+    }
+    private void creatAIWindow() {
+        Gdx.app.log("AIReinforcementScenarioOther", "Create AI Window");
+
+        visWindow = new VisWindow("AI View");
+        VisTextButton visTextButton = new VisTextButton("Run");
+        visWindow.add(visTextButton);
+        visTextButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                visWindow.remove();
+                doNextReinArea();
+            }
+
+        });
+        ardenne.instance.guiStage.addActor(visWindow);
+    }
+
 }

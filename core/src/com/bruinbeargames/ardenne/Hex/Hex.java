@@ -217,6 +217,21 @@ public class Hex {
             }
         }
     }
+
+    /**
+     *  bump up the aiscore for Germas hexs surround
+     */
+    public static void addNewAIScoreSurroundGerman() {
+        for (Hex hex:arrHexMap) {
+            if (hex.aiScore > 1 && hex.isAxisOccupied()) {
+                for (Hex hexCheck : hex.getSurround()) {
+                    int score = hex.getAiScore();
+                    score++;
+                    hex.setAI(score);
+                }
+            }
+        }
+    }
     public static void addAISecondPanzerLehrOccupied(){
         boolean isSecondLook = false;
         boolean isLehrLook = false;

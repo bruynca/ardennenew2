@@ -65,6 +65,10 @@ public class AIOrders {
         }
         arrUnitPosition.addAll(arrUnitPosition);
     }
+    public void addUnitHex(Unit unit, Hex hex){
+        arrUnit.add(unit);
+        arrHexMoveTo.add(hex);
+    }
 
     /**
      * Remove AIOrders that move to same hex

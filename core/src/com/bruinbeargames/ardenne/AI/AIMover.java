@@ -33,6 +33,8 @@ public class AIMover {
             {26,8,2},{27,8,2},{25,14,2},{28,13,2},{31,21,2},{11,22,2}};
 
     boolean isAllies;
+    private VisWindow visWindow;
+
     AIMover() {
         instance = this;
         i18NBundle= GameMenuLoader.instance.localization;
@@ -42,13 +44,13 @@ public class AIMover {
         EventAI.instance.show(i18NBundle.format("aimove"));
         Hex.initAI();
         Hex.initAIFaker();
-        if (NextPhase.instance.getTurn() == 1){
+   //     if (NextPhase.instance.getTurn() == 1){
 
             loadAIScore(bestHexDefenseTurn1);
             loadAIScoreFaker();
             creatAIWindow();
   //          AINew.instance.doAlliesMove();
-        }
+  //      }
         /**
          *  kick off appropriate scenario
          */
@@ -78,12 +80,13 @@ public class AIMover {
     private void creatAIWindow() {
         Gdx.app.log("AIMOVe", "Create AI Window");
 
-        VisWindow visWindow = new VisWindow("AI View");
+        visWindow = new VisWindow("AI View");
         VisTextButton visTextButton = new VisTextButton("Run");
         visWindow.add(visTextButton);
         visTextButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                visWindow.remove();
                 AINew.instance.doAlliesMove();
             }
 

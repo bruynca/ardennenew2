@@ -25,6 +25,7 @@ public class AINew implements Observer {
          * Assume all aiscores have been set
          * Get all allied units except for Artilley if past game turn 3
          */
+
         ArrayList<Unit> arrArtillery = new ArrayList<>();
         ArrayList<Unit> arrUnits = new ArrayList<>();
         for (Unit unit : Unit.getOnBoardAllied()) {

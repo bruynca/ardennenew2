@@ -1,7 +1,6 @@
 package com.bruinbeargames.ardenne.AI;
 
 import com.badlogic.gdx.Gdx;
-import com.bruinbeargames.ardenne.AIReinforcementNew;
 import com.bruinbeargames.ardenne.ErrorGame;
 import com.bruinbeargames.ardenne.GameLogic.Combat;
 import com.bruinbeargames.ardenne.GameLogic.HooufGas;
@@ -36,7 +35,6 @@ public class AIMain implements Observer {
     private AICombat aiCombat;
     private AICombatScenario1 aiCombatScenario1;
     private AIReinforcement aiReinforcement;
-    private AIReinforcementNew aiReinforcementNew;
     private AIReinforcementScenario1 aiReinforcementScenario1;
     private AIReinforcementScenarioOther aiReinforcementScenarioOther;
     private AISupply aiSupply;
@@ -78,7 +76,6 @@ public class AIMain implements Observer {
         aiReinforcementScenarioOther = new AIReinforcementScenarioOther();
         aiScenarioOther = new AIScenarioOther();
         aiNew = new AINew();
-        aiReinforcementNew = new AIReinforcementNew();
         loadAIScore();
 
     }
