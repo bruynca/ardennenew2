@@ -299,9 +299,10 @@ public class AIReinforcementScenarioOther implements Observer {
     }
 
     private void setupBastogne() {
+        AIMover.instance.loadAIScore(AIMover.instance.bestHexDefenseTurn1);
         for (int[] hexI:bastogneDefense){
             Hex hex = Hex.hexTable[hexI[0]][hexI[1]];
-            hex.setAI(hexI[2]);
+            hex.setAI(hexI[2]*2); // multiply by 2
         }
 
 

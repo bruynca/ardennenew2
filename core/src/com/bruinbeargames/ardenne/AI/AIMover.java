@@ -94,7 +94,7 @@ public class AIMover {
         ardenne.instance.guiStage.addActor(visWindow);
     }
 
-    private void loadAIScore(int[][] bestHexDefenseTurn) {
+    public void loadAIScore(int[][] bestHexDefenseTurn) {
         for (int[] hexI:bestHexDefenseTurn){
             Hex hex = Hex.hexTable[hexI[0]][hexI[1]];
             hex.setAI(hexI[2]);
