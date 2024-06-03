@@ -537,7 +537,7 @@ public class AIOrders {
             return   0;
         }
     }
-    static class SortbyScoreDescending implements Comparator<AIOrders>{
+    static public class SortbyScoreDescending implements Comparator<AIOrders>{
         public int compare(AIOrders a, AIOrders b){
             if (a == null && b== null){
                 return 0;

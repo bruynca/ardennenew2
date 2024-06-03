@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.I18NBundle;
+import com.bruinbeargames.ardenne.AI.AIOrders;
 import com.bruinbeargames.ardenne.AI.AIUtil;
 import com.bruinbeargames.ardenne.ErrorGame;
 import com.bruinbeargames.ardenne.GameLogic.LehrExits;
@@ -20,6 +21,7 @@ import com.bruinbeargames.ardenne.Unit.Counter;
 import com.bruinbeargames.ardenne.Unit.Unit;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.concurrent.CancellationException;
 
 public class Hex {
@@ -927,6 +929,21 @@ public class Hex {
 
         return  retTable;
     }
+    public static ArrayList<Hex> getSurroundMapArr(Hex startHex, int iRange)
+    {
+        ArrayList<Hex> arrReturn = new ArrayList<Hex>();
+        Hex[][] hexTemp = startHex.getSurround(iRange);
+        for (int i = 0; i < hexTemp.length; i++)
+        {
+            for (int j = 0; j < hexTemp[i].length; j++)
+            {
+                if (!arrReturn.contains(hexTemp[i][j])&& hexTemp[i][j] != null)
+                    arrReturn.add(hexTemp[i][j]);
+            }
+        }
+        AIUtil.RemoveDuplicateHex(arrReturn);
+        return arrReturn;
+    }
 
 
     private static void LoadRiversStream()
@@ -1744,5 +1761,30 @@ public class Hex {
     public void setFakeOccupiedAXis(boolean isOccupied, int thread) {
         isAxisOccupied[thread] = isOccupied;
     }
+    static public class SortbyScoreDescending implements Comparator<Hex> {
+        public int compare(Hex a, Hex b){
+            if (a == null && b== null){
+                return 0;
+            }
+            if (a == null){
+                return -1;
+            }
+            if (b == null){
+                return 1;
+            }
+            if (b.aiScore == a.aiScore){
+                return 0;
+            }
+            if (b.aiScore > a.aiScore){
+                return 1;
+            }
+            if (b.aiScore < a.aiScore){
+                return -1;
+            }
 
+            return   0;
+        }
+
+
+    }
 }

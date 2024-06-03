@@ -46,8 +46,9 @@ public class AIReinforcementScenarioOther implements Observer {
     ArrayList<Hex> arrCovered = new ArrayList<>();
     private VisWindow visWindow;
     int[][] bastogneDefense ={{8,11,6},{8,12,6},{9,10,5},{9,11,5},{9,12,5}, // first row of bridges
-            {8,13,5},{10,11,3},{12,11,3}, //second row of bridges
-            {14,10,4},{11,12,4},{9,14,4},{6,18,3}};
+            {8,13,5},{10,11,3},{12,11,3},{8,10,5},
+            {7,10,3},{7,11,3},{7,13,3},//second row of bridges
+            {14,10,4},{11,12,4},{9,14,4},{6,18,3},{11,7,2}};
 
 
     public AIReinforcementScenarioOther(){
@@ -114,15 +115,14 @@ public class AIReinforcementScenarioOther implements Observer {
         /**
          *      set up the aimap
          */
-        setupAiScoreandFaker(arrReinforceAreas.get(0));
 
-//        doNextReinArea();
+        doNextReinArea();
         return;
     }
 
     private void doNextReinArea() {
-        Gdx.app.log("AIReinforcementsOther", "doNextReinArea ix"+ixCurrentReinArea);
-        if (ixCurrentReinArea + 1 < arrUnitReinArea.length ) {
+        Gdx.app.log("AIReinforcementsOther", "doNextReinArea ix" + ixCurrentReinArea);
+        if (ixCurrentReinArea + 1 < arrUnitReinArea.length) {
             Gdx.app.log("AIReinforcementsOther", "doNextReinArea size =" + arrUnitReinArea[ixCurrentReinArea + 1].size());
         }
 
@@ -132,6 +132,18 @@ public class AIReinforcementScenarioOther implements Observer {
          *  else if none left go to do final
          */
         ixCurrentReinArea++;
+        /**
+         *  create the aiMaps and show the windows ai screen
+         */
+        if (ixCurrentReinArea == 0) {
+            setupAiScoreandFaker(arrReinforceAreas.get(ixCurrentReinArea));
+        }else {
+            doNextRinActual();
+        }
+
+        return;
+    }
+    private void doNextRinActual(){
         if (ixCurrentReinArea >= arrUnitReinArea.length) {
             doFinalAllAreasProcessign();
             return;
@@ -158,6 +170,7 @@ public class AIReinforcementScenarioOther implements Observer {
             doNextReinArea();
             return;
         }
+
         /**
          * Create the moves
          */
@@ -165,10 +178,17 @@ public class AIReinforcementScenarioOther implements Observer {
         ArrayList<Unit> arrCantMove = new ArrayList<>();
         int entryCost=0;
         for (Unit unit : arrWorkingOn) {
+            ArrayList<Hex> arrNoAI = new ArrayList<>();
             ArrayList<Hex> arrHexMove = AIReinforcementScenario1.instance.findHexesOnReinforcement(unit,entryCost);
             entryCost++;
             AIUtil.RemoveDuplicateHex(arrHexMove);
             arrHexMove.removeAll(arrCovered);
+            for (Hex hex:arrHexMove){
+                if (hex.getAiScore() == 0){
+                    arrNoAI.add(hex);
+                }
+            }
+            arrHexMove.removeAll(arrNoAI);
             if (arrHexMove.size() > 0) {
                 arrWork.add(arrHexMove);
             } else {
@@ -182,8 +202,28 @@ public class AIReinforcementScenarioOther implements Observer {
             doNextReinArea();
             return;
         }
+        int ix=0;
+        for (ArrayList<Hex> arr:arrWork){
+            ArrayList<Hex> arrDelete = new ArrayList<Hex>();
+            for (Hex hex:arr){
+                if (hex.getAiScore() == 0){
+                    if (!arrDelete.contains(hex)){
+                        arrDelete.add(hex);
+                    }
+                }
+            }
+            arr.removeAll(arrDelete);
+            /**
+             * if no place to move leave it where it is
+             */
+            if (arr.size() == 0){
+                Gdx.app.log("AINew", "unit has no move-"+arrWorkingOn.get(ix));
+                arr.add(arrWorkingOn.get(ix).getHexOccupy());
+            }
+            ix++;
+        }
         ArrayList<Hex> arrDupes = new ArrayList<>(); // no dupes at moment
-        aiProcess = new AIProcess(arrWorkingOn,arrWork,arrDupes,1);
+        aiProcess = new AIProcess(arrWorkingOn,arrWork,arrDupes,99);
         if (aiProcess.isFailed()){
             doNextReinArea();
             return;
@@ -300,12 +340,25 @@ public class AIReinforcementScenarioOther implements Observer {
 
     private void setupBastogne() {
         AIMover.instance.loadAIScore(AIMover.instance.bestHexDefenseTurn1);
+        /**
+         *  double for ring around Bastogne
+         */
         for (int[] hexI:bastogneDefense){
             Hex hex = Hex.hexTable[hexI[0]][hexI[1]];
             hex.setAI(hexI[2]*2); // multiply by 2
         }
-
-
+        /**
+         *  aff score to the roads
+         */
+        AIMover.setScoreAI(Hex.hexBastogne2, 13, AIMover.Direction.All);
+        /**
+         *  set up score for around entry
+         *
+         */
+        ArrayList<Hex> arrWork = hexBastogneReinforceEntry.getSurroundMapArr(hexBastogneReinforceEntry,3);
+        for (Hex hex: arrWork){
+            hex.setAI(2);
+        }
     }
     private void creatAIWindow() {
         Gdx.app.log("AIReinforcementScenarioOther", "Create AI Window");
@@ -317,7 +370,7 @@ public class AIReinforcementScenarioOther implements Observer {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 visWindow.remove();
-                doNextReinArea();
+                doNextRinActual();
             }
 
         });

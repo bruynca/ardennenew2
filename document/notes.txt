@@ -30,3 +30,5 @@ May 22
 May 23 
 		Tested untill part we we hand over to mover   but this did not score correctly
 		New Scorer required 
+May 29th
+		Set up so that AI stops and can view by pressing Alt left and see AI and AIFakers scores 

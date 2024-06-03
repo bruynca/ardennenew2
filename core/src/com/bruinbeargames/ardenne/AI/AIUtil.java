@@ -633,15 +633,20 @@ public class AIUtil {
         }
         return arrNew;
     }
-    static public ArrayList<HexInt> getAIHexStats(int thread){
+    static public ArrayList<HexInt> getAIHexStats(int thread) {
         UnitMove.setAIStat(true);
         HexCount.init();
-        if (thread == 0){
+        if (thread == 0) {
 
-        }else {
+        } else {
             Hex.fakeClearMoveFields(false, true, thread);
         }
-        ArrayList<Hex>[] arrArr = createGermanMoves(Unit.getOnBoardAxis(),thread);
+        ArrayList<Hex>[] arrArr = createGermanMoves(Unit.getOnBoardAxis(), thread);
+        UnitMove.setAIStat(false);
+        ArrayList<HexInt> arrReturn = countHexes(arrArr);
+        return arrReturn;
+    }
+    static public ArrayList<HexInt> countHexes(ArrayList<Hex>[] arrArr){
         for (ArrayList<Hex> arr:arrArr){
             for (Hex hex:arr){
                 HexCount hexCount = new HexCount(hex);
@@ -655,9 +660,16 @@ public class AIUtil {
             arrWork.add(hi);
         }
         Collections.sort(arrWork, new AIScenarioOther.SortDescending());
-        UnitMove.setAIStat(false);
         return arrWork;
-
+    }
+    static public  ArrayList<HexInt> countHexes(ArrayList<ArrayList<Hex>> arrIn){
+        ArrayList<Hex>[] arrWork = new ArrayList[arrIn.size()];
+        int ix=0;
+        for (ArrayList<Hex> arr:arrIn){
+            arrWork[ix] = arr;
+            ix++;
+        }
+        return countHexes(arrWork);
     }
     private static ArrayList<Hex>[] createGermanMoves(ArrayList<Unit> arrGermans, int thread) {
         ArrayList<Hex>[] arrArrHex = new ArrayList[arrGermans.size()];

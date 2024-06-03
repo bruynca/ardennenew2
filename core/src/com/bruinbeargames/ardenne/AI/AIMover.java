@@ -105,15 +105,15 @@ public class AIMover {
         /**
          * bastogne
          */
-        setScore(hexBastogne1,6);
-        setScore(hexBastogne2,6);
+        setScore(hexBastogne1,6,Direction.All);
+        setScore(hexBastogne2,6,Direction.All);
         if (GameSetup.instance.getScenario() == GameSetup.Scenario.Intro) {
-            setScore(hexWiltz,6);
+            setScore(hexWiltz,6,Direction.Right);
         }else{
-            setScore(hexWiltz,4);
+            setScore(hexWiltz,4,Direction.Right);
         }
-        setScore(hexMartelange,5);
-        setScore(hexEttlebruck,4);
+        setScore(hexMartelange,5,Direction.Right);
+        setScore(hexEttlebruck,4,Direction.Left);
     }
 
     /**
@@ -122,8 +122,8 @@ public class AIMover {
      * @param hexIn
      * @param i -score to start out
      */
-    private void setScore(Hex hexIn, int i) {
-        int start = i;
+    public static void setScore(Hex hexIn,int score, Direction direct) {
+        int start = score;
         hexIn.setAiScoreFaker(start);
         start--;
         Hex[][] arrArr =  hexIn.getSurround(start);
@@ -131,13 +131,42 @@ public class AIMover {
         for (Hex[] arr:arrArr){
             for (Hex hex:arr){
                 if (hex.isRoad() || hex.isPath()){
-                    hex.setAiScoreFaker(start);
+                    if (direct == Direction.All) {
+                        hex.setAiScoreFaker(start);
+                    }else if (direct == Direction.Right && hexIn.xTable <= hex.xTable){
+                        hex.setAiScoreFaker(start);
+                    }else if (direct == Direction.Left && hexIn.xTable >= hex.xTable ){
+                        hex.setAiScoreFaker(start);
+                    }
                 }
             }
             start--;
         }
 
     }
+    public static void setScoreAI(Hex hexIn,int score, Direction direct) {
+        int start = score;
+        hexIn.setAiScoreFaker(start);
+        start--;
+        Hex[][] arrArr =  hexIn.getSurround(start);
+        ArrayList<Hex> arrWork = hexIn.getSurround();
+        for (Hex[] arr:arrArr){
+            for (Hex hex:arr){
+                if (hex.isRoad() || hex.isPath()){
+                    if (direct == Direction.All) {
+                        hex.setAI(start);
+                    }else if (direct == Direction.Right && hexIn.xTable <= hex.xTable){
+                        hex.setAI(start);
+                    }else if (direct == Direction.Left && hexIn.xTable >= hex.xTable ){
+                        hex.setAI(start);
+                    }
+                }
+            }
+            start--;
+        }
+
+    }
+    public enum Direction {All, Left, Right};
 
 
     /**

@@ -2,9 +2,11 @@ package com.bruinbeargames.ardenne.AI;
 
 import com.badlogic.gdx.Gdx;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.Hex.HexInt;
 import com.bruinbeargames.ardenne.Unit.Unit;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * AIProcess will do common AI routines for Reinforcements and moves
@@ -49,14 +51,17 @@ public class AIProcess{
          * we can adjust this later in case we get too many by changing the aitoCheck
          * This is driven by AIScoreTemp - set by INVOKING
          * also it will eliminate any hexes already occupied
+         *
+         * This is no longer used
+         * see next routine
          */
-        if (aiTocheck < 99) {
+  /*      if (aiTocheck < 99) {
             reduceHexsToCheck(arrArrayOfHexArray, aiTocheck);
 
             /**
              *  in case there are no hexes to check move in occupying hex
              */
-            for (int ix = 0; ix < arrArrayOfHexArray.size(); ix++) {
+    /*        for (int ix = 0; ix < arrArrayOfHexArray.size(); ix++) {
                 ;
                 if (arrArrayOfHexArray.get(ix).size() == 0) {
                     arrArrayOfHexArray.get(ix).add(arrUnitsIn.get(ix).getHexOccupy());
@@ -66,7 +71,34 @@ public class AIProcess{
                     }
                 }
             }
+        }*/
+        int iterates = 1;
+        for (ArrayList<Hex> arr:arrArrayOfHexArray){
+            iterates *= arr.size();
         }
+        /**
+         *  reduce to a million
+         *
+         */
+        if (iterates > 1000000){
+
+            int ratio = iterates/1000000;
+            /**
+             *  sort arrays in descending AIscore order
+             */
+            ArrayList<HexInt> arrHexInt = AIUtil.countHexes(arrArrayOfHexArray);
+            for (ArrayList<Hex> arr:arrArrayOfHexArray){
+                Collections.sort(arr,new Hex.SortbyScoreDescending());
+            }
+            /**
+             *  shrink each array by size/ratio
+             *  delete by aiscore --keep highest aiscore.
+             */
+            for (ArrayList<Hex> arr:arrArrayOfHexArray){
+                iterates *= arr.size();
+            }
+        }
+
         /**
          *  Check for cases where we have no movement possible then
          *  remove it from the units

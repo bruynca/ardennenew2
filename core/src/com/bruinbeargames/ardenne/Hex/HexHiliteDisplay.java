@@ -51,7 +51,7 @@ public class HexHiliteDisplay {
         /**
          *  SPOT to change AISCORE
          */
-        str = (hex.getAiScore() + " x" + hex.xTable + " y" + hex.yTable);
+        str = ("a"+hex.getAiScore()+"f"+hex.getAiScoreFaker() + " x" + hex.xTable + "y" + hex.yTable);
 
         if (hex.isAxisOccupied()){
             //str +="G";
