@@ -643,10 +643,11 @@ public class AIUtil {
         }
         ArrayList<Hex>[] arrArr = createGermanMoves(Unit.getOnBoardAxis(), thread);
         UnitMove.setAIStat(false);
-        ArrayList<HexInt> arrReturn = countHexes(arrArr);
+        ArrayList<HexInt> arrReturn = countandSortHexes(arrArr);
         return arrReturn;
     }
-    static public ArrayList<HexInt> countHexes(ArrayList<Hex>[] arrArr){
+    static public ArrayList<HexInt> countandSortHexes(ArrayList<Hex>[] arrArr){
+        HexCount.init();
         for (ArrayList<Hex> arr:arrArr){
             for (Hex hex:arr){
                 HexCount hexCount = new HexCount(hex);
@@ -662,14 +663,14 @@ public class AIUtil {
         Collections.sort(arrWork, new AIScenarioOther.SortDescending());
         return arrWork;
     }
-    static public  ArrayList<HexInt> countHexes(ArrayList<ArrayList<Hex>> arrIn){
+    static public  ArrayList<HexInt> countandSortHexes(ArrayList<ArrayList<Hex>> arrIn){
         ArrayList<Hex>[] arrWork = new ArrayList[arrIn.size()];
         int ix=0;
         for (ArrayList<Hex> arr:arrIn){
             arrWork[ix] = arr;
             ix++;
         }
-        return countHexes(arrWork);
+        return countandSortHexes(arrWork);
     }
     private static ArrayList<Hex>[] createGermanMoves(ArrayList<Unit> arrGermans, int thread) {
         ArrayList<Hex>[] arrArrHex = new ArrayList[arrGermans.size()];
@@ -689,8 +690,81 @@ public class AIUtil {
         return arrArrHex;
     }
 
+    /**
+     *  reduce the array of arry hexes to million combinations
+     * @param arrArrayOfHexArray
+     * @return
+     */
+    public static void  reduceToMillion(ArrayList<ArrayList<Hex>> arrArrayOfHexArray) {
+        int iterates = 1;
+        for (ArrayList<Hex> arr:arrArrayOfHexArray){
+            iterates *= arr.size();
+        }
+        if (iterates < 1000001){
+            return;
+        }
+        int bypass =1;
+
+        /**
+         *  get count of hexes in ascending sequence
+         */
+        ArrayList<HexInt> arrHexCount = AIUtil.countandSortHexes(arrArrayOfHexArray);
+        int ix = 0; // initial index of the arr arr
+        if (bypass != 1) {
+            for (HexInt hi : arrHexCount) {
+                /**
+                 *  process if count greater tha 2 greater than
+                 */
+                if (hi.count <= 2) {
+                    break;
+                }
+                Hex hex = hi.hex;
+                int cnt = hi.count;
+                while (cnt > 2) {
+                    if (arrArrayOfHexArray.get(ix).remove(hex)) {
+                        cnt--;
+                    }
+                    ix++;
+                    if (ix >= arrArrayOfHexArray.size()) {
+                        ix = 0;
+                    }
+                }
+            }
+        }
+        iterates = 1;
+        for (ArrayList<Hex> arr:arrArrayOfHexArray){
+            iterates *= arr.size();
+        }
+        if (iterates < 1000001){
+            return;
+        }
+        float ratio = (float)iterates/1000000;
+
+        /**
+         *  if we are still above a million will reduce counts based on ratio
+         */
+        for (ArrayList<Hex> arr:arrArrayOfHexArray){
+            if (arr.size() > 4){
+                int end = arr.size() -1;
+                int start = (int) (arr.size()/ratio);
+                arr.subList(start,end).clear();
+            }
+        }
+
+/*        for (ArrayList<Hex> arr:arrArrayOfHexArray){
+            Collections.sort(arr,new Hex.SortbyScoreDescending());
+        }
+        /**
+         *  shrink each array by size/ratio
+         *  delete by aiscore --keep highest aiscore.
+         */
+        /*
+        for (ArrayList<Hex> arr:arrArrayOfHexArray){
+            iterates *= arr.size();
+        } */
 
 
+    }
 }
 /**
  *  Temporary Class to take threat envelopes and apply analysis to them

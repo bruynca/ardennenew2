@@ -72,32 +72,11 @@ public class AIProcess{
                 }
             }
         }*/
-        int iterates = 1;
-        for (ArrayList<Hex> arr:arrArrayOfHexArray){
-            iterates *= arr.size();
-        }
         /**
          *  reduce to a million
          *
          */
-        if (iterates > 1000000){
-
-            int ratio = iterates/1000000;
-            /**
-             *  sort arrays in descending AIscore order
-             */
-            ArrayList<HexInt> arrHexInt = AIUtil.countHexes(arrArrayOfHexArray);
-            for (ArrayList<Hex> arr:arrArrayOfHexArray){
-                Collections.sort(arr,new Hex.SortbyScoreDescending());
-            }
-            /**
-             *  shrink each array by size/ratio
-             *  delete by aiscore --keep highest aiscore.
-             */
-            for (ArrayList<Hex> arr:arrArrayOfHexArray){
-                iterates *= arr.size();
-            }
-        }
+        AIUtil.reduceToMillion(arrArrayOfHexArray);
 
         /**
          *  Check for cases where we have no movement possible then
