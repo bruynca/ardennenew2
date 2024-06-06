@@ -703,14 +703,14 @@ public class AIUtil {
         if (iterates < 1000001){
             return;
         }
-        int bypass =1;
+ //       int bypass =1;
 
         /**
          *  get count of hexes in ascending sequence
          */
         ArrayList<HexInt> arrHexCount = AIUtil.countandSortHexes(arrArrayOfHexArray);
         int ix = 0; // initial index of the arr arr
-        if (bypass != 1) {
+//        if (bypass != 1) {
             for (HexInt hi : arrHexCount) {
                 /**
                  *  process if count greater tha 2 greater than
@@ -730,7 +730,7 @@ public class AIUtil {
                     }
                 }
             }
-        }
+  //      }
         iterates = 1;
         for (ArrayList<Hex> arr:arrArrayOfHexArray){
             iterates *= arr.size();

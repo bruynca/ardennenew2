@@ -76,7 +76,20 @@ public class AIProcess{
          *  reduce to a million
          *
          */
+        int iterates = 1;
+        for (ArrayList<Hex> arr:arrArrayOfHexArray){
+            iterates *= arr.size();
+        }
+        Gdx.app.log("AIProcess", "Iteratiosn Before ="+iterates);
+
+
         AIUtil.reduceToMillion(arrArrayOfHexArray);
+        iterates = 1;
+        for (ArrayList<Hex> arr:arrArrayOfHexArray){
+            iterates *= arr.size();
+        }
+        Gdx.app.log("AIProcess", "Iteratiosn After ="+iterates);
+
 
         /**
          *  Check for cases where we have no movement possible then
@@ -138,9 +151,9 @@ public class AIProcess{
          *  add in check for over a specific amount of aiorders
          *  we can reduce
          */
-        if (aiTocheck == 99 & arrAIOrders.size() > 1000){
-            int a = 9/0;   // to be covered
-        }
+ //       if (aiTocheck == 99 & arrAIOrders.size() > 1000){
+ //           int a = 9/0;   // to be covered
+ //       }
 
         AIScorer.Type type = AIScorer.Type.ReinAndMoveOther;
         if(aiTocheck == 99){
