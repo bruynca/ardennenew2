@@ -41,9 +41,11 @@ public class ClickAction implements Observer {
 
         this.unit = unit;
         typeAction = type;
-        unit.getMapCounter().addClickAction(this);
-        arrClickAction.add(this);
-        unitInProcess = null; // when new clickactions added
+        if (unit.getMapCounter() != null) {
+            unit.getMapCounter().addClickAction(this);
+            arrClickAction.add(this);
+            unitInProcess = null; // when new clickactions added
+        }
     }
 
     /**
@@ -183,23 +185,25 @@ public class ClickAction implements Observer {
         }
     }
     public void cancel(){
-        unit.getMapCounter().counterStack.removeHilite();
-        unitInProcess = null;
-        switch(typeAction){
-            case Move:
-                if (hiliteHex != null) {
-                    hiliteHex.remove();
-                }
-                break;
-            case Advance:
-                if (hiliteHex != null) {
-                    hiliteHex.remove();
-                }
-                break;
+        if (unit.getMapCounter() != null) {
+            unit.getMapCounter().counterStack.removeHilite();
+            unitInProcess = null;
+            switch (typeAction) {
+                case Move:
+                    if (hiliteHex != null) {
+                        hiliteHex.remove();
+                    }
+                    break;
+                case Advance:
+                    if (hiliteHex != null) {
+                        hiliteHex.remove();
+                    }
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
 
+            }
         }
     }
     static public void cancelAll(){

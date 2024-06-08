@@ -5,8 +5,6 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.bruinbeargames.ardenne.GameMenuLoader;
-import com.bruinbeargames.ardenne.GameSetup;
-import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.UI.EventAI;
 import com.bruinbeargames.ardenne.Unit.Unit;
@@ -20,11 +18,7 @@ public class AIMover {
     static public AIMover instance;
     private I18NBundle i18NBundle;
     ArrayList<AIOrders> arrToBeScored = new ArrayList<>();
-    Hex hexBastogne1 = Hex.hexTable[8][11];
-    Hex hexBastogne2 = Hex.hexTable[8][12];
-    Hex hexMartelange = Hex.hexTable[9][23];
-    Hex hexWiltz = Hex.hexTable[19][14];
-    Hex hexEttlebruck = Hex.hexTable[28][23];
+
     int[][] bestHexDefenseTurn1 ={{29,9,4},{31,13,4},{33,17,4},{35,20,4},{28,23,4}, // first row of bridges
             {25,8,3},{24,15,3},{29,22,3}, //second row of bridges
             {21,6,3},{18,9,3},{14,10,3},{12,11,3}, // top road
@@ -42,19 +36,8 @@ public class AIMover {
     public void moveAnalysis(boolean isAllies) {
         this.isAllies = isAllies;
         EventAI.instance.show(i18NBundle.format("aimove"));
-        Hex.initAI();
-        Hex.initAIFaker();
-   //     if (NextPhase.instance.getTurn() == 1){
-
-            loadAIScore(bestHexDefenseTurn1);
-            loadAIScoreFaker();
-            creatAIWindow();
-  //          AINew.instance.doAlliesMove();
-  //      }
-        /**
-         *  kick off appropriate scenario
-         */
-        int i=0;
+        AISetScore.instance.scoreMove();
+        creatAIWindow();  // for debugging
 
  /*       if (isAllies && GameSetup.instance.getScenario() == GameSetup.Scenario.Intro) {
             if (NextPhase.instance.getTurn() < 3){ // first reinforcements  
@@ -93,80 +76,6 @@ public class AIMover {
         });
         ardenne.instance.guiStage.addActor(visWindow);
     }
-
-    public void loadAIScore(int[][] bestHexDefenseTurn) {
-        for (int[] hexI:bestHexDefenseTurn){
-            Hex hex = Hex.hexTable[hexI[0]][hexI[1]];
-            hex.setAI(hexI[2]);
-        }
-
-    }
-    private  void loadAIScoreFaker(){
-        /**
-         * bastogne
-         */
-        setScore(hexBastogne1,6,Direction.All);
-        setScore(hexBastogne2,6,Direction.All);
-        if (GameSetup.instance.getScenario() == GameSetup.Scenario.Intro) {
-            setScore(hexWiltz,6,Direction.Right);
-        }else{
-            setScore(hexWiltz,4,Direction.Right);
-        }
-        setScore(hexMartelange,5,Direction.Right);
-        setScore(hexEttlebruck,4,Direction.Left);
-    }
-
-    /**
-     *  set the aiscoreFaker starting at hex
-     *  each branch makes score seem smaller
-     * @param hexIn
-     * @param i -score to start out
-     */
-    public static void setScore(Hex hexIn,int score, Direction direct) {
-        int start = score;
-        hexIn.setAiScoreFaker(start);
-        start--;
-        Hex[][] arrArr =  hexIn.getSurround(start);
-        ArrayList<Hex> arrWork = hexIn.getSurround();
-        for (Hex[] arr:arrArr){
-            for (Hex hex:arr){
-                if (hex.isRoad() || hex.isPath()){
-                    if (direct == Direction.All) {
-                        hex.setAiScoreFaker(start);
-                    }else if (direct == Direction.Right && hexIn.xTable <= hex.xTable){
-                        hex.setAiScoreFaker(start);
-                    }else if (direct == Direction.Left && hexIn.xTable >= hex.xTable ){
-                        hex.setAiScoreFaker(start);
-                    }
-                }
-            }
-            start--;
-        }
-
-    }
-    public static void setScoreAI(Hex hexIn,int score, Direction direct) {
-        int start = score;
-        hexIn.setAiScoreFaker(start);
-        start--;
-        Hex[][] arrArr =  hexIn.getSurround(start);
-        ArrayList<Hex> arrWork = hexIn.getSurround();
-        for (Hex[] arr:arrArr){
-            for (Hex hex:arr){
-                if (hex.isRoad() || hex.isPath()){
-                    if (direct == Direction.All) {
-                        hex.setAI(start);
-                    }else if (direct == Direction.Right && hexIn.xTable <= hex.xTable){
-                        hex.setAI(start);
-                    }else if (direct == Direction.Left && hexIn.xTable >= hex.xTable ){
-                        hex.setAI(start);
-                    }
-                }
-            }
-            start--;
-        }
-
-    }
-    public enum Direction {All, Left, Right};
 
 
     /**

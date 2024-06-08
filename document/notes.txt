@@ -32,3 +32,6 @@ May 23
 		New Scorer required 
 May 29th
 		Set up so that AI stops and can view by pressing Alt left and see AI and AIFakers scores 
+June 6 
+		Set Ap Aiscore and AiFakerScore before calling process 
+		Need new Class AISCorer 

@@ -402,7 +402,9 @@ public class Unit {
 			setArtilleryUnLimbered();
 		}
 		if (!isAirplane) {
-			this.getMapCounter().getCounterStack().setPoints();
+			if (this.getMapCounter() != null) {
+				this.getMapCounter().getCounterStack().setPoints();
+			}
 		}
 	}
 
@@ -430,7 +432,8 @@ public class Unit {
 		if (isOnBoard)
 		{
 			Gdx.app.log("Unit", "placeOnBoard on board already unit="+this.toString());
-			int fail = 9/0;
+//			int fail = 9/0;
+			return;
 		}
 		placeLogic(hex);
 		// log this for saved game

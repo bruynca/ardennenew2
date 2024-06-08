@@ -5,12 +5,10 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.bruinbeargames.ardenne.GameLogic.Reinforcement;
 import com.bruinbeargames.ardenne.Hex.Hex;
-import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.ObserverPackage;
 import com.bruinbeargames.ardenne.UI.WinReinforcements;
 import com.bruinbeargames.ardenne.Unit.Unit;
 import com.bruinbeargames.ardenne.ardenne;
-import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 import com.kotcrab.vis.ui.widget.VisWindow;
 
@@ -18,8 +16,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Observable;
 import java.util.Observer;
-
-import static com.bruinbeargames.ardenne.AI.AIOrders.combine;
 
 
 public class AIReinforcementScenarioOther implements Observer {
@@ -45,10 +41,6 @@ public class AIReinforcementScenarioOther implements Observer {
      */
     ArrayList<Hex> arrCovered = new ArrayList<>();
     private VisWindow visWindow;
-    int[][] bastogneDefense ={{8,11,6},{8,12,6},{9,10,5},{9,11,5},{9,12,5}, // first row of bridges
-            {8,13,5},{10,11,3},{12,11,3},{8,10,5},
-            {7,10,3},{7,11,3},{7,13,3},//second row of bridges
-            {14,10,4},{11,12,4},{9,14,4},{6,18,3},{11,7,2}};
 
 
     public AIReinforcementScenarioOther(){
@@ -315,51 +307,11 @@ public class AIReinforcementScenarioOther implements Observer {
      * @param hex
      */
     private void setupAiScoreandFaker(Hex hex) {
-        Hex.initAI();
-        Hex.initAIFaker();
-        if (hexBastogneReinforceEntry == hexBastogneReinforceEntry){
-            setupBastogne();
-            Hex.addNewAIScoreSurroundGerman();
-        }else{
-            if (hexEttlebruckReinforceEntry == hex){
-                setUpEttleBruck();
-            }else{
-                setUpMatrelange();
-            }
-        }
+        AISetScore.instance.scoreReinforcement(hex);
         creatAIWindow();
-        
     }
 
-    private void setUpMatrelange() {
-    }
 
-    private void setUpEttleBruck() {
-        
-    }
-
-    private void setupBastogne() {
-        AIMover.instance.loadAIScore(AIMover.instance.bestHexDefenseTurn1);
-        /**
-         *  double for ring around Bastogne
-         */
-        for (int[] hexI:bastogneDefense){
-            Hex hex = Hex.hexTable[hexI[0]][hexI[1]];
-            hex.setAI(hexI[2]*2); // multiply by 2
-        }
-        /**
-         *  aff score to the roads
-         */
-        AIMover.setScoreAI(Hex.hexBastogne2, 13, AIMover.Direction.All);
-        /**
-         *  set up score for around entry
-         *
-         */
-        ArrayList<Hex> arrWork = hexBastogneReinforceEntry.getSurroundMapArr(hexBastogneReinforceEntry,3);
-        for (Hex hex: arrWork){
-            hex.setAI(2);
-        }
-    }
     private void creatAIWindow() {
         Gdx.app.log("AIReinforcementScenarioOther", "Create AI Window");
 

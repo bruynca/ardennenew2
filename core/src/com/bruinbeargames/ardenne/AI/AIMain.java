@@ -41,6 +41,7 @@ public class AIMain implements Observer {
     private AIScenario1Turn3to6 aiScenario1Turn3to6;
     private AIScenarioOther aiScenarioOther;
     private AINew aiNew;
+    private AISetScore aiSetScore;
     private boolean isWaitForEvent = false;
 
     /**
@@ -76,6 +77,7 @@ public class AIMain implements Observer {
         aiReinforcementScenarioOther = new AIReinforcementScenarioOther();
         aiScenarioOther = new AIScenarioOther();
         aiNew = new AINew();
+        aiSetScore = new AISetScore();
         loadAIScore();
 
     }
