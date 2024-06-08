@@ -510,6 +510,17 @@ public class AIOrders {
           arrHexMobileAssault.remove(ix);
        }
     }
+    public static void updateAIScore(ArrayList<AIOrders> arrOrders){
+
+        for (AIOrders ai:arrOrders){
+            ai.scoreMain = 0;
+            for (Hex hex:ai.arrHexMoveTo){
+                ai.scoreMain += hex.getAiScore();
+            }
+        }
+        return;
+
+    }
 
     public enum Type{Bombard,MoveTo,SupplyBlocks}
     static class SortbyScoreAscending implements Comparator<AIOrders>{

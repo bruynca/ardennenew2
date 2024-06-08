@@ -7,6 +7,7 @@ import com.bruinbeargames.ardenne.Unit.Unit;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * AIProcess will do common AI routines for Reinforcements and moves
@@ -148,18 +149,24 @@ public class AIProcess{
             return;
         }
         /**
+         *  update the AIORders with preliminary AIScore
+         */
+        AIOrders.updateAIScore(arrAIOrders);
+        /**
          *  add in check for over a specific amount of aiorders
          *  we can reduce
          */
- //       if (aiTocheck == 99 & arrAIOrders.size() > 1000){
- //           int a = 9/0;   // to be covered
- //       }
-
-        AIScorer.Type type = AIScorer.Type.ReinAndMoveOther;
-        if(aiTocheck == 99){
-            type = AIScorer.Type.NewProcess;
+        ArrayList<AIOrders> arrSmall = new ArrayList<>();
+        int maxNumber = 5000;
+        if (arrAIOrders.size() > maxNumber){
+            Collections.sort(arrAIOrders, new AIOrders.SortbyScoreDescending());
+            int end = arrAIOrders.size()-1;
+            int start =maxNumber;
+            List<AIOrders> arrWork = arrAIOrders.subList(0,maxNumber);
+            arrSmall = new ArrayList<AIOrders>(arrWork);
         }
-        AIFaker.instance.startScoringOrders(arrAIOrders, type, true);
+        AIScorer.Type type = AIScorer.Type.NewProcess;
+        AIFaker.instance.startScoringOrders(arrSmall, type, true);
     }
 
     private void reduceHexsToCheck(ArrayList<ArrayList<Hex>> arrArrayOfHexArray, int aiToCheck) {

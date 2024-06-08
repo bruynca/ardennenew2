@@ -35,3 +35,7 @@ May 29th
 June 6 
 		Set Ap Aiscore and AiFakerScore before calling process 
 		Need new Class AISCorer 
+		
+JUne 8
+		MoveAlied0  - first Turn 
+		Allied Turn 3 Move   first reinforcements 

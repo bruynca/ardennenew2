@@ -51,6 +51,7 @@ public class AISetScore {
         if (hexBastogneReinforceEntry == hex){
             setupBastogne();
             Hex.addNewAIScoreSurroundGerman();
+            loadAIScoreFakerBastogne();
         }else{
             if (hexEttlebruckReinforceEntry == hex){
                 setUpEttleBruck();
@@ -62,7 +63,7 @@ public class AISetScore {
 
     private void doInitialTurns() {
         loadAIScore(bestHexDefenseTurn1);
-        loadAIScoreFaker();
+        loadAIScoreFakerInitial();
     }
     public void loadAIScore(int[][] bestHexs) {
         for (int[] hexI:bestHexs){
@@ -71,7 +72,7 @@ public class AISetScore {
         }
 
     }
-    private  void loadAIScoreFaker(){
+    private  void loadAIScoreFakerInitial(){
         /**
          * bastogne
          */
@@ -86,6 +87,22 @@ public class AISetScore {
         setScore(hexEttlebruck,4,Direction.Left);
     }
 
+    private  void loadAIScoreFakerBastogne(){
+        /**
+         * bastogne
+         */
+        setScore(hexBastogne1,8,Direction.All);
+        setScore(hexBastogne2,8,Direction.All);
+        /**
+         *  double for ring around bastogne
+         */
+        for (int[] hexI:bastogneDefenseReinforcement){
+            Hex hex = Hex.hexTable[hexI[0]][hexI[1]];
+            hex.setAiScoreFaker(hex.getAiScoreFaker()*2); // multiply by 2
+        }
+
+
+    }
     /**
      *  set the aiscoreFaker starting at hex
      *  each branch makes score seem smaller
@@ -139,7 +156,7 @@ public class AISetScore {
 
 
 
-    public enum Direction {All, Left, Right};
+    public enum Direction {All, Left, Right, };
     private void setUpMatrelange() {
     }
 

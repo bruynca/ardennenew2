@@ -80,7 +80,7 @@ public class WinReinforcements {
     boolean isWindowActive = false;
     boolean isAI=false;
 
-    public WinReinforcements(boolean isAI) {
+    public WinReinforcements(final boolean isAI) {
         isWindowActive = true;
         this.isAI = isAI;
         stage= ardenne.instance.guiStage;
@@ -103,6 +103,9 @@ public class WinReinforcements {
         image.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                if (isAI){
+                    return;
+                }
                 if (arrUnits.size() > 0 && isStillReinforcements){
                     EventPopUp.instance.show(i18NBundle.format("exitreinforcements"));
                     isStillReinforcements = false;
