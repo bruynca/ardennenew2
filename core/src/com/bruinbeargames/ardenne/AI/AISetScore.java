@@ -3,6 +3,7 @@ package com.bruinbeargames.ardenne.AI;
 import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.NextPhase;
+import com.bruinbeargames.ardenne.Unit.Unit;
 
 import java.util.ArrayList;
 
@@ -32,7 +33,8 @@ public class AISetScore {
     Hex hexBastogneReinforceEntry = Hex.hexTable[0][19];
     Hex hexMartelangeReinforceEntry = Hex.hexTable[9][24];
     Hex hexEttlebruckReinforceEntry = Hex.hexTable[28][24];
-
+    ArrayList<Unit> arrUnits = new ArrayList<>();
+    ArrayList<Hex>[] arrMoves = null;
     AISetScore(){
         instance = this;
     }
@@ -42,8 +44,23 @@ public class AISetScore {
         if (NextPhase.instance.getTurn() < 4){
             doInitialTurns();
             return;
+        }else{
+            if (GameSetup.instance.getScenario() == GameSetup.Scenario.Intro){
+
+            }
         }
 
+    }
+
+    /**
+     *  used for scenario 1 to detemine attack against bastogne or wilts
+     * @param arrUnits
+     * @param arrWork
+     */
+    public  void scoreMove(ArrayList<Unit> arrUnits, ArrayList<Hex>[] arrWork){
+        this.arrUnits = arrUnits;
+        arrMoves = arrWork;
+        scoreMove();
     }
     public void scoreReinforcement(Hex hex) {
         Hex.initAI();

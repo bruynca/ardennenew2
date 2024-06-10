@@ -39,3 +39,9 @@ June 6
 JUne 8
 		MoveAlied0  - first Turn 
 		Allied Turn 3 Move   first reinforcements 
+June 10
+		Basis for AI is to set AIScore for initial placement, Reduce Iterations, Set AIFaker Score for Skorer
+		
+		In AISCorer logic for the turn
+
+			Allied Turn 4 No AISCore set up

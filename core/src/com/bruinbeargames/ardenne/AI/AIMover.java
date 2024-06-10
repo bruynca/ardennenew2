@@ -36,7 +36,6 @@ public class AIMover {
     public void moveAnalysis(boolean isAllies) {
         this.isAllies = isAllies;
         EventAI.instance.show(i18NBundle.format("aimove"));
-        AISetScore.instance.scoreMove();
         creatAIWindow();  // for debugging
 
  /*       if (isAllies && GameSetup.instance.getScenario() == GameSetup.Scenario.Intro) {

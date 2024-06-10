@@ -41,6 +41,8 @@ public class AINew implements Observer {
          *  get all moves possible
          */
         ArrayList<Hex>[] arrMoves = AIUtil.getUnitsMaxMove(arrUnits,0, false);
+        AISetScore.instance.scoreMove(arrUnits,arrMoves);
+
         /**
          *  remove any that have no AI score
          *
@@ -70,7 +72,6 @@ public class AINew implements Observer {
         }
         int b =0;
         ArrayList<Hex> arrDupes = new ArrayList<>(); // no dupes at moment
-
         aiProcess = new AIProcess(arrUnits,arrArr,arrDupes,99);
         if (aiProcess.isFailed()){
             EventAI.instance.hide();
