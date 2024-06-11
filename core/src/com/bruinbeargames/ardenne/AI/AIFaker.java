@@ -7,6 +7,7 @@ import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
 import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.ObserverPackage;
+import com.bruinbeargames.ardenne.UI.EventAI;
 import com.bruinbeargames.ardenne.Unit.Unit;
 import com.bruinbeargames.ardenne.Unit.UnitHex;
 
@@ -25,6 +26,8 @@ public class AIFaker extends Observable {
     static public Hex hexBlockWiltz = Hex.hexTable[24][15];
     static boolean isThreadAlive = false;
     int numThreads = 10;
+    float numIterations= 0;
+    float  numIterationsStart = 0;
     boolean isAllies;
     ArrayList<AIOrders> arrOrders;
 
@@ -58,6 +61,10 @@ public class AIFaker extends Observable {
             numThreads =2;
             AIUtil.reduceIterations(arrAIOrders);
         }
+        numIterationsStart =arrAIOrders.size()/numThreads;
+        numIterations = 1;
+
+        EventAI.instance.startCount(1);
 
         arrOrders = arrAIOrders;
         AIScorer.instance.initialize(type);
@@ -193,6 +200,9 @@ public class AIFaker extends Observable {
                     }
                     AIFaker.setFakeOccupied(aiO, false, thread);
                     AIFaker.resetZOC(aiO, thread);
+                    if (thread == 1){
+                        numIterations++;
+                    }
 
                 }
                 /**
@@ -316,4 +326,12 @@ public class AIFaker extends Observable {
     }
 
 
+    public int getPercentDone() {
+        float p = numIterations/numIterationsStart * 100f;
+        int percent = (int)p;
+        if (percent == 0){
+            percent = 1;
+        }
+        return percent;
+    }
 }

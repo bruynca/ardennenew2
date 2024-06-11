@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.Phase;
+import com.bruinbeargames.ardenne.UI.EventAI;
 import com.bruinbeargames.ardenne.Unit.Unit;
 import com.bruinbeargames.ardenne.ardenne;
 import com.kotcrab.vis.ui.widget.VisTextButton;
@@ -164,7 +165,7 @@ public class AIProcess{
          *  we can reduce
          */
         ArrayList<AIOrders> arrSmall = new ArrayList<>();
-        int maxNumber = 5000;
+        int maxNumber = 20000;
         if (arrAIOrders.size() > maxNumber){
             Collections.sort(arrAIOrders, new AIOrders.SortbyScoreDescending());
             int end = arrAIOrders.size()-1;
@@ -179,6 +180,7 @@ public class AIProcess{
         }
     }
     private void doHandOff(ArrayList<AIOrders> arrOrders){
+//        EventAI.instance.setIterations(arrOrders.size());
         AIScorer.Type type = AIScorer.Type.NewProcess;
         AIFaker.instance.startScoringOrders(arrOrders, type, true);
 

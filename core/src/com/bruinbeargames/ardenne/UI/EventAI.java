@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.I18NBundle;
+import com.bruinbeargames.ardenne.AI.AIFaker;
 import com.bruinbeargames.ardenne.Fonts;
 import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.ardenne;
@@ -77,6 +78,7 @@ public class EventAI{
         group.toFront();
         ardenne.instance.guiStage.addActor(group);
         ardenne.instance.setAIRender(true);
+        percent =0;
 
  /* attempt for modal       NinePatch np = new NinePatch(UILoader.instance.unitSelection.asset.get("window"), 10, 10, 33, 6);
         Window.WindowStyle windowStyle = new Window.WindowStyle(Fonts.getFont24(), Color.WHITE, new NinePatchDrawable(np));
@@ -119,7 +121,7 @@ public class EventAI{
         backgroundImage = new Image();
         backgroundImage.setDrawable(new NinePatchDrawable(np));
         backgroundImage.setHeight(281 );
-        backgroundImage.setWidth(500 );
+        backgroundImage.setWidth(510 );
         backgroundImage.setPosition((Gdx.graphics.getWidth() / 2) - (250 / 1f),
                 (Gdx.graphics.getHeight() / 2) - (140 / 1f));
         group.addActor(backgroundImage);
@@ -131,7 +133,7 @@ public class EventAI{
             style.font.getData().scale(0f);
         }
         textLabel = new Label("",style);
-        textLabel.setSize(480/1f, 260/1f);
+        textLabel.setSize(490/1f, 260/1f);
         textLabel.setPosition(backgroundImage.getX() + backgroundImage.getWidth()/2 - textLabel.getWidth()/2, backgroundImage.getY() + backgroundImage.getHeight()/2 - textLabel.getWidth()/2);
         textLabel.setVisible(true);
 
@@ -152,11 +154,15 @@ public class EventAI{
 
     public void tick() {
         cntTic++;
-        String textNew = "";
-        switch(cntTic){
-            case 0:textNew=text+s1;
+        String textNew = text+"";
+        if (percent > 0){
+            int done =  AIFaker.instance.getPercentDone();
+            textNew = text +" "+done+"%";
+        }
+ /*       switch(cntTic){
+            case 0:textNew=text+" 100";
                 break;
-            case 1:textNew=text+s2;
+            case 1:textNew=text+" 99";
                 break;
             case 2:textNew=text+s3;
                 break;
@@ -166,12 +172,16 @@ public class EventAI{
                 break;
             case 5:textNew=text+s6;
                 break;
-        }
+        } */
 
         if (cntTic > 4){
             cntTic = 0;
         }
         textLabel.setText(textNew);
 
+    }
+    int percent = 0;
+    public void startCount(int percent) {
+        this.percent = percent;
     }
 }
