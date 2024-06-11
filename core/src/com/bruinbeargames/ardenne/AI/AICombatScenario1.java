@@ -43,8 +43,8 @@ public class AICombatScenario1 {
         ArrayList<AIOrdersCombat> arrREmove = new ArrayList<>();
         for (AIOrdersCombat aiC:arrToBeScored){
             for (Unit unit: aiC.getUnits()){
-                if (Hex.arrMajorCities.contains(unit.getHexOccupy()) &&
-                    !Hex.arrMajorCities.contains(aiC.hexAttackedByUnits.getHex())){
+                if (Hex.arrMajorCities.contains(unit.getHexOccupy())){// &&
+ //                   !Hex.arrMajorCities.contains(aiC.hexAttackedByUnits.getHex())){
                     arrREmove.add(aiC);
                     break;
                 }
@@ -72,7 +72,10 @@ public class AICombatScenario1 {
                         arrUnitsToRemove.add(unit);
                     }
                 }
-                if (aic.hexAttackedByUnits.getArrUnits().size() > 0 &&  aic.getScore() > 1.0f) {
+                if (aic.hexAttackedByUnits.getArrUnits().size() > 0 &&  aic.getScore() > 1.5f) {
+                    float combatscore = aic.getScore();
+                    Gdx.app.log("AICombatScenario1", "Instance="+instance);
+
                     arrViable.add(aic);
                 }
 

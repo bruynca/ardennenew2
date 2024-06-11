@@ -1,5 +1,6 @@
 package com.bruinbeargames.ardenne.AI;
 
+import com.badlogic.gdx.Gdx;
 import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.NextPhase;
@@ -46,11 +47,19 @@ public class AISetScore {
             return;
         }else{
             if (GameSetup.instance.getScenario() == GameSetup.Scenario.Intro){
-
+                AIReinforcementScenario1.BastogneWiltzDefenseStatus bastogneStatus =
+                        new AIReinforcementScenario1.BastogneWiltzDefenseStatus(arrUnits,arrMoves);
+                Gdx.app.log("AISetScore", "Strategy="+bastogneStatus.strategy);
+                if (bastogneStatus.strategy == AIReinforcementScenario1.StrategyBastogne.WiltzAttack ||
+                    bastogneStatus.strategy == AIReinforcementScenario1.StrategyBastogne.WiltzFree){
+                    scoreWiltzScene1();
+                    return;
+                }
             }
         }
 
     }
+
 
     /**
      *  used for scenario 1 to detemine attack against bastogne or wilts
@@ -120,11 +129,32 @@ public class AISetScore {
 
 
     }
+    private void scoreWiltzScene1() {
+        setScoreAI(hexWiltz,12,Direction.All);
+        for (Hex hex:hexWiltz.getSurround()){
+            if (hex.isAlliedZOC()){
+                hex.setAI(hex.getAiScore()*2);
+            }
+        }
+        /**
+         *  faker
+         */
+        setScore(hexWiltz,4,Direction.All);
+        for (Hex hex:hexWiltz.getSurround()){
+            if (hex.isAlliedZOC()){
+                hex.setAiScoreFaker(hex.getAiScoreFaker()*2);
+            }
+        }
+
+
+
+    }
+
     /**
      *  set the aiscoreFaker starting at hex
      *  each branch makes score seem smaller
      * @param hexIn
-     * @param i -score to start out
+     * @param score -score to start out
      */
     public static void setScore(Hex hexIn,int score, Direction direct) {
         int start = score;
@@ -148,8 +178,9 @@ public class AISetScore {
         }
 
     }
-    public static void setScoreAI(Hex hexIn,int score, Direction direct) {
+    public static ArrayList<Hex>  setScoreAI(Hex hexIn,int score, Direction direct) {
         int start = score;
+        ArrayList<Hex> arrScored = new ArrayList<>();
         hexIn.setAiScoreFaker(start);
         start--;
         Hex[][] arrArr =  hexIn.getSurround(start);
@@ -159,16 +190,19 @@ public class AISetScore {
                 if (hex.isRoad() || hex.isPath()){
                     if (direct == Direction.All) {
                         hex.setAI(start);
+                        arrWork.add(hex);
                     }else if (direct == Direction.Right && hexIn.xTable <= hex.xTable){
+                        arrWork.add(hex);
                         hex.setAI(start);
                     }else if (direct == Direction.Left && hexIn.xTable >= hex.xTable ){
+                        arrWork.add(hex);
                         hex.setAI(start);
                     }
                 }
             }
             start--;
         }
-
+        return arrScored;
     }
 
 

@@ -45,3 +45,8 @@ June 10
 		In AISCorer logic for the turn
 
 			Allied Turn 4 No AISCore set up
+			
+			
+			Difference between    AISCore  - to cut down iterations where we want units to go 
+								  AISCoreFaker - what the scorer will be counting 
+		

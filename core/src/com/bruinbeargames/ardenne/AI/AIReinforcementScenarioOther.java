@@ -308,6 +308,7 @@ public class AIReinforcementScenarioOther implements Observer {
      */
     private void setupAiScoreandFaker(Hex hex) {
         AISetScore.instance.scoreReinforcement(hex);
+ //       doNextRinActual();
         creatAIWindow();
     }
 

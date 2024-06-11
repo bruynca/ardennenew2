@@ -4,6 +4,7 @@ import com.bruinbeargames.ardenne.GameLogic.Attack;
 import com.bruinbeargames.ardenne.GameLogic.Combat;
 import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
 import com.bruinbeargames.ardenne.GameLogic.Supply;
+import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.Hex.HexHandler;
 import com.bruinbeargames.ardenne.NextPhase;
@@ -82,7 +83,8 @@ public class AIScorer {
                 score += getAttackBastogne(aiO,thread);
                 break;
             case NewProcess:
-                score += accumulateGerman(aiO,arrGermans,thread);
+                score +=newProcess(aiO,arrGermans,thread);
+ //               score += accumulateGerman(aiO,arrGermans,thread);
                 break;
             default:
                 score = getGermanPenetration(arrGermans,aiO,thread);
@@ -93,6 +95,17 @@ public class AIScorer {
         }
 
         return score;
+    }
+
+    private int newProcess(AIOrders aiO, ArrayList<Unit> arrGermans, int thread) {
+        if (NextPhase.instance.getTurn() < 4){
+            return accumulateGerman(aiO,arrGermans,thread);
+        }
+        if (GameSetup.instance.getScenario() == GameSetup.Scenario.Intro){
+            return getAttackBastogne(aiO,thread);
+        }
+        return accumulateGerman(aiO,arrGermans,thread);
+
     }
 
     /**

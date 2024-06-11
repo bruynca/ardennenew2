@@ -195,7 +195,9 @@ public class Move extends Observable {
 
         float delay = .42f;
         WinModal.instance.set(); // freeze counters
-        unit.getMapCounter().getCounterStack().setPoints();
+        if (unit.getMapCounter() != null) {
+            unit.getMapCounter().getCounterStack().setPoints();
+        }
       //  unit.getMapCounter().getCounterStack().setSupplyGas();
         float steps = delay / arrMove.size();
         float timer = steps;

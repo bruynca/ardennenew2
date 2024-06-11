@@ -1,9 +1,15 @@
 package com.bruinbeargames.ardenne.AI;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.bruinbeargames.ardenne.Hex.Hex;
-import com.bruinbeargames.ardenne.Hex.HexInt;
+import com.bruinbeargames.ardenne.NextPhase;
+import com.bruinbeargames.ardenne.Phase;
 import com.bruinbeargames.ardenne.Unit.Unit;
+import com.bruinbeargames.ardenne.ardenne;
+import com.kotcrab.vis.ui.widget.VisTextButton;
+import com.kotcrab.vis.ui.widget.VisWindow;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,6 +32,7 @@ public class AIProcess{
      */
     private boolean isFailed = false;
     ArrayList<AIOrders> arrAIOrders = new ArrayList<>();
+    private VisWindow visWindow;
 
     /**
      *  Create AIOrders Array for passed paramaters.
@@ -165,8 +172,16 @@ public class AIProcess{
             List<AIOrders> arrWork = arrAIOrders.subList(0,maxNumber);
             arrSmall = new ArrayList<AIOrders>(arrWork);
         }
+        if (NextPhase.instance.getPhase() != Phase.ALLIED_REINFORCEMENT.ordinal()){
+            creatAIWindow(arrSmall);
+        }else{
+            doHandOff(arrSmall);
+        }
+    }
+    private void doHandOff(ArrayList<AIOrders> arrOrders){
         AIScorer.Type type = AIScorer.Type.NewProcess;
-        AIFaker.instance.startScoringOrders(arrSmall, type, true);
+        AIFaker.instance.startScoringOrders(arrOrders, type, true);
+
     }
 
     private void reduceHexsToCheck(ArrayList<ArrayList<Hex>> arrArrayOfHexArray, int aiToCheck) {
@@ -192,5 +207,21 @@ public class AIProcess{
 
     public ArrayList<AIOrders> getAIOrders() {
         return arrAIOrders;
+    }
+    private void creatAIWindow(final ArrayList<AIOrders> arrSmall) {
+        Gdx.app.log("AIProcess", "Create AI Window");
+
+        visWindow = new VisWindow("AI View");
+        VisTextButton visTextButton = new VisTextButton("Run");
+        visWindow.add(visTextButton);
+        visTextButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                visWindow.remove();
+                doHandOff(arrSmall);
+            }
+
+        });
+        ardenne.instance.guiStage.addActor(visWindow);
     }
 }

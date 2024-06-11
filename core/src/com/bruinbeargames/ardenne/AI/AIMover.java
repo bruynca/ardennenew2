@@ -36,7 +36,9 @@ public class AIMover {
     public void moveAnalysis(boolean isAllies) {
         this.isAllies = isAllies;
         EventAI.instance.show(i18NBundle.format("aimove"));
-        creatAIWindow();  // for debugging
+        AINew.instance.doAlliesMove();
+
+//        creatAIWindow();  // for debugging
 
  /*       if (isAllies && GameSetup.instance.getScenario() == GameSetup.Scenario.Intro) {
             if (NextPhase.instance.getTurn() < 3){ // first reinforcements  
@@ -59,22 +61,7 @@ public class AIMover {
 
     }
 
-    private void creatAIWindow() {
-        Gdx.app.log("AIMOVe", "Create AI Window");
 
-        visWindow = new VisWindow("AI View");
-        VisTextButton visTextButton = new VisTextButton("Run");
-        visWindow.add(visTextButton);
-        visTextButton.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                visWindow.remove();
-                AINew.instance.doAlliesMove();
-            }
-
-        });
-        ardenne.instance.guiStage.addActor(visWindow);
-    }
 
 
     /**
