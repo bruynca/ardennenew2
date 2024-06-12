@@ -700,7 +700,7 @@ public class AIUtil {
         for (ArrayList<Hex> arr:arrArrayOfHexArray){
             iterates *= arr.size();
         }
-        if (iterates < 1000001){
+        if (iterates > 0 && iterates < 1000001){ // check for overflow
             return;
         }
  //       int bypass =1;
@@ -735,19 +735,25 @@ public class AIUtil {
         for (ArrayList<Hex> arr:arrArrayOfHexArray){
             iterates *= arr.size();
         }
-        if (iterates < 1000001){
+        if (iterates > 0 && iterates < 1000001){
             return;
         }
-        float ratio = (float)iterates/1000000;
+        float ratio = 4;//(float)iterates/1000000;   shrink be a 1/4
 
         /**
          *  if we are still above a million will reduce counts based on ratio
          */
-        for (ArrayList<Hex> arr:arrArrayOfHexArray){
-            if (arr.size() > 4){
-                int end = arr.size() -1;
-                int start = (int) (arr.size()/ratio);
-                arr.subList(start,end).clear();
+        while (!(iterates > 0 && iterates < 1000001)) {
+            for (ArrayList<Hex> arr : arrArrayOfHexArray) {
+                if (arr.size() > 4) {
+                    int end = arr.size() - 1;
+                    int start = (int) (arr.size() / ratio);
+                    arr.subList(start, end).clear();
+                }
+            }
+            iterates = 1;
+            for (ArrayList<Hex> arr:arrArrayOfHexArray){
+                iterates *= arr.size();
             }
         }
 

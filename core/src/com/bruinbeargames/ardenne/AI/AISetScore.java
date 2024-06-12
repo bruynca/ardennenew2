@@ -54,11 +54,14 @@ public class AISetScore {
                     bastogneStatus.strategy == AIReinforcementScenario1.StrategyBastogne.WiltzFree){
                     scoreWiltzScene1();
                     return;
+                }else{
+                    scoreBastogneScene1();
                 }
             }
         }
 
     }
+
 
 
     /**
@@ -130,25 +133,48 @@ public class AISetScore {
 
     }
     private void scoreWiltzScene1() {
-        setScoreAI(hexWiltz,12,Direction.All);
+        setScoreAI(hexWiltz,10,Direction.All);
         for (Hex hex:hexWiltz.getSurround()){
-            if (hex.isAlliedZOC()){
-                hex.setAI(hex.getAiScore()*2);
-            }
+                hex.setAI(10);
         }
         /**
-         *  faker
          */
-        setScore(hexWiltz,4,Direction.All);
+        setScore(hexWiltz,5,Direction.All);
+
+        hexWiltz.setAiScoreFaker(8);
         for (Hex hex:hexWiltz.getSurround()){
-            if (hex.isAlliedZOC()){
-                hex.setAiScoreFaker(hex.getAiScoreFaker()*2);
-            }
+ //           if (hex.isAlliedZOC()){
+                hex.setAiScoreFaker(7);
+ //           }
         }
 
 
 
     }
+    private void scoreBastogneScene1() {
+        setScoreAI(hexBastogne1, 12, Direction.All);
+        for (Hex hex : hexBastogne1.getSurround()) {
+            hex.setAI(10);
+        }
+        /**
+         *
+         */
+        setScore(hexBastogne1, 8, Direction.All);
+        hexBastogne1.setAiScoreFaker(10);
+        hexBastogne2.setAiScoreFaker(10);
+        for (Hex hex : hexBastogne1.getSurround()) {
+            //           if (hex.isAlliedZOC()){
+            hex.setAiScoreFaker(7);
+            //           }
+        }
+        for (Hex hex : hexBastogne2.getSurround()) {
+            //           if (hex.isAlliedZOC()){
+            hex.setAiScoreFaker(7);
+            //           }
+        }
+    }
+
+
 
     /**
      *  set the aiscoreFaker starting at hex

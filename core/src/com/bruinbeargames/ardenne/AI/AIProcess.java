@@ -64,6 +64,7 @@ public class AIProcess{
          * This is no longer used
          * see next routine
          */
+
   /*      if (aiTocheck < 99) {
             reduceHexsToCheck(arrArrayOfHexArray, aiTocheck);
 
@@ -82,12 +83,28 @@ public class AIProcess{
             }
         }*/
         /**
+         *  remove units that are iin major cities
+         *  don want to move out
+         */
+        ArrayList<Unit> arrInBastogne = new ArrayList<>();
+        for (Unit unit:arrUnitsIn){
+            if (Hex.arrMajorCities.contains(unit.getHexOccupy())){
+                int ix = arrUnitsIn.indexOf(unit);
+                arrArrayOfHexArray.remove(ix);
+                arrInBastogne.add(unit);
+            }
+        }
+        arrUnitsIn.removeAll(arrInBastogne);
+        /**
          *  reduce to a million
          *
          */
         int iterates = 1;
         for (ArrayList<Hex> arr:arrArrayOfHexArray){
             iterates *= arr.size();
+            if (arr.contains(AISetScore.instance.hexWiltz)){
+                int b=0;
+            }
         }
         Gdx.app.log("AIProcess", "Iteratiosn Before ="+iterates);
 
@@ -165,7 +182,7 @@ public class AIProcess{
          *  we can reduce
          */
         ArrayList<AIOrders> arrSmall = new ArrayList<>();
-        int maxNumber = 20000;
+        int maxNumber = 90000;
         if (arrAIOrders.size() > maxNumber){
             Collections.sort(arrAIOrders, new AIOrders.SortbyScoreDescending());
             int end = arrAIOrders.size()-1;

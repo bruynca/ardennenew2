@@ -8,6 +8,7 @@ import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.Hex.HexHandler;
 import com.bruinbeargames.ardenne.NextPhase;
+import com.bruinbeargames.ardenne.Phase;
 import com.bruinbeargames.ardenne.Unit.Unit;
 import com.bruinbeargames.ardenne.Unit.UnitHex;
 import com.bruinbeargames.ardenne.Unit.UnitMove;
@@ -98,11 +99,15 @@ public class AIScorer {
     }
 
     private int newProcess(AIOrders aiO, ArrayList<Unit> arrGermans, int thread) {
-        if (NextPhase.instance.getTurn() < 4){
+        if (NextPhase.instance.getTurn() < 4 && NextPhase.instance.getPhase() != Phase.ALLIED_REINFORCEMENT.ordinal()){
             return accumulateGerman(aiO,arrGermans,thread);
         }
         if (GameSetup.instance.getScenario() == GameSetup.Scenario.Intro){
-            return getAttackBastogne(aiO,thread);
+            int score =0;
+            for (Hex hex:aiO.arrHexMoveTo){
+                score +=hex.getAiScoreFaker();
+            }
+            return score;
         }
         return accumulateGerman(aiO,arrGermans,thread);
 
@@ -325,7 +330,32 @@ public class AIScorer {
         }
         return score;
     }
+    private int scoreCloseToWiltz(AIOrders aiO) {
+        int score = 0;
+        for (Hex hex: aiO.arrHexMoveTo) {
+            float len = HexHandler.shortestLine(AIReinforcementScenario1.hexWiltz, hex);
+            score += 7 - len;
+        }
+        return score;
+    }
+    private int getAttackWiltz(AIOrders aiO, int thread) {
+        int score = 0;
+        score = aiO.getScoreMain();
+        score += scoreCloseToWiltz(aiO);
 
+        /**
+         *  just in case we are actually able to get in
+         */
+        ArrayList<Hex> arrWilt = AIReinforcementScenario1.hexWiltz.getSurround();
+        for (Hex hex:aiO.arrHexMoveTo){
+            if (arrWilt.contains(hex)) {
+                score += 5;
+            }
+       }
+
+        return score;
+
+    }
     /**
      *  find all units that can attack a hex and create an attackscorer
      *  adjust for closenesst to bastogne
@@ -637,14 +667,19 @@ public class AIScorer {
         for (Unit unit:arrGermans){
 
             //          Gdx.app.log("AIFaker", "creatGermanMove="+unit);
-            UnitMove unitMove = new UnitMove(unit,unit.getCurrentMovement(),true,true,thread);
-            arrArrHex[i] = unitMove.getMovePossible(thread);
+            if (unit.getCurrentMovement() > 7) {
+                UnitMove unitMove = new UnitMove(unit, unit.getCurrentMovement(), true, true, thread);
+                arrArrHex[i] = unitMove.getMovePossible(thread);
  /*           if (arrArrHex[i].contains(Wiltz) || arrArrHex[i].contains(Hex.hexTable[8][11])) {
                 WinAIDisplay.instance.addSpecial(arrArrHex[i]);
                 int bk=0;
             }*/
 
+            }else{
+                arrArrHex[i] = new ArrayList<Hex>();
+            }
             i++;
+
         }
         return arrArrHex;
     }
