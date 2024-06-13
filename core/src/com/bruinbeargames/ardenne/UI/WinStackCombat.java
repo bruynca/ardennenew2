@@ -3,6 +3,7 @@ package com.bruinbeargames.ardenne.UI;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -39,7 +40,8 @@ import java.util.Observer;
 
 public class WinStackCombat implements Observer {
     TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
-    TextureRegion ok =  textureAtlas.findRegion("ok");
+    Texture ok =  SplashScreen.instance.getOkButton();
+
 
     TextTooltip.TextTooltipStyle tooltipStyle;
     Window window;
@@ -74,7 +76,7 @@ public class WinStackCombat implements Observer {
         lab.setScale(1.5f);
         lab.setAlignment(Align.center);
         Image image = new Image(ok);
-        image.setScale(1.5f);
+        image.setScale(1.2f);
         image.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

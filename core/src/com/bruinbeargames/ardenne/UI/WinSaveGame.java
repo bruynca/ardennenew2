@@ -2,6 +2,7 @@ package com.bruinbeargames.ardenne.UI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -37,7 +38,8 @@ public class WinSaveGame {
     TextureAtlas textureAtlas2 = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
 
     TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
-    TextureRegion ok =  textureAtlas.findRegion("ok");
+    Texture ok =  SplashScreen.instance.getOkButton();
+
     TextureRegion close =  textureAtlas.findRegion("close");
 
     TextTooltip.TextTooltipStyle tooltipStyle;

@@ -56,6 +56,7 @@ public class SplashScreen {
     private GameMenu gameMenu;
     private Array<Actor> arrActorsMenu;
     Sound sound;
+    Texture okButton;
 
 
     public SplashScreen() {
@@ -80,6 +81,11 @@ public class SplashScreen {
         assetManager.load("menus/splashmap.png", Texture.class);
         assetManager.finishLoading();
         Texture splashmap = assetManager.get("menus/splashmap.png", Texture.class);
+
+        assetManager.load("menus/checkbox.png", Texture.class);
+        assetManager.finishLoading();
+        okButton = assetManager.get("menus/checkbox.png", Texture.class);
+
         assetManager.load("logo/logo.txt", TextureAtlas.class);
         assetManager.finishLoading();
         logoAtlas = assetManager.get("logo/logo.txt");
@@ -250,6 +256,11 @@ public class SplashScreen {
         return map;
 
     }
+
+    public Texture getOkButton() {
+        return okButton;
+    }
+
     public void reStart(){
         stage.addActor(splashImage);
         gameMenu = new GameMenu(stage, sound,atlas,screenHeight, screenWidth);

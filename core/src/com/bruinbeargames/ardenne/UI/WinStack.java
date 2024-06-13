@@ -3,6 +3,7 @@ package com.bruinbeargames.ardenne.UI;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -38,9 +39,10 @@ import java.util.Observer;
 
 public class WinStack  implements  Observer {
          TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
-         TextureRegion ok =  textureAtlas.findRegion("ok");
+    Texture ok =  SplashScreen.instance.getOkButton();
 
-        TextTooltip.TextTooltipStyle tooltipStyle;
+
+    TextTooltip.TextTooltipStyle tooltipStyle;
         Window window;
         Stage stage;
         int cntCountersToProcess =0;
@@ -67,7 +69,7 @@ public class WinStack  implements  Observer {
             String title = i18NBundle.format("moastackwindow");
             window = new Window(title, windowStyle);
             Label lab = window.getTitleLabel();
-            lab.setScale(1.5f);
+            lab.setScale(1.2f);
             lab.setAlignment(Align.center);
             Image image = new Image(ok);
             image.setScale(1.5f);

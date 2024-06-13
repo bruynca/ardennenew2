@@ -50,7 +50,6 @@ public class WinCardsChoice {
     TextTooltip.TextTooltipStyle tooltipStyle;
     private EventListener hitOK;
     TextureAtlas textureAtlas = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
-    TextureRegion close =  textureAtlas.findRegion("close");
     TextureAtlas textureAtlas2 = SplashScreen.instance.unitsManager.get("units/germancounteratlas.txt");
     TextureRegion shaded =  textureAtlas2.findRegion("moved");
 
@@ -68,7 +67,7 @@ public class WinCardsChoice {
     static float scaleCardImage = .4f;
     float imgCardHeight =0;
     float imgCardWidth =0;
-    TextureRegion ok =  textureAtlas.findRegion("ok");
+    Texture ok =  SplashScreen.instance.getOkButton();
 
 
     public WinCardsChoice(boolean isAllies){
@@ -120,7 +119,7 @@ public class WinCardsChoice {
          *  set close for window and logic
          */
         Image image = new Image(ok);
-        image.setScale(2.0f);
+        image.setScale(1.2f);
 
         image.addListener(new ClickListener() {
             @Override
