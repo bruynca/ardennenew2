@@ -317,7 +317,7 @@ public class AIExecute {
             aiExMove = this;
             arrUnits.addAll(aiOrders.arrUnit);
             arrHexes.addAll(aiOrders.arrHexMoveTo);
-            arrMOA.addAll(aiOrders.arrHexMobileAssault);
+            //arrMOA.addAll(aiOrders.arrHexMobileAssault);
             if (aiOrders.arrUnit.get(0).isAllies) {
                 isAllies = true;
             } else {
@@ -347,6 +347,8 @@ public class AIExecute {
                     CenterScreen.instance.start(unitCurrent.getHexOccupy());
                     return;
                 }
+                int i=0;
+                return;
 
             }
             /**
@@ -362,18 +364,19 @@ public class AIExecute {
 
             unitCurrent = arrUnits.get(0);
             hexCurrent = arrHexes.get(0);
-            if (arrMOA.get(0) != null) {
+            hexMOA = null;
+            /*if (arrMOA.get(0) != null) {
                 hexMOA = arrMOA.get(0);
             }else{
                 hexMOA = null;
-            }
+            }*/
             arrUnits.remove(0);
             arrHexes.remove(0);
-            arrMOA.remove(0);
+            //arrMOA.remove(0);
             /**
              *  Check if MOA
              */
-            if (hexMOA != null && hexMOA != hexCurrent) {
+            /*if (hexMOA != null && hexMOA != hexCurrent) {
                 isMOA = true;
                 ArrayList<Hex> arrHexes = new ArrayList<>();
                 arrHexes.add(hexCurrent);
@@ -382,7 +385,7 @@ public class AIExecute {
                 CenterScreen.instance.start(hexCurrent);
                 CombatDisplayResults.instance.addObserver(this);
                 return;
-            }
+            }*/
 
             isMOA = false;
             clickAction = new ClickAction(unitCurrent, ClickAction.TypeAction.Move);

@@ -3,6 +3,7 @@ package com.bruinbeargames.ardenne.AI;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.Phase;
@@ -85,8 +86,9 @@ public class AIProcess{
         /**
          *  remove units that are iin major cities
          *  don want to move out
+         *   This has been moved
          */
-        ArrayList<Unit> arrInBastogne = new ArrayList<>();
+/**        ArrayList<Unit> arrInBastogne = new ArrayList<>();
         for (Unit unit:arrUnitsIn){
             if (Hex.arrMajorCities.contains(unit.getHexOccupy())){
                 int ix = arrUnitsIn.indexOf(unit);
@@ -94,7 +96,7 @@ public class AIProcess{
                 arrInBastogne.add(unit);
             }
         }
-        arrUnitsIn.removeAll(arrInBastogne);
+        arrUnitsIn.removeAll(arrInBastogne); */
         /**
          *  reduce to a million
          *
@@ -153,7 +155,13 @@ public class AIProcess{
         Gdx.app.log("AIProcess", "Staring Iterations");
         ArrayList<AIOrders> arrStart = AIUtil.GetIterations(arrUnitsIn, arrNewHexMove);
         Gdx.app.log("AIProcess", "Iterations count ="+arrStart.size());
-        AIUtil.RemoveDuplicateHex(arrDupes); // cleanup just in case
+        if (NextPhase.instance.getTurn() > 3 && GameSetup.instance.getScenario() == GameSetup.Scenario.Intro){
+            arrDupes.clear();
+            arrDupes.addAll(AISetScore.instance.hexBastogne1.getSurround());
+            arrDupes.addAll(AISetScore.instance.hexBastogne2.getSurround());
+            arrDupes.addAll(AISetScore.instance.hexWiltz.getSurround());
+            AIUtil.RemoveDuplicateHex(arrDupes);
+        }
         /**
          *  remove duplicates
          */
@@ -182,25 +190,52 @@ public class AIProcess{
          *  we can reduce
          */
         ArrayList<AIOrders> arrSmall = new ArrayList<>();
-        int maxNumber = 90000;
+        int maxNumber = 180000;
         if (arrAIOrders.size() > maxNumber){
             Collections.sort(arrAIOrders, new AIOrders.SortbyScoreDescending());
             int end = arrAIOrders.size()-1;
             int start =maxNumber;
             List<AIOrders> arrWork = arrAIOrders.subList(0,maxNumber);
             arrSmall = new ArrayList<AIOrders>(arrWork);
-        }
-        if (NextPhase.instance.getPhase() != Phase.ALLIED_REINFORCEMENT.ordinal()){
-            creatAIWindow(arrSmall);
         }else{
-            doHandOff(arrSmall);
+            arrSmall.addAll(arrAIOrders);
         }
+        leaveInMajorCity(arrSmall);
+        doHandOff(arrSmall);
     }
+
+
+
     private void doHandOff(ArrayList<AIOrders> arrOrders){
 //        EventAI.instance.setIterations(arrOrders.size());
         AIScorer.Type type = AIScorer.Type.NewProcess;
         AIFaker.instance.startScoringOrders(arrOrders, type, true);
+    }
 
+    /**
+     *  if units are in major city make sure at least 1 left there
+     * @param arrSmall
+     *
+     */
+    public void leaveInMajorCity(ArrayList<AIOrders> arrSmall) {
+        ArrayList<AIOrders> arrReturn = new ArrayList<>();
+        ArrayList<Hex> arrRemove = new ArrayList<>();
+        for (AIOrders aiO:arrSmall){
+            arrRemove.clear();
+            for (Hex hex:aiO.arrHexMoveTo){
+                if (Hex.arrMajorCities.contains(hex)){
+                    arrRemove.add(hex);
+                }
+            }
+            if (arrRemove.size() > 0) {
+                AIUtil.RemoveDuplicateHex(arrRemove); // just delete 1
+                for (Hex hex : arrRemove) {
+                    int ix = aiO.arrHexMoveTo.indexOf(hex);
+                    aiO.arrUnit.remove(ix);
+                    aiO.arrHexMoveTo.remove(ix);
+                }
+            }
+        }
     }
 
     private void reduceHexsToCheck(ArrayList<ArrayList<Hex>> arrArrayOfHexArray, int aiToCheck) {

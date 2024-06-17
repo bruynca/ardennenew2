@@ -55,7 +55,7 @@ public class AICombat {
      * use as input the arrIn
      * @param arrIN
      **/
-    public void setArrToBeScored(ArrayList<AIOrdersCombat> arrIN) {
+    public void setArrToBeExecuted(ArrayList<AIOrdersCombat> arrIN) {
         Gdx.app.log("AIMover", "setArrToBeScored");
         arrToBeScored.clear();
         arrToBeScored.addAll(arrIN);

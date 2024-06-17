@@ -710,7 +710,11 @@ public class AIUtil {
          */
         ArrayList<HexInt> arrHexCount = AIUtil.countandSortHexes(arrArrayOfHexArray);
         int ix = 0; // initial index of the arr arr
-//        if (bypass != 1) {
+        int bypassHexDelete = 1;
+        if (bypassHexDelete != 1) {
+            /**
+             *  reduce duplicate hexes by 2
+             */
             for (HexInt hi : arrHexCount) {
                 /**
                  *  process if count greater tha 2 greater than
@@ -730,6 +734,7 @@ public class AIUtil {
                     }
                 }
             }
+        }
   //      }
         iterates = 1;
         for (ArrayList<Hex> arr:arrArrayOfHexArray){

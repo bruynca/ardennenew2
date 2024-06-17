@@ -77,17 +77,12 @@ public class AISetScore {
     public void scoreReinforcement(Hex hex) {
         Hex.initAI();
         Hex.initAIFaker();
-        if (hexBastogneReinforceEntry == hex){
-            setupBastogne();
-            Hex.addNewAIScoreSurroundGerman();
-            loadAIScoreFakerBastogne();
-        }else{
-            if (hexEttlebruckReinforceEntry == hex){
-                setUpEttleBruck();
-            }else{
-                setUpMatrelange();
-            }
-        }
+        setupBastogne();
+        loadAIScoreFakerBastogne();
+        setUpMatrelange();
+        loadAIScoreFakerEttlebruck();
+        setUpEttleBruck();
+        loadAIScoreFakerMartelange();
     }
 
     private void doInitialTurns() {
@@ -105,23 +100,23 @@ public class AISetScore {
         /**
          * bastogne
          */
-        setScore(hexBastogne1,6,Direction.All);
-        setScore(hexBastogne2,6,Direction.All);
+        setScoreFaker(hexBastogne1,6,Direction.All);
+        setScoreFaker(hexBastogne2,6,Direction.All);
         if (GameSetup.instance.getScenario() == GameSetup.Scenario.Intro) {
-            setScore(hexWiltz,6,Direction.Right);
+            setScoreFaker(hexWiltz,6,Direction.Right);
         }else{
-            setScore(hexWiltz,4,Direction.Right);
+            setScoreFaker(hexWiltz,4,Direction.Right);
         }
-        setScore(hexMartelange,5,Direction.Right);
-        setScore(hexEttlebruck,4,Direction.Left);
+        setScoreFaker(hexMartelange,5,Direction.Right);
+        setScoreFaker(hexEttlebruck,4,Direction.Left);
     }
 
     private  void loadAIScoreFakerBastogne(){
         /**
          * bastogne
          */
-        setScore(hexBastogne1,8,Direction.All);
-        setScore(hexBastogne2,8,Direction.All);
+        setScoreFaker(hexBastogne1,8,Direction.All);
+        setScoreFaker(hexBastogne2,8,Direction.All);
         /**
          *  double for ring around bastogne
          */
@@ -130,8 +125,31 @@ public class AISetScore {
             hex.setAiScoreFaker(hex.getAiScoreFaker()*2); // multiply by 2
         }
 
+    }
+    private  void loadAIScoreFakerEttlebruck(){
+        /**
+         * bastogne
+         */
+        setScoreFaker(hexEttlebruckReinforceEntry,8,Direction.All);
+        setScoreFaker(hexEttlebruck,8,Direction.All);
+        hexEttlebruckReinforceEntry.setAI(1);
+        /**
+         *  double for ring around bastogne
+         */
 
     }
+    private  void loadAIScoreFakerMartelange(){
+        /**
+         * bastogne
+         */
+        setScoreFaker(hexMartelangeReinforceEntry,8,Direction.All);
+        setScoreFaker(hexMartelangeReinforceEntry,8,Direction.All);
+        /**
+         *  double for ring around bastogne
+         */
+
+    }
+
     private void scoreWiltzScene1() {
         setScoreAI(hexWiltz,10,Direction.All);
         for (Hex hex:hexWiltz.getSurround()){
@@ -139,13 +157,13 @@ public class AISetScore {
         }
         /**
          */
-        setScore(hexWiltz,5,Direction.All);
+        setScoreFaker(hexWiltz,5,Direction.All);
 
         hexWiltz.setAiScoreFaker(8);
         for (Hex hex:hexWiltz.getSurround()){
- //           if (hex.isAlliedZOC()){
-                hex.setAiScoreFaker(7);
- //           }
+            if (hex.isAlliedZOC()){
+                hex.setAiScoreFaker(9);
+            }
         }
 
 
@@ -159,17 +177,17 @@ public class AISetScore {
         /**
          *
          */
-        setScore(hexBastogne1, 8, Direction.All);
+        setScoreFaker(hexBastogne1, 6, Direction.All);
         hexBastogne1.setAiScoreFaker(10);
         hexBastogne2.setAiScoreFaker(10);
         for (Hex hex : hexBastogne1.getSurround()) {
             //           if (hex.isAlliedZOC()){
-            hex.setAiScoreFaker(7);
+            hex.setAiScoreFaker(8);
             //           }
         }
         for (Hex hex : hexBastogne2.getSurround()) {
             //           if (hex.isAlliedZOC()){
-            hex.setAiScoreFaker(7);
+            hex.setAiScoreFaker(8);
             //           }
         }
     }
@@ -182,21 +200,23 @@ public class AISetScore {
      * @param hexIn
      * @param score -score to start out
      */
-    public static void setScore(Hex hexIn,int score, Direction direct) {
+    public static void setScoreFaker(Hex hexIn, int score, Direction direct) {
         int start = score;
         hexIn.setAiScoreFaker(start);
         start--;
         Hex[][] arrArr =  hexIn.getSurround(start);
         ArrayList<Hex> arrWork = hexIn.getSurround();
         for (Hex[] arr:arrArr){
-            for (Hex hex:arr){
-                if (hex.isRoad() || hex.isPath()){
-                    if (direct == Direction.All) {
-                        hex.setAiScoreFaker(start);
-                    }else if (direct == Direction.Right && hexIn.xTable <= hex.xTable){
-                        hex.setAiScoreFaker(start);
-                    }else if (direct == Direction.Left && hexIn.xTable >= hex.xTable ){
-                        hex.setAiScoreFaker(start);
+            for (Hex hex:arr) {
+                if (hex != null) {
+                    if (hex.isRoad() || hex.isPath()) {
+                        if (direct == Direction.All) {
+                            hex.setAiScoreFaker(start);
+                        } else if (direct == Direction.Right && hexIn.xTable <= hex.xTable) {
+                            hex.setAiScoreFaker(start);
+                        } else if (direct == Direction.Left && hexIn.xTable >= hex.xTable) {
+                            hex.setAiScoreFaker(start);
+                        }
                     }
                 }
             }
@@ -212,17 +232,19 @@ public class AISetScore {
         Hex[][] arrArr =  hexIn.getSurround(start);
         ArrayList<Hex> arrWork = hexIn.getSurround();
         for (Hex[] arr:arrArr){
-            for (Hex hex:arr){
-                if (hex.isRoad() || hex.isPath()){
-                    if (direct == Direction.All) {
-                        hex.setAI(start);
-                        arrWork.add(hex);
-                    }else if (direct == Direction.Right && hexIn.xTable <= hex.xTable){
-                        arrWork.add(hex);
-                        hex.setAI(start);
-                    }else if (direct == Direction.Left && hexIn.xTable >= hex.xTable ){
-                        arrWork.add(hex);
-                        hex.setAI(start);
+            for (Hex hex:arr) {
+                if (hex != null) {
+                    if (hex.isRoad() || hex.isPath()) {
+                        if (direct == Direction.All) {
+                            hex.setAI(start);
+                            arrWork.add(hex);
+                        } else if (direct == Direction.Right && hexIn.xTable <= hex.xTable) {
+                            arrWork.add(hex);
+                            hex.setAI(start);
+                        } else if (direct == Direction.Left && hexIn.xTable >= hex.xTable) {
+                            arrWork.add(hex);
+                            hex.setAI(start);
+                        }
                     }
                 }
             }
@@ -235,9 +257,19 @@ public class AISetScore {
 
     public enum Direction {All, Left, Right, };
     private void setUpMatrelange() {
+        for (Hex hex:hexMartelangeReinforceEntry.getSurround()){
+            hex.setAI(4);
+        }
+        setScoreAI(hexMartelangeReinforceEntry, 10, Direction.All);
+
     }
 
     private void setUpEttleBruck() {
+        for (Hex hex:hexEttlebruckReinforceEntry.getSurround()){
+            hex.setAI(4);
+        }
+        setScoreAI(hexEttlebruckReinforceEntry, 10, Direction.All);
+
 
     }
 

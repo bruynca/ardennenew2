@@ -61,6 +61,7 @@ public class AIReinforcementScenarioOther implements Observer {
          *  initialize the aiScore used
          */
         arrCovered.clear();
+        Reinforcement.instance.resetUnitsLoaded();
         /**
          *  initialize the aiScore used
          *  also check for Germa occupied

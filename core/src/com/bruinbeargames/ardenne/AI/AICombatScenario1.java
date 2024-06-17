@@ -4,10 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.bruinbeargames.ardenne.GameLogic.Attack;
 import com.bruinbeargames.ardenne.GameLogic.Combat;
+import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.Unit.Unit;
 
 import java.util.ArrayList;
+
+import javax.print.attribute.SetOfIntegerSyntax;
 
 public class AICombatScenario1 {
     static public AICombatScenario1 instance;
@@ -39,6 +43,7 @@ public class AICombatScenario1 {
         }
         /**
          *  remove any unit attacking from a major city
+         *
          */
         ArrayList<AIOrdersCombat> arrREmove = new ArrayList<>();
         for (AIOrdersCombat aiC:arrToBeScored){
@@ -55,35 +60,48 @@ public class AICombatScenario1 {
             /**
              * sort score into highest
              */
-            ArrayList<AIOrdersCombat> arrSorted = scoreAndSort(arrToBeScored);
-            /**
-             *  remove units from the high to low
-             *  if attack doesnt have units then take out of orders
-             *  if attack less than 1 to 1 take out
-             */
-            ArrayList<Unit> arrUnitsToRemove = new ArrayList<>();
-            ArrayList<AIOrdersCombat> arrViable = new ArrayList<>();
-            for (AIOrdersCombat aic : arrSorted) {
-                for (Unit unit : arrUnitsToRemove) {
-                    aic.removeAttackingUnit(unit);
+        ArrayList<AIOrdersCombat> arrSorted = scoreAndSort(arrToBeScored);
+        /**
+         *  remove units from the high to low
+         *  if attack doesnt have units then take out of orders
+         *  if attack less than 1 to 1 take out
+         */
+        ArrayList<Unit> arrUnitsToRemove = new ArrayList<>();
+        ArrayList<AIOrdersCombat> arrViable = new ArrayList<>();
+        for (AIOrdersCombat aic : arrSorted) {
+            Gdx.app.log("AICombatScenario1", "check="+aic.hexAttackedByUnits.getHex());
+
+            for (Unit unit : arrUnitsToRemove) {
+                aic.removeAttackingUnit(unit);
+            }
+            for (Unit unit : aic.hexAttackedByUnits.getArrUnits()) {
+                if (!arrUnitsToRemove.contains(unit)) {
+                    arrUnitsToRemove.add(unit);
                 }
-                for (Unit unit : aic.hexAttackedByUnits.getArrUnits()) {
-                    if (!arrUnitsToRemove.contains(unit)) {
-                        arrUnitsToRemove.add(unit);
+            }
+            float minScoreForAttack = 1.5F;
+            if (GameSetup.instance.getScenario() == GameSetup.Scenario.Intro){
+                if (aic.hexAttackedByUnits.getHex() == AISetScore.instance.hexBastogne2 ||
+                    aic.hexAttackedByUnits.getHex() == AISetScore.instance.hexBastogne1 ||
+                    aic.hexAttackedByUnits.getHex() == AISetScore.instance.hexWiltz){
+                    minScoreForAttack = 1f;
+                    if (NextPhase.instance.getTurn() > 4){
+                        minScoreForAttack = .46f;
                     }
                 }
-                if (aic.hexAttackedByUnits.getArrUnits().size() > 0 &&  aic.getScore() > 1.5f) {
-                    float combatscore = aic.getScore();
-                    Gdx.app.log("AICombatScenario1", "Instance="+instance);
-
-                    arrViable.add(aic);
-                }
-
             }
-            ArrayList<AIOrdersCombat> arrFinal = scoreAndSort(arrViable);
-            int bk = 0;
+            if (aic.hexAttackedByUnits.getArrUnits().size() > 0 &&  aic.getScore() > minScoreForAttack) {
+                float combatscore = aic.getScore();
+                Gdx.app.log("AICombatScenario1", "Instance="+instance);
 
-            AICombat.instance.setArrToBeScored(arrFinal);
+                arrViable.add(aic);
+            }
+
+        }
+        ArrayList<AIOrdersCombat> arrFinal = scoreAndSort(arrViable);
+        int bk = 0;
+
+        AICombat.instance.setArrToBeExecuted(arrFinal);
 
     }
 
