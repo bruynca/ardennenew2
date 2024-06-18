@@ -3,6 +3,7 @@ package com.bruinbeargames.ardenne.AI;
 import com.badlogic.gdx.Gdx;
 import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.Hex.HexInt;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.Unit.Unit;
 
@@ -70,8 +71,11 @@ public class AISetScore {
      * @param arrWork
      */
     public  void scoreMove(ArrayList<Unit> arrUnits, ArrayList<Hex>[] arrWork){
-        this.arrUnits = arrUnits;
-        arrMoves = arrWork;
+
+        this.arrUnits.clear();
+        this.arrUnits.addAll(arrUnits);
+        this.arrMoves = null;
+        this.arrMoves = arrWork;
         scoreMove();
     }
     public void scoreReinforcement(Hex hex) {
@@ -100,23 +104,23 @@ public class AISetScore {
         /**
          * bastogne
          */
-        setScoreFaker(hexBastogne1,6,Direction.All);
-        setScoreFaker(hexBastogne2,6,Direction.All);
+        setScoreRoadPathFaker(hexBastogne1,6,Direction.All);
+        setScoreRoadPathFaker(hexBastogne2,6,Direction.All);
         if (GameSetup.instance.getScenario() == GameSetup.Scenario.Intro) {
-            setScoreFaker(hexWiltz,6,Direction.Right);
+            setScoreRoadPathFaker(hexWiltz,6,Direction.Right);
         }else{
-            setScoreFaker(hexWiltz,4,Direction.Right);
+            setScoreRoadPathFaker(hexWiltz,4,Direction.Right);
         }
-        setScoreFaker(hexMartelange,5,Direction.Right);
-        setScoreFaker(hexEttlebruck,4,Direction.Left);
+        setScoreRoadPathFaker(hexMartelange,5,Direction.Right);
+        setScoreRoadPathFaker(hexEttlebruck,4,Direction.Left);
     }
 
     private  void loadAIScoreFakerBastogne(){
         /**
          * bastogne
          */
-        setScoreFaker(hexBastogne1,8,Direction.All);
-        setScoreFaker(hexBastogne2,8,Direction.All);
+        setScoreRoadPathFaker(hexBastogne1,8,Direction.All);
+        setScoreRoadPathFaker(hexBastogne2,8,Direction.All);
         /**
          *  double for ring around bastogne
          */
@@ -130,8 +134,8 @@ public class AISetScore {
         /**
          * bastogne
          */
-        setScoreFaker(hexEttlebruckReinforceEntry,8,Direction.All);
-        setScoreFaker(hexEttlebruck,8,Direction.All);
+        setScoreRoadPathFaker(hexEttlebruckReinforceEntry,8,Direction.All);
+        setScoreRoadPathFaker(hexEttlebruck,8,Direction.All);
         hexEttlebruckReinforceEntry.setAI(1);
         /**
          *  double for ring around bastogne
@@ -142,8 +146,8 @@ public class AISetScore {
         /**
          * bastogne
          */
-        setScoreFaker(hexMartelangeReinforceEntry,8,Direction.All);
-        setScoreFaker(hexMartelangeReinforceEntry,8,Direction.All);
+        setScoreRoadPathFaker(hexMartelangeReinforceEntry,8,Direction.All);
+        setScoreRoadPathFaker(hexMartelangeReinforceEntry,8,Direction.All);
         /**
          *  double for ring around bastogne
          */
@@ -151,13 +155,21 @@ public class AISetScore {
     }
 
     private void scoreWiltzScene1() {
-        setScoreAI(hexWiltz,10,Direction.All);
+        setScoreOnRoadPathAI(hexWiltz,5,Direction.All);
         for (Hex hex:hexWiltz.getSurround()){
                 hex.setAI(10);
         }
         /**
          */
-        setScoreFaker(hexWiltz,5,Direction.All);
+        for (ArrayList<Hex> arr:arrMoves){
+            ArrayList<HexInt> arrSorted = AIUtil.countandSortCloseTo(hexWiltz,arr);
+            if (arrSorted.size() > 2) {
+                arrSorted.get(0).hex.setAI(2);
+                arrSorted.get(1).hex.setAI(1);
+            }
+        }
+
+        setScoreRoadPathFaker(hexWiltz,5,Direction.All);
 
         hexWiltz.setAiScoreFaker(8);
         for (Hex hex:hexWiltz.getSurround()){
@@ -170,14 +182,28 @@ public class AISetScore {
 
     }
     private void scoreBastogneScene1() {
-        setScoreAI(hexBastogne1, 12, Direction.All);
+        setScoreOnRoadPathAI(hexBastogne1, 5, Direction.All);
         for (Hex hex : hexBastogne1.getSurround()) {
             hex.setAI(10);
         }
+    //    Hex[][] test = hexBastogne1.getSurround(4);
+        /**
+         *  get sorted distance map from Bastogne
+         *  get 2 hexes if available and mark them with aiscore
+         *  so that we will get in solution
+         */
+        for (ArrayList<Hex> arr:arrMoves){
+            ArrayList<HexInt> arrSorted = AIUtil.countandSortCloseTo(hexBastogne1,arr);
+            if (arrSorted.size() > 2) {
+                arrSorted.get(0).hex.setAI(2);
+                arrSorted.get(1).hex.setAI(1);
+            }
+        }
+
         /**
          *
          */
-        setScoreFaker(hexBastogne1, 6, Direction.All);
+        setScoreRoadPathFaker(hexBastogne1, 6, Direction.All);
         hexBastogne1.setAiScoreFaker(10);
         hexBastogne2.setAiScoreFaker(10);
         for (Hex hex : hexBastogne1.getSurround()) {
@@ -200,7 +226,7 @@ public class AISetScore {
      * @param hexIn
      * @param score -score to start out
      */
-    public static void setScoreFaker(Hex hexIn, int score, Direction direct) {
+    public static void setScoreRoadPathFaker(Hex hexIn, int score, Direction direct) {
         int start = score;
         hexIn.setAiScoreFaker(start);
         start--;
@@ -224,7 +250,7 @@ public class AISetScore {
         }
 
     }
-    public static ArrayList<Hex>  setScoreAI(Hex hexIn,int score, Direction direct) {
+    public static ArrayList<Hex> setScoreOnRoadPathAI(Hex hexIn, int score, Direction direct) {
         int start = score;
         ArrayList<Hex> arrScored = new ArrayList<>();
         hexIn.setAiScoreFaker(start);
@@ -260,7 +286,7 @@ public class AISetScore {
         for (Hex hex:hexMartelangeReinforceEntry.getSurround()){
             hex.setAI(4);
         }
-        setScoreAI(hexMartelangeReinforceEntry, 10, Direction.All);
+        setScoreOnRoadPathAI(hexMartelangeReinforceEntry, 10, Direction.All);
 
     }
 
@@ -268,7 +294,7 @@ public class AISetScore {
         for (Hex hex:hexEttlebruckReinforceEntry.getSurround()){
             hex.setAI(4);
         }
-        setScoreAI(hexEttlebruckReinforceEntry, 10, Direction.All);
+        setScoreOnRoadPathAI(hexEttlebruckReinforceEntry, 10, Direction.All);
 
 
     }
@@ -285,7 +311,7 @@ public class AISetScore {
         /**
          *  aff score to the roads
          */
-        setScoreAI(Hex.hexBastogne2, 13, Direction.All);
+        setScoreOnRoadPathAI(Hex.hexBastogne2, 13, Direction.All);
         /**
          *  set up score for around entry
          *

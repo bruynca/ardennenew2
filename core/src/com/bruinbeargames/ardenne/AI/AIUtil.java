@@ -4,6 +4,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.Hex.HexCount;
+import com.bruinbeargames.ardenne.Hex.HexHelper;
 import com.bruinbeargames.ardenne.Hex.HexInt;
 import com.bruinbeargames.ardenne.Unit.Unit;
 import com.bruinbeargames.ardenne.Unit.UnitMove;
@@ -775,6 +776,17 @@ public class AIUtil {
         } */
 
 
+    }
+
+    public static ArrayList<HexInt> countandSortCloseTo(Hex hexTest, ArrayList<Hex> arrMoves) {
+        ArrayList<HexInt> arrWork = new ArrayList<>();
+        for (Hex hex:arrMoves){
+            int range  = (int)HexHelper.findRange(hex, hexTest);
+            HexInt hi = new HexInt(hex,range);
+            arrWork.add(hi);
+        }
+        Collections.sort(arrWork, new AIScenarioOther.SortAscending());
+        return arrWork;
     }
 }
 /**

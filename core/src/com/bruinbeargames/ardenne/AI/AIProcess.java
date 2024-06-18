@@ -56,51 +56,6 @@ public class AIProcess{
     AIProcess(ArrayList<Unit> arrUnitsIn, ArrayList<ArrayList<Hex>> arrArrayOfHexArray,ArrayList<Hex> arrDupes, int aiTocheck){
         Gdx.app.log("AIProcess", "Constructor #Units="+arrUnitsIn.size()
                     +"  hex arrays="+arrArrayOfHexArray.size());
-        /**
-         * reduce amount of hexes to check
-         * we can adjust this later in case we get too many by changing the aitoCheck
-         * This is driven by AIScoreTemp - set by INVOKING
-         * also it will eliminate any hexes already occupied
-         *
-         * This is no longer used
-         * see next routine
-         */
-
-  /*      if (aiTocheck < 99) {
-            reduceHexsToCheck(arrArrayOfHexArray, aiTocheck);
-
-            /**
-             *  in case there are no hexes to check move in occupying hex
-             */
-    /*        for (int ix = 0; ix < arrArrayOfHexArray.size(); ix++) {
-                ;
-                if (arrArrayOfHexArray.get(ix).size() == 0) {
-                    arrArrayOfHexArray.get(ix).add(arrUnitsIn.get(ix).getHexOccupy());
-                    if (arrUnitsIn.get(ix).getHexOccupy() == null) {
-                        isFailed = true;
-                        return;
-                    }
-                }
-            }
-        }*/
-        /**
-         *  remove units that are iin major cities
-         *  don want to move out
-         *   This has been moved
-         */
-/**        ArrayList<Unit> arrInBastogne = new ArrayList<>();
-        for (Unit unit:arrUnitsIn){
-            if (Hex.arrMajorCities.contains(unit.getHexOccupy())){
-                int ix = arrUnitsIn.indexOf(unit);
-                arrArrayOfHexArray.remove(ix);
-                arrInBastogne.add(unit);
-            }
-        }
-        arrUnitsIn.removeAll(arrInBastogne); */
-        /**
-         *  reduce to a million
-         *
-         */
         int iterates = 1;
         for (ArrayList<Hex> arr:arrArrayOfHexArray){
             iterates *= arr.size();
@@ -110,8 +65,9 @@ public class AIProcess{
         }
         Gdx.app.log("AIProcess", "Iteratiosn Before ="+iterates);
 
-
-        AIUtil.reduceToMillion(arrArrayOfHexArray);
+        if (iterates < 0 || iterates > 1000000) {
+            AIUtil.reduceToMillion(arrArrayOfHexArray);
+        }
         iterates = 1;
         for (ArrayList<Hex> arr:arrArrayOfHexArray){
             iterates *= arr.size();
@@ -200,7 +156,7 @@ public class AIProcess{
         }else{
             arrSmall.addAll(arrAIOrders);
         }
-        leaveInMajorCity(arrSmall);
+ //       leaveInMajorCity(arrSmall);
         doHandOff(arrSmall);
     }
 
@@ -238,23 +194,6 @@ public class AIProcess{
         }
     }
 
-    private void reduceHexsToCheck(ArrayList<ArrayList<Hex>> arrArrayOfHexArray, int aiToCheck) {
-        /**
-         *  reduce size of the hexes to search
-         *  by just looking at hexes that have ai greater than 0
-         *  It is assumed that invoking rtn will have set the aiScoreGen
-         */
-        for (ArrayList<Hex> arr:arrArrayOfHexArray){
-            AIUtil.RemoveDuplicateHex(arr);
-            ArrayList<Hex> arrRemove = new ArrayList<>();
-            for (Hex hex:arr){
-                if (hex.aiScoreGen < aiToCheck || hex.isAlliedOccupied()){
-                    arrRemove.add(hex);
-                }
-            }
-            arr.removeAll(arrRemove);
-        }
-    }
     public boolean isFailed(){
         return isFailed;
     }

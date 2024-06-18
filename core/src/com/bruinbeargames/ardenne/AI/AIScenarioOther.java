@@ -117,6 +117,7 @@ public class AIScenarioOther implements Observer {
             doHandOffToMover();
             return;
         }
+        arrMoves = null;
         arrMoves = AIUtil.getUnitsMaxMove(arrUnitPortion[ixNextMove],0, false);
         for (ArrayList<Hex> arr:arrMoves){
             arr.removeAll(arrCovered);
@@ -126,7 +127,7 @@ public class AIScenarioOther implements Observer {
             arrArr.add(arr);
         }
         ArrayList<Hex> arrDupes = new ArrayList<>(); // no dupes at moment
-
+        aiProcess = null;
         aiProcess = new AIProcess(arrUnitPortion[ixNextMove],arrArr,arrDupes,2);
         if (aiProcess.isFailed()){
             doNextMove();
@@ -214,6 +215,31 @@ public class AIScenarioOther implements Observer {
             }
             if (t1.count < hexInt.count){
                 return -1;
+            }
+            return 0;
+        }
+    }
+    static class SortAscending implements Comparator<HexInt> {
+
+        @Override
+        public int compare(HexInt hexInt, HexInt t1) {
+            if (hexInt == null && t1 == null){
+                return 0;
+            }
+            if (hexInt == null){
+                return -1;
+            }
+            if (t1 == null){
+                return 1;
+            }
+            if (t1.count == hexInt.count){
+                return 0;
+            }
+            if (t1.count > hexInt.count){
+                return -1;
+            }
+            if (t1.count < hexInt.count){
+                return 1;
             }
             return 0;
         }

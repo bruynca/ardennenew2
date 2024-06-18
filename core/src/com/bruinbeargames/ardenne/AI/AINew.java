@@ -11,6 +11,8 @@ import com.bruinbeargames.ardenne.ObserverPackage;
 import com.bruinbeargames.ardenne.UI.EventAI;
 import com.bruinbeargames.ardenne.UI.WinReinforcements;
 import com.bruinbeargames.ardenne.Unit.Unit;
+import com.bruinbeargames.ardenne.Unit.UnitHex;
+import com.bruinbeargames.ardenne.Unit.UnitMove;
 import com.bruinbeargames.ardenne.ardenne;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 import com.kotcrab.vis.ui.widget.VisWindow;
@@ -19,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Observable;
 import java.util.Observer;
+
+import sun.swing.BakedArrayList;
 
 public class AINew implements Observer {
     static public AINew instance;
@@ -36,7 +40,6 @@ public class AINew implements Observer {
     ArrayList<Unit> arrUnit = new ArrayList<>();
     ArrayList<Hex>[] arrMoves;
 
-
     public void doAlliesMove() {
         /**
          * do the AIAlled Move
@@ -46,7 +49,7 @@ public class AINew implements Observer {
         Gdx.app.log("AINew", "doAlliesMove");
 
         ArrayList<Unit> arrArtillery = new ArrayList<>();
-        ArrayList<Unit> arrUnit = new ArrayList<>();
+        arrUnit = new ArrayList<>();
         for (Unit unit : Unit.getOnBoardAllied()) {
             if (unit.getMovedLast() < NextPhase.instance.getTurn()) {
                 if (unit.isArtillery && NextPhase.instance.getTurn() > 3) {
@@ -57,10 +60,19 @@ public class AINew implements Observer {
             }
         }
         /**
-         *  set up moves for AI Seup only
-         *  Real moves don in doNext
+         *  leava a unit in major cities
          */
-        arrMoves = AIUtil.getUnitsMaxMove(arrUnit,0, false);
+        ArrayList<Unit> arrRemove = new ArrayList<>();
+        for (Hex hex:Hex.arrMajorCities){
+            ArrayList<Unit> arrIn = new ArrayList<>();
+            for (Unit unit:arrUnit){
+                if (unit.getHexOccupy() == hex){
+                    arrRemove.add(unit);
+                    break;
+                }
+            }
+        }
+        arrUnit.removeAll(arrRemove);
         if (arrUnit.size() == 0) {
             Gdx.app.log("AINew", "No Units  go to next phase");
 
@@ -98,6 +110,7 @@ public class AINew implements Observer {
         Gdx.app.log("AINew", "doNextArea ix" + ixCurrentArea);
         ixCurrentArea++;
         if (ixCurrentArea == 0) {
+
             setupAiScoreandFaker();
         }else {
             doNextActual();
@@ -116,36 +129,20 @@ public class AINew implements Observer {
         ArrayList<Unit>  arrWorkingOn = new ArrayList<>();
         arrWorkingOn.addAll(arrUnitArea[ixCurrentArea]);
         /**
-         * seperate artillery
-         */
-        ArrayList<Unit> arrRemove  =  new ArrayList<>();
-        arrArtillery.clear();
-        for (Unit unit:arrWorkingOn){
-            if (unit.isArtillery){
-                arrArtillery.add(unit);
-                arrRemove.add(unit);
-            }
-        }
-        Gdx.app.log("AINew", "After Artllery size ="+arrRemove.size());
-        arrWorkingOn.removeAll(arrRemove);
-        if (arrWorkingOn.size() == 0){
-            doNextArea();
-            return;
-        }
-
-
-        /**
          * Create the moves
          */
         ArrayList<ArrayList<Hex>> arrWork = new ArrayList<>();
-        ArrayList<Unit> arrCantMove = new ArrayList<>();
         int entryCost=0;
         /**
          *  create moves only for hexes that have a count
+         *  the aiscore determines which moves to use
+         *
          */
         for (Unit unit : arrWorkingOn) {
             ArrayList<Hex> arrNoAI = new ArrayList<>();
-            ArrayList<Hex> arrHexMove = AIReinforcementScenario1.instance.findHexesOnReinforcement(unit,entryCost);
+            UnitMove unitMove = new UnitMove(unit,unit.getCurrentMovement(),false,true, 0);
+            ArrayList<Hex> arrHexMove = new ArrayList<>();
+            arrHexMove.addAll(unitMove.getMovePossible());
             entryCost++;
             AIUtil.RemoveDuplicateHex(arrHexMove);
 //            arrHexMove.removeAll(arrCovered); use in reinforcemets ????
@@ -158,36 +155,15 @@ public class AINew implements Observer {
             if (arrHexMove.size() > 0) {
                 arrWork.add(arrHexMove);
             } else {
-                arrCantMove.add(unit);
+                arrHexMove.add(unit.getHexOccupy());
+                arrWork.add(arrHexMove);
             }
         }
-        Gdx.app.log("AINewr", "After cant move size ="+arrWorkingOn.size());
-
-        arrWorkingOn.removeAll(arrCantMove);
         if (arrWork.size() == 0){
             doNextArea();
             return;
         }
         int ix=0;
-        for (ArrayList<Hex> arr:arrWork){
-            ArrayList<Hex> arrDelete = new ArrayList<Hex>();
-            for (Hex hex:arr){
-                if (hex.getAiScore() == 0){
-                    if (!arrDelete.contains(hex)){
-                        arrDelete.add(hex);
-                    }
-                }
-            }
-            arr.removeAll(arrDelete);
-            /**
-             * if no place to move leave it where it is
-             */
-            if (arr.size() == 0){
-                Gdx.app.log("AINew", "unit has no move-"+arrWorkingOn.get(ix));
-                arr.add(arrWorkingOn.get(ix).getHexOccupy());
-            }
-            ix++;
-        }
         ArrayList<Hex> arrDupes = new ArrayList<>(); // no dupes at moment
         aiProcess = new AIProcess(arrWorkingOn,arrWork,arrDupes,99);
         if (aiProcess.isFailed()){
@@ -222,6 +198,11 @@ public class AINew implements Observer {
     }
 
     private void setupAiScoreandFaker() {
+        /**
+         *  set up moves for AI Seup only
+         *  Real moves don in doNext
+         */
+        arrMoves = AIUtil.getUnitsMaxMove(arrUnit,0, false);
         AISetScore.instance.scoreMove(arrUnit,arrMoves);
         //       doNextRinActual();
         creatAIWindow();
