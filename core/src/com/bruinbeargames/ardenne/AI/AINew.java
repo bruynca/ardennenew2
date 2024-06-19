@@ -47,7 +47,7 @@ public class AINew implements Observer {
          * Get all allied units except for Artilley if past game turn 3
          */
         Gdx.app.log("AINew", "doAlliesMove");
-
+        arrMoves = null;
         ArrayList<Unit> arrArtillery = new ArrayList<>();
         arrUnit = new ArrayList<>();
         for (Unit unit : Unit.getOnBoardAllied()) {

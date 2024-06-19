@@ -57,6 +57,7 @@ public class AIProcess{
         Gdx.app.log("AIProcess", "Constructor #Units="+arrUnitsIn.size()
                     +"  hex arrays="+arrArrayOfHexArray.size());
         int iterates = 1;
+        arrAIOrders.clear();
         for (ArrayList<Hex> arr:arrArrayOfHexArray){
             iterates *= arr.size();
             if (arr.contains(AISetScore.instance.hexWiltz)){
