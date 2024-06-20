@@ -105,6 +105,12 @@ public class AIScorer {
         if (GameSetup.instance.getScenario() == GameSetup.Scenario.Intro){
             int score =0;
             for (Hex hex:aiO.arrHexMoveTo){
+                if(hex ==  Hex.hexTable[8][11]){
+                    int b=0;
+                }
+                if(hex ==  Hex.hexTable[8][12]){
+                    int b=0;
+                }
                 score +=hex.getAiScoreFaker();
             }
             return score;

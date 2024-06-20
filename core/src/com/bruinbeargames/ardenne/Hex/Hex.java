@@ -754,6 +754,7 @@ public class Hex {
             arrMajorCities.add(hexEttlebruck);
             hexMartelange = hexTable[9][23];
             arrMajorCities.add(hexEttlebruck);
+            arrMajorCities.add(hexTable[31][21]);
 
 
         }

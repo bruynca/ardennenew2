@@ -117,6 +117,9 @@ public class AIProcess{
             arrDupes.addAll(AISetScore.instance.hexBastogne1.getSurround());
             arrDupes.addAll(AISetScore.instance.hexBastogne2.getSurround());
             arrDupes.addAll(AISetScore.instance.hexWiltz.getSurround());
+            arrDupes.add(AISetScore.instance.hexBastogne1);
+            arrDupes.add(AISetScore.instance.hexBastogne2);
+            arrDupes.add(AISetScore.instance.hexWiltz);
             AIUtil.RemoveDuplicateHex(arrDupes);
         }
         /**

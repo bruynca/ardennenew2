@@ -27,6 +27,7 @@ public class AISetScore {
             {8,13,5},{10,11,3},{12,11,3},{8,10,5},
             {7,10,3},{7,11,3},{7,13,3},//second row of bridges
             {14,10,4},{11,12,4},{9,14,4},{6,18,3},{11,7,2}};
+    int[][] supplyBreakup={{28,11,3},{31,13,3},{28,11,3},{27,8,3},{25,8,3},{33,17,3}};
     Hex hexBastogne1 = Hex.hexTable[8][11];
     Hex hexBastogne2 = Hex.hexTable[8][12];
     Hex hexMartelange = Hex.hexTable[9][23];
@@ -43,6 +44,10 @@ public class AISetScore {
     public void scoreMove(){
         Hex.initAI();
         Hex.initAIFaker();
+        /**
+         *  supply point
+         */
+        loadSupplyBottlenecks();
         if (NextPhase.instance.getTurn() < 4){
             doInitialTurns();
             return;
@@ -51,6 +56,7 @@ public class AISetScore {
                 AIReinforcementScenario1.BastogneWiltzDefenseStatus bastogneStatus =
                         new AIReinforcementScenario1.BastogneWiltzDefenseStatus(arrUnits,arrMoves);
                 Gdx.app.log("AISetScore", "Strategy="+bastogneStatus.strategy);
+
                 if (bastogneStatus.strategy == AIReinforcementScenario1.StrategyBastogne.WiltzAttack ||
                     bastogneStatus.strategy == AIReinforcementScenario1.StrategyBastogne.WiltzFree){
                     scoreWiltzScene1();
@@ -63,6 +69,14 @@ public class AISetScore {
 
     }
 
+    private void loadSupplyBottlenecks() {
+        for (int[] hexI:supplyBreakup){
+            Hex hex = Hex.hexTable[hexI[0]][hexI[1]];
+            hex.setAI(hexI[2]);
+            hex.setAiScoreFaker(hexI[2]);
+        }
+
+    }
 
 
     /**
@@ -155,14 +169,14 @@ public class AISetScore {
     }
 
     private void scoreWiltzScene1() {
-        setScoreOnRoadPathAI(hexWiltz,5,Direction.All);
+        setScoreOnRoadPathAI(hexWiltz,200,Direction.All);
         for (Hex hex:hexWiltz.getSurround()){
-                hex.setAI(10);
+                hex.setAI(100);
         }
         /**
          */
         for (ArrayList<Hex> arr:arrMoves){
-            ArrayList<HexInt> arrSorted = AIUtil.countandSortCloseTo(hexWiltz,arr);
+            ArrayList<HexInt> arrSorted = AIUtil.countandSortCloseToAscending(hexWiltz,arr);
             if (arrSorted.size() > 2) {
                 arrSorted.get(0).hex.setAI(2);
                 arrSorted.get(1).hex.setAI(1);
@@ -171,10 +185,10 @@ public class AISetScore {
 
         setScoreRoadPathFaker(hexWiltz,5,Direction.All);
 
-        hexWiltz.setAiScoreFaker(8);
+        hexWiltz.setAiScoreFaker(200);
         for (Hex hex:hexWiltz.getSurround()){
             if (hex.isAlliedZOC()){
-                hex.setAiScoreFaker(9);
+                hex.setAiScoreFaker(109);
             }
         }
 
@@ -183,8 +197,11 @@ public class AISetScore {
     }
     private void scoreBastogneScene1() {
         setScoreOnRoadPathAI(hexBastogne1, 5, Direction.All);
+        hexBastogne1.setAI(200);
+        hexBastogne2.setAI(200);
+
         for (Hex hex : hexBastogne1.getSurround()) {
-            hex.setAI(10);
+            hex.setAI(100);
         }
     //    Hex[][] test = hexBastogne1.getSurround(4);
         /**
@@ -193,7 +210,7 @@ public class AISetScore {
          *  so that we will get in solution
          */
         for (ArrayList<Hex> arr:arrMoves){
-            ArrayList<HexInt> arrSorted = AIUtil.countandSortCloseTo(hexBastogne1,arr);
+            ArrayList<HexInt> arrSorted = AIUtil.countandSortCloseToAscending(hexBastogne1,arr);
             if (arrSorted.size() > 2) {
                 arrSorted.get(0).hex.setAI(2);
                 arrSorted.get(1).hex.setAI(1);
@@ -204,16 +221,16 @@ public class AISetScore {
          *
          */
         setScoreRoadPathFaker(hexBastogne1, 6, Direction.All);
-        hexBastogne1.setAiScoreFaker(10);
-        hexBastogne2.setAiScoreFaker(10);
+        hexBastogne1.setAiScoreFaker(200);
+        hexBastogne2.setAiScoreFaker(200);
         for (Hex hex : hexBastogne1.getSurround()) {
             //           if (hex.isAlliedZOC()){
-            hex.setAiScoreFaker(8);
+            hex.setAiScoreFaker(100);
             //           }
         }
         for (Hex hex : hexBastogne2.getSurround()) {
             //           if (hex.isAlliedZOC()){
-            hex.setAiScoreFaker(8);
+            hex.setAiScoreFaker(12);
             //           }
         }
     }

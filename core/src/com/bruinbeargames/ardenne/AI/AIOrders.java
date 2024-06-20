@@ -316,8 +316,12 @@ public class AIOrders {
         return arrReturn;
     }
     public static void removeOverStackUnits(AIOrders aiOrders){
+        Gdx.app.log("AIOrders", "RemoveOverStackingUnits unit=" + aiOrders.arrUnit);
+        Gdx.app.log("AIOrders", "RemoveOverStackingUnits hexes=" + aiOrders.arrHexMoveTo);
+
         int ix =0;
         boolean isOK = true;
+        HexUnits.init();
         ArrayList<Unit> arrRemove = new ArrayList<>();
         for (Hex hex: aiOrders.arrHexMoveTo){
             HexUnits.add(hex,aiOrders.arrUnit.get(ix));
@@ -343,6 +347,8 @@ public class AIOrders {
             ix++;
         }
         aiOrders.remove(arrRemove);
+        Gdx.app.log("AIOrders", "RemoveOverStackingFor=" + arrRemove);
+
         return;
     }
 

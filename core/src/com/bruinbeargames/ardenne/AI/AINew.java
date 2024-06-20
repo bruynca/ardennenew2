@@ -3,15 +3,11 @@ package com.bruinbeargames.ardenne.AI;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.bruinbeargames.ardenne.GameLogic.Reinforcement;
-import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.ObserverPackage;
 import com.bruinbeargames.ardenne.UI.EventAI;
-import com.bruinbeargames.ardenne.UI.WinReinforcements;
 import com.bruinbeargames.ardenne.Unit.Unit;
-import com.bruinbeargames.ardenne.Unit.UnitHex;
 import com.bruinbeargames.ardenne.Unit.UnitMove;
 import com.bruinbeargames.ardenne.ardenne;
 import com.kotcrab.vis.ui.widget.VisTextButton;
@@ -22,7 +18,11 @@ import java.util.Collections;
 import java.util.Observable;
 import java.util.Observer;
 
-import sun.swing.BakedArrayList;
+import static com.bruinbeargames.ardenne.Hex.Hex.addNewAIScoreSurroundGerman;
+import static com.bruinbeargames.ardenne.Hex.Hex.hexBastogne1;
+import static com.bruinbeargames.ardenne.Hex.Hex.hexEttlebruck;
+import static com.bruinbeargames.ardenne.Hex.Hex.hexMartelange;
+import static com.bruinbeargames.ardenne.Hex.Hex.hexWiltz;
 
 public class AINew implements Observer {
     static public AINew instance;
@@ -83,28 +83,16 @@ public class AINew implements Observer {
         /**
          *  initialize the areas
          */
-        int cntAreas = arrUnit.size() / 3;
-        arrUnitArea = new ArrayList[cntAreas];
-        arrOrdersArea = new ArrayList[cntAreas];
-        for (int i = 0; i < cntAreas; i++) {
-            arrUnitArea[i] = new ArrayList<Unit>();
-            arrOrdersArea[i] = new ArrayList<AIOrders>();
-        }
+        divideUnits();
+        int cntAreas = arrUnitArea.length;
         /**
          *  spread units to the area
          */
-        int ix = 0;
-        for (Unit unit : arrUnit) {
-            arrUnitArea[ix].add(unit);
-            ix++;
-            if (ix == cntAreas) {
-                ix = 0;
-            }
-        }
         ixCurrentArea = -1;
         doNextArea();
         return;
     }
+
 
     private void doNextArea() {
         Gdx.app.log("AINew", "doNextArea ix" + ixCurrentArea);
@@ -184,15 +172,73 @@ public class AINew implements Observer {
                 aiStart = aiNew;
             }
         }
-        Gdx.app.log("AIReinforcementScenarioOther", "do final processing # units="+aiStart.arrUnit.size());
+        Gdx.app.log("AINew", "do final processing # units="+aiStart.arrUnit.size());
 
         if (arrArtillery.size() > 0){
             doArtillery(aiStart);
         }
-        Gdx.app.log("AIReinforcementScenarioOther", "execute");
+        Gdx.app.log("AINew", "execute #s-"+aiStart.arrUnit);
         execute(aiStart);
 
     }
+
+    /**
+     *  Divide the units up around control areas centered around hexes
+     */
+    private void divideUnits() {
+        arrUnitArea = null;
+        arrOrdersArea = null;
+        ArrayList<Unit> arrWork = new ArrayList<>();
+        arrWork.addAll(arrUnit);
+        int unitCount = arrWork.size();
+        int numUnitsPer = 5;
+        int divide = unitCount/numUnitsPer;
+        float divideF = (float) unitCount/numUnitsPer;
+        int numSlots= divide;
+        if (divideF > divide){
+            numSlots++;
+        }
+        arrUnitArea = new ArrayList[numSlots];
+        arrOrdersArea = new ArrayList[numSlots];
+        int lastSlot = numSlots-1;
+        int ix=0;
+        while (ix < numSlots){
+            Hex hexControl;
+            arrOrdersArea[ix] = new ArrayList<>();
+            arrUnitArea[ix] = new ArrayList<>();
+            switch (ix)
+            {
+                //comparing value of variable against each case
+                case 0:
+                    hexControl = hexBastogne1;
+                    break;
+                case 1:
+                    hexControl = hexWiltz;
+                    break;
+                case 2:
+                    hexControl = hexMartelange;
+                    break;
+                case 3:
+                    hexControl = hexEttlebruck;
+                    break;
+                default:
+                    hexControl = Hex.hexTable[25][15];
+                    break;
+            }
+            if (ix == lastSlot){
+                arrUnitArea[ix].addAll(arrWork);
+            }else{
+                ArrayList<Unit> arrFirst =AIUtil.getUnitsandSortClosestTo(arrWork,hexControl);
+                for (int i=0; i<numUnitsPer; i++){;
+                    arrUnitArea[ix].add(arrFirst.get(i));
+                }
+                arrWork.removeAll(arrUnitArea[ix]);
+            }
+            ix++;
+        }
+        return;
+    }
+
 
     private void doArtillery(AIOrders aiStart) {
     }

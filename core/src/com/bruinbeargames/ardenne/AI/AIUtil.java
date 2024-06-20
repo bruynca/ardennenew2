@@ -778,7 +778,13 @@ public class AIUtil {
 
     }
 
-    public static ArrayList<HexInt> countandSortCloseTo(Hex hexTest, ArrayList<Hex> arrMoves) {
+    /**
+     *  Sort the distance to Destinatiion hex
+     * @param hexTest
+     * @param arrMoves
+     * @return
+     */
+    public static ArrayList<HexInt> countandSortCloseToAscending(Hex hexTest, ArrayList<Hex> arrMoves) {
         ArrayList<HexInt> arrWork = new ArrayList<>();
         for (Hex hex:arrMoves){
             int range  = (int)HexHelper.findRange(hex, hexTest);
@@ -787,6 +793,42 @@ public class AIUtil {
         }
         Collections.sort(arrWork, new AIScenarioOther.SortAscending());
         return arrWork;
+    }
+    public static ArrayList<HexInt> countandSortCloseToDescending(Hex hexTest, ArrayList<Hex> arrMoves) {
+        ArrayList<HexInt> arrWork = new ArrayList<>();
+        for (Hex hex:arrMoves){
+            int range  = (int)HexHelper.findRange(hex, hexTest);
+            HexInt hi = new HexInt(hex,range);
+            arrWork.add(hi);
+        }
+        Collections.sort(arrWork, new AIScenarioOther.SortDescending());
+        return arrWork;
+    }
+
+    /**
+     * get units closest to a hex
+     * @param arrUnitIn units
+     * @param hexTarget target hex
+     * @return sorted array
+     */
+    public static ArrayList<Unit> getUnitsandSortClosestTo(ArrayList<Unit> arrUnitIn, Hex hexTarget) {
+        ArrayList<Unit> arrReturn = new ArrayList<>();
+        ArrayList<Unit> arrWork = new ArrayList<>();
+        arrWork.addAll(arrUnitIn);
+        ArrayList<Hex>  arrOccupy = new ArrayList<>(); // 1 to 1 i
+        for (Unit unit:arrWork){
+            arrOccupy.add(unit.getHexOccupy());
+        }
+        ArrayList<HexInt> arrSort = countandSortCloseToAscending(hexTarget,arrOccupy);
+        for (HexInt hi:arrSort){
+            int ix = arrOccupy.indexOf(hi.hex);
+            if (ix > -1){
+                arrReturn.add(arrWork.get(ix));
+                arrWork.remove(ix);
+                arrOccupy.remove(hi.hex);
+            }
+        }
+        return arrReturn;
     }
 }
 /**
