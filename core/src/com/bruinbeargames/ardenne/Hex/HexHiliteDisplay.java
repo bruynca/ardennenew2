@@ -64,7 +64,7 @@ public class HexHiliteDisplay {
         label = new Label(str,labelStyleName);
         label.setFontScale(.8f);
         if (hex.getAiScore() > 0){
-            label.setFontScale(1.2f);
+  //         label.setFontScale(1.2f);
         }
         label.setPosition(pos.x-40, pos.y+40);
         label2 = new Label(str2,labelStyleName) ;

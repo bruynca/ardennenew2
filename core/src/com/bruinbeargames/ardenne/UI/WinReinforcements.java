@@ -278,7 +278,7 @@ public class WinReinforcements {
             counter.getCounterStack().getStack().addListener(new ClickListener() {
                 @Override
                 public void clicked(InputEvent event, float x, float y) {
-                    hitUnit(unit, counter, unitWorkOn);
+                    hitUnit(unit, counter, unitWorkOn, false);
  /*                   if (unitWorkOn != null) {
 
                         if (unit == unitWorkOn) {
@@ -319,7 +319,9 @@ public class WinReinforcements {
         return null;
     }
 
-    public void hitUnit(Unit unit, Counter counter, Unit unitWork) {
+    public void hitUnit(Unit unit, Counter counter, Unit unitWork,boolean isAI) {
+        Gdx.app.log("WinReinforcement", "hitUnit=" + arrUnits);
+
         if (unitWork != null) {
 
             if (unit == unitWork) {
@@ -332,7 +334,7 @@ public class WinReinforcements {
         }
         unitWorkOn = unit;
         prevCounter = counter;
-        ArrayList<Hex> arrHex = findHexesToPlaceThisUnit(unit);
+        ArrayList<Hex> arrHex = findHexesToPlaceThisUnit(unit,isAI);
         if (arrHex.size() == 0){
             EventPopUp.instance.show(i18NBundle.get("noplacereinforcement"));
             return;
@@ -364,9 +366,14 @@ public class WinReinforcements {
 
     }
 
-    public  ArrayList<Hex> findHexesToPlaceThisUnit(Unit unit) {
-        int cost = Reinforcement.instance.getCost(unit);
-        cost++;
+    public  ArrayList<Hex> findHexesToPlaceThisUnit(Unit unit, boolean isAI) {
+        int cost=0;
+        if (isAI){
+
+        }else {
+            cost = Reinforcement.instance.getCost(unit);
+            cost++;
+        }
         isMovableReinforcement = true;
         ArrayList<Hex> arrHexReturn = new ArrayList<>();
         Hex hex = Hex.hexTable[unit.getEntryX()][unit.getEntryY()];
@@ -374,7 +381,12 @@ public class WinReinforcements {
             CenterScreen.instance.start(hex);
         }
         if (hex.canOccupy(unit)) {
+            Gdx.app.log("WinReinForecement", "before unitmove hex="+hex+" cost="+cost+" unit="+unit);
             unitMove = new UnitMove(unit, unit.getCurrentMovement() - cost,false,true,hex,0);
+            Gdx.app.log("WinReinForecement", "after unit unitMove="+unitMove.arrHexSolution[0]);
+            if (unitMove.arrHexSolution[0].size() == 0){
+                int b=0;
+            }
             arrHexReturn.addAll(unitMove.getMovePossible());
             arrHexReturn.add(hex);
             return arrHexReturn;
@@ -422,6 +434,8 @@ public class WinReinforcements {
         return isWindowActive;
     }
     public void doMove(Hex hex, ObserverPackage op){
+        Gdx.app.log("WinReinforcement", "doMove" + arrUnits);
+
         if ( op != null && hitWindow(op)) {  // ai coming hrough
             return;
         }
@@ -431,6 +445,8 @@ public class WinReinforcements {
         Hex hexPlace = Hex.hexTable[unitWorkOn.getEntryX()][unitWorkOn.getEntryY()];
         if (isMovableReinforcement){
             unitWorkOn.placeOnBoard(hexPlace);
+            Gdx.app.log("WinReinforcement", "doMove moveToHEx ="+hex+"  unitMove="+unitMove.arrHexSolution[0]);
+
             ArrayList<Hex> arrHex = unitMove.getLeastPath(hex,false,null);
             Move.instance.actualMove(unitWorkOn,arrHex, Move.AfterMove.ToReinforcement, false);
             unitWorkOn.setMovedThisTurn(NextPhase.instance.getTurn());

@@ -96,7 +96,8 @@ public class AIExecute {
         }
 
         private void doNextReinforcements() {
-            Gdx.app.log("AIExReinforcement", "Do Next arrHex=" + arrUnits);
+            Gdx.app.log("AIExReinforcement", "Do Next arrUnits=" + arrUnits);
+            Gdx.app.log("AIExReinforcement", "Do Next arrHexes=" + arrHexes);
 
             if (arrHexes.size() == 0){
                 WinModal.instance.release();
@@ -107,6 +108,7 @@ public class AIExecute {
                 return;
             }
             hexCurrent = arrHexes.get(0);
+            Gdx.app.log("AIExReinforcement", "Do NEXT hexCurrentx=" + hexCurrent);
             unitCurrent = arrUnits.get(0);
             hexDestination = arrHexes.get(arrHexes.size() -1);
             arrHexes.remove(0);
@@ -126,9 +128,9 @@ public class AIExecute {
             if (((ObserverPackage) arg).type == ObserverPackage.Type.ScreenCentered) {
  //               CenterScreen.instance.deleteObserver(this);
                 if (!isCenterOnDestinationHex) {
-                    Gdx.app.log("AIExReinforcement", "Do Next arrHex=" + arrUnits);
+                    Gdx.app.log("AIExecute", "Next Reinforcement=" + arrUnits);
                     Counter counter = winReinforcements.getCounter(unitCurrent);
-                    winReinforcements.hitUnit(unitCurrent, counter, null);
+                    winReinforcements.hitUnit(unitCurrent, counter, null,true);
                     /**
                      *  Center screen gets fired by a lot of process in program
                      *  make sure we dont start another unit until one is complete
@@ -138,6 +140,7 @@ public class AIExecute {
                     Timer.schedule(new Timer.Task() {
                                        @Override
                                        public void run() {
+                                           Gdx.app.log("AIExecute", "kick off winreinforcement hexCurrent="+hexCurrent);
                                            winReinforcements.doMove(hexCurrent, null);
                                            isProcessLocked = false;
                                            CenterScreen.instance.start(hexCurrent);

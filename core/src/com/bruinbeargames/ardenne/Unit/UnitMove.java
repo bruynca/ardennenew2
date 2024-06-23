@@ -17,7 +17,7 @@ public class UnitMove {
 	boolean isAllowedMOA;
 	boolean checkTerrain;
 	boolean checkAdjacent = false;
-	ArrayList<Hex>[] arrHexSolution = new ArrayList[11];
+	public ArrayList<Hex>[] arrHexSolution = new ArrayList[11];
 	ArrayList<Float>[] arrHexCost = new ArrayList[11];
 	ArrayList<Hex>[] arrHexAdjacentEnemy = new ArrayList[11];
 	ArrayList<Float>[] arrBestScore= new ArrayList[11];
@@ -192,7 +192,8 @@ public class UnitMove {
 	 * @return arryroute in hexes
 	 */
 	public ArrayList<Hex> getLeastPath(Hex hexEnd, boolean isRedoCalc, ArrayList<Hex> arrReference) {
-		Gdx.app.log("UnitMove","getLeastPath unit="+unit+" hex Start"+unit.getHexOccupy()+" hexEnd="+hexEnd);
+		Gdx.app.log("UnitMove","getLeastPath unit="+unit+" hexEnd="+hexEnd);
+		Gdx.app.log("UnitMove", "getLeasPath unitMove="+arrHexSolution[0]);
 		ArrayList<Hex> arrReturn= new ArrayList<>();
 		boolean isMOASpecial = false;
 		if (arrReference != null){
@@ -203,10 +204,6 @@ public class UnitMove {
 				}
 			}
 		}
-		if (unit.getID() == 43) {
-			int b=0;
-
-		}
 		if (isRedoCalc) {
 			Gdx.app.log("UnitMove","getLeastPath reDo");
 			reDO(); // get correct calcmove
@@ -215,6 +212,8 @@ public class UnitMove {
 			// find closest
 			hexEnd =  AIUtil.findClosestHex(arrHexSolution[0], hexEnd);
 			if (hexEnd == null) {
+				Gdx.app.log("UnitMove", "error="+arrHexSolution[0]);
+
 				Gdx.app.log("UnitMove", "Has something changed ");
 				Gdx.app.log("UnitMove", "Hex =" + hexEnd + "Is no longer in Solution");
 				Gdx.app.log("UnitMove", "unit=" + unit + " Length= " + moveLength + " isAllowedMOA=" + isAllowedMOA + " checkTerrain=" + checkTerrain + " isFakeAI" + isFakeAI + " hexSolution length=" + arrHexSolution[thread].size() + " hexEnd=" + hexEnd);
