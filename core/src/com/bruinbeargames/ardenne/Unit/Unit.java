@@ -506,7 +506,7 @@ public class Unit {
 		if (unit.counter != null) {
 			unit.counter.remove();
 		}
-		unit.counter = null;
+		//unit.counter = null;
 		if (unit.hexOccupy != null) {
 			Counter.rePlace(unit.hexOccupy);
 		}

@@ -159,7 +159,7 @@ public class AIFaker extends Observable {
                     int score =0;
                     AIFaker.setFakeOccupied(aiO, true, thread);
                     AIFaker.setFakeZoc(aiO, thread);
-                    Gdx.app.log("AIFakers", "Thread "+thread+" Type="+type+" At ="+j);
+ //                   Gdx.app.log("AIFakers", "Thread "+thread+" Type="+type+" At ="+j);
 
                     switch(type) {
                         case Supply:

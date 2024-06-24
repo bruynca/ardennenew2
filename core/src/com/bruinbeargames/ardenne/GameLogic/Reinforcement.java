@@ -154,17 +154,24 @@ public class Reinforcement {
         }
         return arrUnit;
     }
-    public int getThisTurnCount(){
-        int count =0;
+
+    /**
+     *  this will get all reinforcement inlcuding those not picked up previously
+     * @param hex
+     * @return
+     */
+    public ArrayList<Unit> getReinforcementsAvailable(Hex hex) {
+        ArrayList<Unit> arrUnit = new ArrayList<>();
+        int x = hex.xTable;
+        int y = hex.yTable;
         int turn = NextPhase.instance.getTurn();
-        for (Unit unit:getReinforcementsAvailable()){
-            if (unit.entryNum == turn){
-                count++;
+        for (Unit unit : getReinforcementsAvailable(turn)) {
+            // do nothing
+            if (unit.getEntryY() == y && unit.getEntryX() == x) {
+                arrUnit.add(unit);
             }
-        }
-        return count;
-
-
+       }
+        return arrUnit;
     }
     public String getName(Hex hex){
         int ix =arrHexDesc.indexOf(hex);

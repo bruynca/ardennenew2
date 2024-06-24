@@ -287,7 +287,9 @@ public class Move extends Observable {
 
         if (af == AfterMove.ToAdvance){
             unit.setMovedThisTurn(NextPhase.instance.getTurn());
-            unit.getMapCounter().getCounterStack().shade();
+            if (unit.getMapCounter() != null) {
+                unit.getMapCounter().getCounterStack().shade();
+            }
             moveReturnFromClick(false, hexEnd, unit);
             return;
         }

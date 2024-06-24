@@ -98,7 +98,9 @@ public class AIReinforcementScenarioOther implements Observer {
         int ix = 0;
         for (Hex hex : arrReinforceAreas) {
             ArrayList<Unit> arrUnit = new ArrayList<>();
-            arrUnit.addAll(Reinforcement.instance.getReinforcementsAvailable(hex, true));
+            arrUnit.addAll(Reinforcement.instance.getReinforcementsAvailable(hex));
+            Gdx.app.log("AIReinforcementsOther", "Reinforcement area units="+arrUnit);
+
             if (arrUnit.size() > 0) {
                 arrUnitReinArea[ix] = arrUnit;
                 ix++;
