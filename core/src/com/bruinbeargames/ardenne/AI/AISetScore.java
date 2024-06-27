@@ -27,7 +27,7 @@ public class AISetScore {
             {8,13,5},{10,11,3},{12,11,3},{8,10,5},
             {7,10,3},{7,11,3},{7,13,3},//second row of bridges
             {14,10,4},{11,12,4},{9,14,4},{6,18,3},{11,7,2}};
-    int[][] supplyBreakup={{28,11,3},{31,13,3},{28,11,3},{27,8,3},{25,8,3},{33,17,3}};
+    int[][] supplyBreakup={{31,13,3},{28,11,3},{27,8,3},{25,8,3},{33,17,3}};
     Hex hexBastogne1 = Hex.hexTable[8][11];
     Hex hexBastogne2 = Hex.hexTable[8][12];
     Hex hexMartelange = Hex.hexTable[9][23];
@@ -64,10 +64,14 @@ public class AISetScore {
                 }else{
                     scoreBastogneScene1();
                 }
+            }else{
+                scoreAfterTurn3();
             }
         }
 
     }
+
+
 
     private void loadSupplyBottlenecks() {
         for (int[] hexI:supplyBreakup){
@@ -88,7 +92,6 @@ public class AISetScore {
 
         this.arrUnits.clear();
         this.arrUnits.addAll(arrUnits);
-        this.arrMoves = null;
         this.arrMoves = arrWork;
         scoreMove();
     }
@@ -106,6 +109,13 @@ public class AISetScore {
     private void doInitialTurns() {
         loadAIScore(bestHexDefenseTurn1);
         loadAIScoreFakerInitial();
+        for (ArrayList<Hex> arr:arrMoves){
+            ArrayList<HexInt> arrSorted = AIUtil.countandSortCloseToAscending(hexBastogne1,arr);
+            if (arrSorted.size() > 2) {
+                arrSorted.get(0).hex.setAI(2);
+                arrSorted.get(1).hex.setAI(1);
+            }
+        }
     }
     public void loadAIScore(int[][] bestHexs) {
         for (int[] hexI:bestHexs){
@@ -337,6 +347,26 @@ public class AISetScore {
         for (Hex hex: arrWork){
             hex.setAI(2);
         }
+    }
+
+    /**
+     *  handle the score set for non scenario a after turn 3
+     *
+     */
+    private void scoreAfterTurn3() {
+        /**
+         *  aiScore
+         *  score bastogne and surrounding big
+         *  score ettlebruck and martelang roads  and any enemy close to them
+         *  score units we are trying to destroy 2nd Panzer and Lehr
+         *  score Supply if none left for second panzer
+         *
+         *  aiFakerScore
+         *   score units trying to destroy including block units
+         *   score supplu ??
+         *
+         */
+
     }
 
 }

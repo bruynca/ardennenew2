@@ -186,6 +186,8 @@ public class AINew implements Observer {
      *  Divide the units up around control areas centered around hexes
      */
     private void divideUnits() {
+        Gdx.app.log("AINew", "divideUnits="+arrUnit);
+
         arrUnitArea = null;
         arrOrdersArea = null;
         ArrayList<Unit> arrWork = new ArrayList<>();
@@ -235,6 +237,10 @@ public class AINew implements Observer {
                 arrWork.removeAll(arrUnitArea[ix]);
             }
             ix++;
+        }
+        for (ArrayList<Unit> arr:arrUnitArea){
+            Gdx.app.log("AINew", "unitAreass="+arr);
+
         }
         return;
     }
