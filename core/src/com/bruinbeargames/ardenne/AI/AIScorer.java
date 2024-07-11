@@ -2,6 +2,7 @@ package com.bruinbeargames.ardenne.AI;
 
 import com.bruinbeargames.ardenne.GameLogic.Attack;
 import com.bruinbeargames.ardenne.GameLogic.Combat;
+import com.bruinbeargames.ardenne.GameLogic.LehrExits;
 import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
 import com.bruinbeargames.ardenne.GameLogic.Supply;
 import com.bruinbeargames.ardenne.GameSetup;
@@ -115,9 +116,40 @@ public class AIScorer {
             }
             return score;
         }
-        return accumulateGerman(aiO,arrGermans,thread);
+        if (AISetScore.instance.strategy == AISetScore.Strategy.Block){
+            return accumulateGermanExit(aiO,arrGermans,thread);
+
+        }else{
+            return sumExitInSupply(thread);
+        }
 
     }
+    private int accumulateGermanExit(AIOrders aiO, ArrayList<Unit> arrGermans, int thread) {
+        int score = 0;
+        ArrayList<Hex>[] arrHexGermanPaths = createGermanMoves(arrGermans,thread); // on thread
+        for (ArrayList<Hex> arrWork:arrHexGermanPaths){
+            for (Hex hex:arrWork){
+                score -=hex.getAiScoreFaker();
+                if (hex == LehrExits.instance.hexExit1 || hex ==LehrExits.instance.hexExit2){
+                    score -=1000;
+                }
+            }
+        }
+        return score;
+    }
+    private int sumExitInSupply(int thread) {
+
+        int score = 0;
+        Unit unitTransport = Unit.getTransports(false).get(0);
+        ArrayList<Hex> arrHexInSupply = Supply.instance.createHexChoice(unitTransport, thread, true);
+        if (arrHexInSupply.contains(LehrExits.instance.hexExit1) || arrHexInSupply.contains(LehrExits.instance.hexExit2)){
+            score =1000;
+        }else{
+            int i=0;
+        }
+        return score;
+    }
+
 
     /**
      * part of rewrite for AI

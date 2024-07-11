@@ -204,13 +204,15 @@ public class Supply implements Observer{
         arrTransport.addAll(Unit.getTransports(false));
         ArrayList<ArrayList> arrArrsSupply = new ArrayList<>();
         ArrayList<Hex> arrWork = new ArrayList<>();
+        int moveLength = Supply.instance.toUnit + Supply.instance.initialRange;
+
         UnitMove unitMove = null;
         for (int i=0; i < arrTransport.size();i++) {
-            unitMove = new UnitMove(arrTransport.get(i), initialRange, false, true, arrGermanSupply.get(i),0);
+            unitMove = new UnitMove(arrTransport.get(i), moveLength, false, true, arrGermanSupply.get(i),0);
             arrWork.addAll(unitMove.getMovePossible());
         }
         if (isHoufflaizeOperational){
-            unitMove = new UnitMove(arrTransport.get(0), initialRange, false, true, hexHouf,0);
+            unitMove = new UnitMove(arrTransport.get(0), moveLength, false, true, hexHouf,0);
             arrWork.addAll(unitMove.getMovePossible());
         }
         /**
@@ -373,6 +375,12 @@ public class Supply implements Observer{
     }
 
     HiliteHex hiWork = null;
+
+    /**
+     * Find all hexes that can be supplied from the passed hex
+     * @param hex
+     * @return
+     */
     public ArrayList<Hex>  getunitsInRadius(Hex hex){
         if (hiWork != null){
             hiWork.remove();

@@ -316,19 +316,27 @@ public class ClickAction implements Observer {
             arrHexMove.remove(Hex.hexTable[9][24]);
             arrHexMove.remove(Hex.hexTable[27][24]);
         }
+        ArrayList<Hex> arrCheckExit = new ArrayList<>();
+        arrCheckExit.addAll(arrHexMove);
         /**
          *  remove entry points for Germans
          */
         if (!unit.isAllies){
             arrHexMove.removeAll(Move.instance.arrEntryPoints);
         }
+        if (SecondPanzerExits.instance.isInSecond(unit) ||LehrExits.instance.isInLehr(unit) ) {
+            arrHexMove.add(Hex.hexTable[0][19]);
+        }
         HiliteHex.TypeHilite type = HiliteHex.TypeHilite.Move;
 
         hiliteHex = new HiliteHex(arrHexMove, type, this);
+/**
+ * check for exit  do before eliminating entrypoints
+ */
         if (GameSetup.instance.getScenario().ordinal() <= GameSetup.Scenario.Lehr.ordinal()){
             if (SecondPanzerExits.instance.isInSecond(unit)) {
                 ArrayList<Hex> arrHexWork = new ArrayList<>();
-                for (Hex hex : arrHexMove) {
+                for (Hex hex : arrCheckExit) {
                     if (SecondPanzerExits.instance.isInExit(hex)){
                         arrHexWork.add(hex);
                     }
@@ -339,7 +347,7 @@ public class ClickAction implements Observer {
             }
             if (LehrExits.instance.isInLehr(unit)) {
                 ArrayList<Hex> arrHexWork = new ArrayList<>();
-                for (Hex hex : arrHexMove) {
+                for (Hex hex : arrCheckExit) {
                     if (LehrExits.instance.isInExit(hex)){
                         arrHexWork.add(hex);
                     }

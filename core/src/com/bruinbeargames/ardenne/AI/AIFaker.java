@@ -6,6 +6,7 @@ import com.bruinbeargames.ardenne.GameLogic.LehrExits;
 import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
 import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
+import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.ObserverPackage;
 import com.bruinbeargames.ardenne.UI.EventAI;
 import com.bruinbeargames.ardenne.Unit.Unit;
@@ -113,7 +114,12 @@ public class AIFaker extends Observable {
         }
 
         ArrayList<Unit> arrGermanPass = new ArrayList<>();
-        arrGermanPass.addAll(arrGermanOnBoardUnits);
+        if (type == AIScorer.Type.NewProcess &&  NextPhase.instance.getTurn() > 3
+            && GameSetup.instance.getScenario() != GameSetup.Scenario.Intro ) {
+            arrGermanPass.addAll(AISetScore.instance.arrUnitsToBloack);
+        }else {
+            arrGermanPass.addAll(arrGermanOnBoardUnits);
+        }
         for (ArrayList<AIOrders> aiArr:aiArray){
             generateScore(aiArray[i], arrGermanPass,type,i+1);
             i++;
@@ -191,6 +197,7 @@ public class AIFaker extends Observable {
                             // do scoring
                             break;
                         case NonPenetrate:
+                        case NewProcess:
                         default:
                             score = AIScorer.instance.getScore(type, arrGerman, aiO, thread);
                             if (score > 0){

@@ -1,6 +1,8 @@
 package com.bruinbeargames.ardenne.AI;
 
 import com.badlogic.gdx.Gdx;
+import com.bruinbeargames.ardenne.GameLogic.LehrExits;
+import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
 import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.Hex.Hex;
 import com.bruinbeargames.ardenne.Hex.HexInt;
@@ -38,17 +40,24 @@ public class AISetScore {
     Hex hexEttlebruckReinforceEntry = Hex.hexTable[28][24];
     ArrayList<Unit> arrUnits = new ArrayList<>();
     ArrayList<Hex>[] arrMoves = null;
+    public ArrayList<Unit> arrUnitsToBloack;
+    public Strategy strategy;
+
     AISetScore(){
         instance = this;
     }
     public void scoreMove(){
+        Gdx.app.log("AISetScore", "scoreMove");
+
         Hex.initAI();
         Hex.initAIFaker();
         /**
          *  supply point
          */
-        loadSupplyBottlenecks();
+        loadSupplyBottlenecks(2);
         if (NextPhase.instance.getTurn() < 4){
+            Gdx.app.log("AISetScore", "doInitialTurns");
+
             doInitialTurns();
             return;
         }else{
@@ -73,11 +82,11 @@ public class AISetScore {
 
 
 
-    private void loadSupplyBottlenecks() {
+    private void loadSupplyBottlenecks(int score) {
         for (int[] hexI:supplyBreakup){
             Hex hex = Hex.hexTable[hexI[0]][hexI[1]];
-            hex.setAI(hexI[2]);
-            hex.setAiScoreFaker(hexI[2]);
+            hex.setAI(score);
+            hex.setAiScoreFaker(score);
         }
 
     }
@@ -366,7 +375,113 @@ public class AISetScore {
          *   score supplu ??
          *
          */
+        Gdx.app.log("AISetScore", "scoreafterturn3");
+
+        int haveExitted = 0;
+        int needToExit = 0;
+        int totalUnits = 0;
+        strategy = Strategy.Attack;
+        /**
+         *  do the counts for secon panzer and Lehr
+         */
+        arrUnitsToBloack =  new ArrayList<>();
+        for (Unit unit: Unit.getOnBoardAxis()){
+                if (SecondPanzerExits.instance.isInSecond(unit)){
+                    if (SecondPanzerExits.instance.unitExit1.contains(unit) ||
+                        SecondPanzerExits.instance.unitExit2.contains(unit)){
+                        haveExitted++;
+                    }else{
+                        needToExit++;
+                        arrUnitsToBloack.add(unit);
+                    }
+                    totalUnits++;
+                }
+                if (GameSetup.instance.getScenario().ordinal() > GameSetup.Scenario.SecondPanzer.ordinal()) {
+                    if (LehrExits.instance.isInLehr(unit)) {
+                        if (LehrExits.instance.unitExit1.contains(unit) ||
+                                LehrExits.instance.unitExit2.contains(unit)) {
+                            haveExitted++;
+                        } else {
+                            needToExit++;
+                            arrUnitsToBloack.add(unit);
+                        }
+                        totalUnits++;
+                    }
+                }
+        }
+        /** come up with startegy
+         *
+         */
+        if (needToExit > haveExitted){
+            Gdx.app.log("AISetScore", "strategy block");
+
+            strategy =Strategy.Block;
+        }else{
+            strategy = Strategy.Supply;
+            loadSupplyBottlenecks(8);
+            Gdx.app.log("AISetScore", "strategy Supply");
+        }
+        /**
+         *  for reinforcement points  set up free road network  by surroundin the enemy
+         */
+        setUpRoadNetworkAttack(hexEttlebruck,5,5);
+        setUpRoadNetworkAttack(hexMartelange,5,5);
+        /**
+         *  center around Bastogne  all units have a hit there
+         */
+        for (ArrayList<Hex> arr:arrMoves){
+            ArrayList<HexInt> arrSorted = AIUtil.countandSortCloseToAscending(hexBastogne1,arr);
+            if (arrSorted.size() > 2) {
+                arrSorted.get(0).hex.setAI(2);
+                arrSorted.get(1).hex.setAI(1);
+            }
+        }
+        hexBastogne1.setAI(100);
+        hexBastogne2.setAI(100);
+
+        for (Hex hex : hexBastogne1.getSurround()) {
+            hex.setAI(50);
+        }
+        /**
+         *  set up ai for hexes around targets
+         */
+        for (Unit unit:arrUnitsToBloack){
+            for (Hex hex:unit.getHexOccupy().getSurround()){
+                hex.setAI(4);
+                hex.setAiScoreFaker(4);
+            }
+
+        }
+
+
+
 
     }
 
+    /**
+     *   Set AISCore andAIFaker for surroundin hexes on a road network occupied by enemy units
+     * @param hexTarget
+     * @param length  of road network from target
+     * @param startScore start score at hex
+     */
+
+    private void setUpRoadNetworkAttack(Hex hexTarget, int length, int startScore) {
+        Hex[][] arrArr =  hexTarget.getSurround(length);
+        for (Hex[] arr:arrArr){
+            int score = startScore;
+            for (Hex hex:arr){
+                if ((hex.isRoad() || hex.isPath()) && hex.isAxisOccupied()){
+                    for (Hex hexSur:hex.getSurround()) {
+                        hexSur.setAI(score);
+                        hexSur.setAiScoreFaker(score);
+                    }
+                }
+                score--;
+            }
+        }
+    }
+
+    public enum Strategy {
+        Block, Supply, Attack
+    }
 }
