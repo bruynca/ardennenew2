@@ -101,7 +101,6 @@ public class AIExecute {
 
             if (arrHexes.size() == 0){
                 WinModal.instance.release();
-                EventAI.instance.hide();
                 if (winReinforcements.isWindowStillActive()){
                     winReinforcements.end();
                 }

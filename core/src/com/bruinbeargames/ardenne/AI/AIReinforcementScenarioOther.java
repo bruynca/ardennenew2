@@ -218,7 +218,7 @@ public class AIReinforcementScenarioOther implements Observer {
             ix++;
         }
         ArrayList<Hex> arrDupes = new ArrayList<>(); // no dupes at moment
-        aiProcess = new AIProcess(arrWorkingOn,arrWork,arrDupes,99);
+        aiProcess = new AIProcess(arrWorkingOn,arrWork,arrDupes,ixCurrentReinArea);
         if (aiProcess.isFailed()){
             doNextReinArea();
             return;
@@ -312,7 +312,9 @@ public class AIReinforcementScenarioOther implements Observer {
     private void setupAiScoreandFaker(Hex hex) {
         AISetScore.instance.scoreReinforcement(hex);
  //       doNextRinActual();
-        creatAIWindow();
+//        creatAIWindow();
+        doNextRinActual();
+
     }
 
 

@@ -153,7 +153,7 @@ public class AINew implements Observer {
         }
         int ix=0;
         ArrayList<Hex> arrDupes = new ArrayList<>(); // no dupes at moment
-        aiProcess = new AIProcess(arrWorkingOn,arrWork,arrDupes,99);
+        aiProcess = new AIProcess(arrWorkingOn,arrWork,arrDupes,ixCurrentArea);
         if (aiProcess.isFailed()){
             doNextArea();
             return;
@@ -257,7 +257,9 @@ public class AINew implements Observer {
         arrMoves = AIUtil.getUnitsMaxMove(arrUnit,0, false);
         AISetScore.instance.scoreMove(arrUnit,arrMoves);
         //       doNextRinActual();
-        creatAIWindow();
+//        creatAIWindow();
+        doNextActual();
+
     }
     private void creatAIWindow() {
         Gdx.app.log("AINewr", "Create AI Window");

@@ -445,7 +445,7 @@ public class WinReinforcements {
         Hex hexPlace = Hex.hexTable[unitWorkOn.getEntryX()][unitWorkOn.getEntryY()];
         if (isMovableReinforcement){
             unitWorkOn.placeOnBoard(hexPlace);
-            Gdx.app.log("WinReinforcement", "doMove moveToHEx ="+hex+"  unitMove="+unitMove.arrHexSolution[0]);
+            Gdx.app.log("WinReinforcement", "doMove moveToHEx ="+hex);
 
             ArrayList<Hex> arrHex = unitMove.getLeastPath(hex,false,null);
             Move.instance.actualMove(unitWorkOn,arrHex, Move.AfterMove.ToReinforcement, false);
@@ -499,6 +499,8 @@ public class WinReinforcements {
         }
         window.clear();
         window.remove();
+        Gdx.app.log("WinReinforcement", "isWindowActive=false");
+
         isWindowActive = false;
         BottomMenu.instance.setEnablePhaseChange(true);
     }

@@ -192,8 +192,8 @@ public class UnitMove {
 	 * @return arryroute in hexes
 	 */
 	public ArrayList<Hex> getLeastPath(Hex hexEnd, boolean isRedoCalc, ArrayList<Hex> arrReference) {
-		Gdx.app.log("UnitMove","getLeastPath unit="+unit+" hexEnd="+hexEnd);
-		Gdx.app.log("UnitMove", "getLeasPath unitMove="+arrHexSolution[0]);
+//		Gdx.app.log("UnitMove","getLeastPath unit="+unit+" hexEnd="+hexEnd);
+//		Gdx.app.log("UnitMove", "getLeasPath unitMove="+arrHexSolution[0]);
 		ArrayList<Hex> arrReturn= new ArrayList<>();
 		boolean isMOASpecial = false;
 		if (arrReference != null){

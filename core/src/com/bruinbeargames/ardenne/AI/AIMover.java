@@ -34,7 +34,10 @@ public class AIMover {
         i18NBundle= GameMenuLoader.instance.localization;
     }
     public void moveAnalysis(boolean isAllies) {
+        Gdx.app.log("AIMover", "moveAnalysis");
+
         this.isAllies = isAllies;
+ //       EventAI.instance.hide();
         EventAI.instance.show(i18NBundle.format("aimove"));
         AINew.instance.doAlliesMove();
 

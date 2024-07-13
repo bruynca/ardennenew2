@@ -12,6 +12,7 @@ import com.bruinbeargames.ardenne.NextPhase;
 import com.bruinbeargames.ardenne.ObserverPackage;
 import com.bruinbeargames.ardenne.Phase;
 import com.bruinbeargames.ardenne.UI.BottomMenu;
+import com.bruinbeargames.ardenne.UI.EventAI;
 import com.bruinbeargames.ardenne.UI.EventPopUp;
 import com.bruinbeargames.ardenne.WinModal;
 
@@ -159,6 +160,7 @@ public class AIMain implements Observer {
                 }
                 break;
             case ALLIED_MOVEMENT:
+                EventAI.instance.hide();
                 Move.instance.doMovePhase(true,true, false);
                 //AISupply.instance.doSupplyAnalysis();
                 AIMover.instance.moveAnalysis(true);

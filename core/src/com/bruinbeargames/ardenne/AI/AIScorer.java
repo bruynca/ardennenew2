@@ -100,27 +100,20 @@ public class AIScorer {
     }
 
     private int newProcess(AIOrders aiO, ArrayList<Unit> arrGermans, int thread) {
-        if (NextPhase.instance.getTurn() < 4 && NextPhase.instance.getPhase() != Phase.ALLIED_REINFORCEMENT.ordinal()){
+        if (NextPhase.instance.getTurn() < 3 && NextPhase.instance.getPhase() != Phase.ALLIED_REINFORCEMENT.ordinal()){
             return accumulateGerman(aiO,arrGermans,thread);
         }
         if (GameSetup.instance.getScenario() == GameSetup.Scenario.Intro){
             int score =0;
             for (Hex hex:aiO.arrHexMoveTo){
-                if(hex ==  Hex.hexTable[8][11]){
-                    int b=0;
-                }
-                if(hex ==  Hex.hexTable[8][12]){
-                    int b=0;
-                }
                 score +=hex.getAiScoreFaker();
             }
             return score;
         }
-        if (AISetScore.instance.strategy == AISetScore.Strategy.Block){
-            return accumulateGermanExit(aiO,arrGermans,thread);
-
-        }else{
+        if (AISetScore.instance.strategy == AISetScore.Strategy.Supply){
             return sumExitInSupply(thread);
+        }else{
+            return accumulateGermanExit(aiO,arrGermans,thread);
         }
 
     }
@@ -128,12 +121,12 @@ public class AIScorer {
         int score = 0;
         ArrayList<Hex>[] arrHexGermanPaths = createGermanMoves(arrGermans,thread); // on thread
         for (ArrayList<Hex> arrWork:arrHexGermanPaths){
-            for (Hex hex:arrWork){
-                score -=hex.getAiScoreFaker();
-                if (hex == LehrExits.instance.hexExit1 || hex ==LehrExits.instance.hexExit2){
+            if (arrWork.contains(LehrExits.instance.hexExit1) || arrWork.contains(LehrExits.instance.hexExit2) ){
                     score -=1000;
                 }
-            }
+        }
+        for (Hex hex:aiO.arrHexMoveTo ){
+            score +=hex.getAiScoreFaker();
         }
         return score;
     }

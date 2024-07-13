@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.I18NBundle;
 import com.bruinbeargames.ardenne.AI.AIFaker;
+import com.bruinbeargames.ardenne.AI.AIProcess;
 import com.bruinbeargames.ardenne.Fonts;
 import com.bruinbeargames.ardenne.GameMenuLoader;
 import com.bruinbeargames.ardenne.ardenne;
@@ -30,7 +31,7 @@ public class EventAI{
     private String text;
     private I18NBundle i18NBundle;
     private TextButton.TextButtonStyle textButtonStyle;
-    private String s1 =".     ";
+    private String s1 =".                  ";
     private String s2 ="..    ";
     private String s3 ="...   ";
     private String s4 ="....  ";
@@ -51,6 +52,8 @@ public class EventAI{
     }
 
     public void show(String text) {
+        Gdx.app.log("EventAI", "sow="+text);
+
         this.text = text;
         textLabel.setText(text+s1);
         textLabel.pack();
@@ -76,6 +79,7 @@ public class EventAI{
         textLabel.setPosition((backgroundImage.getX() + backgroundImage.getWidth()/2) - (textLabel.getWidth()/2), backgroundImage.getY() +  (backgroundImage.getHeight() - height - (20)));
         group.setVisible(true);
         group.toFront();
+        ardenne.instance.guiStage.addActor(group);
         ardenne.instance.guiStage.addActor(group);
         ardenne.instance.setAIRender(true);
         percent =0;
@@ -157,7 +161,9 @@ public class EventAI{
         String textNew = text+"";
         if (percent > 0){
             int done =  AIFaker.instance.getPercentDone();
-            textNew = text +" "+done+"%";
+            int splitNum = AIProcess.splitNumber;
+            splitNum++;
+            textNew = text +" "+"Part-"+splitNum+"  "+done+"%";
         }
  /*       switch(cntTic){
             case 0:textNew=text+" 100";

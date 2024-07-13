@@ -55,7 +55,7 @@ public class AISetScore {
          *  supply point
          */
         loadSupplyBottlenecks(2);
-        if (NextPhase.instance.getTurn() < 4){
+        if (NextPhase.instance.getTurn() < 3){
             Gdx.app.log("AISetScore", "doInitialTurns");
 
             doInitialTurns();
@@ -105,14 +105,16 @@ public class AISetScore {
         scoreMove();
     }
     public void scoreReinforcement(Hex hex) {
-        Hex.initAI();
-        Hex.initAIFaker();
-        setupBastogne();
-        loadAIScoreFakerBastogne();
-        setUpMatrelange();
-        loadAIScoreFakerEttlebruck();
-        setUpEttleBruck();
-        loadAIScoreFakerMartelange();
+            Hex.initAI();
+            Hex.initAIFaker();
+            setupBastogne();
+            loadAIScoreFakerBastogne();
+            setUpMatrelange();
+            loadAIScoreFakerEttlebruck();
+            setUpEttleBruck();
+            loadAIScoreFakerMartelange();
+            scoreAfterTurn3();
+
     }
 
     private void doInitialTurns() {
@@ -429,11 +431,13 @@ public class AISetScore {
         /**
          *  center around Bastogne  all units have a hit there
          */
-        for (ArrayList<Hex> arr:arrMoves){
-            ArrayList<HexInt> arrSorted = AIUtil.countandSortCloseToAscending(hexBastogne1,arr);
-            if (arrSorted.size() > 2) {
-                arrSorted.get(0).hex.setAI(2);
-                arrSorted.get(1).hex.setAI(1);
+        if (arrMoves != null) {
+            for (ArrayList<Hex> arr : arrMoves) {
+                ArrayList<HexInt> arrSorted = AIUtil.countandSortCloseToAscending(hexBastogne1, arr);
+                if (arrSorted.size() > 2) {
+                    arrSorted.get(0).hex.setAI(2);
+                    arrSorted.get(1).hex.setAI(1);
+                }
             }
         }
         hexBastogne1.setAI(100);

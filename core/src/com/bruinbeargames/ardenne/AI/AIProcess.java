@@ -50,12 +50,12 @@ public class AIProcess{
      * @param arrUnitsIn Units input
      * @param arrArrayOfHexArray Arraylist of ArrayList of Hexs that the Units can move to  1:1 with the units
      * @param arrDupes Array of hexes that can have duplicates on the AIOrder
-     * @param aiTocheck the minimum aiScoreGen to keep hex in solution less than 99 will be old
-     *                  process  99 is new
+     * @param aiSplitNUm aiprocess splits  the number of units into groups, this is the group we are working on
      */
-    AIProcess(ArrayList<Unit> arrUnitsIn, ArrayList<ArrayList<Hex>> arrArrayOfHexArray,ArrayList<Hex> arrDupes, int aiTocheck){
+    AIProcess(ArrayList<Unit> arrUnitsIn, ArrayList<ArrayList<Hex>> arrArrayOfHexArray,ArrayList<Hex> arrDupes, int aiSplitNUm){
         Gdx.app.log("AIProcess", "Constructor #Units="+arrUnitsIn.size()
                     +"  hex arrays="+arrArrayOfHexArray.size());
+        splitNumber = aiSplitNUm;
         int iterates = 1;
         arrAIOrders.clear();
         for (ArrayList<Hex> arr:arrArrayOfHexArray){
@@ -150,7 +150,7 @@ public class AIProcess{
          *  we can reduce
          */
         ArrayList<AIOrders> arrSmall = new ArrayList<>();
-        int maxNumber = 180000;
+        int maxNumber = 90000;
         if (arrAIOrders.size() > maxNumber){
             Collections.sort(arrAIOrders, new AIOrders.SortbyScoreDescending());
             int end = arrAIOrders.size()-1;
@@ -160,9 +160,12 @@ public class AIProcess{
         }else{
             arrSmall.addAll(arrAIOrders);
         }
- //       leaveInMajorCity(arrSmall);
+        Gdx.app.log("AIProcess", "After minimize count ="+arrSmall.size());
+
+        //       leaveInMajorCity(arrSmall);
         doHandOff(arrSmall);
     }
+    public static int splitNumber;
 
 
 
