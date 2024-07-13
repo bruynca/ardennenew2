@@ -311,6 +311,10 @@ public class ClickAction implements Observer {
             MobileAssualt.instance.doMobileInitialAssualtSetUp(arrHexMobileAssualt,unit, false);
         }
         arrHexMove.remove(unit.getHexOccupy());
+        boolean is019In = false;
+        if (arrHexMove.contains(Hex.hexTable[0][19])){
+            is019In = true;
+        }
         if (!unit.isAllies && GameSetup.instance.getScenario() == GameSetup.Scenario.Intro) {
             arrHexMove.remove(Hex.hexTable[0][19]);
             arrHexMove.remove(Hex.hexTable[9][24]);
@@ -324,8 +328,19 @@ public class ClickAction implements Observer {
         if (!unit.isAllies){
             arrHexMove.removeAll(Move.instance.arrEntryPoints);
         }
-        if (SecondPanzerExits.instance.isInSecond(unit) ||LehrExits.instance.isInLehr(unit) ) {
-            arrHexMove.add(Hex.hexTable[0][19]);
+        if (GameSetup.instance.getScenario()  == GameSetup.Scenario.SecondPanzer){
+            if (is019In){
+                if (SecondPanzerExits.instance.isInSecond(unit)) {
+                    arrHexMove.add(Hex.hexTable[0][19]);
+                }
+            }
+        }
+        if (GameSetup.instance.getScenario()  == GameSetup.Scenario.Lehr){
+            if (is019In){
+                if (SecondPanzerExits.instance.isInSecond(unit) ||LehrExits.instance.isInLehr(unit) ) {
+                    arrHexMove.add(Hex.hexTable[0][19]);
+                }
+            }
         }
         HiliteHex.TypeHilite type = HiliteHex.TypeHilite.Move;
 

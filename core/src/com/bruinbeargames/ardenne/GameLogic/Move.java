@@ -329,11 +329,13 @@ public class Move extends Observable {
          *
          * check if anymoves left
          */
-        if (hexExitPanzer != null){
-            if (SecondPanzerExits.instance.isInSecond(unit)) {
-                SecondPanzerExits.instance.exitUnit(hexExitPanzer, unit);
-            }else{
-                LehrExits.instance.exitUnit(hexExitPanzer,unit);
+        if (GameSetup.instance.getScenario().ordinal() > 0) {
+            if (hexExitPanzer != null) {
+                if (SecondPanzerExits.instance.isInSecond(unit)) {
+                    SecondPanzerExits.instance.exitUnit(hexExitPanzer, unit);
+                } else {
+                    LehrExits.instance.exitUnit(hexExitPanzer, unit);
+                }
             }
         }
         ClickAction.unLock();

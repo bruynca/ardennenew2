@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.bruinbeargames.ardenne.FontFactory;
 import com.bruinbeargames.ardenne.GameLogic.SecondPanzerExits;
 import com.bruinbeargames.ardenne.GameLogic.Supply;
+import com.bruinbeargames.ardenne.GameSetup;
 import com.bruinbeargames.ardenne.SplashScreen;
 import com.bruinbeargames.ardenne.UI.MouseImage;
 import com.bruinbeargames.ardenne.Unit.Unit;
@@ -91,7 +92,8 @@ public class HexHiliteDisplay {
         else if (type == HiliteHex.TypeHilite.Hilite){
                 image = new Image(backHilite);
         }else if (type == HiliteHex.TypeHilite.MoveExit) {
-            if (SecondPanzerExits.instance.isInExit(hex)) {
+            if (SecondPanzerExits.instance.isInExit(hex)
+                    && GameSetup.instance.getScenario().ordinal() > 0) {
                 image = new Image(backHiliteExit);
             } else {
                 type = HiliteHex.TypeHilite.Move;
