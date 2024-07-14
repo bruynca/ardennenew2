@@ -268,8 +268,9 @@ public class Attack extends Observable implements Observer  {
  //       }
         int die1 = getDieRoll();
         int die2 = getDieRoll();
+
  //       die1 =6;
- //       die2 = 4;
+ //       die2 = 6;
         Gdx.app.log("Attack", "die=" + die1 + " " + die2);
 
         dieResult = attackOdds.getResult(die1, die2);

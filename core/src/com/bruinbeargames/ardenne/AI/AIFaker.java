@@ -111,6 +111,15 @@ public class AIFaker extends Observable {
             }
             arrGermanOnBoardUnits.clear();
             arrGermanOnBoardUnits.addAll(arrSave);
+        }else{
+            ArrayList<Unit> arrSave = new ArrayList<>();
+            for (Unit unit:arrGermanOnBoardUnits){
+                if (!unit.isArtillery && unit.getCurrentMovement() > 7){
+                    arrSave.add(unit);
+                }
+            }
+            arrGermanOnBoardUnits.clear();
+            arrGermanOnBoardUnits.addAll(arrSave);
         }
 
         ArrayList<Unit> arrGermanPass = new ArrayList<>();

@@ -151,6 +151,9 @@ public class AIProcess{
          */
         ArrayList<AIOrders> arrSmall = new ArrayList<>();
         int maxNumber = 90000;
+        if (NextPhase.instance.getTurn() < 4){
+            maxNumber =45000           ;
+        }
         if (arrAIOrders.size() > maxNumber){
             Collections.sort(arrAIOrders, new AIOrders.SortbyScoreDescending());
             int end = arrAIOrders.size()-1;
