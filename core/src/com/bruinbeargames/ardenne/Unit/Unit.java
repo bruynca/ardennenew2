@@ -472,9 +472,10 @@ public class Unit {
 	{
 		if (counter != null) {
 			return counter;
-		}else{
+		}else{ if (unitDummy != null)
 			return unitDummy.getMapCounter();
 		}
+		return counter;
 	}
 
 	private void placeLogic(Hex hexPlace) {

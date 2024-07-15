@@ -69,6 +69,7 @@ public class AISetScore {
                 if (bastogneStatus.strategy == AIReinforcementScenario1.StrategyBastogne.WiltzAttack ||
                     bastogneStatus.strategy == AIReinforcementScenario1.StrategyBastogne.WiltzFree){
                     scoreWiltzScene1();
+                    scoreBastogneScene1();
                     return;
                 }else{
                     scoreBastogneScene1();
@@ -356,7 +357,8 @@ public class AISetScore {
          */
         ArrayList<Hex> arrWork = hexBastogneReinforceEntry.getSurroundMapArr(hexBastogneReinforceEntry,3);
         for (Hex hex: arrWork){
-            hex.setAI(2);
+            hex.setAI(40);
+            hex.setAiScoreFaker(40);
         }
     }
 
