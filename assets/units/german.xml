@@ -715,6 +715,22 @@
 			<defenseFactor value="0" />
 			<movementFactor value="35" />
 		</unit>
+        <unit>
+            <unitDesignation value="Dummy"/>
+            <unitSubDesignation value="243 Assualt Gun" />
+            <unitMechanized value="true" />
+            <unitGroundCombat value="true" />
+            <unitType value="AssualtGun" />
+            <unitSize value="Regiment" />
+            <entryAreaX value="35" />
+            <entryAreaY value="11" />
+            <unitEntry value="1" />
+            <unitStepAtStart value="1" />
+            <unitSteps value="1" />
+            <attackFactor value="3" />
+            <defenseFactor value="3" />
+            <movementFactor value="10" />
+        </unit>
 
 
 

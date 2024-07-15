@@ -47,6 +47,7 @@ public class Unit {
 	static TextureAtlas textureAtlas;
 	static TextureRegion tStar;
 	static public Unit unitAirplane = null;
+	static public Unit unitDummy;
 
 
 	/**
@@ -469,7 +470,11 @@ public class Unit {
 	}
 	public Counter getMapCounter()
 	{
-		return counter;
+		if (counter != null) {
+			return counter;
+		}else{
+			return unitDummy.getMapCounter();
+		}
 	}
 
 	private void placeLogic(Hex hexPlace) {
@@ -477,8 +482,12 @@ public class Unit {
 		hexOccupy = hexPlace;
 		isOnBoard = true;
 		counter = new Counter(this, Counter.TypeCounter.MapCounter);
-		counter.place(hexPlace);
-		hexPlace.enterHex(this);
+		if (this != unitDummy) {
+			counter.place(hexPlace);
+			hexPlace.enterHex(this);
+		}else{
+			int b=0;
+		}
 	}
 
 	/**
@@ -919,6 +928,16 @@ public class Unit {
 		fileHandle = Gdx.files.internal("units/allies.xml");
 		loadNationUnits(fileHandle, true);
 		unitAirplane = new Unit(null,true,true);
+		for (Unit unit:arrGameCombatUnits){
+			if (unit.designation.contains("Dummy")){
+				unitDummy = unit;
+				unit.placeLogic(Hex.hexTable[0][19]);
+			}
+		}
+		arrGameCombatUnits.remove(unitDummy);
+	//	counter = new Counter(this, Counter.TypeCounter.MapCounter);
+
+
 
 	}
 	private static  void loadNationUnits(FileHandle fileHandle,boolean isAllies)
