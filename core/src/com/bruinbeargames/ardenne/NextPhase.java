@@ -566,6 +566,7 @@ public class NextPhase {
                 case ALLIED_END:
                     isAlliedPlayer = true;
                     Supply.instance.endSupplyUS();
+                    SignPost.instance.remove(turn);
                     nextPhase();
                     break;
                 case NEXT_TURN:

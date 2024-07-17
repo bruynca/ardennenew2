@@ -228,11 +228,7 @@ public class CardHandler implements Observer {
          *  turn off sign posts  only on for 1 turn
          */
 
-        if (isJunctionSet){
-            setJunctionSet(false);
-            SignPost.instance.remove(turn);
-        }
-        /**
+       /**
          * do GermanCard phases
          */
         if (arrCardsGermanChosen.size() > 0){
@@ -425,6 +421,11 @@ public class CardHandler implements Observer {
             }
         }
         return arrReturn;
+    }
+    public void setOffSigne(int turn){
+        setJunctionSet(false);
+        SignPost.instance.remove(turn);
+
     }
 
     @Override

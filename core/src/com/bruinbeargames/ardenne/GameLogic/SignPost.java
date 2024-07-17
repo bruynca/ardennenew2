@@ -42,7 +42,7 @@ public class SignPost {
         }
     }
     public void remove(int turn){
-        if (turn > turnPlayed) {
+        if (turn == turnPlayed) {
             for (Image image : arrImage) {
                 image.remove();
             }
