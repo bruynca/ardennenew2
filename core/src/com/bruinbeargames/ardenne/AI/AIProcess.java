@@ -153,6 +153,11 @@ public class AIProcess{
         int maxNumber = 90000;
         if (NextPhase.instance.getTurn() < 4){
             maxNumber =45000           ;
+        }else{
+            if (AISetScore.instance.strategy == AISetScore.Strategy.Supply) {
+                maxNumber = 40000;
+            }
+
         }
         if (arrAIOrders.size() > maxNumber){
             Collections.sort(arrAIOrders, new AIOrders.SortbyScoreDescending());

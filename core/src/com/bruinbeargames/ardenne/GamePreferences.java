@@ -23,7 +23,7 @@ public class GamePreferences {
     private static Preferences prefsAnalytics = Gdx.app.getPreferences("ardenne_analytics_prefs");
     private static Preferences mobileprefs = Gdx.app.getPreferences("ardenne_prefs");
     private static Preferences mobileprefsAnalytics = Gdx.app.getPreferences("ardenne_analytics_prefs");
-    private static String buildNumber = "2.8.4.0";
+    private static String buildNumber = "2.9.0.0";
     /**
      *
      * Version 2.8   fix bu where save game in reinforcement
@@ -34,12 +34,13 @@ public class GamePreferences {
      * 2.8.2 Ignore Null units on load and set off EventPopup on load
      * 2.8.3 fix for Cant return language to German
      * 2.8.4 save english language in settings
+     * 2.9.0 fix errors
      * *
      */
     private static String gameDir = "bruinbeargames/ardenne/savedgames/";
     String strIPAddress = "IPAddress";
     String strLanguage = "language";
-    public static boolean isDEbug=true;
+    public static boolean isDEbug=false;
 
 
     public GamePreferences() {
